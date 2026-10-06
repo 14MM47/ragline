@@ -1,0 +1,21 @@
+# ragline-qdrant.service — brings up the Qdrant container for ragline.
+#
+# Oneshot + RemainAfterExit so ragline.service can order itself After= this
+# unit; the container itself is kept alive by Docker's restart policy
+# (restart: unless-stopped in docker-compose.yml), not by systemd.
+
+[Unit]
+Description=Qdrant vector database for ragline (docker compose)
+Wants=network-online.target
+After=network-online.target docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/opt/ragline
+ExecStart=/usr/bin/docker compose -f /opt/ragline/docker-compose.yml up -d qdrant
+ExecStop=/usr/bin/docker compose -f /opt/ragline/docker-compose.yml stop qdrant
+
+[Install]
+WantedBy=multi-user.target

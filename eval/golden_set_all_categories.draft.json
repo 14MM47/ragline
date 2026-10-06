@@ -1,0 +1,606 @@
+[
+  {
+    "question": "What is the ABB order code for the AC500-eCo PM554-TP-ETH CPU with integrated Ethernet?",
+    "expected_answer": "The PM554-TP-ETH (24 V DC, transistor outputs, integrated Ethernet) has order code 1SAP120600R0071.",
+    "expected_sources": [
+      "plc/abb/ac500-eco/ac500_eco_plc_brochure.pdf"
+    ],
+    "tags": [
+      "plc",
+      "specs"
+    ],
+    "page": 4
+  },
+  {
+    "question": "What tightening torque is specified for the 5069-RTB4-SCREW and 5069-RTB6-SCREW removable terminal blocks used with CompactLogix 5380 controllers?",
+    "expected_answer": "The screw-type RTBs must be torqued to 0.4 N-m (3.5 lb-in); torque does not apply to the spring-type RTBs.",
+    "expected_sources": [
+      "plc/allen-bradley/compactlogix-5380/compactlogix_5380_technical_data.pdf"
+    ],
+    "tags": [
+      "plc",
+      "wiring"
+    ],
+    "page": 5
+  },
+  {
+    "question": "What is the operating temperature range of the Allen-Bradley MicroLogix 1100 controller?",
+    "expected_answer": "The MicroLogix 1100 operates from -20 degC to +65 degC (-4 degF to +149 degF).",
+    "expected_sources": [
+      "plc/allen-bradley/micrologix/micrologix_1100_product_profile.pdf"
+    ],
+    "tags": [
+      "plc",
+      "specs"
+    ],
+    "page": 4
+  },
+  {
+    "question": "How many axes of high-speed pulse output does the Delta DVP-EH3 PLC provide, and at what frequency?",
+    "expected_answer": "The DVP-EH3 provides 4 axes of 200 kHz high-speed pulse output (on DVP40/48/64/80EH00T3 models).",
+    "expected_sources": [
+      "plc/delta/dvp-series/dvp_series_catalog.pdf"
+    ],
+    "tags": [
+      "plc",
+      "specs"
+    ],
+    "page": 6
+  },
+  {
+    "question": "What is the LD/MOV instruction execution speed of the Mitsubishi MELSEC iQ-F FX5U PLC?",
+    "expected_answer": "The FX5U executes LD/MOV instructions in 34 ns, with a program capacity of 64k steps.",
+    "expected_sources": [
+      "plc/mitsubishi/melsec-iqf/melsec_iqf_series_catalog.pdf"
+    ],
+    "tags": [
+      "plc",
+      "specs"
+    ],
+    "page": 6
+  },
+  {
+    "question": "What is the program memory capacity of the Omron CP1L-EM CPU units?",
+    "expected_answer": "CP1L-EM CPU units have a memory capacity of 10K steps (CP1L-L units have 5K steps).",
+    "expected_sources": [
+      "plc/omron/cp1-series/cp1l_datasheet.pdf"
+    ],
+    "tags": [
+      "plc",
+      "specs"
+    ],
+    "page": 2
+  },
+  {
+    "question": "What ingress protection rating do the Advantech WebOP-2000 series operator panels carry?",
+    "expected_answer": "All WebOP-2000 series models support NEMA 4 / IP65 waterproof protection and 0-50 degC operating temperatures.",
+    "expected_sources": [
+      "hmi/advantech/webop-3000t/advantech_industrial_operator_panels_catalog.pdf"
+    ],
+    "tags": [
+      "hmi",
+      "specs"
+    ],
+    "page": 2
+  },
+  {
+    "question": "To what torque should the mounting clip screws be tightened when panel-mounting a PanelView 5510 stainless steel terminal?",
+    "expected_answer": "The mounting clip screws must be torqued to 2.3-2.6 N-m (20-23 lb-in) using the specified sequence, repeating until all clips hold the torque.",
+    "expected_sources": [
+      "hmi/allen-bradley/panelview-5510/panelview_5510_stainless_steel_technical_data.pdf"
+    ],
+    "tags": [
+      "hmi",
+      "procedure"
+    ],
+    "page": 3
+  },
+  {
+    "question": "What is the permissible power supply voltage range of the Beijer X2 pro 4 (B2) HMI panel?",
+    "expected_answer": "The X2 pro 4 - B2 runs on +24 VDC nominal with an allowed range of 18-32 V DC (Class 2 supply for UL/cUL).",
+    "expected_sources": [
+      "hmi/beijer/x2-pro/x2_pro_4_b2_hardware_manual.pdf"
+    ],
+    "tags": [
+      "hmi",
+      "specs"
+    ],
+    "page": 15
+  },
+  {
+    "question": "What is the power supply voltage specification for the Mitsubishi GOT2000 GT25 wide models such as the GT2512-WXTBD?",
+    "expected_answer": "GT25 wide models are rated DC24V with a tolerance of +25%/-20%; GT2512 maximum-load power consumption is 20 W or less.",
+    "expected_sources": [
+      "hmi/mitsubishi/got2000/gt25_wide_general_description.pdf"
+    ],
+    "tags": [
+      "hmi",
+      "specs"
+    ],
+    "page": 1
+  },
+  {
+    "question": "What is the rated power supply voltage of the Omron NB-series programmable terminals?",
+    "expected_answer": "The NB series is rated DC24V +/-15% (i.e. 20.4-27.6 V DC).",
+    "expected_sources": [
+      "hmi/omron/nb-series/nb_series_setup_manual.pdf"
+    ],
+    "tags": [
+      "hmi",
+      "specs"
+    ],
+    "page": 90
+  },
+  {
+    "question": "What supply voltage and typical power draw does the Red Lion G315C operator interface require?",
+    "expected_answer": "The G315C requires +24 VDC +/-20% from a Class 2/SELV supply, drawing 27 W typical and 67 W maximum.",
+    "expected_sources": [
+      "hmi/red-lion/graphite/g315c_datasheet.pdf"
+    ],
+    "tags": [
+      "hmi",
+      "specs"
+    ],
+    "page": 2
+  },
+  {
+    "question": "In the ABB ACS880 IGBT supply control program, which relay outputs control the main contactor and the charging contactor by default?",
+    "expected_answer": "By default the control program drives the main contactor with relay output RO3 and the charging contactor/relay with relay output RO1.",
+    "expected_sources": [
+      "vfd/abb/acs880/acs880_igbt_supply_control_program_firmware_manual.pdf"
+    ],
+    "tags": [
+      "vfd",
+      "config"
+    ],
+    "page": 26
+  },
+  {
+    "question": "What output frequency range does the Danfoss VLT Micro Drive FC 51 provide?",
+    "expected_answer": "The FC 51 outputs 0-200 Hz in VVC+ mode and 0-400 Hz in u/f mode.",
+    "expected_sources": [
+      "vfd/danfoss/vlt-fc51/vlt_micro_drive_fc51_design_guide.pdf"
+    ],
+    "tags": [
+      "vfd",
+      "specs"
+    ],
+    "page": 90
+  },
+  {
+    "question": "What is the estimated lifespan of the cooling fan in a Mitsubishi FR-E800 inverter?",
+    "expected_answer": "The cooling fan has an estimated lifespan of 10 years, assuming a yearly average surrounding air temperature of 40 degC (30 degC for the FR-E806).",
+    "expected_sources": [
+      "vfd/mitsubishi/fr-e800/fr_e800_instruction_manual_maintenance.pdf"
+    ],
+    "tags": [
+      "vfd",
+      "procedure"
+    ],
+    "page": 56
+  },
+  {
+    "question": "What is the factory-set switching frequency of the Schneider Electric Altivar ATV320 drive?",
+    "expected_answer": "The ATV320 [Switching frequency] SFR parameter is factory set to 4 kHz.",
+    "expected_sources": [
+      "vfd/schneider/atv320/atv320_programming_manual.pdf"
+    ],
+    "tags": [
+      "vfd",
+      "config"
+    ],
+    "page": 16
+  },
+  {
+    "question": "What line supply voltage ranges are SINAMICS S120 chassis format power units designed for?",
+    "expected_answer": "They accept 3-phase 380 V AC -10% (-15% for under 1 min) up to 480 V AC +10%, or 3-phase 500 V AC -10% up to 690 V AC +10%.",
+    "expected_sources": [
+      "vfd/siemens/sinamics-s120/sinamics_s120_chassis_power_units_equipment_manual.pdf"
+    ],
+    "tags": [
+      "vfd",
+      "specs"
+    ],
+    "page": 25
+  },
+  {
+    "question": "What is the maximum output frequency of the Yaskawa GA500 drive when controlling an induction motor?",
+    "expected_answer": "The GA500 reaches a maximum output frequency of 590 Hz for induction motors (also 590 Hz for PM vector control; 270 Hz in advanced PM vector control), with 0.001 Hz output frequency resolution.",
+    "expected_sources": [
+      "vfd/yaskawa/ga500/ga500_datasheet.pdf"
+    ],
+    "tags": [
+      "vfd",
+      "specs"
+    ],
+    "page": 7
+  },
+  {
+    "question": "How much memory does the PM891 processor unit of the ABB AC 800M controller have?",
+    "expected_answer": "The PM891 has 16 MBytes of flash PROM (firmware storage) and 256 MBytes of DDR2 SDRAM with integrity check.",
+    "expected_sources": [
+      "dcs/abb/ac-800m/ac_800m_800xa_61_controller_hardware_product_guide.pdf"
+    ],
+    "tags": [
+      "dcs",
+      "specs"
+    ],
+    "page": 92
+  },
+  {
+    "question": "What is the user memory capacity of the Emerson DeltaV SX controller?",
+    "expected_answer": "The DeltaV SX controller has 96 MB of user memory.",
+    "expected_sources": [
+      "dcs/emerson/deltav-s-series/deltav_sx_controller_datasheet.pdf"
+    ],
+    "tags": [
+      "dcs",
+      "specs"
+    ],
+    "page": 4
+  },
+  {
+    "question": "How much memory does the Emerson Ovation OCR1100 controller have?",
+    "expected_answer": "The Ovation OCR1100 controller has 1 GB Flash and 256 MB RAM, with a 1.1 GHz processor base frequency.",
+    "expected_sources": [
+      "dcs/emerson/ovation/ovation_controller_ocr1100_datasheet.pdf"
+    ],
+    "tags": [
+      "dcs",
+      "specs"
+    ],
+    "page": 6
+  },
+  {
+    "question": "What processor does the Honeywell ControlEdge PLC Control Processor Module use?",
+    "expected_answer": "The ControlEdge PLC CPM uses a dual-core ARM Cortex-A9 32-bit processor running at 667 MHz.",
+    "expected_sources": [
+      "dcs/honeywell/controledge-plc/controledge_plc_specification_technical_data.pdf"
+    ],
+    "tags": [
+      "dcs",
+      "specs"
+    ],
+    "page": 7
+  },
+  {
+    "question": "How many Series 8 I/O modules can an Experion LX C300 controller support?",
+    "expected_answer": "The C300 supports 80 I/O units (redundant or non-redundant IOMs) per controller, with 40 I/O units per I/O Link across its 2 I/O Links.",
+    "expected_sources": [
+      "dcs/honeywell/experion-lx/experion_lx_series_8_controller_and_io_specification_technical_data.pdf"
+    ],
+    "tags": [
+      "dcs",
+      "specs"
+    ],
+    "page": 12
+  },
+  {
+    "question": "What is the base accuracy of the ABB 266MST differential pressure transmitter?",
+    "expected_answer": "Base accuracy is 0.04 % of calibrated span, with an optional 0.025 % variant.",
+    "expected_sources": [
+      "instrumentation/abb/266/266mst_multivariable_transmitter_datasheet.pdf"
+    ],
+    "tags": [
+      "instrumentation",
+      "specs"
+    ],
+    "page": 2
+  },
+  {
+    "question": "What is the operating frequency of the Endress+Hauser Micropilot FMR63B free-space radar level transmitter?",
+    "expected_answer": "The FMR63B operates at approximately 80 GHz, with a maximum emitted peak power of <1.5 mW and an average power output of <70 uW.",
+    "expected_sources": [
+      "instrumentation/endress-hauser/micropilot-fmr6xb/micropilot_fmr63b_operating_instructions.pdf"
+    ],
+    "tags": [
+      "instrumentation",
+      "specs"
+    ],
+    "page": 8
+  },
+  {
+    "question": "What nominal diameter range is the Endress+Hauser Proline Promag W 400 electromagnetic flowmeter available in?",
+    "expected_answer": "The Promag W sensor covers a nominal diameter range of DN 25 to 3000 mm (1 to 120 in).",
+    "expected_sources": [
+      "instrumentation/endress-hauser/promag-400/promag_w_400_technical_information.pdf"
+    ],
+    "tags": [
+      "instrumentation",
+      "specs"
+    ],
+    "page": 6
+  },
+  {
+    "question": "What is the maximum measuring distance of the KROHNE OPTIWAVE 1560 radar level transmitter?",
+    "expected_answer": "The OPTIWAVE 1560 lens antenna measures distances up to 30 m (98.4 ft), with an accuracy of +/-2 mm (+/-0.08 in).",
+    "expected_sources": [
+      "instrumentation/krohne/optiwave/optiwave_15xx_technical_datasheet.pdf"
+    ],
+    "tags": [
+      "instrumentation",
+      "specs"
+    ],
+    "page": 8
+  },
+  {
+    "question": "What is the reference accuracy of the Yokogawa EJA110E differential pressure transmitter with the M capsule?",
+    "expected_answer": "Reference accuracy is +/-0.055 % of span for spans down to 5 kPa (20 inH2O); for smaller spans it is +/-(0.005+0.0025 URL/span) % of span.",
+    "expected_sources": [
+      "instrumentation/yokogawa/eja-e-series/eja110e_diff_pressure_transmitter.pdf"
+    ],
+    "tags": [
+      "instrumentation",
+      "specs"
+    ],
+    "page": 1
+  },
+  {
+    "question": "What power connector types are used on the Allen-Bradley 1732E ArmorBlock 16-channel configurable digital modules?",
+    "expected_answer": "The 1732E-16CFGM12M12LDR uses M12 L-coded power connectors, while the 1732E-16CFGM12P5DR uses 7/8-inch power connectors. I/O uses M12 A-coded and the EtherNet/IP network uses M12 D-coded connectors.",
+    "expected_sources": [
+      "io/allen-bradley/armorblock-1732/1732e_armorblock_16_channel_configurable_digital_user_manual.pdf"
+    ],
+    "tags": [
+      "io",
+      "wiring"
+    ],
+    "page": 7
+  },
+  {
+    "question": "What PROFINET conformance class does the Murrelektronik MVK Fusion fieldbus module support?",
+    "expected_answer": "The MVK Fusion supports PROFINET specification V2.3, Conformance Class C (IRT), Netload Class III.",
+    "expected_sources": [
+      "io/murrelektronik/mvk-fusion/mvk_fusion_fieldbus_module_technical_data.pdf"
+    ],
+    "tags": [
+      "io",
+      "protocols"
+    ],
+    "page": 6
+  },
+  {
+    "question": "How many Axioline F devices can be connected to the Phoenix Contact AXL F BK PN PROFINET bus coupler?",
+    "expected_answer": "Up to 63 Axioline F devices can be connected per station via the AXL F BK PN bus coupler.",
+    "expected_sources": [
+      "io/phoenix-contact/axioline-f/axl_f_bk_pn_profinet_bus_coupler_datasheet.pdf"
+    ],
+    "tags": [
+      "io",
+      "specs"
+    ],
+    "page": 1
+  },
+  {
+    "question": "What is the output current per channel of the Siemens ET 200eco PN DIQ 16x24VDC/0.5A/2A M12-L digital I/O module?",
+    "expected_answer": "Outputs on sockets X10 to X13 deliver 0.5 A per output (max 2 A total for the group); outputs on X14 to X17 deliver 2 A per output (max 6 A total for the group).",
+    "expected_sources": [
+      "io/siemens/et200eco-pn-m12l/et200eco_pn_diq_16x24vdc_m12l_equipment_manual.pdf"
+    ],
+    "tags": [
+      "io",
+      "specs"
+    ],
+    "page": 15
+  },
+  {
+    "question": "What CPU does the WAGO PFC200 G2 controller 750-8212 use?",
+    "expected_answer": "The 750-8212 PFC200 G2 uses a Cortex A8 CPU running at 1 GHz under real-time Linux 4.9.47-rt37 with RT preemption patch.",
+    "expected_sources": [
+      "io/wago/pfc200/750_8212_pfc200_g2_2eth_rs_user_manual.pdf"
+    ],
+    "tags": [
+      "io",
+      "specs"
+    ],
+    "page": 46
+  },
+  {
+    "question": "Up to what welding current is the Balluff BMF 415 weld field immune magnetic field sensor unaffected?",
+    "expected_answer": "Welding currents up to 110 kA have no effect on the BMF 415 sensor function; its cables are weld spark resistant.",
+    "expected_sources": [
+      "sensors/balluff/bmf-series/bmf_magnetic_field_sensors_selection_guide.pdf"
+    ],
+    "tags": [
+      "sensors",
+      "specs"
+    ],
+    "page": 5
+  },
+  {
+    "question": "What is the measuring range of the ifm O5D100 photoelectric distance sensor?",
+    "expected_answer": "The ifm O5D100 has a measuring range of 0.03 to 2 m (time-of-flight measurement), with a sampling rate of 33 Hz.",
+    "expected_sources": [
+      "sensors/ifm/o5-series/o5d100_photoelectric_distance_sensor_datasheet.pdf"
+    ],
+    "tags": [
+      "sensors",
+      "specs"
+    ],
+    "page": 3
+  },
+  {
+    "question": "What is the maximum switching frequency of the Leuze PRK3CT retro-reflective photoelectric sensor?",
+    "expected_answer": "The Leuze PRK3CT has a switching frequency of 1,500 Hz, with a response time of 0.33 ms.",
+    "expected_sources": [
+      "sensors/leuze/3c-series/prk3ct_retroreflective_photoelectric_io_link_datasheet.pdf"
+    ],
+    "tags": [
+      "sensors",
+      "specs"
+    ],
+    "page": 2
+  },
+  {
+    "question": "What is the maximum sensing range of the SICK PowerProx Distance MultiTask photoelectric sensor?",
+    "expected_answer": "The PowerProx Distance has a maximum sensing range of 50 mm to 3,800 mm (up to 3.8 m) for objects with 6...90 % remission.",
+    "expected_sources": [
+      "sensors/sick/powerprox/powerprox_multitask_product_information.pdf"
+    ],
+    "tags": [
+      "sensors",
+      "specs"
+    ],
+    "page": 11
+  },
+  {
+    "question": "What is the switching bandwidth of the Advantech EKI-5729PI industrial PoE switch?",
+    "expected_answer": "The EKI-5729PI has a switching bandwidth of 20 Gbps (the EKI-5624PI has 4.8 Gbps).",
+    "expected_sources": [
+      "networking/advantech/eki-5000/eki_5729pi_5624pi_user_manual.pdf"
+    ],
+    "tags": [
+      "networking",
+      "specs"
+    ],
+    "page": 11
+  },
+  {
+    "question": "What is the nominal supply voltage range of the Hirschmann EAGLE40 industrial firewall?",
+    "expected_answer": "The EAGLE40 has a nominal supply voltage range of 24 V DC to 48 V DC (20...58 V DC including maximum tolerances for EAGLE40-03, 20...54 V DC for EAGLE40-07), with two redundant SELV voltage inputs.",
+    "expected_sources": [
+      "networking/hirschmann/eagle40/eagle40_07_installation_guide.pdf"
+    ],
+    "tags": [
+      "networking",
+      "specs"
+    ],
+    "page": 48
+  },
+  {
+    "question": "What DC input voltage range does the Moxa AWK-4252A wireless AP/bridge/client accept?",
+    "expected_answer": "The AWK-4252A accepts 12 to 48 VDC on redundant dual power inputs (2.2-0.55 A) and can alternatively be powered via 48 VDC Power-over-Ethernet.",
+    "expected_sources": [
+      "networking/moxa/awk-4252a/awk_4252a_series_datasheet.pdf"
+    ],
+    "tags": [
+      "networking",
+      "specs"
+    ],
+    "page": 4
+  },
+  {
+    "question": "What is the permitted voltage range of the 24 VDC power supply input on the Siemens SCALANCE XR524-8C?",
+    "expected_answer": "The 2 x 24 VDC supply of the SCALANCE XR524-8C has a rated voltage of 24 V DC with a permitted voltage range of 19.2 VDC to 28.8 VDC (fusing 3.15 A / 125 V, current consumption 1 A).",
+    "expected_sources": [
+      "networking/siemens/scalance-xr-500/scalance_xr500_operating_instructions.pdf"
+    ],
+    "tags": [
+      "networking",
+      "specs"
+    ],
+    "page": 83
+  },
+  {
+    "question": "What safety rating does the guard locking safety function achieve in the Allen-Bradley 440C-CR30 Cat 1 stop with guardlocking interlock (TLS-ZR) example application?",
+    "expected_answer": "The guard locking safety function meets SIL CL2 / SIL 2 (per IEC 62061 and IEC 61508) with a Category 3 structure usable up to Performance Level PLd per ISO 13849-1, executing a Stop Category 1.",
+    "expected_sources": [
+      "safety/allen-bradley/440c-cr30/440c_cr30_wiring_diagrams.pdf"
+    ],
+    "tags": [
+      "safety",
+      "wiring"
+    ],
+    "page": 12
+  },
+  {
+    "question": "What is the maximum locking force of the Euchner CTP transponder-coded safety switch?",
+    "expected_answer": "The CTP has a maximum locking force Fmax of 3,900 N; the locking force FZh per EN ISO 14119 is Fmax/1.3 = 3,000 N.",
+    "expected_sources": [
+      "safety/euchner/ctp/ctp_transponder_coded_safety_switch_guard_locking_operating_instructions.pdf"
+    ],
+    "tags": [
+      "safety",
+      "specs"
+    ],
+    "page": 21
+  },
+  {
+    "question": "What is the limiting continuous current of the safe digital outputs (O1-O4) on the Phoenix Contact PSR-M-B3-XC-SDI8-SDO4-DO4-PI safety module?",
+    "expected_answer": "Each safe digital output channel is limited to 400 mA continuous current, with a total current of 1.6 A across all four safe digital outputs.",
+    "expected_sources": [
+      "safety/phoenix-contact/psr-modular/psr_m_b3_xc_sdi8_sdo4_do4_pi_safety_module_datasheet.pdf"
+    ],
+    "tags": [
+      "safety",
+      "specs"
+    ],
+    "page": 3
+  },
+  {
+    "question": "What safety characteristic data does the Pilz PNOZ m B1 base unit achieve in 2-channel operating mode?",
+    "expected_answer": "In 2-channel mode the PNOZ m B1 achieves PL e / Cat. 4 per EN ISO 13849-1 and SIL CL 3 per EN IEC 62061 with PFHD = 4.19E-10 1/h and a mission time TM of 20 years.",
+    "expected_sources": [
+      "safety/pilz/pnozmulti/pnoz_m_b1_operating_manual.pdf"
+    ],
+    "tags": [
+      "safety",
+      "specs"
+    ],
+    "page": 45
+  },
+  {
+    "question": "What is the field of view aperture angle of the SICK safeVisionary2 safe 3D camera?",
+    "expected_answer": "The safeVisionary2 field of view is 68 deg x 58 deg (horizontal x vertical); for protective field evaluation it is limited to 68 deg x 42 deg.",
+    "expected_sources": [
+      "safety/sick/safevisionary2/safevisionary2_technical_information.pdf"
+    ],
+    "tags": [
+      "safety",
+      "specs"
+    ],
+    "page": 12
+  },
+  {
+    "question": "Which device has the shorter minimum IO-Link cycle time: the Banner K50 Pro indicator or the Leuze PRK3CT retro-reflective sensor?",
+    "expected_answer": "The Leuze PRK3CT is faster with a minimum IO-Link cycle time of 2.3 ms, versus 5 ms for the Banner K50 Pro.",
+    "expected_sources": [
+      "sensors/banner/k50-pro/k50_pro_indicator_io_link_product_manual.pdf",
+      "sensors/leuze/3c-series/prk3ct_retroreflective_photoelectric_io_link_datasheet.pdf"
+    ],
+    "tags": [
+      "sensors",
+      "multi-source",
+      "protocols"
+    ]
+  },
+  {
+    "question": "Do the Hirschmann EAGLE40 firewall and the Phoenix Contact FL SWITCH 2000 ship with the same default password?",
+    "expected_answer": "Yes \u2014 both ship with the default password 'private' (FL SWITCH 2000 with user name 'admin'; the EAGLE40 forces a password change at first login on HiSecOS 3.4 and later).",
+    "expected_sources": [
+      "networking/hirschmann/eagle40/eagle40_07_installation_guide.pdf",
+      "networking/phoenix-contact/fl-switch-2000/fl_switch_2000_nat_2000_configuration_user_manual.pdf"
+    ],
+    "tags": [
+      "networking",
+      "multi-source",
+      "config"
+    ]
+  },
+  {
+    "question": "Which Honeywell controller has more program memory: the Experion LX C300 or the ControlEdge PLC Control Processor Module?",
+    "expected_answer": "The Experion LX C300 has 16 MB of program memory, versus 10 MB of user programming memory (5 MB program + 5 MB data) on the ControlEdge PLC CPM.",
+    "expected_sources": [
+      "dcs/honeywell/experion-lx/experion_lx_series_8_controller_and_io_specification_technical_data.pdf",
+      "dcs/honeywell/controledge-plc/controledge_plc_specification_technical_data.pdf"
+    ],
+    "tags": [
+      "dcs",
+      "multi-source",
+      "specs"
+    ]
+  },
+  {
+    "question": "Which radar level transmitter offers the longer maximum measuring range: the Siemens SITRANS LR560 or the KROHNE OPTIWAVE 1560?",
+    "expected_answer": "The SITRANS LR560, which is available in 40 m and 100 m versions, versus a maximum of 30 m for the OPTIWAVE 1560.",
+    "expected_sources": [
+      "instrumentation/siemens/sitrans-lr560/sitrans_lr560_compact_operating_instructions.pdf",
+      "instrumentation/krohne/optiwave/optiwave_15xx_technical_datasheet.pdf"
+    ],
+    "tags": [
+      "instrumentation",
+      "multi-source",
+      "specs"
+    ]
+  }
+]

@@ -1,0 +1,20 @@
+[
+    {
+        "question": "What is the maximum sensing distance of the BI2-Q5 sensor?",
+        "expected_answer": "The maximum sensing distance of the BI2-Q5 is 2mm.",
+        "expected_sources": ["sensors/BI2-Q5.pdf"],
+        "tags": ["sensors", "specs", "template-seed"]
+    },
+    {
+        "question": "What communication protocols does the M580 support?",
+        "expected_answer": "The M580 supports Ethernet/IP and Modbus TCP protocols.",
+        "expected_sources": ["controllers/M580.pdf"],
+        "tags": ["controllers", "protocols", "template-seed"]
+    },
+    {
+        "question": "How do you wire a 3-wire inductive sensor to the M580?",
+        "expected_answer": "Connect the brown wire to +24V DC, blue to 0V, and black to the digital input module.",
+        "expected_sources": ["sensors/BI2-Q5.pdf", "controllers/M580.pdf"],
+        "tags": ["wiring", "integration", "template-seed"]
+    }
+]

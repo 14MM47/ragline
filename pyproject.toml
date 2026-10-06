@@ -1,0 +1,156 @@
+# pyproject.toml — build and dependency manifest for ragline.
+#
+# ragline is a proof-of-concept RAG test bench, ported from the raggles
+# playground (github.com/14MM47/raggles). Compared to raggles, the dependency
+# list here is deliberately smaller: no litellm (replaced by the plain openai
+# SDK pointed at a configurable OpenAI-compatible base URL), no azure extras,
+# no FlagEmbedding/colpali, no ragas/deepeval.
+
+[build-system]
+# hatchling is a modern, zero-config build backend; same choice as raggles.
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ragline"
+version = "0.1.0"
+description = "Proof-of-concept RAG test bench: one cited document-QA pipeline, with the LLM, embedder and reranker on rented GPU pods"
+readme = "README.md"
+requires-python = ">=3.11"
+# MIT covers ragline's own code. The PDF parser dependencies are AGPL-3.0
+# (or commercial, from Artifex) — see THIRD_PARTY.md before distributing or
+# hosting ragline.
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "14MM47" }]
+keywords = ["rag", "retrieval-augmented-generation", "llm", "evaluation", "vllm", "qdrant", "citations", "gpu"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Framework :: FastAPI",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Text Processing :: Indexing",
+]
+dependencies = [
+    # --- Web framework / API ---
+    "fastapi>=0.115",          # ASGI web framework for all API routes
+    "uvicorn[standard]>=0.32", # ASGI server that runs the FastAPI app
+    "sse-starlette>=2.1",      # Server-Sent Events response type for /chat streaming
+    "python-multipart>=0.0.9", # multipart/form-data parsing for file uploads
+
+    # --- Auth (Entra SSO, backend-for-frontend) ---
+    "authlib>=1.3",            # server-side OIDC code+PKCE flow + JWKS ID-token validation
+    "itsdangerous>=2.2",       # signs the opaque session cookie (also required by
+                               # Starlette's SessionMiddleware, used for the login dance)
+
+    # --- ACL crawler (per-user citation gating) ---
+    "smbprotocol>=1.13",       # reads NTFS security descriptors over SMB from Linux
+
+    # --- LLM + embeddings (single OpenAI-compatible endpoint) ---
+    "openai>=1.55",            # official SDK; AsyncOpenAI(base_url=...) works against
+                               # OpenAI, Azure OpenAI-compatible, RunPod vLLM, on-prem vLLM
+    "tenacity>=9.0",           # retry decorators around LLM/embedding calls
+
+    # --- Parsing (PDF / DOCX / XLSX) ---
+    "pymupdf4llm==1.28.2",     # PDF -> per-page markdown (the core PDF parser).
+                               # PINNED EXACTLY, not a lower bound: this library
+                               # changes parsing behaviour across releases and two
+                               # silent upgrades have already corrupted ingested
+                               # data — 1.28 renamed the page-chunk metadata key
+                               # (`page` -> `page_number`), collapsing every
+                               # citation to p.1, and switched to a layout engine
+                               # that OCRs by default, which REPLACED good text
+                               # with worse OCR output (one file lost 79% of its
+                               # content). It also hard-requires a matching
+                               # pymupdf, so this pin fixes both halves of the
+                               # parser. Bump deliberately, re-running
+                               # tests/unit/test_pdf_page_numbers.py and
+                               # tests/unit/test_pdf_ocr_disabled.py (the
+                               # latter with RAGLINE_INTEGRATION=1 for the
+                               # real-corpus check).
+                               # 1.28.0 -> 1.28.2 was such a bump: it makes
+                               # the layout package AGPL (it was noncommercial
+                               # only), serialises layout inference behind a
+                               # lock (1.28.0 gave different text when
+                               # documents were parsed in threads, as the
+                               # ingestion worker does), and ships a changed
+                               # layout model — text differs on most pages
+                               # that are not multi-column, so an index built
+                               # on one version is not comparable page for
+                               # page with one built on the other.
+    "python-docx>=1.1",        # DOCX paragraph/table extraction
+    "pandas>=2.2",             # XLSX sheet handling
+    "openpyxl>=3.1",           # engine pandas uses to read .xlsx files
+
+    # --- Chunking ---
+    "tiktoken>=0.8",           # token counting so chunks respect a token budget
+
+    # --- Retrieval ---
+    "qdrant-client>=1.12,<1.14",  # vector database client; upper bound keeps the
+                                  # client within one minor of the pinned v1.13.2 server
+    "rank-bm25>=0.2.2",        # in-memory BM25 index for the sparse half of hybrid search
+    "sentence-transformers>=3.3", # local cross-encoder reranker (BAAI/bge-reranker-v2-m3)
+
+    # --- Knowledge graph ---
+    "networkx>=3.4",           # in-memory graph index + BFS traversal at retrieval time
+    "numpy>=1.26",             # entity-embedding cosine similarity in graph_index
+
+    # --- Storage ---
+    "sqlmodel>=0.0.22",        # SQLAlchemy + pydantic models for the metadata DB
+    "aiosqlite>=0.20",         # async SQLite driver used via sqlite+aiosqlite:// URLs
+    "greenlet>=3.1",           # required by SQLAlchemy's async engine internals
+
+    # --- Config / logging / utilities ---
+    "pydantic>=2.9",           # data validation everywhere (schemas, prepass results)
+    "pydantic-settings>=2.6",  # Settings class that reads .env
+    "structlog>=24.4",         # structured logging throughout the backend
+    "httpx>=0.27",             # async HTTP client (health checks, tests)
+]
+
+[project.urls]
+Homepage = "https://github.com/14MM47/ragline"
+Repository = "https://github.com/14MM47/ragline"
+Issues = "https://github.com/14MM47/ragline/issues"
+Changelog = "https://github.com/14MM47/ragline/blob/main/CHANGELOG.md"
+
+[project.optional-dependencies]
+# OCR fallback for scanned/sparse PDF pages; optional because it needs the
+# tesseract system binary installed as well (apt install tesseract-ocr).
+ocr = [
+    "pytesseract>=0.3.13",     # python wrapper around the tesseract OCR binary
+    "pillow>=10.4",            # image handling for rasterized PDF pages
+]
+# Development / test tooling.
+dev = [
+    "pytest>=8.3",             # test runner
+    "pytest-asyncio>=0.24",    # async test support (asyncio_mode=auto below)
+    "ruff>=0.7",               # linter/formatter
+]
+
+[tool.hatch.build.targets.wheel]
+# Our package lives in the src/ layout; tell hatchling where.
+packages = ["src/ragline"]
+
+[tool.pytest.ini_options]
+# All tests live under tests/; async tests run without explicit markers.
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+# Match raggles' style: 120-char lines, src layout.
+line-length = 120
+src = ["src"]
+
+[tool.ruff.lint]
+# A pragmatic rule set: pycodestyle/pyflakes plus import sorting.
+select = ["E", "F", "I", "W"]
+
+[tool.ruff.lint.per-file-ignores]
+# Prompt text is ported verbatim from raggles — never rewrap prompt strings
+# to satisfy line length.
+"src/ragline/agent/prompts.py" = ["E501"]
+"src/ragline/chat/prompts.py" = ["E501"]

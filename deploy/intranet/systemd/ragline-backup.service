@@ -1,0 +1,30 @@
+# ragline-backup.service — one backup pass (run by ragline-backup.timer).
+#
+# Runs unprivileged: the Qdrant snapshot is read from the host bind mount
+# (docker-compose.yml maps ./data/qdrant-snapshots to /qdrant/snapshots), so
+# the script needs no docker socket and no root. One-time setup:
+#   install -d -o ragline -g ragline -m 750 /var/backups/ragline
+
+[Unit]
+Description=ragline nightly backup
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ragline
+Group=ragline
+Environment=RAGLINE_HOME=/opt/ragline
+Environment=RAGLINE_BACKUP_DIR=/var/backups/ragline
+# Keep in step with QDRANT_COLLECTION in /opt/ragline/.env — the snapshot is
+# taken per collection, and this unit does not read .env.
+Environment=QDRANT_COLLECTION=ragline
+ExecStart=/opt/ragline/deploy/intranet/backup/ragline-backup.sh
+TimeoutStartSec=1h
+
+# Hardening — same baseline as ragline.service. data stays writable because
+# opening the WAL-mode SQLite DB (even for .backup) creates -wal/-shm files.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/var/backups/ragline /opt/ragline/data

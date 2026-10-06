@@ -1,0 +1,627 @@
+2026-10-02 14:03:09 [info     ] micro-migration applied        column=step_ms table=querytrace
+2026-10-02 14:03:09 [info     ] database initialized
+2026-10-02 14:03:09 [info     ] using api reranker             url=https://<pod-id>-8081.proxy.runpod.net
+2026-10-02 14:03:10 [info     ] built bm25 index               num_chunks=14937
+Loaded 60 golden Q&A pairs from eval/golden_set_hmi.json
+
+2026-10-02 14:03:11 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:03:13 [debug    ] reranked results (api)         input_count=40 output_count=8
+2026-10-02 14:03:13 [info     ] retrieval complete             dense=20 final=8 query='What is the maximum power consumption of the PanelView 800 7-inch terminal, cata' sparse=20 top_scores=[0.9973, 0.9945, 0.9936, 0.9934, 0.9927] top_sources=['panelview_800_user_manual.pdf', 'panelview_800_technical_data.pdf', 'panelview_800_user_manual.pdf', 'panelview_800_technical_data.pdf', 'panelview_800_technical_data.pdf']
+2026-10-02 14:03:16 [info     ] graph index built              entities=2206 has_embeddings=2206 relationships=3902
+2026-10-02 14:03:16 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:03:16 [info     ] graph context found            graph_items=10 query='What is the maximum power consumption of the PanelView 800 7-inch terminal, cata'
+2026-10-02 14:03:20 [debug    ] llm completion                 model=ragline-llm tokens=3384
+2026-10-02 14:03:20 [info     ] query complete                 question='What is the maximum power consumption of the PanelView 800 7-inch terminal, cata' sources_used=1 used_graph=True
+[1/60] HIT  What is the maximum power consumption of the PanelView 800 7-inch term
+        cited: ['panelview_800_technical_data.pdf']  tokens: 3384
+2026-10-02 14:03:21 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:03:22 [debug    ] reranked results (api)         input_count=36 output_count=8
+2026-10-02 14:03:22 [info     ] retrieval complete             dense=20 final=8 query='Which replacement battery should be used for the real-time clock in a PanelView ' sparse=20 top_scores=[0.9995, 0.9993, 0.9993, 0.9991, 0.9987] top_sources=['panelview_800_user_manual.pdf', 'panelview_5510_user_manual.pdf', 'panelview_plus7_performance_user_manual.pdf', 'panelview_plus7_standard_user_manual.pdf', 'asem_6300p_panel_pcs_user_manual.pdf']
+2026-10-02 14:03:28 [info     ] graph index built              entities=5390 has_embeddings=5390 relationships=9180
+2026-10-02 14:03:29 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:03:29 [info     ] graph context found            graph_items=10 query='Which replacement battery should be used for the real-time clock in a PanelView '
+2026-10-02 14:03:34 [debug    ] llm completion                 model=ragline-llm tokens=4690
+2026-10-02 14:03:34 [info     ] query complete                 question='Which replacement battery should be used for the real-time clock in a PanelView ' sources_used=1 used_graph=True
+[2/60] HIT  Which replacement battery should be used for the real-time clock in a 
+        cited: ['panelview_800_user_manual.pdf']  tokens: 4690
+2026-10-02 14:03:35 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:03:36 [debug    ] reranked results (api)         input_count=34 output_count=8
+2026-10-02 14:03:36 [info     ] retrieval complete             dense=20 final=8 query='At what CPU temperature does a PanelView 5310 terminal go into an over-temperatu' sparse=20 top_scores=[0.9985, 0.9984, 0.998, 0.9862, 0.9816] top_sources=['panelview_5310_user_manual.pdf', 'panelview_5510_user_manual.pdf', 'panelview_5500_user_manual.pdf', 'asem_6300p_panel_pcs_user_manual.pdf', 'panelview_5510_user_manual.pdf']
+2026-10-02 14:03:40 [info     ] graph index built              entities=4014 has_embeddings=4014 relationships=6258
+2026-10-02 14:03:41 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:03:41 [info     ] graph context found            graph_items=10 query='At what CPU temperature does a PanelView 5310 terminal go into an over-temperatu'
+2026-10-02 14:03:45 [debug    ] llm completion                 model=ragline-llm tokens=3821
+2026-10-02 14:03:45 [info     ] query complete                 question='At what CPU temperature does a PanelView 5310 terminal go into an over-temperatu' sources_used=1 used_graph=True
+[3/60] HIT  At what CPU temperature does a PanelView 5310 terminal go into an over
+        cited: ['panelview_5310_user_manual.pdf']  tokens: 3821
+2026-10-02 14:03:46 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:03:47 [debug    ] reranked results (api)         input_count=38 output_count=8
+2026-10-02 14:03:47 [info     ] retrieval complete             dense=20 final=8 query='What is the heat dissipation of a 12-inch PanelView Plus 7 Standard terminal suc' sparse=20 top_scores=[0.9999, 0.9998, 0.9973, 0.996, 0.9939] top_sources=['panelview_plus7_standard_technical_data.pdf', 'panelview_plus7_performance_technical_data.pdf', 'legacy_panelview_to_plus7_migration_guide.pdf', 'panelview_800_technical_data.pdf', 'panelview_plus7_performance_technical_data.pdf']
+2026-10-02 14:03:49 [info     ] graph index built              entities=2186 has_embeddings=2186 relationships=3485
+2026-10-02 14:03:50 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:03:50 [info     ] graph context found            graph_items=10 query='What is the heat dissipation of a 12-inch PanelView Plus 7 Standard terminal suc'
+2026-10-02 14:03:55 [debug    ] llm completion                 model=ragline-llm tokens=4888
+2026-10-02 14:03:55 [info     ] query complete                 question='What is the heat dissipation of a 12-inch PanelView Plus 7 Standard terminal suc' sources_used=1 used_graph=True
+[4/60] HIT  What is the heat dissipation of a 12-inch PanelView Plus 7 Standard te
+        cited: ['panelview_plus7_standard_technical_data.pdf']  tokens: 4888
+2026-10-02 14:03:56 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:03:57 [debug    ] reranked results (api)         input_count=38 output_count=8
+2026-10-02 14:03:57 [info     ] retrieval complete             dense=20 final=8 query='What is the minimum real-time clock battery voltage considered normal on a Panel' sparse=20 top_scores=[0.9981, 0.9979, 0.9976, 0.9951, 0.9937] top_sources=['panelview_plus7_standard_user_manual.pdf', 'panelview_plus7_performance_user_manual.pdf', 'panelview_plus7_performance_user_manual.pdf', 'panelview_plus7_standard_user_manual.pdf', 'panelview_plus7_performance_technical_data.pdf']
+2026-10-02 14:04:01 [info     ] graph index built              entities=3603 has_embeddings=3603 relationships=6430
+2026-10-02 14:04:02 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:04:02 [info     ] graph context found            graph_items=10 query='What is the minimum real-time clock battery voltage considered normal on a Panel'
+2026-10-02 14:04:07 [debug    ] llm completion                 model=ragline-llm tokens=4259
+2026-10-02 14:04:07 [info     ] query complete                 question='What is the minimum real-time clock battery voltage considered normal on a Panel' sources_used=1 used_graph=True
+[5/60] HIT  What is the minimum real-time clock battery voltage considered normal 
+        cited: ['panelview_plus7_performance_user_manual.pdf']  tokens: 4259
+2026-10-02 14:04:07 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:04:08 [debug    ] reranked results (api)         input_count=34 output_count=8
+2026-10-02 14:04:08 [info     ] retrieval complete             dense=20 final=8 query='What ATEX certificate number covers the non-display VersaView 5200 thin client, ' sparse=20 top_scores=[0.9993, 0.9988, 0.9986, 0.9982, 0.998] top_sources=['versaview_5000_declaration_of_conformity.pdf', 'versaview_5000_thin_clients_and_industrial_computers_user_manual.pdf', 'industrial_computers_and_monitors_technical_data.pdf', 'industrial_computers_and_monitors_technical_data.pdf', 'industrial_computers_and_monitors_technical_data.pdf']
+2026-10-02 14:04:10 [info     ] graph index built              entities=1157 has_embeddings=1157 relationships=1683
+2026-10-02 14:04:10 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:04:10 [info     ] graph context found            graph_items=10 query='What ATEX certificate number covers the non-display VersaView 5200 thin client, '
+2026-10-02 14:04:16 [debug    ] llm completion                 model=ragline-llm tokens=4429
+2026-10-02 14:04:16 [info     ] realigned citations            spans=1
+2026-10-02 14:04:16 [info     ] query complete                 question='What ATEX certificate number covers the non-display VersaView 5200 thin client, ' sources_used=2 used_graph=True
+[6/60] HIT  What ATEX certificate number covers the non-display VersaView 5200 thi
+        cited: ['versaview_5000_declaration_of_conformity.pdf', 'versaview_5000_installation_instructions.pdf']  tokens: 4429
+2026-10-02 14:04:17 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:04:18 [debug    ] reranked results (api)         input_count=33 output_count=8
+2026-10-02 14:04:18 [info     ] retrieval complete             dense=20 final=8 query='What ingress protection rating does a VersaView 5100 industrial monitor (e.g. 62' sparse=20 top_scores=[0.9989, 0.9983, 0.9974, 0.997, 0.9917] top_sources=['versaview_5100_industrial_monitors_user_manual.pdf', 'versaview_5000_thin_clients_and_industrial_computers_user_manual.pdf', 'industrial_computers_and_monitors_technical_data.pdf', 'versaview_5000_thin_clients_and_industrial_computers_user_manual.pdf', 'cmt_series_edge_computing_brochure.pdf']
+2026-10-02 14:04:20 [info     ] graph index built              entities=1355 has_embeddings=1355 relationships=1942
+2026-10-02 14:04:20 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:04:20 [info     ] graph context found            graph_items=10 query='What ingress protection rating does a VersaView 5100 industrial monitor (e.g. 62'
+2026-10-02 14:04:27 [debug    ] llm completion                 model=ragline-llm tokens=5163
+2026-10-02 14:04:27 [info     ] realigned citations            spans=1
+2026-10-02 14:04:27 [info     ] query complete                 question='What ingress protection rating does a VersaView 5100 industrial monitor (e.g. 62' sources_used=3 used_graph=True
+[7/60] HIT  What ingress protection rating does a VersaView 5100 industrial monito
+        cited: ['industrial_computers_and_monitors_technical_data.pdf', 'versaview_5100_industrial_monitors_user_manual.pdf']  tokens: 5163
+2026-10-02 14:04:27 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:04:29 [debug    ] reranked results (api)         input_count=35 output_count=8
+2026-10-02 14:04:29 [info     ] retrieval complete             dense=20 final=8 query='What is the operating temperature range of an ASEM 6300P panel PC fitted with a ' sparse=20 top_scores=[0.9998, 0.9998, 0.9998, 0.9993, 0.9993] top_sources=['asem_6300_monitors_pcs_thin_clients_technical_data.pdf', 'asem_6300p_panel_pcs_technical_data.pdf', 'asem_6300_monitors_pcs_thin_clients_technical_data.pdf', 'asem_6300_monitors_pcs_thin_clients_technical_data.pdf', 'asem_6300p_panel_pcs_technical_data.pdf']
+2026-10-02 14:04:30 [info     ] graph index built              entities=992 has_embeddings=992 relationships=1454
+2026-10-02 14:04:30 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:04:30 [info     ] graph context found            graph_items=10 query='What is the operating temperature range of an ASEM 6300P panel PC fitted with a '
+2026-10-02 14:04:36 [debug    ] llm completion                 model=ragline-llm tokens=6529
+2026-10-02 14:04:36 [info     ] query complete                 question='What is the operating temperature range of an ASEM 6300P panel PC fitted with a ' sources_used=3 used_graph=True
+[8/60] HIT  What is the operating temperature range of an ASEM 6300P panel PC fitt
+        cited: ['asem_6300_monitors_pcs_thin_clients_technical_data.pdf', 'asem_6300p_panel_pcs_technical_data.pdf', 'asem_6300p_panel_pcs_user_manual.pdf']  tokens: 6529
+2026-10-02 14:04:37 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:04:38 [debug    ] reranked results (api)         input_count=36 output_count=8
+2026-10-02 14:04:38 [info     ] retrieval complete             dense=20 final=8 query='How much RAM and user application storage does the PanelView 5500 6.5-inch termi' sparse=20 top_scores=[0.9973, 0.9941, 0.9932, 0.9911, 0.983] top_sources=['panelview_5500_user_manual.pdf', 'panelview_5500_technical_data.pdf', 'panelview_plus7_performance_technical_data.pdf', 'panelview_5500_technical_data.pdf', 'legacy_panelview_to_plus7_migration_guide.pdf']
+2026-10-02 14:04:40 [info     ] graph index built              entities=1633 has_embeddings=1633 relationships=2780
+2026-10-02 14:04:40 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:04:40 [info     ] graph context found            graph_items=10 query='How much RAM and user application storage does the PanelView 5500 6.5-inch termi'
+2026-10-02 14:04:47 [debug    ] llm completion                 model=ragline-llm tokens=4140
+2026-10-02 14:04:47 [info     ] realigned citations            spans=1
+2026-10-02 14:04:47 [info     ] query complete                 question='How much RAM and user application storage does the PanelView 5500 6.5-inch termi' sources_used=2 used_graph=True
+[9/60] HIT  How much RAM and user application storage does the PanelView 5500 6.5-
+        cited: ['panelview_5500_technical_data.pdf', 'panelview_5500_user_manual.pdf']  tokens: 4140
+2026-10-02 14:04:48 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:04:50 [debug    ] reranked results (api)         input_count=39 output_count=8
+2026-10-02 14:04:50 [info     ] retrieval complete             dense=20 final=8 query='Which has the higher maximum operating temperature: the PanelView 5500 2715-T10C' sparse=20 top_scores=[0.9979, 0.9958, 0.991, 0.9872, 0.9858] top_sources=['panelview_800_technical_data.pdf', 'panelview_5500_technical_data.pdf', 'panelview_800_technical_data.pdf', 'panelview_800_technical_data.pdf', 'panelview_5500_technical_data.pdf']
+2026-10-02 14:04:50 [info     ] graph index built              entities=512 has_embeddings=512 relationships=782
+2026-10-02 14:04:51 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:04:51 [info     ] graph context found            graph_items=10 query='Which has the higher maximum operating temperature: the PanelView 5500 2715-T10C'
+2026-10-02 14:04:57 [debug    ] llm completion                 model=ragline-llm tokens=5517
+2026-10-02 14:04:57 [info     ] query complete                 question='Which has the higher maximum operating temperature: the PanelView 5500 2715-T10C' sources_used=2 used_graph=True
+[10/60] MISS Which has the higher maximum operating temperature: the PanelView 5500
+        cited: ['panelview_5500_technical_data.pdf', 'panelview_800_technical_data.pdf']  tokens: 5517
+2026-10-02 14:04:58 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:04:59 [debug    ] reranked results (api)         input_count=38 output_count=8
+2026-10-02 14:04:59 [info     ] retrieval complete             dense=20 final=8 query='How does the ingress protection rating of the PanelView 5510 stainless-steel ter' sparse=20 top_scores=[0.9985, 0.9985, 0.9984, 0.9981, 0.9975] top_sources=['panelview_5510_technical_data.pdf', 'panelview_5510_technical_data.pdf', 'panelview_5510_technical_data.pdf', 'panelview_5510_technical_data.pdf', 'panelview_5510_user_manual.pdf']
+2026-10-02 14:05:00 [info     ] graph index built              entities=964 has_embeddings=964 relationships=1564
+2026-10-02 14:05:00 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:05:01 [info     ] graph context found            graph_items=10 query='How does the ingress protection rating of the PanelView 5510 stainless-steel ter'
+2026-10-02 14:05:08 [debug    ] llm completion                 model=ragline-llm tokens=5171
+2026-10-02 14:05:08 [info     ] query complete                 question='How does the ingress protection rating of the PanelView 5510 stainless-steel ter' sources_used=1 used_graph=True
+[11/60] HIT  How does the ingress protection rating of the PanelView 5510 stainless
+        cited: ['panelview_5510_technical_data.pdf']  tokens: 5171
+2026-10-02 14:05:08 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:05:10 [debug    ] reranked results (api)         input_count=32 output_count=8
+2026-10-02 14:05:10 [info     ] retrieval complete             dense=20 final=8 query='How many Ethernet ports does the PanelView 5310 have compared with the PanelView' sparse=20 top_scores=[0.9993, 0.9984, 0.9978, 0.9972, 0.9959] top_sources=['panelview_5510_user_manual.pdf', 'panelview_5510_user_manual.pdf', 'panelview_5510_technical_data.pdf', 'panelview_5500_technical_data.pdf', 'panelview_5500_user_manual.pdf']
+2026-10-02 14:05:13 [info     ] graph index built              entities=2447 has_embeddings=2447 relationships=4019
+2026-10-02 14:05:13 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:05:13 [info     ] graph context found            graph_items=10 query='How many Ethernet ports does the PanelView 5310 have compared with the PanelView'
+2026-10-02 14:05:19 [debug    ] llm completion                 model=ragline-llm tokens=4715
+2026-10-02 14:05:19 [info     ] query complete                 question='How many Ethernet ports does the PanelView 5310 have compared with the PanelView' sources_used=4 used_graph=True
+[12/60] MISS How many Ethernet ports does the PanelView 5310 have compared with the
+        cited: ['panelview_5310_user_manual.pdf', 'panelview_5510_technical_data.pdf', 'panelview_5510_user_manual.pdf']  tokens: 4715
+2026-10-02 14:05:20 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:05:21 [debug    ] reranked results (api)         input_count=37 output_count=8
+2026-10-02 14:05:21 [info     ] retrieval complete             dense=20 final=8 query='What is the power consumption of the SIMATIC KTP1200 Basic DP (Basic Panels 2nd ' sparse=20 top_scores=[0.9937, 0.9937, 0.992, 0.9869, 0.9793] top_sources=['ktp_basic_panels_2nd_gen_hardware.pdf', 'ifp_basic_operating_instructions.pdf', 'ktp_basic_panels_2nd_gen_hardware.pdf', 'ktp_basic_panels_operating_instructions.pdf', 'ktp_basic_panels_2nd_gen_hardware.pdf']
+2026-10-02 14:05:24 [info     ] graph index built              entities=2156 has_embeddings=2156 relationships=3467
+2026-10-02 14:05:24 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:05:24 [info     ] graph context found            graph_items=10 query='What is the power consumption of the SIMATIC KTP1200 Basic DP (Basic Panels 2nd '
+2026-10-02 14:05:28 [debug    ] llm completion                 model=ragline-llm tokens=4895
+2026-10-02 14:05:28 [info     ] query complete                 question='What is the power consumption of the SIMATIC KTP1200 Basic DP (Basic Panels 2nd ' sources_used=1 used_graph=True
+[13/60] HIT  What is the power consumption of the SIMATIC KTP1200 Basic DP (Basic P
+        cited: ['ktp_basic_panels_2nd_gen_hardware.pdf']  tokens: 4895
+2026-10-02 14:05:29 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:05:30 [debug    ] reranked results (api)         input_count=37 output_count=8
+2026-10-02 14:05:30 [info     ] retrieval complete             dense=20 final=8 query='How much power does the MTP1900 Unified Comfort panel draw at 24 V DC without lo' sparse=20 top_scores=[0.9971, 0.9959, 0.9935, 0.9933, 0.9886] top_sources=['unified_comfort_panels_operating_instructions.pdf', 'tp_comfort_panels_operating_instructions.pdf', 'unified_comfort_panels_operating_instructions.pdf', 'tp_comfort_panels_hardware_manual.pdf', 'unified_comfort_panels_operating_instructions.pdf']
+2026-10-02 14:05:34 [info     ] graph index built              entities=3429 has_embeddings=3429 relationships=6041
+2026-10-02 14:05:35 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:05:35 [info     ] graph context found            graph_items=10 query='How much power does the MTP1900 Unified Comfort panel draw at 24 V DC without lo'
+2026-10-02 14:05:39 [debug    ] llm completion                 model=ragline-llm tokens=4534
+2026-10-02 14:05:39 [info     ] realigned citations            spans=1
+2026-10-02 14:05:39 [info     ] query complete                 question='How much power does the MTP1900 Unified Comfort panel draw at 24 V DC without lo' sources_used=2 used_graph=True
+[14/60] HIT  How much power does the MTP1900 Unified Comfort panel draw at 24 V DC 
+        cited: ['tp_comfort_panels_hardware_manual.pdf', 'unified_comfort_panels_operating_instructions.pdf']  tokens: 4534
+2026-10-02 14:05:40 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:05:41 [debug    ] reranked results (api)         input_count=39 output_count=8
+2026-10-02 14:05:41 [info     ] retrieval complete             dense=20 final=8 query='What is the display resolution of the SIMATIC TP2200 Comfort panel?' sparse=20 top_scores=[0.9995, 0.9992, 0.9982, 0.9978, 0.9975] top_sources=['tp_comfort_panels_hardware_manual.pdf', 'tp_comfort_panels_operating_instructions.pdf', 'tp_comfort_panels_hardware_manual.pdf', 'unified_comfort_panels_operating_instructions.pdf', 'tp_comfort_panels_operating_instructions.pdf']
+2026-10-02 14:05:45 [info     ] graph index built              entities=3429 has_embeddings=3429 relationships=6041
+2026-10-02 14:05:45 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:05:45 [info     ] graph context found            graph_items=10 query='What is the display resolution of the SIMATIC TP2200 Comfort panel?'
+2026-10-02 14:05:49 [debug    ] llm completion                 model=ragline-llm tokens=5280
+2026-10-02 14:05:49 [info     ] query complete                 question='What is the display resolution of the SIMATIC TP2200 Comfort panel?' sources_used=2 used_graph=True
+[15/60] HIT  What is the display resolution of the SIMATIC TP2200 Comfort panel?
+        cited: ['tp_comfort_panels_hardware_manual.pdf', 'tp_comfort_panels_operating_instructions.pdf']  tokens: 5280
+2026-10-02 14:05:50 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:05:51 [debug    ] reranked results (api)         input_count=31 output_count=8
+2026-10-02 14:05:51 [info     ] retrieval complete             dense=20 final=8 query='What is the power consumption of the SIMATIC IFP2400 V2 (24") industrial flat pa' sparse=20 top_scores=[0.996, 0.9821, 0.9724, 0.971, 0.9561] top_sources=['ifp_basic_operating_instructions.pdf', 'ifp_v2_operating_instructions.pdf', 'ifp_v2_operating_instructions.pdf', 'ifp_basic_operating_instructions.pdf', 'ifp_v2_operating_instructions.pdf']
+2026-10-02 14:05:53 [info     ] graph index built              entities=1189 has_embeddings=1189 relationships=2086
+2026-10-02 14:05:54 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:05:54 [info     ] graph context found            graph_items=10 query='What is the power consumption of the SIMATIC IFP2400 V2 (24") industrial flat pa'
+2026-10-02 14:06:02 [debug    ] llm completion                 model=ragline-llm tokens=4356
+2026-10-02 14:06:02 [info     ] query complete                 question='What is the power consumption of the SIMATIC IFP2400 V2 (24") industrial flat pa' sources_used=2 used_graph=True
+[16/60] HIT  What is the power consumption of the SIMATIC IFP2400 V2 (24") industri
+        cited: ['ifp_basic_operating_instructions.pdf', 'ifp_v2_operating_instructions.pdf']  tokens: 4356
+2026-10-02 14:06:03 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:06:05 [debug    ] reranked results (api)         input_count=30 output_count=8
+2026-10-02 14:06:05 [info     ] retrieval complete             dense=20 final=8 query='In WinCC Unified Runtime, is the script debugger enabled by default, and what ar' sparse=20 top_scores=[0.9997, 0.9967, 0.9961, 0.9949, 0.9909] top_sources=['wincc_unified_runtime_system_manual.pdf', 'wincc_unified_runtime_system_manual.pdf', 'wincc_unified_runtime_system_manual.pdf', 'wincc_unified_runtime_system_manual.pdf', 'wincc_unified_runtime_system_manual.pdf']
+2026-10-02 14:06:07 [info     ] graph index built              entities=1697 has_embeddings=1697 relationships=2999
+2026-10-02 14:06:07 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:06:07 [info     ] graph context found            graph_items=10 query='In WinCC Unified Runtime, is the script debugger enabled by default, and what ar'
+2026-10-02 14:06:13 [debug    ] llm completion                 model=ragline-llm tokens=3758
+2026-10-02 14:06:13 [info     ] query complete                 question='In WinCC Unified Runtime, is the script debugger enabled by default, and what ar' sources_used=1 used_graph=True
+[17/60] HIT  In WinCC Unified Runtime, is the script debugger enabled by default, a
+        cited: ['wincc_unified_runtime_system_manual.pdf']  tokens: 3758
+2026-10-02 14:06:15 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:06:20 [debug    ] reranked results (api)         input_count=27 output_count=8
+2026-10-02 14:06:20 [info     ] retrieval complete             dense=20 final=8 query='How many tags can the WinCC Unified Runtime tag simulator simulate at the same t' sparse=20 top_scores=[0.9996, 0.9993, 0.9983, 0.9931, 0.9925] top_sources=['wincc_unified_runtime_system_manual.pdf', 'wincc_unified_runtime_system_manual.pdf', 'wincc_unified_runtime_system_manual.pdf', 'wincc_unified_runtime_system_manual.pdf', 'wincc_unified_runtime_system_manual.pdf']
+2026-10-02 14:06:22 [info     ] graph index built              entities=1697 has_embeddings=1697 relationships=2999
+2026-10-02 14:06:24 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:06:24 [info     ] graph context found            graph_items=10 query='How many tags can the WinCC Unified Runtime tag simulator simulate at the same t'
+2026-10-02 14:06:30 [debug    ] llm completion                 model=ragline-llm tokens=3560
+2026-10-02 14:06:30 [info     ] query complete                 question='How many tags can the WinCC Unified Runtime tag simulator simulate at the same t' sources_used=3 used_graph=True
+[18/60] HIT  How many tags can the WinCC Unified Runtime tag simulator simulate at 
+        cited: ['wincc_unified_runtime_system_manual.pdf']  tokens: 3560
+2026-10-02 14:06:31 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:06:35 [debug    ] reranked results (api)         input_count=38 output_count=8
+2026-10-02 14:06:35 [info     ] retrieval complete             dense=20 final=8 query='What ambient temperature range is permitted during operation for a Beckhoff CP37' sparse=20 top_scores=[0.9995, 0.9985, 0.9981, 0.9962, 0.9952] top_sources=['cp37xx_panel_pc_manual.pdf', 'asem_6300p_panel_pcs_user_manual.pdf', 'cp39xx_multitouch_control_panel_manual.pdf', 'cp39xx_multitouch_control_panel_manual.pdf', 'cp6600_panel_pc_manual.pdf']
+2026-10-02 14:06:38 [info     ] graph index built              entities=1718 has_embeddings=1718 relationships=2421
+2026-10-02 14:06:38 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:06:38 [info     ] graph context found            graph_items=10 query='What ambient temperature range is permitted during operation for a Beckhoff CP37'
+2026-10-02 14:06:42 [debug    ] llm completion                 model=ragline-llm tokens=5054
+2026-10-02 14:06:42 [info     ] query complete                 question='What ambient temperature range is permitted during operation for a Beckhoff CP37' sources_used=1 used_graph=True
+[19/60] HIT  What ambient temperature range is permitted during operation for a Bec
+        cited: ['cp37xx_panel_pc_manual.pdf']  tokens: 5054
+2026-10-02 14:06:43 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:06:45 [debug    ] reranked results (api)         input_count=37 output_count=8
+2026-10-02 14:06:45 [info     ] retrieval complete             dense=20 final=8 query='Does the Beckhoff CP6700-0001-0050 panel PC have fTPM 2.0 enabled?' sparse=20 top_scores=[0.9978, 0.9176, 0.808, 0.7678, 0.7028] top_sources=['cp6700_panel_pc.pdf', 'asem_6300_monitors_pcs_thin_clients_technical_data.pdf', 'cp6700_panel_pc.pdf', 'asem_6300p_panel_pcs_user_manual.pdf', 'cp6700_panel_pc.pdf']
+2026-10-02 14:06:47 [info     ] graph index built              entities=1501 has_embeddings=1501 relationships=2180
+2026-10-02 14:06:48 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:06:48 [info     ] graph context found            graph_items=10 query='Does the Beckhoff CP6700-0001-0050 panel PC have fTPM 2.0 enabled?'
+2026-10-02 14:06:53 [debug    ] llm completion                 model=ragline-llm tokens=4153
+2026-10-02 14:06:53 [info     ] query complete                 question='Does the Beckhoff CP6700-0001-0050 panel PC have fTPM 2.0 enabled?' sources_used=1 used_graph=True
+[20/60] HIT  Does the Beckhoff CP6700-0001-0050 panel PC have fTPM 2.0 enabled?
+        cited: ['cp6700_panel_pc.pdf']  tokens: 4153
+2026-10-02 14:06:54 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:06:56 [debug    ] reranked results (api)         input_count=40 output_count=8
+2026-10-02 14:06:56 [info     ] retrieval complete             dense=20 final=8 query='What are the dimensions (W x H x D) of the Advantech WebOP-2080V (WOP-2080V-N4AE' sparse=20 top_scores=[0.9914, 0.9908, 0.9773, 0.8289, 0.7263] top_sources=['advantech_intelligent_operator_panels_catalog.pdf', 'advantech_industrial_operator_panels_catalog.pdf', 'advantech_intelligent_operator_panels_catalog.pdf', 'advantech_intelligent_operator_panels_catalog.pdf', 'x2_pro_4_b2_hardware_manual.pdf']
+2026-10-02 14:06:58 [info     ] graph index built              entities=1276 has_embeddings=1276 relationships=1802
+2026-10-02 14:06:59 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:06:59 [info     ] graph context found            graph_items=10 query='What are the dimensions (W x H x D) of the Advantech WebOP-2080V (WOP-2080V-N4AE'
+2026-10-02 14:07:07 [debug    ] llm completion                 model=ragline-llm tokens=6820
+2026-10-02 14:07:07 [info     ] query complete                 question='What are the dimensions (W x H x D) of the Advantech WebOP-2080V (WOP-2080V-N4AE' sources_used=2 used_graph=True
+[21/60] HIT  What are the dimensions (W x H x D) of the Advantech WebOP-2080V (WOP-
+        cited: ['advantech_industrial_operator_panels_catalog.pdf', 'advantech_intelligent_operator_panels_catalog.pdf']  tokens: 6820
+2026-10-02 14:07:09 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:07:11 [debug    ] reranked results (api)         input_count=33 output_count=8
+2026-10-02 14:07:11 [info     ] retrieval complete             dense=20 final=8 query='How does the permitted DC supply voltage of the SIMATIC IFP1500 Basic compare wi' sparse=20 top_scores=[0.9977, 0.997, 0.9765, 0.973, 0.9683] top_sources=['ifp_basic_operating_instructions.pdf', 'im312a_315a_319a_322a_operating_instructions.pdf', 'im312a_315a_319a_322a_operating_instructions.pdf', 'ifp_basic_operating_instructions.pdf', 'ifp_basic_operating_instructions.pdf']
+2026-10-02 14:07:14 [info     ] graph index built              entities=1585 has_embeddings=1585 relationships=2737
+2026-10-02 14:07:14 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:07:14 [info     ] graph context found            graph_items=10 query='How does the permitted DC supply voltage of the SIMATIC IFP1500 Basic compare wi'
+2026-10-02 14:07:21 [debug    ] llm completion                 model=ragline-llm tokens=4562
+2026-10-02 14:07:21 [info     ] query complete                 question='How does the permitted DC supply voltage of the SIMATIC IFP1500 Basic compare wi' sources_used=3 used_graph=True
+[22/60] HIT  How does the permitted DC supply voltage of the SIMATIC IFP1500 Basic 
+        cited: ['ifp_basic_operating_instructions.pdf', 'im312a_315a_319a_322a_operating_instructions.pdf']  tokens: 4562
+2026-10-02 14:07:22 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:07:27 [debug    ] reranked results (api)         input_count=37 output_count=8
+2026-10-02 14:07:27 [info     ] retrieval complete             dense=20 final=8 query='Compare the front and rear degree of protection of a Siemens MTP1500 Unified Com' sparse=20 top_scores=[0.9979, 0.9971, 0.9964, 0.9952, 0.9907] top_sources=['unified_comfort_panels_operating_instructions.pdf', 'im312a_315a_319a_322a_operating_instructions.pdf', 'tp_comfort_panels_operating_instructions.pdf', 'ifp_basic_operating_instructions.pdf', 'tp_comfort_outdoor_panels_manual.pdf']
+2026-10-02 14:07:32 [info     ] graph index built              entities=4072 has_embeddings=4072 relationships=6727
+2026-10-02 14:07:33 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:07:33 [info     ] graph context found            graph_items=10 query='Compare the front and rear degree of protection of a Siemens MTP1500 Unified Com'
+2026-10-02 14:07:39 [debug    ] llm completion                 model=ragline-llm tokens=3593
+2026-10-02 14:07:39 [info     ] query complete                 question='Compare the front and rear degree of protection of a Siemens MTP1500 Unified Com' sources_used=5 used_graph=True
+[23/60] MISS Compare the front and rear degree of protection of a Siemens MTP1500 U
+        cited: ['ifp_basic_operating_instructions.pdf', 'im312a_315a_319a_322a_operating_instructions.pdf', 'tp_comfort_panels_operating_instructions.pdf', 'unified_comfort_panels_operating_instructions.pdf']  tokens: 3593
+2026-10-02 14:07:40 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:07:42 [debug    ] reranked results (api)         input_count=29 output_count=8
+2026-10-02 14:07:42 [info     ] retrieval complete             dense=20 final=8 query='When connecting a Mitsubishi GOT2000 to a KEYENCE PLC over Ethernet, what is the' sparse=20 top_scores=[0.9995, 0.9994, 0.9993, 0.9993, 0.9992] top_sources=['got2000_connection_manual_non_mitsubishi_products_1.pdf', 'got2000_connection_manual_non_mitsubishi_products_1.pdf', 'got2000_connection_manual_microcomputer_modbus.pdf', 'got2000_connection_manual_non_mitsubishi_products_2.pdf', 'got2000_connection_manual_non_mitsubishi_products_2.pdf']
+2026-10-02 14:07:51 [info     ] graph index built              entities=6999 has_embeddings=6999 relationships=24315
+2026-10-02 14:07:52 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:07:52 [info     ] graph context found            graph_items=10 query='When connecting a Mitsubishi GOT2000 to a KEYENCE PLC over Ethernet, what is the'
+2026-10-02 14:07:56 [debug    ] llm completion                 model=ragline-llm tokens=4368
+2026-10-02 14:07:56 [info     ] query complete                 question='When connecting a Mitsubishi GOT2000 to a KEYENCE PLC over Ethernet, what is the' sources_used=1 used_graph=True
+[24/60] HIT  When connecting a Mitsubishi GOT2000 to a KEYENCE PLC over Ethernet, w
+        cited: ['got2000_connection_manual_non_mitsubishi_products_1.pdf']  tokens: 4368
+2026-10-02 14:07:56 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:07:58 [debug    ] reranked results (api)         input_count=35 output_count=8
+2026-10-02 14:07:58 [info     ] retrieval complete             dense=20 final=8 query='How many Mitsubishi GOT2000 units can be connected as DeviceNet slaves to one De' sparse=20 top_scores=[0.9989, 0.9975, 0.9957, 0.9945, 0.9937] top_sources=['got2000_connection_manual_microcomputer_modbus.pdf', 'got2000_connection_manual_microcomputer_modbus.pdf', 'got2000_connection_manual_microcomputer_modbus.pdf', 'got2000_connection_manual_microcomputer_modbus.pdf', 'got2000_connection_manual_microcomputer_modbus.pdf']
+2026-10-02 14:08:02 [info     ] graph index built              entities=3068 has_embeddings=3068 relationships=8169
+2026-10-02 14:08:02 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:08:02 [info     ] graph context found            graph_items=10 query='How many Mitsubishi GOT2000 units can be connected as DeviceNet slaves to one De'
+2026-10-02 14:08:06 [debug    ] llm completion                 model=ragline-llm tokens=3627
+2026-10-02 14:08:06 [info     ] realigned citations            spans=1
+2026-10-02 14:08:06 [info     ] query complete                 question='How many Mitsubishi GOT2000 units can be connected as DeviceNet slaves to one De' sources_used=1 used_graph=True
+[25/60] HIT  How many Mitsubishi GOT2000 units can be connected as DeviceNet slaves
+        cited: ['got2000_connection_manual_microcomputer_modbus.pdf']  tokens: 3627
+2026-10-02 14:08:07 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:08:08 [debug    ] reranked results (api)         input_count=39 output_count=8
+2026-10-02 14:08:08 [info     ] retrieval complete             dense=20 final=8 query='What is the maximum power consumption of the Mitsubishi GOT Simple GS2107-WTBD?' sparse=20 top_scores=[0.999, 0.9984, 0.9981, 0.9965, 0.9956] top_sources=['gs25_gs21_user_manual.pdf', 'gs21_general_description.pdf', 'gs21_general_description.pdf', 'got2000_gt27_gt25_hardware_user_manual.pdf', 'got2000_series_catalog.pdf']
+2026-10-02 14:08:14 [info     ] graph index built              entities=4605 has_embeddings=4605 relationships=10259
+2026-10-02 14:08:16 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:08:16 [info     ] graph context found            graph_items=10 query='What is the maximum power consumption of the Mitsubishi GOT Simple GS2107-WTBD?'
+2026-10-02 14:08:22 [debug    ] llm completion                 model=ragline-llm tokens=6147
+2026-10-02 14:08:22 [info     ] query complete                 question='What is the maximum power consumption of the Mitsubishi GOT Simple GS2107-WTBD?' sources_used=2 used_graph=True
+[26/60] HIT  What is the maximum power consumption of the Mitsubishi GOT Simple GS2
+        cited: ['gs21_general_description.pdf', 'gs25_gs21_user_manual.pdf']  tokens: 6147
+2026-10-02 14:08:22 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:08:24 [debug    ] reranked results (api)         input_count=39 output_count=8
+2026-10-02 14:08:24 [info     ] retrieval complete             dense=20 final=8 query='What is the built-in clock precision of the Mitsubishi GT2107-W (GT21 wide model' sparse=20 top_scores=[0.9989, 0.9967, 0.9944, 0.8654, 0.8629] top_sources=['got2000_gt27_gt25_hardware_user_manual.pdf', 'got2000_gt27_gt25_hardware_user_manual.pdf', 'got2000_gt27_gt25_hardware_user_manual.pdf', 'got2000_gt27_gt25_hardware_user_manual.pdf', 'got2000_gt27_gt25_hardware_user_manual.pdf']
+2026-10-02 14:08:31 [info     ] graph index built              entities=5443 has_embeddings=5443 relationships=13777
+2026-10-02 14:08:32 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:08:32 [info     ] graph context found            graph_items=10 query='What is the built-in clock precision of the Mitsubishi GT2107-W (GT21 wide model'
+2026-10-02 14:08:36 [debug    ] llm completion                 model=ragline-llm tokens=5084
+2026-10-02 14:08:36 [info     ] query complete                 question='What is the built-in clock precision of the Mitsubishi GT2107-W (GT21 wide model' sources_used=1 used_graph=True
+[27/60] HIT  What is the built-in clock precision of the Mitsubishi GT2107-W (GT21 
+        cited: ['got2000_gt27_gt25_hardware_user_manual.pdf']  tokens: 5084
+2026-10-02 14:08:37 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:08:39 [debug    ] reranked results (api)         input_count=40 output_count=8
+2026-10-02 14:08:39 [info     ] retrieval complete             dense=20 final=8 query='What does the Omron NB10W-TW01B (non-V1) HMI weigh?' sparse=20 top_scores=[0.9987, 0.9985, 0.9685, 0.9502, 0.9044] top_sources=['nb_series_setup_manual.pdf', 'nb_series_startup_guide.pdf', 'nb_series_setup_manual.pdf', 'nb_series_startup_guide.pdf', 'nb_series_setup_manual.pdf']
+2026-10-02 14:08:42 [info     ] graph index built              entities=3052 has_embeddings=3052 relationships=5178
+2026-10-02 14:08:43 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:08:43 [info     ] graph context found            graph_items=10 query='What does the Omron NB10W-TW01B (non-V1) HMI weigh?'
+2026-10-02 14:08:47 [debug    ] llm completion                 model=ragline-llm tokens=3863
+2026-10-02 14:08:47 [info     ] query complete                 question='What does the Omron NB10W-TW01B (non-V1) HMI weigh?' sources_used=2 used_graph=True
+[28/60] HIT  What does the Omron NB10W-TW01B (non-V1) HMI weigh?
+        cited: ['nb_series_setup_manual.pdf', 'nb_series_startup_guide.pdf']  tokens: 3863
+2026-10-02 14:08:49 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:08:50 [debug    ] reranked results (api)         input_count=29 output_count=8
+2026-10-02 14:08:50 [info     ] retrieval complete             dense=20 final=8 query='Which communication protocol does an Omron NA-series HMI use to connect to an OM' sparse=20 top_scores=[0.9997, 0.9995, 0.9992, 0.9992, 0.9991] top_sources=['na_series_device_connection_user_manual.pdf', 'na_series_device_connection_user_manual.pdf', 'na_series_device_connection_user_manual.pdf', 'na_series_device_connection_user_manual.pdf', 'na_series_device_connection_user_manual.pdf']
+2026-10-02 14:08:51 [info     ] graph index built              entities=712 has_embeddings=712 relationships=1172
+2026-10-02 14:08:51 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:08:51 [info     ] graph context found            graph_items=10 query='Which communication protocol does an Omron NA-series HMI use to connect to an OM'
+2026-10-02 14:08:56 [debug    ] llm completion                 model=ragline-llm tokens=2963
+2026-10-02 14:08:56 [info     ] realigned citations            spans=1
+2026-10-02 14:08:56 [info     ] query complete                 question='Which communication protocol does an Omron NA-series HMI use to connect to an OM' sources_used=3 used_graph=True
+[29/60] HIT  Which communication protocol does an Omron NA-series HMI use to connec
+        cited: ['na_series_device_connection_user_manual.pdf']  tokens: 2963
+2026-10-02 14:08:56 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:08:58 [debug    ] reranked results (api)         input_count=34 output_count=8
+2026-10-02 14:08:58 [info     ] retrieval complete             dense=20 final=8 query='What is the ambient operating temperature range of the Omron NSH5 hand-held PT (' sparse=20 top_scores=[0.9994, 0.9986, 0.9927, 0.9919, 0.9731] top_sources=['ns_series_datasheet.pdf', 'ns_series_datasheet.pdf', 'na_series_hardware_v2_user_manual.pdf', 'na5_v2_datasheet.pdf', 'na5_v2_datasheet.pdf']
+2026-10-02 14:09:01 [info     ] graph index built              entities=2825 has_embeddings=2825 relationships=4347
+2026-10-02 14:09:02 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:09:02 [info     ] graph context found            graph_items=10 query='What is the ambient operating temperature range of the Omron NSH5 hand-held PT ('
+2026-10-02 14:09:07 [debug    ] llm completion                 model=ragline-llm tokens=4881
+2026-10-02 14:09:07 [info     ] query complete                 question='What is the ambient operating temperature range of the Omron NSH5 hand-held PT (' sources_used=1 used_graph=True
+[30/60] HIT  What is the ambient operating temperature range of the Omron NSH5 hand
+        cited: ['ns_series_datasheet.pdf']  tokens: 4881
+2026-10-02 14:09:08 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:09:10 [debug    ] reranked results (api)         input_count=31 output_count=8
+2026-10-02 14:09:10 [info     ] retrieval complete             dense=20 final=8 query='In Delta DOPSoft, how many actions can be configured on a single Multiple action' sparse=20 top_scores=[0.9999, 0.9994, 0.9975, 0.9947, 0.9928] top_sources=['dopsoft_user_manual.pdf', 'dopsoft_user_manual.pdf', 'dopsoft_user_manual.pdf', 'dopsoft_user_manual.pdf', 'dopsoft_user_manual.pdf']
+2026-10-02 14:09:14 [info     ] graph index built              entities=3606 has_embeddings=3606 relationships=14139
+2026-10-02 14:09:17 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:09:17 [info     ] graph context found            graph_items=10 query='In Delta DOPSoft, how many actions can be configured on a single Multiple action'
+2026-10-02 14:09:21 [debug    ] llm completion                 model=ragline-llm tokens=2099
+2026-10-02 14:09:21 [info     ] query complete                 question='In Delta DOPSoft, how many actions can be configured on a single Multiple action' sources_used=1 used_graph=True
+[31/60] HIT  In Delta DOPSoft, how many actions can be configured on a single Multi
+        cited: ['dopsoft_user_manual.pdf']  tokens: 2099
+2026-10-02 14:09:22 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:09:24 [debug    ] reranked results (api)         input_count=40 output_count=8
+2026-10-02 14:09:24 [info     ] retrieval complete             dense=20 final=8 query='What is the display resolution of the Delta DOP-110WS 10.1" HMI?' sparse=20 top_scores=[0.9995, 0.9992, 0.9988, 0.9984, 0.9975] top_sources=['dop_100_series_catalog.pdf', 'dop_100_series_selection_guide.pdf', 'dop_100_series_catalog.pdf', 'dop_100_series_selection_guide.pdf', 'dop_100_series_catalog.pdf']
+2026-10-02 14:09:24 [info     ] graph index built              entities=488 has_embeddings=488 relationships=678
+2026-10-02 14:09:25 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:09:25 [info     ] graph context found            graph_items=10 query='What is the display resolution of the Delta DOP-110WS 10.1" HMI?'
+2026-10-02 14:09:30 [debug    ] llm completion                 model=ragline-llm tokens=6576
+2026-10-02 14:09:30 [info     ] query complete                 question='What is the display resolution of the Delta DOP-110WS 10.1" HMI?' sources_used=3 used_graph=True
+[32/60] HIT  What is the display resolution of the Delta DOP-110WS 10.1" HMI?
+        cited: ['dop_100_series_catalog.pdf', 'dop_100_series_selection_guide.pdf']  tokens: 6576
+2026-10-02 14:09:31 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:09:32 [debug    ] reranked results (api)         input_count=38 output_count=8
+2026-10-02 14:09:32 [info     ] retrieval complete             dense=20 final=8 query='How does the user memory storage (ROM) capacity of the Mitsubishi GT2712-S compa' sparse=20 top_scores=[0.9989, 0.9986, 0.9972, 0.9959, 0.992] top_sources=['got2000_gt27_gt25_hardware_user_manual.pdf', 'got2000_gt27_gt25_hardware_user_manual.pdf', 'got2000_gt27_gt25_hardware_user_manual.pdf', 'got_simple_series_catalog.pdf', 'got2000_gt27_gt25_hardware_user_manual.pdf']
+2026-10-02 14:09:36 [info     ] graph index built              entities=2993 has_embeddings=2993 relationships=6949
+2026-10-02 14:09:37 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:09:37 [info     ] graph context found            graph_items=10 query='How does the user memory storage (ROM) capacity of the Mitsubishi GT2712-S compa'
+2026-10-02 14:09:43 [debug    ] llm completion                 model=ragline-llm tokens=5637
+2026-10-02 14:09:43 [info     ] query complete                 question='How does the user memory storage (ROM) capacity of the Mitsubishi GT2712-S compa' sources_used=2 used_graph=True
+[33/60] MISS How does the user memory storage (ROM) capacity of the Mitsubishi GT27
+        cited: ['got2000_gt27_gt25_hardware_user_manual.pdf']  tokens: 5637
+2026-10-02 14:09:43 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:09:45 [debug    ] reranked results (api)         input_count=39 output_count=8
+2026-10-02 14:09:45 [info     ] retrieval complete             dense=20 final=8 query='Which draws more power: the Omron NA5-7W or the Delta DOP-107WV 7" HMI, and what' sparse=20 top_scores=[0.998, 0.9977, 0.9974, 0.9967, 0.9905] top_sources=['na_series_hardware_v2_user_manual.pdf', 'na5_v1_series_datasheet.pdf', 'na5_v2_datasheet.pdf', 'na_series_hardware_v1_user_manual.pdf', 'dop_100_series_catalog.pdf']
+2026-10-02 14:09:48 [info     ] graph index built              entities=3334 has_embeddings=3334 relationships=5003
+2026-10-02 14:09:49 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:09:49 [info     ] graph context found            graph_items=10 query='Which draws more power: the Omron NA5-7W or the Delta DOP-107WV 7" HMI, and what'
+2026-10-02 14:09:56 [debug    ] llm completion                 model=ragline-llm tokens=6641
+2026-10-02 14:09:56 [info     ] query complete                 question='Which draws more power: the Omron NA5-7W or the Delta DOP-107WV 7" HMI, and what' sources_used=6 used_graph=True
+[34/60] MISS Which draws more power: the Omron NA5-7W or the Delta DOP-107WV 7" HMI
+        cited: ['dop_100_series_selection_guide.pdf', 'na5_v1_series_datasheet.pdf', 'na5_v2_datasheet.pdf', 'na_series_hardware_v1_user_manual.pdf', 'na_series_hardware_v2_user_manual.pdf']  tokens: 6641
+2026-10-02 14:09:57 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:09:58 [debug    ] reranked results (api)         input_count=39 output_count=8
+2026-10-02 14:09:58 [info     ] retrieval complete             dense=20 final=8 query='What input voltage range does the Weintek MT8071iP accept?' sparse=20 top_scores=[0.9991, 0.9624, 0.8994, 0.8506, 0.6148] top_sources=['mt8071ip1_datasheet.pdf', 'mt8071ie1_datasheet.pdf', 'cmt_svr_200_202_datasheet.pdf', 'mt8071ip1_datasheet.pdf', 'mt8071ie1_datasheet.pdf']
+2026-10-02 14:09:59 [info     ] graph index built              entities=425 has_embeddings=425 relationships=574
+2026-10-02 14:09:59 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:09:59 [info     ] graph context found            graph_items=10 query='What input voltage range does the Weintek MT8071iP accept?'
+2026-10-02 14:10:03 [debug    ] llm completion                 model=ragline-llm tokens=4957
+2026-10-02 14:10:03 [info     ] query complete                 question='What input voltage range does the Weintek MT8071iP accept?' sources_used=1 used_graph=True
+[35/60] HIT  What input voltage range does the Weintek MT8071iP accept?
+        cited: ['mt8071ip1_datasheet.pdf']  tokens: 4957
+2026-10-02 14:10:04 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:10:06 [debug    ] reranked results (api)         input_count=39 output_count=8
+2026-10-02 14:10:06 [info     ] retrieval complete             dense=20 final=8 query='What is the approximate weight of the Weintek cMT2158X 15-inch HMI?' sparse=20 top_scores=[0.9947, 0.9911, 0.9838, 0.9712, 0.9501] top_sources=['cmt_series_brochure.pdf', 'panelview_5510_technical_data.pdf', 'unified_comfort_panels_operating_instructions.pdf', 'im312a_315a_319a_322a_operating_instructions.pdf', 'cmt_series_brochure.pdf']
+2026-10-02 14:10:08 [info     ] graph index built              entities=1676 has_embeddings=1676 relationships=2846
+2026-10-02 14:10:08 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:10:08 [info     ] graph context found            graph_items=10 query='What is the approximate weight of the Weintek cMT2158X 15-inch HMI?'
+2026-10-02 14:10:14 [debug    ] llm completion                 model=ragline-llm tokens=7530
+2026-10-02 14:10:14 [info     ] realigned citations            spans=1
+2026-10-02 14:10:14 [info     ] query complete                 question='What is the approximate weight of the Weintek cMT2158X 15-inch HMI?' sources_used=2 used_graph=True
+[36/60] HIT  What is the approximate weight of the Weintek cMT2158X 15-inch HMI?
+        cited: ['cmt_series_brochure.pdf', 'panelview_5510_technical_data.pdf']  tokens: 7530
+2026-10-02 14:10:15 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:10:16 [debug    ] reranked results (api)         input_count=40 output_count=8
+2026-10-02 14:10:16 [info     ] retrieval complete             dense=20 final=8 query='What is the operating temperature range of the Weintek cMT-SVR-200 server?' sparse=20 top_scores=[0.9993, 0.9979, 0.99, 0.9814, 0.9664] top_sources=['cmt_svr_200_202_datasheet.pdf', 'cmt_series_edge_computing_brochure.pdf', 'cmt_series_brochure.pdf', 'cmt_series_brochure.pdf', 'cmt_series_brochure.pdf']
+2026-10-02 14:10:17 [info     ] graph index built              entities=445 has_embeddings=445 relationships=606
+2026-10-02 14:10:17 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:10:17 [info     ] graph context found            graph_items=10 query='What is the operating temperature range of the Weintek cMT-SVR-200 server?'
+2026-10-02 14:10:25 [debug    ] llm completion                 model=ragline-llm tokens=5123
+2026-10-02 14:10:25 [info     ] query complete                 question='What is the operating temperature range of the Weintek cMT-SVR-200 server?' sources_used=2 used_graph=True
+[37/60] HIT  What is the operating temperature range of the Weintek cMT-SVR-200 ser
+        cited: ['cmt_series_brochure.pdf', 'cmt_svr_200_202_datasheet.pdf']  tokens: 5123
+2026-10-02 14:10:25 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:10:27 [debug    ] reranked results (api)         input_count=39 output_count=8
+2026-10-02 14:10:27 [info     ] retrieval complete             dense=20 final=8 query='What is the input power requirement of the Red Lion Graphite G310C, including ma' sparse=20 top_scores=[0.999, 0.9968, 0.9891, 0.9377, 0.6064] top_sources=['g310c_datasheet.pdf', 'g315c_datasheet.pdf', 'g310c_datasheet.pdf', 'g315c_datasheet.pdf', 'cr3000_series_user_manual.pdf']
+2026-10-02 14:10:28 [info     ] graph index built              entities=431 has_embeddings=431 relationships=519
+2026-10-02 14:10:28 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:10:28 [info     ] graph context found            graph_items=10 query='What is the input power requirement of the Red Lion Graphite G310C, including ma'
+2026-10-02 14:10:33 [debug    ] llm completion                 model=ragline-llm tokens=5191
+2026-10-02 14:10:33 [info     ] query complete                 question='What is the input power requirement of the Red Lion Graphite G310C, including ma' sources_used=1 used_graph=True
+[38/60] HIT  What is the input power requirement of the Red Lion Graphite G310C, in
+        cited: ['g310c_datasheet.pdf']  tokens: 5191
+2026-10-02 14:10:34 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:10:35 [debug    ] reranked results (api)         input_count=38 output_count=8
+2026-10-02 14:10:35 [info     ] retrieval complete             dense=20 final=8 query='How much does the Red Lion Graphite G315C weigh?' sparse=20 top_scores=[0.9955, 0.9947, 0.9423, 0.9329, 0.8647] top_sources=['graphite_hmi_datasheet.pdf', 'graphite_series_full_datasheet.pdf', 'g315c_datasheet.pdf', 'flexedge_da50a_datasheet.pdf', 'g315c_datasheet.pdf']
+2026-10-02 14:10:36 [info     ] graph index built              entities=272 has_embeddings=272 relationships=308
+2026-10-02 14:10:36 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:10:36 [info     ] graph context found            graph_items=10 query='How much does the Red Lion Graphite G315C weigh?'
+2026-10-02 14:10:40 [debug    ] llm completion                 model=ragline-llm tokens=3930
+2026-10-02 14:10:40 [info     ] query complete                 question='How much does the Red Lion Graphite G315C weigh?' sources_used=2 used_graph=True
+[39/60] MISS How much does the Red Lion Graphite G315C weigh?
+        cited: ['graphite_hmi_datasheet.pdf', 'graphite_series_full_datasheet.pdf']  tokens: 3930
+2026-10-02 14:10:41 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:10:42 [debug    ] reranked results (api)         input_count=37 output_count=8
+2026-10-02 14:10:42 [info     ] retrieval complete             dense=20 final=8 query='What is the maximum power consumption of the Schneider Harmony ST6 HMIST6700?' sparse=20 top_scores=[0.9988, 0.9965, 0.9865, 0.9651, 0.9584] top_sources=['harmony_st6_user_manual.pdf', 'basic_and_web_hmi_panels_catalog.pdf', 'basic_and_web_hmi_panels_catalog.pdf', 'basic_and_web_hmi_panels_catalog.pdf', 'basic_and_web_hmi_panels_catalog.pdf']
+2026-10-02 14:10:43 [info     ] graph index built              entities=493 has_embeddings=493 relationships=683
+2026-10-02 14:10:43 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:10:43 [info     ] graph context found            graph_items=10 query='What is the maximum power consumption of the Schneider Harmony ST6 HMIST6700?'
+2026-10-02 14:10:49 [debug    ] llm completion                 model=ragline-llm tokens=7433
+2026-10-02 14:10:49 [info     ] realigned citations            spans=1
+2026-10-02 14:10:49 [info     ] query complete                 question='What is the maximum power consumption of the Schneider Harmony ST6 HMIST6700?' sources_used=1 used_graph=True
+[40/60] MISS What is the maximum power consumption of the Schneider Harmony ST6 HMI
+        cited: ['basic_and_web_hmi_panels_catalog.pdf']  tokens: 7433
+2026-10-02 14:10:49 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:10:51 [debug    ] reranked results (api)         input_count=40 output_count=8
+2026-10-02 14:10:51 [info     ] retrieval complete             dense=20 final=8 query='What panel cutout is required to mount a Pro-face STM-6400WA display module?' sparse=20 top_scores=[0.999, 0.997, 0.9954, 0.9925, 0.9899] top_sources=['sp5000_series_hardware_manual.pdf', 'stm6000_series_hardware_manual.pdf', 'stw6000_series_hardware_manual.pdf', 'stm6000_series_hardware_manual.pdf', 'stw6000_series_hardware_manual.pdf']
+2026-10-02 14:10:53 [info     ] graph index built              entities=1694 has_embeddings=1694 relationships=3067
+2026-10-02 14:10:53 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:10:53 [info     ] graph context found            graph_items=10 query='What panel cutout is required to mount a Pro-face STM-6400WA display module?'
+2026-10-02 14:10:59 [debug    ] llm completion                 model=ragline-llm tokens=5447
+2026-10-02 14:10:59 [info     ] query complete                 question='What panel cutout is required to mount a Pro-face STM-6400WA display module?' sources_used=1 used_graph=True
+[41/60] HIT  What panel cutout is required to mount a Pro-face STM-6400WA display m
+        cited: ['stm6000_series_hardware_manual.pdf']  tokens: 5447
+2026-10-02 14:10:59 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:11:01 [debug    ] reranked results (api)         input_count=37 output_count=8
+2026-10-02 14:11:01 [info     ] retrieval complete             dense=20 final=8 query='What is the power consumption of the Beijer X2 pro 15 B2 at rated voltage?' sparse=20 top_scores=[0.9999, 0.9998, 0.9995, 0.9948, 0.994] top_sources=['x2_pro_10_b2_hardware_manual.pdf', 'x2_pro_15_b2_hardware_manual.pdf', 'x2_pro_4_b2_hardware_manual.pdf', 'x2_pro_4_b2_hardware_manual.pdf', 'x2_series_operator_panels_brochure.pdf']
+2026-10-02 14:11:02 [info     ] graph index built              entities=970 has_embeddings=970 relationships=1255
+2026-10-02 14:11:03 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:11:03 [info     ] graph context found            graph_items=10 query='What is the power consumption of the Beijer X2 pro 15 B2 at rated voltage?'
+2026-10-02 14:11:07 [debug    ] llm completion                 model=ragline-llm tokens=6128
+2026-10-02 14:11:07 [info     ] query complete                 question='What is the power consumption of the Beijer X2 pro 15 B2 at rated voltage?' sources_used=1 used_graph=True
+[42/60] HIT  What is the power consumption of the Beijer X2 pro 15 B2 at rated volt
+        cited: ['x2_pro_15_b2_hardware_manual.pdf']  tokens: 6128
+2026-10-02 14:11:08 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:11:10 [debug    ] reranked results (api)         input_count=40 output_count=8
+2026-10-02 14:11:10 [info     ] retrieval complete             dense=20 final=8 query='What is the display resolution of the Weintek cMT3072XH?' sparse=20 top_scores=[0.9998, 0.9993, 0.9983, 0.9932, 0.9916] top_sources=['cmt3072xh_datasheet.pdf', 'cmt3072x_datasheet.pdf', 'cmt_series_brochure.pdf', 'cmt3072xh_datasheet.pdf', 'cmt_series_edge_computing_brochure.pdf']
+2026-10-02 14:11:10 [info     ] graph index built              entities=424 has_embeddings=424 relationships=590
+2026-10-02 14:11:11 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:11:11 [info     ] graph context found            graph_items=10 query='What is the display resolution of the Weintek cMT3072XH?'
+2026-10-02 14:11:18 [debug    ] llm completion                 model=ragline-llm tokens=10082
+2026-10-02 14:11:18 [info     ] query complete                 question='What is the display resolution of the Weintek cMT3072XH?' sources_used=1 used_graph=True
+[43/60] HIT  What is the display resolution of the Weintek cMT3072XH?
+        cited: ['cmt3072xh_datasheet.pdf']  tokens: 10082
+2026-10-02 14:11:19 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:11:20 [debug    ] reranked results (api)         input_count=40 output_count=8
+2026-10-02 14:11:20 [info     ] retrieval complete             dense=20 final=8 query='Compare the operating temperature ranges of the Weintek eMT3070A and eMT3150A.' sparse=20 top_scores=[0.9968, 0.9951, 0.9944, 0.9657, 0.9501] top_sources=['emt3150a_15in_datasheet.pdf', 'emt3150a_15in_datasheet.pdf', 'emt3070a_7in_datasheet.pdf', 'cmt3072xh_datasheet.pdf', 'emt3105p_10in_datasheet.pdf']
+2026-10-02 14:11:21 [info     ] graph index built              entities=383 has_embeddings=383 relationships=465
+2026-10-02 14:11:21 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:11:21 [info     ] graph context found            graph_items=10 query='Compare the operating temperature ranges of the Weintek eMT3070A and eMT3150A.'
+2026-10-02 14:11:27 [debug    ] llm completion                 model=ragline-llm tokens=2804
+2026-10-02 14:11:27 [info     ] query complete                 question='Compare the operating temperature ranges of the Weintek eMT3070A and eMT3150A.' sources_used=2 used_graph=True
+[44/60] HIT  Compare the operating temperature ranges of the Weintek eMT3070A and e
+        cited: ['emt3070a_7in_datasheet.pdf', 'emt3150a_15in_datasheet.pdf']  tokens: 2804
+2026-10-02 14:11:27 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:11:28 [debug    ] reranked results (api)         input_count=38 output_count=8
+2026-10-02 14:11:28 [info     ] retrieval complete             dense=20 final=8 query='How do the Red Lion FlexEdge DA50A and DA70A compare in weight?' sparse=20 top_scores=[0.9909, 0.9081, 0.8818, 0.4888, 0.2888] top_sources=['flexedge_da50a_datasheet.pdf', 'graphite_hmi_datasheet.pdf', 'graphite_series_full_datasheet.pdf', 'flexedge_da50a_datasheet.pdf', 'flexedge_da70a_datasheet.pdf']
+2026-10-02 14:11:29 [info     ] graph index built              entities=270 has_embeddings=270 relationships=316
+2026-10-02 14:11:29 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:11:29 [info     ] graph context found            graph_items=10 query='How do the Red Lion FlexEdge DA50A and DA70A compare in weight?'
+2026-10-02 14:11:34 [debug    ] llm completion                 model=ragline-llm tokens=4342
+2026-10-02 14:11:34 [info     ] query complete                 question='How do the Red Lion FlexEdge DA50A and DA70A compare in weight?' sources_used=2 used_graph=True
+[45/60] HIT  How do the Red Lion FlexEdge DA50A and DA70A compare in weight?
+        cited: ['flexedge_da50a_datasheet.pdf', 'flexedge_da70a_datasheet.pdf']  tokens: 4342
+2026-10-02 14:11:34 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:11:35 [debug    ] reranked results (api)         input_count=35 output_count=8
+2026-10-02 14:11:35 [info     ] retrieval complete             dense=20 final=8 query='Which has the wider operating temperature range: the Schneider Harmony ST6 HMIST' sparse=20 top_scores=[0.9936, 0.9851, 0.9845, 0.9836, 0.9831] top_sources=['x2_series_operator_panels_brochure.pdf', 'basic_and_web_hmi_panels_catalog.pdf', 'x2_series_operator_panels_brochure.pdf', 'basic_and_web_hmi_panels_catalog.pdf', 'basic_and_web_hmi_panels_catalog.pdf']
+2026-10-02 14:11:36 [info     ] graph index built              entities=307 has_embeddings=307 relationships=437
+2026-10-02 14:11:36 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:11:36 [info     ] graph context found            graph_items=10 query='Which has the wider operating temperature range: the Schneider Harmony ST6 HMIST'
+2026-10-02 14:11:44 [debug    ] llm completion                 model=ragline-llm tokens=6973
+2026-10-02 14:11:44 [info     ] realigned citations            spans=1
+2026-10-02 14:11:44 [info     ] query complete                 question='Which has the wider operating temperature range: the Schneider Harmony ST6 HMIST' sources_used=4 used_graph=True
+[46/60] MISS Which has the wider operating temperature range: the Schneider Harmony
+        cited: ['basic_and_web_hmi_panels_catalog.pdf', 'x2_series_operator_panels_brochure.pdf']  tokens: 6973
+2026-10-02 14:11:45 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:11:46 [debug    ] reranked results (api)         input_count=40 output_count=8
+2026-10-02 14:11:46 [info     ] retrieval complete             dense=20 final=8 query='What is the MTBF of the Weintek cMT3072X?' sparse=20 top_scores=[0.9927, 0.9891, 0.9364, 0.9148, 0.9072] top_sources=['cmt3072xh_datasheet.pdf', 'cmt3072x_datasheet.pdf', 'cmt2078x_7in_datasheet.pdf', 'cmt_series_brochure.pdf', 'cmt3092x_datasheet.pdf']
+2026-10-02 14:11:47 [info     ] graph index built              entities=341 has_embeddings=341 relationships=441
+2026-10-02 14:11:47 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:11:47 [info     ] graph context found            graph_items=10 query='What is the MTBF of the Weintek cMT3072X?'
+2026-10-02 14:11:51 [debug    ] llm completion                 model=ragline-llm tokens=4249
+2026-10-02 14:11:51 [info     ] query complete                 question='What is the MTBF of the Weintek cMT3072X?' sources_used=3 used_graph=True
+[47/60] n/a  What is the MTBF of the Weintek cMT3072X?
+        cited: ['cmt3072x_datasheet.pdf', 'cmt3072xh_datasheet.pdf', 'cmt_series_brochure.pdf']  tokens: 4249
+2026-10-02 14:11:52 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:11:53 [debug    ] reranked results (api)         input_count=40 output_count=8
+2026-10-02 14:11:53 [info     ] retrieval complete             dense=20 final=8 query='What is the list price of the Allen-Bradley PanelView 5510?' sparse=20 top_scores=[0.9841, 0.9639, 0.961, 0.9464, 0.9321] top_sources=['panelview_5510_technical_data.pdf', 'panelview_5510_user_manual.pdf', 'panelview_5510_user_manual.pdf', 'panelview_5510_technical_data.pdf', 'panelview_5510_user_manual.pdf']
+2026-10-02 14:11:54 [info     ] graph index built              entities=964 has_embeddings=964 relationships=1564
+2026-10-02 14:11:55 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:11:55 [info     ] graph context found            graph_items=10 query='What is the list price of the Allen-Bradley PanelView 5510?'
+2026-10-02 14:12:00 [debug    ] llm completion                 model=ragline-llm tokens=5085
+2026-10-02 14:12:00 [info     ] query complete                 question='What is the list price of the Allen-Bradley PanelView 5510?' sources_used=6 used_graph=True
+[48/60] n/a  What is the list price of the Allen-Bradley PanelView 5510?
+        cited: ['panelview_5510_technical_data.pdf', 'panelview_5510_user_manual.pdf']  tokens: 5085
+2026-10-02 14:12:01 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:12:02 [debug    ] reranked results (api)         input_count=39 output_count=8
+2026-10-02 14:12:02 [info     ] retrieval complete             dense=20 final=8 query='Which Bluetooth version does the Weintek cMT3162X support?' sparse=20 top_scores=[0.9917, 0.9885, 0.987, 0.9732, 0.9683] top_sources=['cmt3072xh_datasheet.pdf', 'cmt2078x_7in_datasheet.pdf', 'cmt3162x_15in_datasheet.pdf', 'cmt_series_edge_computing_brochure.pdf', 'cmt3072x_datasheet.pdf']
+2026-10-02 14:12:02 [info     ] graph index built              entities=392 has_embeddings=392 relationships=487
+2026-10-02 14:12:02 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:12:02 [info     ] graph context found            graph_items=10 query='Which Bluetooth version does the Weintek cMT3162X support?'
+2026-10-02 14:12:07 [debug    ] llm completion                 model=ragline-llm tokens=4688
+2026-10-02 14:12:07 [info     ] query complete                 question='Which Bluetooth version does the Weintek cMT3162X support?' sources_used=3 used_graph=True
+[49/60] n/a  Which Bluetooth version does the Weintek cMT3162X support?
+        cited: ['cmt3162x_15in_datasheet.pdf', 'cmt_series_edge_computing_brochure.pdf']  tokens: 4688
+2026-10-02 14:12:08 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:12:09 [debug    ] reranked results (api)         input_count=40 output_count=8
+2026-10-02 14:12:09 [info     ] retrieval complete             dense=20 final=8 query='What is the operating temperature range of the Weintek cMT3252X?' sparse=20 top_scores=[0.9896, 0.9856, 0.9803, 0.9797, 0.9614] top_sources=['cmt3162x_15in_datasheet.pdf', 'cmt3072xh_datasheet.pdf', 'cmt3092x_datasheet.pdf', 'cmt3072x_datasheet.pdf', 'cmt_series_edge_computing_brochure.pdf']
+2026-10-02 14:12:10 [info     ] graph index built              entities=404 has_embeddings=404 relationships=517
+2026-10-02 14:12:10 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:12:10 [info     ] graph context found            graph_items=10 query='What is the operating temperature range of the Weintek cMT3252X?'
+2026-10-02 14:12:15 [debug    ] llm completion                 model=ragline-llm tokens=2901
+2026-10-02 14:12:15 [info     ] query complete                 question='What is the operating temperature range of the Weintek cMT3252X?' sources_used=8 used_graph=True
+[50/60] n/a  What is the operating temperature range of the Weintek cMT3252X?
+        cited: ['cmt2078x_7in_datasheet.pdf', 'cmt3072x_datasheet.pdf', 'cmt3072xh_datasheet.pdf', 'cmt3092x_datasheet.pdf', 'cmt3103_datasheet.pdf', 'cmt3162x_15in_datasheet.pdf', 'cmt_series_edge_computing_brochure.pdf']  tokens: 2901
+2026-10-02 14:12:16 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:12:17 [debug    ] reranked results (api)         input_count=40 output_count=8
+2026-10-02 14:12:17 [info     ] retrieval complete             dense=20 final=8 query='What is the display resolution of the Phoenix Contact BTP 2070W HMI?' sparse=20 top_scores=[0.9173, 0.9032, 0.7686, 0.7653, 0.7135] top_sources=['advantech_intelligent_operator_panels_catalog.pdf', 'tp_comfort_panels_hardware_manual.pdf', 'tp_comfort_panels_operating_instructions.pdf', 'mt8071ip1_datasheet.pdf', 'mt8071ie1_datasheet.pdf']
+2026-10-02 14:12:23 [info     ] graph index built              entities=4420 has_embeddings=4420 relationships=7505
+2026-10-02 14:12:24 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:12:24 [info     ] graph context found            graph_items=10 query='What is the display resolution of the Phoenix Contact BTP 2070W HMI?'
+2026-10-02 14:12:31 [debug    ] llm completion                 model=ragline-llm tokens=8307
+2026-10-02 14:12:31 [info     ] query complete                 question='What is the display resolution of the Phoenix Contact BTP 2070W HMI?' sources_used=0 used_graph=True
+[51/60] n/a  What is the display resolution of the Phoenix Contact BTP 2070W HMI?
+        cited: (none)  tokens: 8307
+2026-10-02 14:12:31 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:12:33 [debug    ] reranked results (api)         input_count=33 output_count=8
+2026-10-02 14:12:33 [info     ] retrieval complete             dense=20 final=8 query='Which Linux kernel version does the Red Lion Graphite G310 run?' sparse=20 top_scores=[0.9143, 0.7838, 0.7369, 0.4213, 0.3957] top_sources=['g310c_datasheet.pdf', 'g310c_datasheet.pdf', 'g315c_datasheet.pdf', 'graphite_hmi_datasheet.pdf', 'graphite_series_full_datasheet.pdf']
+2026-10-02 14:12:33 [info     ] graph index built              entities=506 has_embeddings=506 relationships=615
+2026-10-02 14:12:33 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:12:33 [info     ] graph context found            graph_items=10 query='Which Linux kernel version does the Red Lion Graphite G310 run?'
+2026-10-02 14:12:37 [debug    ] llm completion                 model=ragline-llm tokens=4094
+2026-10-02 14:12:37 [info     ] query complete                 question='Which Linux kernel version does the Red Lion Graphite G310 run?' sources_used=0 used_graph=True
+[52/60] n/a  Which Linux kernel version does the Red Lion Graphite G310 run?
+        cited: (none)  tokens: 4094
+2026-10-02 14:12:38 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:12:39 [debug    ] reranked results (api)         input_count=38 output_count=8
+2026-10-02 14:12:39 [info     ] retrieval complete             dense=20 final=8 query='Which HMI vendors are covered in the document library?' sparse=20 top_scores=[0.997, 0.9864, 0.9845, 0.9787, 0.9783] top_sources=['asem_6300_monitors_pcs_thin_clients_technical_data.pdf', 'graphite_and_cr_series_hmi_brochure.pdf', 'tp_comfort_panels_hardware_manual.pdf', 'industrial_computers_and_monitors_technical_data.pdf', 'wincc_unified_hmi_template_manual.pdf']
+2026-10-02 14:12:43 [info     ] graph index built              entities=2840 has_embeddings=2840 relationships=4502
+2026-10-02 14:12:43 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:12:43 [info     ] graph context found            graph_items=10 query='Which HMI vendors are covered in the document library?'
+2026-10-02 14:12:53 [debug    ] llm completion                 model=ragline-llm tokens=3573
+2026-10-02 14:12:53 [info     ] query complete                 question='Which HMI vendors are covered in the document library?' sources_used=7 used_graph=True
+[53/60] n/a  Which HMI vendors are covered in the document library?
+        cited: ['advantech_intelligent_operator_panels_catalog.pdf', 'asem_6300_monitors_pcs_thin_clients_technical_data.pdf', 'graphite_and_cr_series_hmi_brochure.pdf', 'industrial_computers_and_monitors_technical_data.pdf', 'panelview_plus7_performance_technical_data.pdf', 'tp_comfort_panels_hardware_manual.pdf']  tokens: 3573
+2026-10-02 14:12:54 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:12:55 [debug    ] reranked results (api)         input_count=37 output_count=8
+2026-10-02 14:12:55 [info     ] retrieval complete             dense=20 final=8 query='How many Weintek documents are in the library?' sparse=20 top_scores=[0.8844, 0.852, 0.7729, 0.7363, 0.6659] top_sources=['cmt3072xh_datasheet.pdf', 'cmt2078x_7in_datasheet.pdf', 'emt3150a_15in_datasheet.pdf', 'emt3105p_10in_datasheet.pdf', 'emt3070a_7in_datasheet.pdf']
+2026-10-02 14:12:55 [info     ] graph index built              entities=259 has_embeddings=259 relationships=283
+2026-10-02 14:12:55 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:12:55 [info     ] graph context found            graph_items=10 query='How many Weintek documents are in the library?'
+2026-10-02 14:13:01 [debug    ] llm completion                 model=ragline-llm tokens=1581
+2026-10-02 14:13:01 [info     ] query complete                 question='How many Weintek documents are in the library?' sources_used=8 used_graph=True
+[54/60] n/a  How many Weintek documents are in the library?
+        cited: ['cmt2078x_7in_datasheet.pdf', 'cmt3072x_datasheet.pdf', 'cmt3072xh_datasheet.pdf', 'cmt3092x_datasheet.pdf', 'cmt_g03_datasheet.pdf', 'emt3070a_7in_datasheet.pdf', 'emt3105p_10in_datasheet.pdf', 'emt3150a_15in_datasheet.pdf']  tokens: 1581
+2026-10-02 14:13:02 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:13:03 [debug    ] reranked results (api)         input_count=33 output_count=8
+2026-10-02 14:13:03 [info     ] retrieval complete             dense=20 final=8 query='Which documents cover the Mitsubishi GOT2000 series?' sparse=20 top_scores=[0.9931, 0.9923, 0.9911, 0.9909, 0.9909] top_sources=['got2000_gt27_gt25_utility_user_manual.pdf', 'got2000_connection_manual_microcomputer_modbus.pdf', 'got2000_gt27_gt25_hardware_user_manual.pdf', 'gs25_gs21_user_manual.pdf', 'got2000_connection_manual_microcomputer_modbus.pdf']
+2026-10-02 14:13:19 [info     ] graph index built              entities=13711 has_embeddings=13711 relationships=40983
+2026-10-02 14:13:20 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:13:20 [info     ] graph context found            graph_items=10 query='Which documents cover the Mitsubishi GOT2000 series?'
+2026-10-02 14:13:45 [debug    ] llm completion                 model=ragline-llm tokens=5217
+2026-10-02 14:13:45 [info     ] realigned citations            spans=2
+2026-10-02 14:13:45 [info     ] query complete                 question='Which documents cover the Mitsubishi GOT2000 series?' sources_used=8 used_graph=True
+[55/60] n/a  Which documents cover the Mitsubishi GOT2000 series?
+        cited: ['got2000_connection_manual_microcomputer_modbus.pdf', 'got2000_connection_manual_non_mitsubishi_products_1.pdf', 'got2000_connection_manual_non_mitsubishi_products_2.pdf', 'got2000_gt27_gt25_hardware_user_manual.pdf', 'got2000_gt27_gt25_utility_user_manual.pdf', 'gs25_gs21_user_manual.pdf']  tokens: 5217
+2026-10-02 14:13:45 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:13:47 [debug    ] reranked results (api)         input_count=37 output_count=8
+2026-10-02 14:13:47 [info     ] retrieval complete             dense=20 final=8 query='Which replacement battery does it take for the real-time clock?' sparse=20 top_scores=[0.999, 0.9989, 0.9988, 0.9987, 0.9972] top_sources=['panelview_5510_user_manual.pdf', 'panelview_plus7_standard_user_manual.pdf', 'panelview_plus7_performance_user_manual.pdf', 'asem_6300p_panel_pcs_user_manual.pdf', 'panelview_5310_user_manual.pdf']
+2026-10-02 14:13:57 [info     ] graph index built              entities=7120 has_embeddings=7120 relationships=12041
+2026-10-02 14:13:58 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:13:58 [info     ] graph context found            graph_items=10 query='Which replacement battery does it take for the real-time clock?'
+2026-10-02 14:14:05 [debug    ] llm completion                 model=ragline-llm tokens=4730
+2026-10-02 14:14:05 [info     ] query complete                 question='Which replacement battery does it take for the real-time clock?' sources_used=7 used_graph=True
+[56/60] HIT  Which replacement battery does it take for the real-time clock?
+        cited: ['asem_6300p_panel_pcs_user_manual.pdf', 'panelview_5310_user_manual.pdf', 'panelview_5500_user_manual.pdf', 'panelview_5510_user_manual.pdf', 'panelview_800_user_manual.pdf', 'panelview_plus7_performance_user_manual.pdf', 'panelview_plus7_standard_user_manual.pdf']  tokens: 4730
+2026-10-02 14:14:05 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:14:07 [debug    ] reranked results (api)         input_count=40 output_count=8
+2026-10-02 14:14:07 [info     ] retrieval complete             dense=20 final=8 query='What IP rating does its stainless-steel version have?' sparse=20 top_scores=[0.9851, 0.9228, 0.8973, 0.1468, 0.0965] top_sources=['panelview_plus7_performance_technical_data.pdf', 'asem_6300m_user_manual.pdf', 'asem_6300m_user_manual.pdf', 'panelview_5510_technical_data.pdf', 'g310c_datasheet.pdf']
+2026-10-02 14:14:09 [info     ] graph index built              entities=1504 has_embeddings=1504 relationships=2293
+2026-10-02 14:14:09 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:14:09 [info     ] graph context found            graph_items=10 query='What IP rating does its stainless-steel version have?'
+2026-10-02 14:14:14 [debug    ] llm completion                 model=ragline-llm tokens=3423
+2026-10-02 14:14:14 [info     ] query complete                 question='What IP rating does its stainless-steel version have?' sources_used=2 used_graph=True
+[57/60] MISS What IP rating does its stainless-steel version have?
+        cited: ['asem_6300m_user_manual.pdf']  tokens: 3423
+2026-10-02 14:14:15 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:14:17 [debug    ] reranked results (api)         input_count=39 output_count=8
+2026-10-02 14:14:17 [info     ] retrieval complete             dense=20 final=8 query="How does that compare with Delta's 7-inch DOP-107WV?" sparse=20 top_scores=[0.997, 0.9878, 0.9339, 0.8828, 0.8679] top_sources=['dop_100_series_catalog.pdf', 'dop_100_series_selection_guide.pdf', 'dop_100_series_selection_guide.pdf', 'dop_100_series_catalog.pdf', 'dop_100_series_selection_guide.pdf']
+2026-10-02 14:14:17 [info     ] graph index built              entities=488 has_embeddings=488 relationships=678
+2026-10-02 14:14:18 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:14:18 [info     ] graph context found            graph_items=10 query="How does that compare with Delta's 7-inch DOP-107WV?"
+2026-10-02 14:14:30 [debug    ] llm completion                 model=ragline-llm tokens=4253
+2026-10-02 14:14:30 [info     ] realigned citations            spans=2
+2026-10-02 14:14:30 [info     ] query complete                 question="How does that compare with Delta's 7-inch DOP-107WV?" sources_used=4 used_graph=True
+[58/60] HIT  How does that compare with Delta's 7-inch DOP-107WV?
+        cited: ['dop_100_series_catalog.pdf', 'dop_100_series_selection_guide.pdf']  tokens: 4253
+2026-10-02 14:14:30 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:14:32 [debug    ] reranked results (api)         input_count=40 output_count=8
+2026-10-02 14:14:32 [info     ] retrieval complete             dense=20 final=8 query='And the DA70A?' sparse=20 top_scores=[0.9908, 0.9775, 0.9588, 0.8568, 0.0051] top_sources=['flexedge_da70a_datasheet.pdf', 'flexedge_da70a_datasheet.pdf', 'flexedge_da70a_datasheet.pdf', 'flexedge_da70a_datasheet.pdf', 'flexedge_communication_sleds_datasheet.pdf']
+2026-10-02 14:14:36 [info     ] graph index built              entities=3165 has_embeddings=3165 relationships=9718
+2026-10-02 14:14:37 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:14:37 [info     ] graph context found            graph_items=10 query='And the DA70A?'
+2026-10-02 14:14:50 [debug    ] llm completion                 model=ragline-llm tokens=4229
+2026-10-02 14:14:50 [info     ] query complete                 question='And the DA70A?' sources_used=3 used_graph=True
+[59/60] HIT  And the DA70A?
+        cited: ['flexedge_da70a_datasheet.pdf']  tokens: 4229
+2026-10-02 14:14:51 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:14:53 [debug    ] reranked results (api)         input_count=40 output_count=8
+2026-10-02 14:14:53 [info     ] retrieval complete             dense=20 final=8 query='What about the cMT3072X?' sparse=20 top_scores=[0.9991, 0.9991, 0.9986, 0.9986, 0.9978] top_sources=['cmt3072xh_datasheet.pdf', 'cmt3072x_datasheet.pdf', 'cmt3072xh_datasheet.pdf', 'cmt3072x_datasheet.pdf', 'cmt3072x_datasheet.pdf']
+2026-10-02 14:14:53 [info     ] graph index built              entities=262 has_embeddings=262 relationships=363
+2026-10-02 14:14:53 [debug    ] embedded texts                 count=1 model=Qwen/Qwen3-Embedding-8B
+2026-10-02 14:14:53 [info     ] graph context found            graph_items=10 query='What about the cMT3072X?'
+2026-10-02 14:15:08 [debug    ] llm completion                 model=ragline-llm tokens=5438
+2026-10-02 14:15:08 [info     ] realigned citations            spans=1
+2026-10-02 14:15:08 [info     ] query complete                 question='What about the cMT3072X?' sources_used=3 used_graph=True
+[60/60] HIT  What about the cMT3072X?
+        cited: ['cmt3072x_datasheet.pdf', 'cmt3072xh_datasheet.pdf', 'cmt_series_brochure.pdf']  tokens: 5438
+
+=== Scorecard ===
+source hit-rate : 42/51 = 0.82
+cited answers   : 0.97
+page sanity     : ok
+total tokens    : 290865
+median stage ms : embed_query 707, vector_search 12, sparse_merge 63, rerank 1425, graph 2578, answer 5446, citations 1
+
+Full results written to eval/results/2026-10-02_ragline-3090-on-a6000_step-timing.json

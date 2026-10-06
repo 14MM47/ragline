@@ -1,0 +1,51 @@
+# ragline.service — the ragline app (FastAPI via uvicorn) on the intranet VM.
+#
+# Install: copy to /etc/systemd/system/, then
+#   systemctl daemon-reload && systemctl enable --now ragline
+#
+# HARD CONSTRAINT — exactly ONE uvicorn worker (the default). The BM25 sparse
+# index lives in process memory (rebuilt from a full Qdrant scroll at startup)
+# and ingestion runs as in-process asyncio tasks. Multiple workers would give
+# each worker a divergent index and strand background ingestion. Do not add
+# --workers N; scaling requires the architectural changes noted in the README.
+
+[Unit]
+Description=ragline RAG service
+Wants=network-online.target
+After=network-online.target docker.service ragline-qdrant.service
+Requires=ragline-qdrant.service
+
+[Service]
+Type=exec
+User=ragline
+Group=ragline
+WorkingDirectory=/opt/ragline
+# .env holds secrets (LLM keys, Entra client secret, SMB credential) — keep it
+# root:ragline 640, or better: keep secrets OUT of .env entirely via
+# LoadCredential= + the *_FILE settings, e.g.
+#   LoadCredential=entra_client_secret:/etc/ragline/secrets/entra_client_secret
+#   Environment=ENTRA_CLIENT_SECRET_FILE=%d/entra_client_secret
+# (%d expands to the per-invocation credentials directory.)
+EnvironmentFile=/opt/ragline/.env
+# Defense-in-depth guard on the .env text. The AUTHORITATIVE refusal is in the
+# app (main.py _enforce_auth_posture: any falsey AUTH_ENABLED without
+# RAGLINE_ALLOW_INSECURE_DEV=1 aborts startup) — that keys off the parsed bool
+# and also catches a systemd Environment= override this grep cannot see. This
+# line just fails earlier, at ExecStartPre, for the common .env case. It must
+# match every falsey spelling pydantic accepts (false/0/no/off), optionally
+# quoted — keep it in sync with pydantic's bool parsing.
+ExecStartPre=/bin/sh -c '! grep -qiE "^[[:space:]]*AUTH_ENABLED[[:space:]]*=[[:space:]]*[\"'\'']?(false|0|no|off)" /opt/ragline/.env || { echo "refusing to start: AUTH_ENABLED disabled in production .env" >&2; exit 1; }'
+# Loopback only — nginx terminates TLS on 443 and proxies here.
+ExecStart=/opt/ragline/.venv/bin/uvicorn ragline.main:app --host 127.0.0.1 --port 8000 --app-dir src
+Restart=on-failure
+RestartSec=5
+
+# Hardening (paths the service actually needs stay writable).
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/ragline/data
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

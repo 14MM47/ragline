@@ -1,0 +1,30 @@
+# ragline-acl.service — one ACL crawl pass (run by ragline-acl.timer).
+#
+# A SEPARATE PROCESS from the app on purpose: thousands of SMB round-trips
+# must not share the app's event loop, and a crashed crawl must not take chat
+# down. Concurrent SQLite access is safe via WAL + busy_timeout (set by the
+# app's init_db). Exit code != 0 means the crawl could not run AT ALL
+# (missing SMB credentials etc.) — wire OnFailure= to your alerting.
+
+[Unit]
+Description=ragline NTFS ACL crawl
+Wants=network-online.target
+After=network-online.target
+# OnFailure=status-email@%n.service   # uncomment once an alert unit exists
+
+[Service]
+Type=oneshot
+User=ragline
+Group=ragline
+WorkingDirectory=/opt/ragline
+EnvironmentFile=/opt/ragline/.env
+ExecStart=/opt/ragline/.venv/bin/python scripts/acl_crawl.py
+# A full-corpus crawl should finish well inside this; a hung SMB mount must
+# not wedge the timer forever.
+TimeoutStartSec=4h
+
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/ragline/data
+PrivateTmp=true

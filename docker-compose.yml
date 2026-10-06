@@ -1,0 +1,28 @@
+# docker-compose.yml — infrastructure services for ragline.
+#
+# Only Qdrant (the vector database) is containerised. The app itself runs via
+# uvicorn on the host (see restart.sh); there is no app image yet.
+
+services:
+  # Qdrant: stores one dense vector per chunk plus the full chunk-source
+  # payload (file, page, section, offsets) that powers hard citations.
+  qdrant:
+    image: qdrant/qdrant:v1.13.2      # same pinned version raggles validated against
+    ports:
+      # Loopback-only: the app talks to Qdrant on the same host, and Qdrant has
+      # no auth of its own — publishing on all interfaces would expose the full
+      # vector index to the network.
+      - "127.0.0.1:6333:6333"         # HTTP API (used by qdrant-client)
+      - "127.0.0.1:6334:6334"         # gRPC API (unused by us, exposed for tooling)
+    restart: unless-stopped           # survive VM reboots without an operator
+    volumes:
+      - qdrant_data:/qdrant/storage   # persist vectors across container restarts
+      # Snapshots on a host bind mount so the backup job can read them straight
+      # off the filesystem — keeps the backup unit non-root with no docker
+      # socket access (see deploy/intranet/backup/ragline-backup.sh). Qdrant writes them
+      # world-readable, so the ragline user can copy them out.
+      - ./data/qdrant-snapshots:/qdrant/snapshots
+
+volumes:
+  # Named volume so `docker compose down` does not wipe the vector index.
+  qdrant_data:

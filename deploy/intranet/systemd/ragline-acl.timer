@@ -1,0 +1,20 @@
+# ragline-acl.timer — schedules the ACL crawl.
+#
+# Nightly at 02:30 plus 15 minutes after boot (so a rebooted VM doesn't serve
+# a whole day on yesterday's crawl). ACL changes on the file server take
+# effect at the next run; documents with no successful crawl in ACL_STALE_DAYS
+# fail closed, so a silently broken timer degrades to "citations lock", never
+# to stale access.
+#
+# Install: systemctl enable --now ragline-acl.timer
+
+[Unit]
+Description=Nightly ragline NTFS ACL crawl
+
+[Timer]
+OnCalendar=*-*-* 02:30:00
+OnBootSec=15min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

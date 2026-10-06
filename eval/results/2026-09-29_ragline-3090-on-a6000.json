@@ -1,0 +1,1750 @@
+{
+  "run": {
+    "label": "ragline-3090-on-a6000",
+    "at": "2026-09-29T08:43:45+00:00",
+    "ragline_rev": "4d867bf",
+    "golden_set": "eval/golden_set_hmi.json",
+    "golden_sha256": "cd6b80d7b1bb",
+    "llm_model": "ragline-llm",
+    "llm_host": "<pod-id>-8000.proxy.runpod.net",
+    "embedding_model": "Qwen/Qwen3-Embedding-8B",
+    "embedding_host": "<pod-id>-8080.proxy.runpod.net",
+    "embedding_dimensions": 4096,
+    "reranker_provider": "api",
+    "reranker_model": null,
+    "reranker_host": "<pod-id>-8081.proxy.runpod.net",
+    "reranker_api_format": "cohere"
+  },
+  "hit_rate": 0.8627450980392157,
+  "cited_rate": 1.0,
+  "pages_ok": true,
+  "total_tokens": 293079,
+  "per_question": [
+    {
+      "id": "A01",
+      "category": "spec",
+      "question": "What is the maximum power consumption of the PanelView 800 7-inch terminal, catalog number 2711R-T7T?",
+      "expected_sources": [
+        "panelview_800_technical_data.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "panelview_800_technical_data.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, the maximum power consumption (listed as heat dissipation) for the PanelView 800 7-inch terminal (catalog number 2711R-T7T) is **34 BTU/hr** [Source 2].\n\nThe sources do not provide a value in Watts for this specific model, but the environmental specifications table explicitly lists the heat dissipation for the 2711R-T7T as 34 BTU/hr [Source 2].",
+      "expected_answer": "The 2711R-T7T draws a maximum of 11 W (0.40 A @ 24V DC).",
+      "tokens": 4155,
+      "prompt_tokens": 4050,
+      "completion_tokens": 105,
+      "latency_s": 14.9,
+      "tags": [
+        "hmi",
+        "allen-bradley",
+        "power",
+        "technical-data"
+      ]
+    },
+    {
+      "id": "A02",
+      "category": "spec",
+      "question": "Which replacement battery should be used for the real-time clock in a PanelView 800 terminal (2711R-T4T/T7T/T10T)?",
+      "expected_sources": [
+        "panelview_800_user_manual.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "panelview_800_user_manual.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "For the PanelView 800 terminal (2711R-T4T/T7T/T10T), the real-time clock battery should be replaced with **2711P-Y2032** or a manufacturer\u2019s equivalent such as the **Matsushita** or **Duracell DL2032** [Source 1].\n\nThe battery is a lithium battery intended to be replaced during the life of the product to provide backup for the real-time clock [Source 1]. It is not used for application backup or retention [Source 1].\n\n**Safety Warnings:**\n*   Verify that power has been removed from the terminal before replacing the battery [Source 1].\n*   Work in a static-free environment and wear a properly grounded electrostatic discharge (ESD) wristband [Source 1].\n*   There is a danger of explosion if the battery is incorrectly replaced; ensure the area is nonhazardous before proceeding [Source 1].\n*   Do not dispose of the battery in a fire or incinerator; dispose of used batteries in accordance with local regulations [Source 1].\n*   For safety information on handling lithium batteries, see *Guidelines for Handling Lithium Batteries*, publication AG-5.4 [Source 1].",
+      "expected_answer": "Replace it only with catalog number 2711P-Y2032 or a manufacturer's equivalent such as the Matsushita or Duracell DL2032 lithium battery.",
+      "tokens": 4813,
+      "prompt_tokens": 4541,
+      "completion_tokens": 272,
+      "latency_s": 28.02,
+      "tags": [
+        "hmi",
+        "allen-bradley",
+        "battery",
+        "user-manual"
+      ]
+    },
+    {
+      "id": "A03",
+      "category": "spec",
+      "question": "At what CPU temperature does a PanelView 5310 terminal go into an over-temperature condition that triggers a delayed automatic restart?",
+      "expected_sources": [
+        "panelview_5310_user_manual.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "panelview_5310_user_manual.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "For a PanelView 5310 terminal, an over-temperature condition of **105\u2026110 \u00b0C (221\u2026230 \u00b0F)** causes a delayed automatic system restart [Source 1].\n\nThe documentation specifies the following CPU temperature ranges:\n*   **Normal:** 25\u202694 \u00b0C (77\u2026201 \u00b0F)\n*   **High:** 100 \u00b0C (212 \u00b0F) and higher\n*   **Over-temperature (triggers restart):** 105\u2026110 \u00b0C (221\u2026230 \u00b0F)\n\nThe restarts continue indefinitely until the system is cool enough to resume normal operation [Source 1].",
+      "expected_answer": "An over-temperature condition of 105\u2026110 \u00b0C (221\u2026230 \u00b0F) causes a delayed automatic system restart (normal CPU temperature is 25\u202694 \u00b0C).",
+      "tokens": 3890,
+      "prompt_tokens": 3731,
+      "completion_tokens": 159,
+      "latency_s": 20.26,
+      "tags": [
+        "hmi",
+        "allen-bradley",
+        "temperature",
+        "user-manual"
+      ]
+    },
+    {
+      "id": "A04",
+      "category": "spec",
+      "question": "What is the heat dissipation of a 12-inch PanelView Plus 7 Standard terminal such as the 2711P-T12W21D8S?",
+      "expected_sources": [
+        "panelview_plus7_standard_technical_data.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "panelview_plus7_standard_technical_data.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The heat dissipation for a 12-inch PanelView Plus 7 Standard terminal, such as the 2711P-T12W21D8S, is **30 W** or **102 BTU** [Source 1].\n\nThis specification is listed in the \"Environmental Specifications\" table for the 2711P-T12W21D8S and other 12-inch models [Source 1].",
+      "expected_answer": "The 12 in. PanelView Plus 7 Standard terminal dissipates 30 W = 102 BTU.",
+      "tokens": 4896,
+      "prompt_tokens": 4798,
+      "completion_tokens": 98,
+      "latency_s": 14.22,
+      "tags": [
+        "hmi",
+        "allen-bradley",
+        "heat-dissipation",
+        "technical-data"
+      ]
+    },
+    {
+      "id": "A05",
+      "category": "spec",
+      "question": "What is the minimum real-time clock battery voltage considered normal on a PanelView Plus 7 Performance terminal?",
+      "expected_sources": [
+        "panelview_plus7_performance_user_manual.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "panelview_plus7_performance_user_manual.pdf",
+        "panelview_plus7_standard_user_manual.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The minimum real-time clock battery voltage considered normal on a PanelView Plus 7 Performance terminal is **2.75V** [Source 8].\n\nAccording to the \"Battery Conditions\" table in the user manual, a battery voltage of \"2.75V or higher\" is classified as **Normal** [Source 8]. Voltages between 2.0V and 2.74V are considered **Low**, and voltages less than 2.0V are considered **Depleted** [Source 8]. This threshold is consistent with the general requirement that \"Battery voltage must be at least 2.75V DC\" for a good battery state [Source 7].",
+      "expected_answer": "The battery voltage must be at least 2.75V DC; 2.75V or higher is Normal (2.0\u20262.74V is Low, below 2.0V is Depleted).",
+      "tokens": 4174,
+      "prompt_tokens": 4029,
+      "completion_tokens": 145,
+      "latency_s": 16.07,
+      "tags": [
+        "hmi",
+        "allen-bradley",
+        "battery",
+        "user-manual"
+      ]
+    },
+    {
+      "id": "A06",
+      "category": "spec",
+      "question": "What ATEX certificate number covers the non-display VersaView 5200 thin client, catalog number 6200T-NA?",
+      "expected_sources": [
+        "industrial_computers_and_monitors_technical_data.pdf",
+        "versaview_5000_declaration_of_conformity.pdf",
+        "versaview_5000_installation_instructions.pdf",
+        "versaview_5000_thin_clients_and_industrial_computers_user_manual.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "versaview_5000_installation_instructions.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, the ATEX certificate number for the non-display VersaView 5200 thin client, catalog number 6200T-NA, is **DEMKO 19 ATEX 2252 X** [Source 6].\n\n[Source 6] lists the hazardous location ratings for the catalog number 6200T-NA and specifies the Europe (ATEX) rating as \"II 3 G, Ex ec IIC T4 Gc, DEMKO 19 ATEX 2252 X\" [Source 6].",
+      "expected_answer": "It is covered by ATEX certificate DEMKO 19 ATEX 2252 X (marking II 3 G, Ex ec IIC T4 Gc), issued by UL International Demko A/S.",
+      "tokens": 4300,
+      "prompt_tokens": 4173,
+      "completion_tokens": 127,
+      "latency_s": 11.48,
+      "tags": [
+        "hmi",
+        "allen-bradley",
+        "certification",
+        "declaration-of-conformity"
+      ]
+    },
+    {
+      "id": "A07",
+      "category": "spec",
+      "question": "What ingress protection rating does a VersaView 5100 industrial monitor (e.g. 6200M-15WBN) have when it is VESA-mounted instead of panel-mounted?",
+      "expected_sources": [
+        "industrial_computers_and_monitors_technical_data.pdf",
+        "versaview_5100_industrial_monitors_user_manual.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "industrial_computers_and_monitors_technical_data.pdf",
+        "versaview_5100_industrial_monitors_user_manual.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "When a VersaView 5100 industrial monitor (such as the 6200M-15WBN) is VESA-mounted, its ingress protection rating is **IEC IP20** [Source 1, 2].\n\nThis is a reduction from the **IEC IP66** (and NEMA 4X) rating it has when panel-mounted [Source 1, 2]. The user manual explicitly states: \"If you choose to VESA mount a monitor, its IP rating is reduced from IP66 to IP20\" [Source 1]. This is confirmed in the technical specifications table, which lists \"VESA Mount: IEC IP20\" and \"Panel Mount: NEMA 4X, IEC IP66\" for the 6200M-15WBN model [Source 2].",
+      "expected_answer": "VESA mounting reduces the monitor's IP rating from IP66 to IP20 (VESA Mount: IEC IP20; Panel Mount: NEMA 4X, IEC IP66).",
+      "tokens": 5211,
+      "prompt_tokens": 5027,
+      "completion_tokens": 184,
+      "latency_s": 11.74,
+      "tags": [
+        "hmi",
+        "allen-bradley",
+        "ip-rating",
+        "user-manual"
+      ]
+    },
+    {
+      "id": "A08",
+      "category": "spec",
+      "question": "What is the operating temperature range of an ASEM 6300P panel PC fitted with a Core i7 processor?",
+      "expected_sources": [
+        "asem_6300_monitors_pcs_thin_clients_technical_data.pdf",
+        "asem_6300p_panel_pcs_technical_data.pdf",
+        "asem_6300p_panel_pcs_user_manual.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "asem_6300_monitors_pcs_thin_clients_technical_data.pdf",
+        "asem_6300p_panel_pcs_technical_data.pdf",
+        "asem_6300p_panel_pcs_user_manual.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The operating temperature range of an ASEM 6300P panel PC fitted with a Core i7 processor is **0\u202645 \u00b0C (32\u2026113 \u00b0F)** [Source 1][Source 8].\n\nThis is distinct from the range for the Core i3 processor, which is 0\u202650 \u00b0C (32\u2026122 \u00b0F) [Source 1][Source 8]. Additionally, the user manual notes that the Intel Core i7 processor throttles above 45 \u00b0C (113 \u00b0F) when the CPU is heavily loaded [Source 4].",
+      "expected_answer": "0\u202645 \u00b0C (32\u2026113 \u00b0F) with a Core i7 processor (versus 0\u202650 \u00b0C with Core i3); the i7 throttles above 45 \u00b0C under heavy load.",
+      "tokens": 6518,
+      "prompt_tokens": 6386,
+      "completion_tokens": 132,
+      "latency_s": 10.37,
+      "tags": [
+        "hmi",
+        "allen-bradley",
+        "temperature",
+        "technical-data"
+      ]
+    },
+    {
+      "id": "A09",
+      "category": "spec",
+      "question": "How much RAM and user application storage does the PanelView 5500 6.5-inch terminal 2715-T7CD have?",
+      "expected_sources": [
+        "panelview_5500_technical_data.pdf",
+        "panelview_5500_user_manual.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "panelview_5500_technical_data.pdf",
+        "panelview_5500_user_manual.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, I don't have enough information to answer this question.\n\nWhile [Source 1] and [Source 8] list the 2715-T7CD as a 6.5-inch touch terminal, the specific RAM and user application storage values for this model are not explicitly stated in the text. In [Source 1], the table cells corresponding to the \"RAM\" and \"User\" memory columns for the 2715-T7CD row are empty. The only memory values explicitly provided in that table are for the 2715-T10CA (512 MB RAM and 250 MB User memory). [Source 8] provides display and input specifications for the 2715-T7CD but does not list memory specifications.",
+      "expected_answer": "512 MB RAM and 250 MB nonvolatile storage for projects.",
+      "tokens": 4086,
+      "prompt_tokens": 3918,
+      "completion_tokens": 168,
+      "latency_s": 10.63,
+      "tags": [
+        "hmi",
+        "allen-bradley",
+        "memory",
+        "technical-data"
+      ]
+    },
+    {
+      "id": "A10",
+      "category": "comparison",
+      "question": "Which has the higher maximum operating temperature: the PanelView 5500 2715-T10CD or the PanelView 800 2711R-T10T?",
+      "expected_sources": [
+        "panelview_5500_technical_data.pdf",
+        "panelview_5500_user_manual.pdf",
+        "panelview_800_technical_data.pdf"
+      ],
+      "source_match": "all",
+      "cited_sources": [
+        "panelview_5500_technical_data.pdf",
+        "panelview_800_technical_data.pdf"
+      ],
+      "source_hit": false,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The PanelView 5500 2715-T10CD has the higher maximum operating temperature.\n\n*   **PanelView 5500 2715-T10CD:** The maximum operating temperature is **55 \u00b0C** (131 \u00b0F) [Source 8].\n*   **PanelView 800 2711R-T10T:** The maximum operating temperature is **50 \u00b0C** (122 \u00b0F) [Source 1].\n\nTherefore, the PanelView 5500 2715-T10CD has a maximum operating temperature that is 5 \u00b0C higher than the PanelView 800 2711R-T10T.",
+      "expected_answer": "The PanelView 5500 2715-T10CD, rated 0\u202655 \u00b0C (32\u2026131 \u00b0F), versus 0\u202650 \u00b0C (32\u2026122 \u00b0F) for the PanelView 800 2711R-T10T.",
+      "tokens": 5505,
+      "prompt_tokens": 5341,
+      "completion_tokens": 164,
+      "latency_s": 10.03,
+      "tags": [
+        "hmi",
+        "allen-bradley",
+        "temperature",
+        "technical-data"
+      ]
+    },
+    {
+      "id": "A11",
+      "category": "comparison",
+      "question": "How does the ingress protection rating of the PanelView 5510 stainless-steel terminal 2715P-T12WD-BSK differ from the PanelView 5510 capacitive-touch terminal 2715P-C12WD?",
+      "expected_sources": [
+        "panelview_5510_technical_data.pdf"
+      ],
+      "source_match": "all",
+      "cited_sources": [
+        "panelview_5510_technical_data.pdf",
+        "panelview_5510_user_manual.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, the ingress protection (IP) rating for the PanelView 5510 stainless-steel terminal 2715P-T12WD-BSK is **IP66**, which is the same rating as the PanelView 5510 capacitive-touch terminal 2715P-C12WD. Therefore, there is **no difference** in their ingress protection ratings.\n\nHere is the breakdown of the evidence:\n\n1.  **Rating for Stainless-Steel Terminals:** The environmental specifications state that PanelView 5510 Resistive Touch Terminals (which includes the stainless-steel variants like the 2715P-T12WD-BSK) are \"Rated IP66 as Classified by UL\" [Source 4].\n2.  **Rating for Capacitive-Touch Terminals:** The same environmental specifications table lists the PanelView 5510 Capacitive Touch Terminals (which includes the 2715P-C12WD) under the same \"Enclosure ratings\" attribute, indicating they also share the \"NEMA and UL Type 1, 4X, 12 and 13. Rated IP66 as Classified by UL\" rating [Source 4].\n3.  **Model Identification:** The 2715P-T12WD-BSK is identified as a \"PanelView 5510 Stainless Steel\" terminal [Source 1][Source 3], and the 2715P-C12WD is identified as a \"PanelView 5510 Capacitive Touch\" terminal [Source 1][Source 3].\n\nWhile the panel thickness requirements differ to maintain this seal (1.5...4.8 mm for stainless-steel vs. 3...6 mm for capacitive touch) [Source 6], the resulting IP rating is identical for both models.",
+      "expected_answer": "The stainless-steel terminal is rated IP69 (classified by UL) and tested for IP69K per ISO 20653, while the capacitive-touch terminal is rated IP65 according to IEC 60529.",
+      "tokens": 5281,
+      "prompt_tokens": 4878,
+      "completion_tokens": 403,
+      "latency_s": 16.91,
+      "tags": [
+        "hmi",
+        "allen-bradley",
+        "ip-rating",
+        "technical-data"
+      ]
+    },
+    {
+      "id": "A12",
+      "category": "comparison",
+      "question": "How many Ethernet ports does the PanelView 5310 have compared with the PanelView 5510, and which supports Device Level Ring (DLR)?",
+      "expected_sources": [
+        "panelview_5310_technical_data.pdf",
+        "panelview_5310_user_manual.pdf",
+        "panelview_5510_technical_data.pdf",
+        "panelview_5510_user_manual.pdf"
+      ],
+      "source_match": "all",
+      "cited_sources": [
+        "panelview_5310_user_manual.pdf",
+        "panelview_5510_technical_data.pdf",
+        "panelview_5510_user_manual.pdf"
+      ],
+      "source_hit": false,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The PanelView 5310 has **one** Ethernet port, while the PanelView 5510 has **two** Ethernet ports [Source 5][Source 1].\n\nThe **PanelView 5510** supports Device Level Ring (DLR) network topology [Source 1][Source 2][Source 8]. The PanelView 5310 does not support DLR, as its single Ethernet port is described only as a \"10/100Base-T, Auto MDI/MDI-X, EtherNet/IP port for controller communication\" without mention of DLR support [Source 5].",
+      "expected_answer": "The PanelView 5310 has one 10/100Base-T Ethernet port, while the PanelView 5510 has two 10/100Base-T Ethernet ports that support DLR (as well as linear and star) topologies.",
+      "tokens": 4721,
+      "prompt_tokens": 4586,
+      "completion_tokens": 135,
+      "latency_s": 17.11,
+      "tags": [
+        "hmi",
+        "allen-bradley",
+        "communication-ports",
+        "technical-data"
+      ]
+    },
+    {
+      "id": "B01",
+      "category": "spec",
+      "question": "What is the power consumption of the SIMATIC KTP1200 Basic DP (Basic Panels 2nd Generation)?",
+      "expected_sources": [
+        "ktp_basic_panels_2nd_gen_hardware.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "ktp_basic_panels_2nd_gen_hardware.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The power consumption of the SIMATIC KTP1200 Basic DP (Basic Panels 2nd Generation) is **13.2 W** [Source 8].\n\nThis value is listed in the \"Power supply\" section of the technical specifications for the KTP900 Basic, KTP1200 Basic, and KTP1200 Basic DP [Source 8]. The document notes that \"The power loss generally corresponds to the specified value for power consumption\" [Source 8].",
+      "expected_answer": "The KTP1200 Basic DP has a power consumption of 13.2 W (the KTP1200 Basic PN variant is 12.2 W).",
+      "tokens": 5011,
+      "prompt_tokens": 4908,
+      "completion_tokens": 103,
+      "latency_s": 19.95,
+      "tags": [
+        "hmi",
+        "siemens",
+        "power",
+        "hardware-manual"
+      ]
+    },
+    {
+      "id": "B02",
+      "category": "spec",
+      "question": "How much power does the MTP1900 Unified Comfort panel draw at 24 V DC without loads?",
+      "expected_sources": [
+        "unified_comfort_panels_operating_instructions.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "unified_comfort_panels_operating_instructions.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on [Source 1], the MTP1900 Unified Comfort panel draws **1.2 A** of rated current at 24 V DC without loads.\n\nThe corresponding power consumption without loads is **28.8 W** [Source 1].",
+      "expected_answer": "The MTP1900 Unified Comfort has a power consumption without loads of 28.8 W (rated current 1.2 A at 24 V DC without loads).",
+      "tokens": 4487,
+      "prompt_tokens": 4430,
+      "completion_tokens": 57,
+      "latency_s": 19.43,
+      "tags": [
+        "hmi",
+        "siemens",
+        "power",
+        "operating-instructions"
+      ]
+    },
+    {
+      "id": "B03",
+      "category": "spec",
+      "question": "What is the display resolution of the SIMATIC TP2200 Comfort panel?",
+      "expected_sources": [
+        "tp_comfort_panels_hardware_manual.pdf",
+        "tp_comfort_panels_operating_instructions.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "tp_comfort_panels_hardware_manual.pdf",
+        "tp_comfort_panels_operating_instructions.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The display resolution of the SIMATIC TP2200 Comfort panel is **1920 x 1080 pixels** [Source 1][Source 8].\n\n[Source 1] and [Source 8] both provide a table for the \"KP1500 Comfort, TP1500 Comfort to TP2200 Comfort\" models. In the \"Display\" section of these tables, the row for \"Resolution\" lists \"1920 x 1080pixels\" under the column for \"TP2200 Comfort\" [Source 1][Source 8].",
+      "expected_answer": "The TP2200 Comfort has a 21.5'' display with a resolution of 1920 x 1080 pixels.",
+      "tokens": 5311,
+      "prompt_tokens": 5180,
+      "completion_tokens": 131,
+      "latency_s": 14.59,
+      "tags": [
+        "hmi",
+        "siemens",
+        "display",
+        "operating-instructions"
+      ]
+    },
+    {
+      "id": "B04",
+      "category": "spec",
+      "question": "What is the power consumption of the SIMATIC IFP2400 V2 (24\") industrial flat panel?",
+      "expected_sources": [
+        "ifp_v2_operating_instructions.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "ifp_basic_operating_instructions.pdf",
+        "ifp_v2_operating_instructions.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "I don't have enough information in the provided sources to answer this question.\n\nThe provided sources confirm that the SIMATIC IFP2400 V2 is a model within the SIMATIC IFP V2 product family [Source 7][Source 8] and that it is a 24\" industrial flat panel [Source 3][Source 7]. However, none of the provided excerpts contain the specific power consumption value for the IFP2400 V2.\n\nWhile [Source 1] lists power consumption for the \"SIMATIC IFP Basic\" series (e.g., IFP2200 Basic at 24 W), it does not include data for the IFP V2 series. The table of contents in [Source 3] and [Source 4] indicates that \"Technical specifications of the IFPs\" are located on page 124, but the content of that page is not included in the provided sources.",
+      "expected_answer": "The 24\" IFP V2 device has a power consumption of 36 W (rated voltage 24 V DC, permitted range +19.2 V ... +28.8 V).",
+      "tokens": 4286,
+      "prompt_tokens": 4087,
+      "completion_tokens": 199,
+      "latency_s": 11.45,
+      "tags": [
+        "hmi",
+        "siemens",
+        "power",
+        "operating-instructions"
+      ]
+    },
+    {
+      "id": "B05",
+      "category": "spec",
+      "question": "In WinCC Unified Runtime, is the script debugger enabled by default, and what are the default port numbers for the screen debugger and the job (scheduler) debugger?",
+      "expected_sources": [
+        "wincc_unified_runtime_system_manual.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "wincc_unified_runtime_system_manual.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, here is the answer to your question:\n\n**Is the script debugger enabled by default?**\nNo, the debugger is **disabled by default** [Source 1]. The documentation notes that it should be deactivated in production operation to ensure system stability and security [Source 1].\n\n**What are the default port numbers?**\n*   **Screen Debugger:** The default port number is **9222** [Source 1].\n*   **Job (Scheduler) Debugger:** The default port number is **9224** [Source 1].\n\nTo use these debuggers, you must first activate them in the SIMATIC Runtime Manager by selecting the \"Enable\" check box for the respective area and assigning the port numbers [Source 1][Source 5].",
+      "expected_answer": "The debugger is disabled by default; the default port is 9222 for the screen debugger and 9224 for the job debugger (both TCP).",
+      "tokens": 3798,
+      "prompt_tokens": 3633,
+      "completion_tokens": 165,
+      "latency_s": 10.95,
+      "tags": [
+        "hmi",
+        "siemens",
+        "software",
+        "system-manual"
+      ]
+    },
+    {
+      "id": "B06",
+      "category": "spec",
+      "question": "How many tags can the WinCC Unified Runtime tag simulator simulate at the same time?",
+      "expected_sources": [
+        "wincc_unified_runtime_system_manual.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "wincc_unified_runtime_system_manual.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The WinCC Unified Runtime tag simulator can simulate a maximum of **300 tags** at the same time [Source 1][Source 2][Source 8].\n\nSpecifically:\n*   \"A maximum of 300 tags can be simulated at the same time\" [Source 1].\n*   \"You can simulate a maximum of 300 tags simultaneously, even if more tags are configured in the simulator\" [Source 8].\n*   \"A maximum of 300 tags can be simulated at the same time... When more than 300 tags are inserted, the first 300 tags are activated\" [Source 2].\n\nWhile you can configure and save more than 300 tags in the simulator, only the first 300 will be active during simulation [Source 1][Source 2].",
+      "expected_answer": "A maximum of 300 tags can be simulated at the same time, although more tags can be configured and saved in the simulator.",
+      "tokens": 3564,
+      "prompt_tokens": 3382,
+      "completion_tokens": 182,
+      "latency_s": 10.79,
+      "tags": [
+        "hmi",
+        "siemens",
+        "software",
+        "system-manual"
+      ]
+    },
+    {
+      "id": "B07",
+      "category": "spec",
+      "question": "What ambient temperature range is permitted during operation for a Beckhoff CP3716 panel PC (CP37xx series)?",
+      "expected_sources": [
+        "cp37xx_panel_pc_manual.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "cp37xx_panel_pc_manual.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The permitted ambient temperature range during operation for a Beckhoff CP3716 panel PC (part of the CP37xx series) is **0 \u00b0C to +45 \u00b0C** [Source 1].\n\nThis is specified in the technical data table for the CP37xx series, which lists the \"Permissible ambient temperature\" for \"Operation\" as \"0 \u00b0C to +45 \u00b0C\" [Source 1]. The CP3716 is explicitly listed as a product designation within this CP37xx series [Source 1].",
+      "expected_answer": "Operation: 0 \u00b0C to +45 \u00b0C (transport/storage: -20 \u00b0C ... +65 \u00b0C).",
+      "tokens": 5062,
+      "prompt_tokens": 4944,
+      "completion_tokens": 118,
+      "latency_s": 9.96,
+      "tags": [
+        "hmi",
+        "beckhoff",
+        "environmental",
+        "manual"
+      ]
+    },
+    {
+      "id": "B08",
+      "category": "spec",
+      "question": "Does the Beckhoff CP6700-0001-0050 panel PC have fTPM 2.0 enabled?",
+      "expected_sources": [
+        "cp6700_panel_pc.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "cp6700_panel_pc.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "No, the Beckhoff CP6700-0001-0050 panel PC does not have fTPM 2.0 enabled.\n\nAccording to the technical data table, the \"Secure element\" for the \"CP6700-0001-0050\" is listed as \"fTPM 2.0 not enabled\" [Source 1]. This is in contrast to the CP6700-0001-0060 and CP6700-0001-0070 variants, which are listed as having \"fTPM 2.0 enabled\" [Source 1].",
+      "expected_answer": "No. The CP6700-0001-0050 has fTPM 2.0 not enabled; the CP6700-0001-0060 and CP6700-0001-0070 have fTPM 2.0 enabled.",
+      "tokens": 4238,
+      "prompt_tokens": 4093,
+      "completion_tokens": 145,
+      "latency_s": 9.7,
+      "tags": [
+        "hmi",
+        "beckhoff",
+        "security",
+        "manual"
+      ]
+    },
+    {
+      "id": "B09",
+      "category": "spec",
+      "question": "What are the dimensions (W x H x D) of the Advantech WebOP-2080V (WOP-2080V-N4AE) operator panel?",
+      "expected_sources": [
+        "advantech_industrial_operator_panels_catalog.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "advantech_industrial_operator_panels_catalog.pdf",
+        "panelview_5500_user_manual.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, the dimensions for the **WOP-2080T** (which corresponds to the 8\" SVGA TFT LCD model in the WebOP series) are listed in [Source 1].\n\nThe dimensions (W x H x D) are:\n**231.5 x 174.6 x 37 mm** (9.11 x 6.87 x 1.46\u201d) [Source 1].\n\n*Note: The specific model number \"WOP-2080V-N4AE\" is listed in [Source 8] as part of the WebOP-2000 Series Selection Guide, but the specific physical dimensions for the \"V\" series are not explicitly detailed in the provided text. However, [Source 1] provides the dimensions for the **WOP-2080T** (8\" SVGA TFT LCD), which shares the same display size and resolution (800 x 600) as the WOP-2080V listed in [Source 8]. Assuming the \"V\" and \"T\" series share similar physical form factors for the 8-inch size, the dimensions from [Source 1] are the closest available data.*\n\nIf strictly limited to the exact model \"WOP-2080V-N4AE\", the sources do not provide its specific dimensions, only the WOP-2080T. However, given the context of the WebOP series and the 8-inch size, the WOP-2080T dimensions are the relevant reference.\n\n**Dimensions for WOP-2080T (8\" SVGA):**\n*   **Width:** 231.5 mm (9.11\")\n*   **Height:** 174.6 mm (6.87\")\n*   **Depth:** 37 mm (1.46\")\n[Source 1]",
+      "expected_answer": "232.5 x 175.8 x 42.9 mm (9.15\" x 6.92\" x 1.69\").",
+      "tokens": 7024,
+      "prompt_tokens": 6605,
+      "completion_tokens": 419,
+      "latency_s": 18.72,
+      "tags": [
+        "hmi",
+        "advantech",
+        "dimensions",
+        "catalog"
+      ]
+    },
+    {
+      "id": "B10",
+      "category": "comparison",
+      "question": "How does the permitted DC supply voltage of the SIMATIC IFP1500 Basic compare with that of its second-generation successor, the SIMATIC HMI IM-315A?",
+      "expected_sources": [
+        "ifp_basic_operating_instructions.pdf",
+        "im312a_315a_319a_322a_operating_instructions.pdf"
+      ],
+      "source_match": "all",
+      "cited_sources": [
+        "ifp_basic_operating_instructions.pdf",
+        "im312a_315a_319a_322a_operating_instructions.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, the SIMATIC HMI IM-315A (the second-generation successor to the SIMATIC IFP1500 Basic) has a wider permitted DC supply voltage range than the SIMATIC IFP1500 Basic.\n\n*   **SIMATIC IFP1500 Basic:** The permitted voltage range is **+20.4 V to +28.8 V** with a rated voltage of 24 V DC [Source 1].\n*   **SIMATIC HMI IM-315A:** The permitted voltage range is **9 V to 36 V** with a nominal voltage of 12-24 V DC [Source 8].\n\nTherefore, the SIMATIC HMI IM-315A accepts a significantly broader range of input voltages (9 V to 36 V) compared to the SIMATIC IFP1500 Basic (20.4 V to 28.8 V) [Source 1][Source 8].",
+      "expected_answer": "The IFP1500 Basic is rated 24 V DC with a permitted range of +20.4 V to +28.8 V, whereas the IM-315A takes nominal 12-24 V DC (min. 9 V to max. 36 V), a much wider input range.",
+      "tokens": 4649,
+      "prompt_tokens": 4432,
+      "completion_tokens": 217,
+      "latency_s": 12.06,
+      "tags": [
+        "hmi",
+        "siemens",
+        "power",
+        "operating-instructions"
+      ]
+    },
+    {
+      "id": "B11",
+      "category": "comparison",
+      "question": "Compare the front and rear degree of protection of a Siemens MTP1500 Unified Comfort panel with a Beckhoff CP6600-0001-0020 panel PC.",
+      "expected_sources": [
+        "cp6600_panel_pc_manual.pdf",
+        "unified_comfort_panels_operating_instructions.pdf"
+      ],
+      "source_match": "all",
+      "cited_sources": [
+        "tp_comfort_panels_operating_instructions.pdf",
+        "unified_comfort_panels_operating_instructions.pdf"
+      ],
+      "source_hit": false,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, I can provide the degree of protection for the Siemens MTP1500 Unified Comfort panel, but I do not have enough information in the provided sources to answer the question regarding the Beckhoff CP6600-0001-0020 panel PC.\n\n**Siemens MTP1500 Unified Comfort Panel**\nThe provided sources do not explicitly list the \"MTP1500\" model in the tables, but they provide data for the \"Unified Comfort Panels\" and \"Comfort Panels\" which share the same protection ratings.\n*   **Front:** When mounted, the degree of protection is **IP65** according to IEC 60529 [Source 1][Source 2]. It is also rated as **Type 4X/Type 12** (indoor use only, front face only) according to UL50 [Source 1][Source 2].\n*   **Rear:** The degree of protection is **IP20** [Source 1][Source 2]. This provides protection against contact with standard test probes, but there is no protection against the ingress of water, dust, or noxious gas [Source 1][Source 2].\n\n**Beckhoff CP6600-0001-0020 Panel PC**\nNone of the provided sources contain information regarding the Beckhoff CP6600-0001-0020 panel PC. Therefore, a comparison cannot be completed.",
+      "expected_answer": "The Unified Comfort panel (e.g. MTP1500) is IP65 at the front when mounted (plus UL50 Type 4X/Type 12 front face) and IP20 at the rear; the Beckhoff CP6600-0001-0020 is rated front IP54, rear IP20.",
+      "tokens": 3709,
+      "prompt_tokens": 3385,
+      "completion_tokens": 324,
+      "latency_s": 17.12,
+      "tags": [
+        "hmi",
+        "siemens",
+        "beckhoff",
+        "ip-rating",
+        "manual"
+      ]
+    },
+    {
+      "id": "C01",
+      "category": "spec",
+      "question": "When connecting a Mitsubishi GOT2000 to a KEYENCE PLC over Ethernet, what is the default port No. of the connected Ethernet module in the Connected Ethernet Controller Setting?",
+      "expected_sources": [
+        "got2000_connection_manual_non_mitsubishi_products_1.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "got2000_connection_manual_non_mitsubishi_products_1.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "When connecting a Mitsubishi GOT2000 to a KEYENCE PLC over Ethernet, the default port No. of the connected Ethernet module in the Connected Ethernet Controller Setting is **8501** [Source 1].\n\n[Source 1] specifies in the \"Connected Ethernet Controller Setting\" table for KEYENCE PLCs:\n*   **Item:** Port No.\n*   **Description:** \"Set the port No. of the connected Ethernet module.\"\n*   **Set value:** \"(Default: 8501)\" [Source 1].",
+      "expected_answer": "The default port No. of the connected KEYENCE Ethernet module is 8501 (set to match the PLC side port No.).",
+      "tokens": 4388,
+      "prompt_tokens": 4272,
+      "completion_tokens": 116,
+      "latency_s": 19.96,
+      "tags": [
+        "hmi",
+        "mitsubishi",
+        "connection",
+        "connection-manual"
+      ]
+    },
+    {
+      "id": "C02",
+      "category": "spec",
+      "question": "How many Mitsubishi GOT2000 units can be connected as DeviceNet slaves to one DeviceNet master?",
+      "expected_sources": [
+        "got2000_connection_manual_microcomputer_modbus.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "got2000_connection_manual_microcomputer_modbus.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Up to 63 GOT modules (DeviceNet slave equipment) can be connected to one DeviceNet master equipment [Source 1].",
+      "expected_answer": "Up to 63 GOT modules (DeviceNet slave equipment) can be connected to one DeviceNet master equipment.",
+      "tokens": 3564,
+      "prompt_tokens": 3536,
+      "completion_tokens": 28,
+      "latency_s": 9.3,
+      "tags": [
+        "hmi",
+        "mitsubishi",
+        "connection",
+        "connection-manual"
+      ]
+    },
+    {
+      "id": "C03",
+      "category": "spec",
+      "question": "What is the maximum power consumption of the Mitsubishi GOT Simple GS2107-WTBD?",
+      "expected_sources": [
+        "got_simple_series_catalog.pdf",
+        "gs21_general_description.pdf",
+        "gs25_gs21_user_manual.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "gs21_general_description.pdf",
+        "gs25_gs21_user_manual.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The maximum power consumption of the Mitsubishi GOT Simple GS2107-WTBD is **6.5 W (271 mA/24 V) or less** [Source 1, 2, 8].\n\nThis specification is listed under \"Power consumption\" for the GS2107-WTBD model in the power supply specifications tables [Source 1, 2, 8]. When the backlight is off, the power consumption is 3.8 W (158 mA/24 V) or less [Source 1, 2, 8].",
+      "expected_answer": "The GS2107-WTBD consumes 6.5 W (271 mA/24 V) or less (3.8 W (158 mA/24 V) or less with the backlight off).",
+      "tokens": 6103,
+      "prompt_tokens": 5979,
+      "completion_tokens": 124,
+      "latency_s": 22.19,
+      "tags": [
+        "hmi",
+        "mitsubishi",
+        "power",
+        "user-manual"
+      ]
+    },
+    {
+      "id": "C04",
+      "category": "spec",
+      "question": "What is the built-in clock precision of the Mitsubishi GT2107-W (GT21 wide model)?",
+      "expected_sources": [
+        "got2000_gt27_gt25_hardware_user_manual.pdf",
+        "got2000_series_catalog.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "got2000_gt27_gt25_hardware_user_manual.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The built-in clock precision of the Mitsubishi GT2107-W is **\u00b145 seconds/month** at an ambient temperature of 25 \u00b0C [Source 1].",
+      "expected_answer": "The GT2107-W built-in clock precision is \u00b145 seconds/month at an ambient temperature of 25 \u00b0C.",
+      "tokens": 4992,
+      "prompt_tokens": 4954,
+      "completion_tokens": 38,
+      "latency_s": 15.18,
+      "tags": [
+        "hmi",
+        "mitsubishi",
+        "clock",
+        "hardware-manual"
+      ]
+    },
+    {
+      "id": "C05",
+      "category": "spec",
+      "question": "What does the Omron NB10W-TW01B (non-V1) HMI weigh?",
+      "expected_sources": [
+        "nb_series_setup_manual.pdf",
+        "nb_series_startup_guide.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "nb_series_setup_manual.pdf",
+        "nb_series_startup_guide.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The Omron NB10W-TW01B (non-V1) HMI weighs 1525g [Source 1][Source 8].",
+      "expected_answer": "The NB10W-TW01B weighs 1525 g (power consumption 14 W).",
+      "tokens": 3802,
+      "prompt_tokens": 3766,
+      "completion_tokens": 36,
+      "latency_s": 9.59,
+      "tags": [
+        "hmi",
+        "omron",
+        "weight",
+        "manual"
+      ]
+    },
+    {
+      "id": "C06",
+      "category": "spec",
+      "question": "Which communication protocol does an Omron NA-series HMI use to connect to an OMRON Programmable Multi-Axis Controller (Power PMAC), and what must be entered on the controller side to enable it?",
+      "expected_sources": [
+        "na_series_device_connection_user_manual.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "na_series_device_connection_user_manual.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The Omron NA-series HMI uses the **Modbus/TCP** protocol to connect to an OMRON Programmable Multi-Axis Controller [Source 1][Source 2][Source 8].\n\nTo enable this connection, the following command must be entered from the PowerPMAC IDE terminal on the controller side:\n`Sys.ModbusServerEnable=1` [Source 1].",
+      "expected_answer": "The NA connects via Modbus/TCP (Communication Driver \"Modbus/TCP\", Device Series \"CK3\"), and the command Sys.ModbusServerEnable=1 must be entered from the PowerPMAC IDE terminal.",
+      "tokens": 2906,
+      "prompt_tokens": 2824,
+      "completion_tokens": 82,
+      "latency_s": 6.59,
+      "tags": [
+        "hmi",
+        "omron",
+        "connection",
+        "connection-manual"
+      ]
+    },
+    {
+      "id": "C07",
+      "category": "spec",
+      "question": "What is the ambient operating temperature range of the Omron NSH5 hand-held PT (NSH5-V2)?",
+      "expected_sources": [
+        "ns_series_datasheet.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "ns_series_datasheet.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The ambient operating temperature range of the Omron NSH5 hand-held PT (NSH5-V2) is **0 to 40\u00b0C** [Source 1].\n\nThis is explicitly stated in the general specifications for the NSH5-V2 model: \"Ambient operating temperature 0 to 40\u00b0C\" [Source 1].\n\nNote: This differs from the panel-mounted NS series (like NS5-V2, NS10-V2, etc.), which have an ambient operating temperature of 0 to 50\u00b0C, subject to mounting angle restrictions [Source 8]. The NSH5 is a hand-held version and does not have the same mounting angle dependencies noted for the panel-mounted units [Source 1].",
+      "expected_answer": "The NSH5-V2 hand-held PT is rated for an ambient operating temperature of 0 to 40\u00b0C (power consumption 10 W max.).",
+      "tokens": 4935,
+      "prompt_tokens": 4782,
+      "completion_tokens": 153,
+      "latency_s": 12.85,
+      "tags": [
+        "hmi",
+        "omron",
+        "temperature",
+        "datasheet"
+      ]
+    },
+    {
+      "id": "C08",
+      "category": "spec",
+      "question": "In Delta DOPSoft, how many actions can be configured on a single Multiple actions button?",
+      "expected_sources": [
+        "dopsoft_user_manual.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "dopsoft_user_manual.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "In Delta DOPSoft, a single Multiple actions button can execute up to **96 actions** in total.\n\nThis is because you can set up to **32 actions** for each of the three trigger types: **press**, **release**, and **long press** [Source 1]. The manual explicitly states: \"You can set up to 32 actions for each press, release, and long press, so one Multiple actions button can execute up to 32*3 actions\" [Source 1].\n\n[Source 1]",
+      "expected_answer": "Up to 32 actions can be set for each of press, release and long press, so one Multiple actions button can execute up to 32*3 (96) actions.",
+      "tokens": 2069,
+      "prompt_tokens": 1955,
+      "completion_tokens": 114,
+      "latency_s": 12.42,
+      "tags": [
+        "hmi",
+        "delta",
+        "limit",
+        "software-manual"
+      ]
+    },
+    {
+      "id": "C09",
+      "category": "spec",
+      "question": "What is the display resolution of the Delta DOP-110WS 10.1\" HMI?",
+      "expected_sources": [
+        "dop_100_series_catalog.pdf",
+        "dop_100_series_selection_guide.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "dop_100_series_catalog.pdf",
+        "dop_100_series_selection_guide.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The display resolution of the Delta DOP-110WS 10.1\" HMI is **1024 x 600** pixels [Source 2][Source 8].\n\nThis is confirmed by the following details:\n*   In the \"Advanced HMI\" specifications table, the DOP-110WS is listed with a \"10.1\" TFT LCD\" display and a resolution of \"1024 x 600\" [Source 2].\n*   The same specifications are repeated in the \"Hardware Specifications\" section for \"Advanced HMI,\" listing the DOP-110WS with a resolution of \"1,024 x 600\" [Source 8].\n*   The model description key indicates that the \"S\" in the model name DOP-110WS stands for \"WSVGA TFT (1024x)\" [Source 1][Source 6].",
+      "expected_answer": "The DOP-110WS has a resolution of 1024 x 600 pixels.",
+      "tokens": 6647,
+      "prompt_tokens": 6441,
+      "completion_tokens": 206,
+      "latency_s": 11.67,
+      "tags": [
+        "hmi",
+        "delta",
+        "display",
+        "catalog"
+      ]
+    },
+    {
+      "id": "C10",
+      "category": "comparison",
+      "question": "How does the user memory storage (ROM) capacity of the Mitsubishi GT2712-S compare with that of the GT2512-S?",
+      "expected_sources": [
+        "got2000_graphic_operation_catalog.pdf",
+        "got2000_gt27_gt25_hardware_user_manual.pdf",
+        "got_simple_series_catalog.pdf"
+      ],
+      "source_match": "all",
+      "cited_sources": [
+        "got2000_gt27_gt25_hardware_user_manual.pdf"
+      ],
+      "source_hit": false,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The Mitsubishi GT2712-S has a user memory storage (ROM) capacity of **57 MB** [Source 1].\n\nThe GT2512-S has a user memory storage (ROM) capacity of **32 MB** [Source 8].\n\nTherefore, the GT2712-S has a larger ROM capacity than the GT2512-S by 25 MB [Source 1, 8].",
+      "expected_answer": "The GT2712-S (GT27) has 57 MB of storage ROM, whereas the GT2512-S (GT25) has 32 MB, so the GT27 has 25 MB more.",
+      "tokens": 5599,
+      "prompt_tokens": 5506,
+      "completion_tokens": 93,
+      "latency_s": 10.81,
+      "tags": [
+        "hmi",
+        "mitsubishi",
+        "memory",
+        "hardware-manual"
+      ]
+    },
+    {
+      "id": "C11",
+      "category": "comparison",
+      "question": "Which draws more power: the Omron NA5-7W or the Delta DOP-107WV 7\" HMI, and what are their maximum power consumption figures?",
+      "expected_sources": [
+        "dop_100_series_catalog.pdf",
+        "dop_100_series_selection_guide.pdf",
+        "na5_v1_series_datasheet.pdf",
+        "na5_v2_datasheet.pdf",
+        "na_series_hardware_v1_user_manual.pdf",
+        "na_series_hardware_v2_user_manual.pdf"
+      ],
+      "source_match": "all",
+      "cited_sources": [
+        "dop_100_series_selection_guide.pdf",
+        "na5_v1_series_datasheet.pdf",
+        "na5_v2_datasheet.pdf",
+        "na_series_hardware_v1_user_manual.pdf",
+        "na_series_hardware_v2_user_manual.pdf"
+      ],
+      "source_hit": false,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The Omron NA5-7W draws more power than the Delta DOP-107WV.\n\n*   **Omron NA5-7W:** The maximum power consumption is **19 W** [Source 1][Source 2][Source 7][Source 8].\n*   **Delta DOP-107WV:** The maximum power consumption is **8.8 W** [Source 5][Source 6].\n\nTherefore, the Omron NA5-7W consumes 10.2 W more than the Delta DOP-107WV.",
+      "expected_answer": "The Omron NA5-7W draws more: 19 W max., versus Max. 8.4 W for the Delta DOP-107WV.",
+      "tokens": 6578,
+      "prompt_tokens": 6450,
+      "completion_tokens": 128,
+      "latency_s": 12.57,
+      "tags": [
+        "hmi",
+        "omron",
+        "delta",
+        "power",
+        "datasheet"
+      ]
+    },
+    {
+      "id": "D01",
+      "category": "spec",
+      "question": "What input voltage range does the Weintek MT8071iP accept?",
+      "expected_sources": [
+        "mt8071ip1_datasheet.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "mt8071ip1_datasheet.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The Weintek MT8071iP accepts an input voltage range of **10.5~28VDC** [Source 1].\n\nThis is confirmed in the features list, which states \"Wide input voltage range: 10.5~28VDC\" [Source 1], and in the specification table under \"Input Power,\" which lists \"10.5~28VDC\" [Source 1].",
+      "expected_answer": "The MT8071iP accepts a wide input voltage range of 10.5~28VDC (power consumption 1A@12VDC; 500mA@24VDC).",
+      "tokens": 4970,
+      "prompt_tokens": 4875,
+      "completion_tokens": 95,
+      "latency_s": 7.1,
+      "tags": [
+        "hmi",
+        "weintek",
+        "power",
+        "datasheet",
+        "similar-model"
+      ]
+    },
+    {
+      "id": "D02",
+      "category": "spec",
+      "question": "What is the approximate weight of the Weintek cMT2158X 15-inch HMI?",
+      "expected_sources": [
+        "cmt2158x_15in_datasheet.pdf",
+        "cmt_series_brochure.pdf",
+        "cmt_series_edge_computing_brochure.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "cmt_series_brochure.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, the approximate weight of the Weintek cMT2158X 15-inch HMI is **1.6 kg**.\n\nThis information is found in the \"Standard Model\" specifications table, where the \"Weight\" row for the \"cMT2158X\" column lists \"Approx. 1.6 kg\" [Source 1][Source 3].",
+      "expected_answer": "The cMT2158X weighs approx. 2.74 kg.",
+      "tokens": 7593,
+      "prompt_tokens": 7507,
+      "completion_tokens": 86,
+      "latency_s": 9.96,
+      "tags": [
+        "hmi",
+        "weintek",
+        "weight",
+        "datasheet",
+        "similar-model"
+      ]
+    },
+    {
+      "id": "D03",
+      "category": "spec",
+      "question": "What is the operating temperature range of the Weintek cMT-SVR-200 server?",
+      "expected_sources": [
+        "cmt_series_brochure.pdf",
+        "cmt_series_edge_computing_brochure.pdf",
+        "cmt_svr_200_202_datasheet.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "cmt_series_brochure.pdf",
+        "cmt_svr_200_202_datasheet.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The operating temperature range of the Weintek cMT-SVR-200 server is **-10\u00b0 ~ 55\u00b0C (14\u00b0 ~ 131\u00b0F)** [Source 1].\n\nThis is confirmed in the specific datasheet for the cMT-SVR-200/202, which lists the \"Operating Temperature\" as \"-10\u00b0 ~ 55\u00b0C (14\u00b0 ~ 131\u00b0F)\" [Source 1].\n\nNote: There is a discrepancy in the provided sources. The cMT series brochure [Source 2] lists the operating temperature for the \"cMT-SVR-200 / 202\" column as \"-10\u00b0 ~ 55\u00b0 C (14\u00b0 ~ 131\u00b0 F)\" in one column, but another column in the same table (which appears to correspond to the SVR-100/102 based on the order of models listed: cMT-CTRL01, cMT-SVR-100/102, cMT-SVR-200/202) shows \"-10\u00b0 ~ 50\u00b0 C\". However, looking closely at [Source 2], the columns are aligned as:\n1. cMT-CTRL01: -10\u00b0 ~ 50\u00b0 C\n2. cMT-SVR-100 / 102: -20\u00b0 ~ 55\u00b0 C\n3. cMT-SVR-200 / 202: -10\u00b0 ~ 55\u00b0 C\n\nTherefore, the specific datasheet [Source 1] and the brochure [Source 2] agree that the cMT-SVR-200 has an operating temperature range of **-10\u00b0 ~ 55\u00b0C (14\u00b0 ~ 131\u00b0F)**.",
+      "expected_answer": "The cMT-SVR-200 (and cMT-SVR-202) operates from -10\u00b0 ~ 55\u00b0C (14\u00b0 ~ 131\u00b0F).",
+      "tokens": 5349,
+      "prompt_tokens": 4952,
+      "completion_tokens": 397,
+      "latency_s": 15.71,
+      "tags": [
+        "hmi",
+        "weintek",
+        "temperature",
+        "datasheet"
+      ]
+    },
+    {
+      "id": "D04",
+      "category": "spec",
+      "question": "What is the input power requirement of the Red Lion Graphite G310C, including maximum wattage?",
+      "expected_sources": [
+        "g310c_datasheet.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "cr3000_series_user_manual.pdf",
+        "g310c_datasheet.pdf",
+        "g315c_datasheet.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The input power requirement for the Red Lion Graphite G310C is **+24 VDC \u00b120%** with a maximum power consumption of **33 W** [Source 1].\n\nThe documentation specifies that the unit must use a **Class 2 or SELV rated power supply** [Source 1]. The power connection is made via a **removable three position terminal block** [Source 1]. Additionally, the G310C requires a 24 VDC power supply rated at 33 W, though the actual power draw may be considerably less depending on the options and features being used [Source 2].",
+      "expected_answer": "The G310C requires +24 VDC \u00b120% at 33 W maximum (a 24 VDC supply rated at 33 W).",
+      "tokens": 5192,
+      "prompt_tokens": 5058,
+      "completion_tokens": 134,
+      "latency_s": 8.64,
+      "tags": [
+        "hmi",
+        "red-lion",
+        "power",
+        "datasheet"
+      ]
+    },
+    {
+      "id": "D05",
+      "category": "spec",
+      "question": "How much does the Red Lion Graphite G315C weigh?",
+      "expected_sources": [
+        "g315c_datasheet.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "g315c_datasheet.pdf",
+        "graphite_hmi_datasheet.pdf",
+        "graphite_series_full_datasheet.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, I don't have enough information to answer this question.\n\nThe provided sources list the weight for the **Graphite Series** models (G07, G09, G10, G12, and G15) [Source 1, 8], but they do not list the weight for the **G315C** model. The G315C datasheet provided in the sources lists specifications for power, display, memory, and communications, but does not include a weight specification [Source 2, 3].",
+      "expected_answer": "The G315C weighs 11.41 lbs (5.17 Kg).",
+      "tokens": 3894,
+      "prompt_tokens": 3774,
+      "completion_tokens": 120,
+      "latency_s": 7.04,
+      "tags": [
+        "hmi",
+        "red-lion",
+        "weight",
+        "datasheet"
+      ]
+    },
+    {
+      "id": "D06",
+      "category": "spec",
+      "question": "What is the maximum power consumption of the Schneider Harmony ST6 HMIST6700?",
+      "expected_sources": [
+        "harmony_st6_user_manual.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "basic_and_web_hmi_panels_catalog.pdf",
+        "harmony_st6_user_manual.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The maximum power consumption of the Schneider Harmony ST6 HMIST6700 is **18.5 W** [Source 1].\n\nThis is specified in the \"Electrical Specifications\" table under the \"Max\" row for the \"HMIST6700\" column [Source 1].",
+      "expected_answer": "The HMIST6700 has a maximum power consumption of 18.5 W (rated input 24 Vdc).",
+      "tokens": 7398,
+      "prompt_tokens": 7334,
+      "completion_tokens": 64,
+      "latency_s": 8.14,
+      "tags": [
+        "hmi",
+        "schneider",
+        "power",
+        "manual"
+      ]
+    },
+    {
+      "id": "D07",
+      "category": "spec",
+      "question": "What panel cutout is required to mount a Pro-face STM-6400WA display module?",
+      "expected_sources": [
+        "stm6000_series_hardware_manual.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "sp5000_series_hardware_manual.pdf",
+        "stw6000_series_hardware_manual.pdf"
+      ],
+      "source_hit": false,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, the required panel cutout for the **STM-6400WA** display module is a **diameter of 22.5 mm (0.88 in)** [Source 8].\n\nThis is distinct from the STW-6400WA (which requires a rectangular cutout of 190 mm x 135 mm) [Source 2, 3]. The STM-6400WA is part of the STM6000 series, where the display module is mounted using a specific circular cutout [Source 8].",
+      "expected_answer": "The STM-6200WA/STM-6400WA display modules mount in a round hole of diameter 22.5 mm (0.88 in), toleranced 22.5 mm (+0/-0.3 mm).",
+      "tokens": 5407,
+      "prompt_tokens": 5280,
+      "completion_tokens": 127,
+      "latency_s": 10.95,
+      "tags": [
+        "hmi",
+        "proface",
+        "dimensions",
+        "manual"
+      ]
+    },
+    {
+      "id": "D08",
+      "category": "spec",
+      "question": "What is the power consumption of the Beijer X2 pro 15 B2 at rated voltage?",
+      "expected_sources": [
+        "x2_pro_15_b2_hardware_manual.pdf",
+        "x2_series_operator_panels_brochure.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "x2_pro_15_b2_hardware_manual.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The power consumption of the Beijer X2 pro 15 B2 at rated voltage is 31.2 W [Source 8].",
+      "expected_answer": "The X2 pro 15 B2 consumes 31.2 W at rated voltage (+24 VDC).",
+      "tokens": 6138,
+      "prompt_tokens": 6107,
+      "completion_tokens": 31,
+      "latency_s": 7.03,
+      "tags": [
+        "hmi",
+        "beijer",
+        "power",
+        "manual"
+      ]
+    },
+    {
+      "id": "D09",
+      "category": "spec",
+      "question": "What is the display resolution of the Weintek cMT3072XH?",
+      "expected_sources": [
+        "cmt3072xh_datasheet.pdf",
+        "cmt_series_edge_computing_brochure.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "cmt3072xh_datasheet.pdf",
+        "cmt_series_brochure.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The display resolution of the Weintek cMT3072XH is **1024 x 600** [Source 1, 2].\n\nThis is confirmed in the datasheet, which lists the display as a \"7\" 1024 x 600 IPS LCD\" [Source 1]. Additionally, the series brochure lists the resolution for the cMT3072XH2 model (part of the same family) as 1024 x 600 [Source 2].",
+      "expected_answer": "The cMT3072XH has a 7\" IPS display with 1024 x 600 resolution (unlike the cMT3072X, which is 800 x 480).",
+      "tokens": 10189,
+      "prompt_tokens": 10075,
+      "completion_tokens": 114,
+      "latency_s": 10.87,
+      "tags": [
+        "hmi",
+        "weintek",
+        "display",
+        "datasheet",
+        "near-duplicate"
+      ]
+    },
+    {
+      "id": "D10",
+      "category": "comparison",
+      "question": "Compare the operating temperature ranges of the Weintek eMT3070A and eMT3150A.",
+      "expected_sources": [
+        "emt3070a_7in_datasheet.pdf",
+        "emt3150a_15in_datasheet.pdf"
+      ],
+      "source_match": "all",
+      "cited_sources": [
+        "emt3070a_7in_datasheet.pdf",
+        "emt3150a_15in_datasheet.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, I can provide the operating temperature range for the eMT3150A, but I do not have the specific operating temperature range for the eMT3070A in the provided text.\n\n**eMT3150A:**\nThe operating temperature range is **0\u00b0 ~ 50\u00b0C (32\u00b0 ~ 122\u00b0F)** [Source 8].\n\n**eMT3070A:**\nThe provided source for the eMT3070A [Source 2] only contains contact information and the document title (\"eMT3070A1_DataSheet_ENG_20150123\") and does not list the operating temperature specifications.\n\nTherefore, a direct comparison cannot be made using only the provided sources.",
+      "expected_answer": "The eMT3070A operates from -20\u00b0 ~ 50\u00b0C (-4\u00b0 ~ 122\u00b0F), while the eMT3150A operates from 0\u00b0 ~ 50\u00b0C (32\u00b0 ~ 122\u00b0F), so the eMT3070A tolerates colder environments.",
+      "tokens": 2766,
+      "prompt_tokens": 2595,
+      "completion_tokens": 171,
+      "latency_s": 8.06,
+      "tags": [
+        "hmi",
+        "weintek",
+        "temperature",
+        "datasheet"
+      ]
+    },
+    {
+      "id": "D11",
+      "category": "comparison",
+      "question": "How do the Red Lion FlexEdge DA50A and DA70A compare in weight?",
+      "expected_sources": [
+        "flexedge_da50a_datasheet.pdf",
+        "flexedge_da70a_datasheet.pdf"
+      ],
+      "source_match": "all",
+      "cited_sources": [
+        "flexedge_da50a_datasheet.pdf",
+        "flexedge_da70a_datasheet.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, the Red Lion FlexEdge DA50A weighs **13 oz (404.3 g)** [Source 1]. The Red Lion FlexEdge DA70A weighs **2 lb 2.5 oz (978.05 g)** [Source 3].\n\nTherefore, the DA70A is significantly heavier than the DA50A.",
+      "expected_answer": "The DA50A weighs 13 oz (404.3 g), while the DA70A weighs 2 lb 2.5 oz (978.05 g).",
+      "tokens": 4343,
+      "prompt_tokens": 4259,
+      "completion_tokens": 84,
+      "latency_s": 7.15,
+      "tags": [
+        "hmi",
+        "red-lion",
+        "weight",
+        "datasheet"
+      ]
+    },
+    {
+      "id": "D12",
+      "category": "comparison",
+      "question": "Which has the wider operating temperature range: the Schneider Harmony ST6 HMIST6500 or the Beijer X2 pro 10 B2?",
+      "expected_sources": [
+        "basic_and_web_hmi_panels_catalog.pdf",
+        "harmony_st6_user_manual.pdf",
+        "x2_pro_10_b2_hardware_manual.pdf",
+        "x2_series_operator_panels_brochure.pdf"
+      ],
+      "source_match": "all",
+      "cited_sources": [
+        "basic_and_web_hmi_panels_catalog.pdf",
+        "x2_series_operator_panels_brochure.pdf"
+      ],
+      "source_hit": false,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The Beijer X2 pro 10 B2 has the wider operating temperature range.\n\n*   **Beijer X2 pro 10 B2:** The operating temperature range is **-10\u00b0C to +60\u00b0C** [Source 1].\n*   **Schneider Harmony ST6 HMIST6500:** The ambient air temperature range is **0...50 \u00b0C** [Source 8].\n\nThe Beijer panel offers a range of 70\u00b0C (-10 to +60), whereas the Schneider panel offers a range of 50\u00b0C (0 to 50) [Source 1][Source 8].",
+      "expected_answer": "The Beijer X2 pro 10 B2 is wider at -10\u00b0C to +60\u00b0C; the Harmony ST6 HMIST6500 is rated 0...50 \u00b0C (32...122 \u00b0F) ambient air temperature.",
+      "tokens": 6747,
+      "prompt_tokens": 6608,
+      "completion_tokens": 139,
+      "latency_s": 9.19,
+      "tags": [
+        "hmi",
+        "schneider",
+        "beijer",
+        "temperature",
+        "manual"
+      ]
+    },
+    {
+      "id": "E01",
+      "category": "unanswerable",
+      "question": "What is the MTBF of the Weintek cMT3072X?",
+      "expected_sources": [],
+      "source_match": "none",
+      "cited_sources": [
+        "cmt3072x_datasheet.pdf",
+        "cmt3072xh_datasheet.pdf",
+        "cmt_series_brochure.pdf"
+      ],
+      "source_hit": null,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "I don't have enough information in the provided sources to answer this question.\n\nThe provided sources contain datasheets and brochures for the Weintek cMT3072X (and related models like the cMT3072XH and cMT3092X) [Source 1, 4, 5, 7, 8]. While these documents list detailed specifications such as display resolution, processor type, memory, I/O ports, and physical dimensions [Source 4, 7], none of the provided text excerpts mention the Mean Time Between Failures (MTBF) for the cMT3072X.",
+      "expected_answer": "The documents do not state an MTBF for the Weintek cMT3072X. The answer should say so and must not borrow an MTBF from another vendor's product.",
+      "tokens": 4279,
+      "prompt_tokens": 4144,
+      "completion_tokens": 135,
+      "latency_s": 7.81,
+      "tags": [
+        "hmi",
+        "unanswerable",
+        "weintek",
+        "trap-cross-vendor"
+      ]
+    },
+    {
+      "id": "E02",
+      "category": "unanswerable",
+      "question": "What is the list price of the Allen-Bradley PanelView 5510?",
+      "expected_sources": [],
+      "source_match": "none",
+      "cited_sources": [
+        "panelview_5510_technical_data.pdf",
+        "panelview_5510_user_manual.pdf"
+      ],
+      "source_hit": null,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "I don't have enough information in the provided sources to answer this question.\n\nThe provided sources contain technical specifications, catalog numbers, and feature descriptions for the PanelView 5510 terminals [Source 1, 2, 4, 5, 6, 7, 8], but none of them list a price or list price for the product.",
+      "expected_answer": "The documents contain no pricing for the PanelView 5510. The answer should say pricing isn't in the library.",
+      "tokens": 4996,
+      "prompt_tokens": 4919,
+      "completion_tokens": 77,
+      "latency_s": 7.73,
+      "tags": [
+        "hmi",
+        "unanswerable",
+        "allen-bradley",
+        "pricing"
+      ]
+    },
+    {
+      "id": "E03",
+      "category": "unanswerable",
+      "question": "Which Bluetooth version does the Weintek cMT3162X support?",
+      "expected_sources": [],
+      "source_match": "none",
+      "cited_sources": [
+        "cmt3162x_15in_datasheet.pdf",
+        "cmt_series_edge_computing_brochure.pdf"
+      ],
+      "source_hit": null,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "I don't have enough information in the provided sources to answer this question.\n\nThe provided sources do not mention the Bluetooth version supported by the Weintek cMT3162X. While [Source 5] lists various specifications for the cMT3162X (such as display, processor, I/O ports, and WiFi options), it does not list Bluetooth as a feature. Similarly, [Source 2] and [Source 7] provide feature lists and specifications for the cMT3162X but do not include any reference to Bluetooth connectivity or a specific Bluetooth version.",
+      "expected_answer": "The documents do not mention Bluetooth for the cMT3162X (or any product). The answer should say this isn't stated rather than invent a version.",
+      "tokens": 4692,
+      "prompt_tokens": 4568,
+      "completion_tokens": 124,
+      "latency_s": 7.82,
+      "tags": [
+        "hmi",
+        "unanswerable",
+        "weintek",
+        "connectivity"
+      ]
+    },
+    {
+      "id": "E04",
+      "category": "unanswerable",
+      "question": "What is the operating temperature range of the Weintek cMT3252X?",
+      "expected_sources": [],
+      "source_match": "none",
+      "cited_sources": [
+        "cmt2078x_7in_datasheet.pdf",
+        "cmt3072x_datasheet.pdf",
+        "cmt3072xh_datasheet.pdf",
+        "cmt3092x_datasheet.pdf",
+        "cmt3103_datasheet.pdf",
+        "cmt3162x_15in_datasheet.pdf",
+        "cmt_series_edge_computing_brochure.pdf"
+      ],
+      "source_hit": null,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "I don't have enough information in the provided sources to answer this question.\n\nThe provided sources contain specifications for the cMT3162X [Source 1], cMT3092X [Source 2], cMT1106X [Source 3], cMT2078X [Source 4], cMT3103 [Source 5], cMT3072X [Source 7], and cMT3072XH [Source 8]. None of the sources mention the **cMT3252X** model.",
+      "expected_answer": "There is no cMT3252X in the library, so its operating temperature cannot be answered. The answer should say so and must not substitute a similar model's range.",
+      "tokens": 2834,
+      "prompt_tokens": 2709,
+      "completion_tokens": 125,
+      "latency_s": 6.62,
+      "tags": [
+        "hmi",
+        "unanswerable",
+        "weintek",
+        "trap-near-duplicate",
+        "nonexistent-model"
+      ]
+    },
+    {
+      "id": "E05",
+      "category": "unanswerable",
+      "question": "What is the display resolution of the Phoenix Contact BTP 2070W HMI?",
+      "expected_sources": [],
+      "source_match": "none",
+      "cited_sources": [
+        "advantech_intelligent_operator_panels_catalog.pdf",
+        "ktp_basic_panels_2nd_gen_hardware.pdf",
+        "mt8071ie1_datasheet.pdf",
+        "mt8071ip1_datasheet.pdf",
+        "tp_comfort_panels_hardware_manual.pdf",
+        "tp_comfort_panels_operating_instructions.pdf",
+        "unified_comfort_panels_operating_instructions.pdf"
+      ],
+      "source_hit": null,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "I don't have enough information in the provided sources to answer this question.\n\nThe provided sources contain technical specifications for Advantech WOP series panels [Source 1], Weintek MT8071iP and MT8071iE1 panels [Source 2, 3], and Siemens SIMATIC Comfort and Basic HMI panels [Source 4, 5, 6, 7, 8]. None of the sources mention a \"Phoenix Contact BTP 2070W\" HMI device.",
+      "expected_answer": "The library has no Phoenix Contact HMI documentation (Phoenix Contact appears only as a connectable PLC in connection manuals), so this cannot be answered from the documents.",
+      "tokens": 8302,
+      "prompt_tokens": 8189,
+      "completion_tokens": 113,
+      "latency_s": 15.12,
+      "tags": [
+        "hmi",
+        "unanswerable",
+        "phoenix-contact",
+        "out-of-corpus-vendor"
+      ]
+    },
+    {
+      "id": "E06",
+      "category": "unanswerable",
+      "question": "Which Linux kernel version does the Red Lion Graphite G310 run?",
+      "expected_sources": [],
+      "source_match": "none",
+      "cited_sources": [
+        "g310c_datasheet.pdf"
+      ],
+      "source_hit": null,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "I don't have enough information in the provided sources to answer this question.\n\nThe provided sources describe the G310 as a \"Graphic LCD Operator Interface Terminal\" [Source 1] and mention that it is \"configured using Crimson software\" [Source 1][Source 4]. However, none of the documents specify the underlying operating system or the specific Linux kernel version running on the device.",
+      "expected_answer": "The Red Lion documents do not mention Linux or a kernel version for the Graphite G310. The answer should say this isn't stated.",
+      "tokens": 4061,
+      "prompt_tokens": 3979,
+      "completion_tokens": 82,
+      "latency_s": 6.41,
+      "tags": [
+        "hmi",
+        "unanswerable",
+        "red-lion",
+        "software"
+      ]
+    },
+    {
+      "id": "E07",
+      "category": "library",
+      "question": "Which HMI vendors are covered in the document library?",
+      "expected_sources": [],
+      "source_match": "none",
+      "cited_sources": [
+        "advantech_intelligent_operator_panels_catalog.pdf",
+        "asem_6300_monitors_pcs_thin_clients_technical_data.pdf",
+        "graphite_and_cr_series_hmi_brochure.pdf",
+        "industrial_computers_and_monitors_technical_data.pdf",
+        "panelview_plus7_performance_technical_data.pdf",
+        "tp_comfort_panels_hardware_manual.pdf",
+        "wincc_unified_hmi_template_manual.pdf"
+      ],
+      "source_hit": null,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, the document library covers HMI products and solutions from the following vendors:\n\n*   **ASEM**: The library includes technical data for the \"ASEM 6300 Industrial Monitors, PCs, and Thin Clients,\" which are described as a \"high-performance Human Machine Interface (HMI) solution for industrial environments\" [Source 1].\n*   **Siemens**: The library contains hardware manuals for \"SIMATIC HMI\" devices, specifically the \"Comfort Panels\" series (e.g., SIMATIC HMI KP400 Comfort, TP700 Comfort) [Source 2].\n*   **Advantech**: The library includes a catalog for \"Advantech\u2019s WebAccess/HMI,\" which is described as software for creating \"comprehensive HMI solutions\" [Source 4].\n*   **Rockwell Automation**: The library contains technical data for \"PanelView Plus 7 Performance Terminals\" and \"Allen-Bradley\u00ae industrial computers\" that support \"Rockwell Software\u00ae solutions\" such as \"FactoryTalk\u00ae View\" [Source 5][Source 7].\n*   **Red Lion Controls**: The library includes a brochure for \"Graphite\u00ae and CR Series HMIs,\" noting that \"Red Lion Controls offers a comprehensive array of HMI operator panels\" [Source 6][Source 8].\n\nAdditionally, **WinCC Unified** is mentioned in a template manual, which is a product line associated with Siemens (though the specific vendor name \"Siemens\" is not explicitly printed in the text of Source 3, the \"SIMATIC\" and \"WinCC\" branding in Source 2 and 3 are distinct Siemens product lines) [Source 3].",
+      "expected_answer": "12 vendors: Advantech, Allen-Bradley (Rockwell, incl. ASEM), Beckhoff, Beijer, Delta, Mitsubishi, Omron, Pro-face, Red Lion, Schneider, Siemens and Weintek.",
+      "tokens": 3623,
+      "prompt_tokens": 3266,
+      "completion_tokens": 357,
+      "latency_s": 16.69,
+      "tags": [
+        "hmi",
+        "library",
+        "collection-wide"
+      ]
+    },
+    {
+      "id": "E08",
+      "category": "library",
+      "question": "How many Weintek documents are in the library?",
+      "expected_sources": [],
+      "source_match": "none",
+      "cited_sources": [
+        "cmt2078x_7in_datasheet.pdf",
+        "cmt3072x_datasheet.pdf",
+        "cmt3072xh_datasheet.pdf",
+        "cmt3092x_datasheet.pdf",
+        "cmt_g03_datasheet.pdf",
+        "emt3070a_7in_datasheet.pdf",
+        "emt3105p_10in_datasheet.pdf",
+        "emt3150a_15in_datasheet.pdf"
+      ],
+      "source_hit": null,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, there are **8** Weintek documents in the library.\n\nThe documents are identified by their file names and associated Weintek branding/contact information in the following sources:\n1.  **cMT3072XH** datasheet [Source 1]\n2.  **eMT3150A1** datasheet [Source 2]\n3.  **eMT3070A1** datasheet [Source 3]\n4.  **cMT3092X** datasheet [Source 4]\n5.  **cMT-G03** datasheet [Source 5]\n6.  **cMT3072X** datasheet [Source 6]\n7.  **eMT3105P1** datasheet [Source 7]\n8.  **cMT2078X** datasheet [Source 8]\n\nEach source explicitly lists a Weintek web address (e.g., www.weintek.com, www.weintekusa.com, www.weintekiiot.com) or copyright notice (e.g., \"Copyright\u00a9 2019 Weintek Lab., Inc.\") [Source 1, 2, 3, 4, 5, 6, 7, 8].",
+      "expected_answer": "18 Weintek documents (datasheets, installation guide and brochures across the cMT, cMT-X, eMT, iE, iP, cMT-SVR and gateway series).",
+      "tokens": 1583,
+      "prompt_tokens": 1296,
+      "completion_tokens": 287,
+      "latency_s": 10.29,
+      "tags": [
+        "hmi",
+        "library",
+        "weintek",
+        "count"
+      ]
+    },
+    {
+      "id": "E09",
+      "category": "library",
+      "question": "Which documents cover the Mitsubishi GOT2000 series?",
+      "expected_sources": [],
+      "source_match": "none",
+      "cited_sources": [
+        "got2000_connection_manual_microcomputer_modbus.pdf",
+        "got2000_connection_manual_non_mitsubishi_products_1.pdf",
+        "got2000_gt27_gt25_hardware_user_manual.pdf",
+        "got2000_gt27_gt25_utility_user_manual.pdf",
+        "gs25_gs21_user_manual.pdf"
+      ],
+      "source_hit": null,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, the following documents cover the Mitsubishi GOT2000 series:\n\n**Hardware and Utility Manuals**\n*   **GOT2000 Series User's Manual (Hardware)**: This manual covers the GT27, GT25 (including open frame, wide, and rugged models), GT23, GT21 (including wide model), and Handy GOT models [Source 2].\n*   **GOT2000 Utility User Manual**: The document SH(NA)-081195ENG-AP(2301)MEE describes this manual [Knowledge Graph Context].\n\n**Screen Design Software-Related Manuals**\n*   **GT Designer3 (GOT2000) Screen Design Manual** (SH-081220ENG) [Source 1, 3, 4, 6, 7].\n*   **GOT2000 Series MES Interface Function Manual for GT Works3 Version1** (SH-081228ENG) [Source 1, 3, 4, 6, 7].\n*   **GT Converter2 Version3 Operating Manual for GT Works3** (SH-080862ENG) [Source 1, 3, 4, 6, 7].\n*   **GT Works3 Installation Instructions** [Source 1, 3, 4, 6, 7].\n\n**Connection Manuals**\n*   **GOT2000 Series Connection Manual (Mitsubishi Electric Products) For GT Works3 Version1** (SH-081197ENG) [Source 1, 3, 4, 6, 7, 8].\n*   **GOT2000 Series Connection Manual (Non-Mitsubishi Electric Products 1) For GT Works3 Version1** (SH-081198ENG) [Source 1, 3, 4, 6, 7, 8].\n*   **GOT2000 Series Connection Manual (Non-Mitsubishi Electric Products 2) For GT Works3 Version1** (SH-081199ENG) [Source 1, 3, 4, 6, 7, 8].\n*   **GOT2000 Series Connection Manual (Microcomputers, MODBUS/Fieldbus Products, Peripherals) For GT Works3 Version1** (SH-081200ENG) [Source 1, 3, 4, 6, 7, 8].\n*   **GOT2000 Series Handy GOT Connection Manual For GT Works3 Version1** (SH-081867ENG) [Source 1, 3, 4, 6].\n*   **GOT2000 Series Connection Manual (\u03b12 Connection) for GT Works3 Version1** (JY997D52301) [Source 3, 4, 6, 7, 8].\n\n**Other Manuals**\n*   **GT SoftGOT2000 Version1 Operating Manual** (SH-081201ENG) [Source 7].\n\nAdditionally, the **e-Manual** tool provides hardware specifications and sample programs for the GOT2000 [Knowledge Graph Context].",
+      "expected_answer": "10 documents: got2000_connection_manual_microcomputer_modbus.pdf; got2000_connection_manual_non_mitsubishi_products_1.pdf; got2000_connection_manual_non_mitsubishi_products_2.pdf; got2000_graphic_operation_catalog.pdf; got2000_gt27_gt25_hardware_user_manual.pdf; got2000_gt27_gt25_utility_user_manual.pdf; got2000_series_catalog.pdf; gt21_wide_general_description.pdf; gt25_wide_general_description.pdf; gt27_general_description.pdf.",
+      "tokens": 4823,
+      "prompt_tokens": 4094,
+      "completion_tokens": 729,
+      "latency_s": 44.25,
+      "tags": [
+        "hmi",
+        "library",
+        "mitsubishi",
+        "listing"
+      ]
+    },
+    {
+      "id": "F01",
+      "category": "followup",
+      "question": "Which replacement battery does it take for the real-time clock?",
+      "expected_sources": [
+        "panelview_800_user_manual.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "asem_6300p_panel_pcs_user_manual.pdf",
+        "na_series_hardware_v2_user_manual.pdf",
+        "panelview_5310_user_manual.pdf",
+        "panelview_5500_user_manual.pdf",
+        "panelview_5510_user_manual.pdf",
+        "panelview_800_user_manual.pdf",
+        "panelview_plus7_performance_user_manual.pdf",
+        "panelview_plus7_standard_user_manual.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "The replacement battery required for the real-time clock (RTC) depends on the specific product model, but most sources indicate a **CR2032** coin-cell battery.\n\n*   **PanelView 5510, 5500, 5310, and Plus 7 (Standard and Performance) Terminals:**\n    *   These products require a battery with **catalog number 2711P-RY2032** or an **equivalent CR2032 coin-cell battery** [Source 1][Source 2][Source 3][Source 6][Source 8].\n    *   The battery is a sealed lithium battery that provides backup power for the real-time clock (and static RAM in some models) [Source 1][Source 2][Source 3][Source 6][Source 8].\n\n*   **PanelView 800 Terminals:**\n    *   These terminals require a battery with **catalog number 2711P-Y2032** or a manufacturer\u2019s equivalent such as the **Matsushita or Duracell DL2032** [Source 4].\n    *   This battery provides backup for the real-time clock but is not used for application backup or retention [Source 4].\n\n*   **6300P/6300P-SW0 Panel PCs:**\n    *   These panel PCs require a **Lithium CR2032 3V** battery [Source 7].\n    *   The battery must be installed with the positive polarity facing the locking tab [Source 7].\n\n*   **NA Series Units:**\n    *   The sources state that the battery is for the NA Unit's RTC and must be replaced if the voltage drops below a certain level, but they do not specify the exact catalog number or model type in the provided text, only that it is a \"Battery\" for the RTC [Source 5].\n\n**General Safety Warning:**\nFor all listed products, there is a danger of explosion if the lithium battery is incorrectly replaced. Power must be removed before replacement, and the area must be known to be nonhazardous [Source 1][Source 2][Source 3][Source 4][Source 6][Source 7][Source 8].",
+      "expected_answer": "Use catalog number 2711P-Y2032 (or a manufacturer's equivalent such as the Matsushita or Duracell DL2032 lithium battery).",
+      "tokens": 4972,
+      "prompt_tokens": 4481,
+      "completion_tokens": 491,
+      "latency_s": 26.42,
+      "tags": [
+        "hmi",
+        "followup",
+        "allen-bradley",
+        "pronoun"
+      ]
+    },
+    {
+      "id": "F02",
+      "category": "followup",
+      "question": "What IP rating does its stainless-steel version have?",
+      "expected_sources": [
+        "panelview_5510_technical_data.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "asem_6300m_user_manual.pdf",
+        "panelview_5510_technical_data.pdf",
+        "panelview_plus7_performance_technical_data.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, the question likely refers to the **PanelView 5510** (given the knowledge graph context) or the **PanelView Plus 7 Performance** (given the specific mention of \"Stainless Steel Series\" in the text).\n\n1.  **PanelView 5510**: The sources provided do not explicitly state the IP rating for the PanelView 5510 Stainless Steel version in the text snippets. However, the knowledge graph context states that the PanelView 5510 meets the **IP66** environmental protection rating [Knowledge Graph]. The sources confirm the existence of a \"PanelView 5510 Stainless Steel\" model with catalog numbers ending in \"-BSK\" [Source 7] and provide weight specifications for the stainless-steel 10.4-inch and 15-inch terminals [Source 4][Source 6], but they do not explicitly list the IP rating in the provided text excerpts.\n\n2.  **PanelView Plus 7 Performance**: The sources explicitly state that the \"PanelView Plus 7 Performance Stainless Steel Series B and Series C terminals are also rated **IP69** as Classified by UL and tested for **IP69K** according to ISO 20653\" [Source 1].\n\n3.  **ASEM 6300M**: The sources describe a \"Widescreen Stainless steel **IP69K** bezel\" [Source 2] and a \"Standard screen Stainless steel **IP66K** bezel\" [Source 8].\n\nAssuming the question refers to the **PanelView 5510** based on the provided knowledge graph context:\nThe provided text sources do not explicitly state the IP rating for the PanelView 5510 Stainless Steel version. However, the knowledge graph context indicates that the PanelView 5510 meets the **IP66** rating [Knowledge Graph].\n\nIf the question refers to the **PanelView Plus 7 Performance** (which is the only product in the sources with an explicit \"Stainless Steel Series\" IP rating description):\nThe stainless-steel version (Series B and C) is rated **IP69** and tested for **IP69K** [Source 1].\n\nGiven the ambiguity, the most direct answer from the text regarding a \"Stainless Steel\" product's IP rating is:\nThe **PanelView Plus 7 Performance** Stainless Steel Series B and C terminals are rated **IP69** and tested for **IP69K** [Source 1].\n\nIf the question strictly pertains to the **PanelView 5510** (as implied by the knowledge graph):\nThe provided sources do not contain the specific IP rating for the PanelView 5510 Stainless Steel version, though the knowledge graph context notes it meets **IP66** [Knowledge Graph].\n\nI will provide the answer for the PanelView Plus 7 Performance as it is the only one with explicit text support for a \"Stainless Steel\" IP rating in the sources, but I will clarify the distinction.\n\n**Answer:**\nThe **PanelView Plus 7 Performance** Stainless Steel Series B and C terminals are rated **IP69** and tested for **IP69K** [Source 1].\n\n(Note: If the question refers to the **PanelView 5510**, the provided text sources do not explicitly state its IP rating, although the knowledge graph context indicates it meets **IP66** [Knowledge Graph].)",
+      "expected_answer": "The PanelView 5510 stainless-steel terminal (2715P-T12WD-BSK) is rated IP69 as classified by UL and tested for IP69K according to ISO 20653.",
+      "tokens": 4101,
+      "prompt_tokens": 3358,
+      "completion_tokens": 743,
+      "latency_s": 25.9,
+      "tags": [
+        "hmi",
+        "followup",
+        "allen-bradley",
+        "pronoun"
+      ]
+    },
+    {
+      "id": "F03",
+      "category": "followup",
+      "question": "How does that compare with Delta's 7-inch DOP-107WV?",
+      "expected_sources": [
+        "dop_100_series_catalog.pdf",
+        "dop_100_series_selection_guide.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "dop_100_series_catalog.pdf",
+        "dop_100_series_selection_guide.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, the **DOP-107WV** is a **7-inch** Human Machine Interface (HMI) in the **DOP-100 Series** produced by **Delta** [Source 1][Source 3][Source 7][Source 8].\n\nHere are the specific details for the DOP-107WV:\n\n*   **Display:** It features a **7-inch** display with a **WVGA TFT** resolution of **800 x 480** pixels [Source 1][Source 8].\n*   **Type:** The \"W\" in the model name indicates it is an **Advanced Narrow Frame Type** [Source 1][Source 4][Source 8].\n*   **Connectivity:** As an Advanced Narrow Frame Type, it includes **4 Serial Communication Ports** (D-sub x2) and **1 Ethernet Port** (RJ45 x1) [Source 4].\n*   **Dimensions:** The physical dimensions are approximately **196 mm (7.72\")** in width and **137 mm (5.39\")** in height, with a depth of **39 mm (1.54\")** [Source 1][Source 2].\n*   **Design Features:** It utilizes a narrow frame design and supports multi-language capabilities [Source 4].\n\nThe sources do not provide a direct comparison to a specific \"other\" model in the question prompt, but the DOP-107WV is distinct from the Basic (e.g., DOP-107BV) and Standard (e.g., DOP-107EV) variants in the same series by its advanced narrow frame design and specific port configuration [Source 4][Source 5].",
+      "expected_answer": "The Delta DOP-107WV draws Max. 8.4 W, so it uses less than half the NA5-7W's 19 W max.",
+      "tokens": 4186,
+      "prompt_tokens": 3804,
+      "completion_tokens": 382,
+      "latency_s": 14.86,
+      "tags": [
+        "hmi",
+        "followup",
+        "delta",
+        "omron",
+        "contrastive"
+      ]
+    },
+    {
+      "id": "F04",
+      "category": "followup",
+      "question": "And the DA70A?",
+      "expected_sources": [
+        "flexedge_da70a_datasheet.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "flexedge_da70a_datasheet.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, the **DA70A** is described as a \"3-Sled Modular IIoT Gateway with Scalable I/O\" and an \"Intelligent Edge Automation Platform\" [Source 2]. It is an \"all-in-one industrial data acquisition and edge processing gateway\" designed to simplify the monitoring and management of connected assets and processes [Source 1].\n\nKey features and specifications include:\n\n*   **Modular Architecture:** It supports a modular design allowing users to add cellular, Wi-Fi, serial, or USB connectivity [Source 2]. It can accommodate up to 10 I/O modules, including analog I/O, digital I/O, universal inputs, relays, and PID control [Source 2].\n*   **Networking & Security:** The core includes powerful networking features such as routing, NAT, VPN, and a stateful firewall [Source 2]. It supports RADIUS authentication, IP fallback, and VPN client/server capabilities across all software groups [Source 8].\n*   **Automation & Protocols:** The DA70A supports up to 10 simultaneous protocol conversions between over 300 industrial drivers (optional) [Source 2]. It can be upgraded to support advanced automation features and Crimson Control (IEC 61131-3) [Source 2].\n*   **Software Groups:** The device is available in four software groups: Group 1 (Networking), Group 2 (Protocol), Group 3 (Adv IIoT), and Group 4 (Controller) [Source 1][Source 8].\n    *   **Group 1 & 2:** Include Web GUI, Crimson, Firewall, RADIUS, Routing, NAT, IP Fallback, and VPN [Source 8].\n    *   **Group 3:** Adds 300+ Drivers, IIoT Connectors, OPC UA, SQL Sync, Data Logging, Virtual HMI, and Advanced Web Server [Source 8].\n    *   **Group 4:** Adds Crimson Control (IEC Control) [Source 8].\n*   **Hardware Configurations:**\n    *   **DA70A0F:** Features 2 RS-232 ports (RJ12) and 1 RS-485/422 port (RJ45) [Source 8].\n    *   **DA70A0G:** Features 1 RS-232 port (RJ12) and 2 RS-485/422 ports (RJ45) [Source 8].\n*   **Power & Memory:**\n    *   Supply Voltage: 12-24 VDC +/-15% [Source 8].\n    *   Max Power (DA70A only): 4.5 W at 12V, 5 W at 24V [Source 8].\n    *   Max Power (with full accessories): 59 W at 12V, 62 W at 24V [Source 8].\n    *   Memory: 1 GB of non-volatile Flash memory [Source 8].\n*   **Physical & Environmental:**\n    *   Enclosure: Rugged IP30 metal and plastic enclosure [Source 7].\n    *   Weight: 2 lb 2.5 oz (978.05 g) [Source 7].\n    *   Operating Temperature: -40 to 75 \u00b0C [Source 8].\n    *   Mounting: DIN Rail (35 x 7.5 and 35 x 15) [Source 7].\n    *   Certifications: CE, ATEX, IECEx, UL Listed [Source 2][Source 7].\n*   **Accessories:** Compatible sleds include Dual RS232/RS485 ports, 4G LTE Cellular (various regions), 802.11n Wi-Fi, and USB 2.0 Host sleds [Source 1].\n\nThe DA70A is manufactured by Red Lion, with more information available at www.redlion.net [Source 7].",
+      "expected_answer": "The FlexEdge DA70A weighs 2 lb 2.5 oz (978.05 g).",
+      "tokens": 4640,
+      "prompt_tokens": 3756,
+      "completion_tokens": 884,
+      "latency_s": 32.63,
+      "tags": [
+        "hmi",
+        "followup",
+        "red-lion",
+        "ellipsis"
+      ]
+    },
+    {
+      "id": "F05",
+      "category": "followup",
+      "question": "What about the cMT3072X?",
+      "expected_sources": [
+        "cmt3072x_datasheet.pdf"
+      ],
+      "source_match": "any",
+      "cited_sources": [
+        "cmt3072x_datasheet.pdf",
+        "cmt3072xh_datasheet.pdf",
+        "cmt_series_brochure.pdf"
+      ],
+      "source_hit": true,
+      "cited": true,
+      "pages_ok": true,
+      "answer": "Based on the provided sources, the **cMT3072X** is a 7-inch HMI (Human-Machine Interface) with the following specifications and features:\n\n**Display**\n*   It features a **7\" TFT LCD** with a resolution of **800 x 480** [Source 7][Source 4].\n*   The display uses an **LED backlight** [Source 7].\n*   The brightness is **400 cd/m\u00b2** and the contrast ratio is **800:1** [Source 4].\n*   The LCD viewing angles are **80/60/80/80** (Top/Bottom/Left/Right) [Source 4].\n*   The pixel pitch is **0.1926(H) x 0.179(V) mm** [Source 4].\n*   The touch panel is a **4-wire Resistive Type** with an accuracy of \u00b12% in both X and Y directions [Source 4].\n\n**Processor and Memory**\n*   It uses a **Quad-core Cortex-A35 CPU** with a high-performance dedicated **3D Processor** [Source 7].\n*   It includes **4GB of built-in Flash Memory** and **1GB of RAM** [Source 7][Source 4].\n*   It includes a built-in **Real-Time Clock (RTC)** [Source 7][Source 4].\n\n**Connectivity and I/O**\n*   **Serial Ports:** It includes **COM2** and **COM3** RS-485 2W ports, which support MPI 187.5K (users are advised to use one at a time) [Source 7].\n*   **CAN Bus:** It supports **CAN Bus** [Source 4].\n*   **Ethernet:** It has two Ethernet ports: **LAN 1** and **LAN 2**, both supporting **10/100 Base-T** [Source 4].\n*   **USB:** It includes one **USB 2.0 Host** port [Source 4].\n*   **Power:** The input power is **24\u00b120% VDC** with a power consumption of **820mA @ 24VDC** [Source 4]. It features a built-in power isolator [Source 4].\n\n**Physical Dimensions and Enclosure**\n*   The dimensions are **200.3 x 146.3 x 35.0 mm** (W x H x D) [Source 4][Source 3].\n*   The required panel cutout is **192 x 138 mm** [Source 4][Source 3].\n*   The enclosure is made of **plastic** [Source 4].\n*   It utilizes a **fan-less cooling system** [Source 7].\n\n**Comparison with Similar Models**\n*   The cMT3072X is distinct from the **cMT3072XH**, which features a 7\" IPS display with a higher resolution of 1024 x 600 [Source 2][Source 4].\n*   It is also distinct from the **cMT3092X**, which features a larger 9.7\" display [Source 4].\n\n**Documentation**\n*   The datasheet for this model is identified as **cMT3072X_Datasheet_ENG_20230315** [Source 8].",
+      "expected_answer": "The Weintek cMT3072X has an 800 x 480 display (7\" TFT).",
+      "tokens": 5729,
+      "prompt_tokens": 4963,
+      "completion_tokens": 766,
+      "latency_s": 25.95,
+      "tags": [
+        "hmi",
+        "followup",
+        "weintek",
+        "near-duplicate",
+        "ellipsis"
+      ]
+    }
+  ]
+}

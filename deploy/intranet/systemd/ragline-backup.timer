@@ -1,0 +1,13 @@
+# ragline-backup.timer — nightly at 01:45, before the 02:30 ACL crawl.
+#
+# Install: systemctl enable --now ragline-backup.timer
+
+[Unit]
+Description=Nightly ragline backup
+
+[Timer]
+OnCalendar=*-*-* 01:45:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
