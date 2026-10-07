@@ -40,17 +40,21 @@ depend on it — any OpenAI-compatible endpoint works, including a cloud API.
 
 ## How it works
 
+Two views: the moving parts, then what happens to one question, in order.
+
 ```mermaid
 flowchart LR
   subgraph local["Your machine"]
     UI["React UI<br/>Chat · Documents"] --> API["FastAPI app"]
     API --> ING["Ingest<br/>parse → chunk → embed → graph"]
-    API --> RET["Retrieve<br/>dense + BM25 → RRF → rerank"]
-    API --> ANS["Answer<br/>prompt → cite → verify"]
+    API --> CHAT["Chat turn<br/>pre-pass → answer → post-passes"]
+    CHAT --> RET["Retrieve<br/>embed → dense + BM25 → RRF → rerank → reorder"]
+    RET --> ANS["Answer<br/>graph context → prompt → LLM → citations"]
     ING --> Q[("Qdrant")]
     ING --> DB[("SQLite<br/>metadata · graph")]
     RET --> Q
-    ANS --> DB
+    CHAT -- "library mode" --> DB
+    ANS -- "subgraph" --> DB
   end
   subgraph pod["Rented GPU pod (or any OpenAI-compatible API)"]
     LLM["LLM<br/>/v1/chat/completions"]
@@ -59,25 +63,61 @@ flowchart LR
   end
   ING -. chunks, entities .-> EMB
   ING -. entity extraction .-> LLM
+  CHAT -. pre-pass, memory, confidence .-> LLM
   RET -. query .-> EMB
   RET -. candidates .-> RR
+  ANS -. entity match .-> EMB
   ANS -. prompt .-> LLM
+```
+
+One question runs through these steps in this order. Nothing is parallel
+except the two search legs and the two post-passes; every later stage consumes
+the output of the one before it.
+
+```mermaid
+flowchart TD
+  Qn["Question<br/>(+ optional document selection)"] --> PRE
+  PRE["1 · Pre-pass: one structured LLM call<br/>rewrite standalone · route · name exclusions<br/>(memory off: keyword routing, no LLM call)"]
+  PRE -- "library · compound" --> LIB["Library mode<br/>LLM over SQLite metadata, no retrieval<br/>(compound: both paths, merged)"]
+  PRE -- "retrieval · compound" --> EMBQ["2 · Embed the rewritten query"]
+  EMBQ --> DENSE["3a · Dense search<br/>Qdrant, filtered"]
+  EMBQ --> SPARSE["3b · Sparse search<br/>in-process BM25, same filters"]
+  DENSE --> RRF["4 · Reciprocal Rank Fusion"]
+  SPARSE --> RRF
+  RRF --> SKIP{"clear dense winner,<br/>also first after fusion?"}
+  SKIP -- no --> RR["5 · Cross-encoder rerank<br/>pod, local CPU, or off"]
+  SKIP -- yes --> CUT["5 · Rerank skipped<br/>fused order kept"]
+  RR --> TOPK["Top RERANK_TOP_K chunks"]
+  CUT --> TOPK
+  TOPK --> LITM["6 · Lost-in-the-middle reorder"]
+  LITM --> KG["7 · Graph context<br/>entity match → 2-hop subgraph,<br/>scoped to the retrieved documents"]
+  KG --> PROMPT["8 · Prompt<br/>conversation · graph · numbered [Source N] blocks"]
+  PROMPT --> GEN["9 · LLM completion"]
+  GEN --> CITE["10 · Citation post-processing<br/>parse markers · drop out-of-range · dedupe · realign"]
+  CITE --> OUT["event: answer → browser"]
+  LIB --> OUT
+  OUT --> POST["11 · Post-passes (memory on, after the answer is sent)<br/>memory update ∥ confidence score"]
+  POST --> DONE["event: complete<br/>confidence + token totals"]
 ```
 
 - **Ingestion** — single / multi-file / ZIP upload or a server-side folder;
   PDF (pymupdf4llm, layout analysis, optional Tesseract OCR), DOCX, XLSX;
   512-token page-exact chunks; SHA-256 dedup; document versioning.
 - **Retrieval** — dense (Qdrant) + sparse (BM25) fused with Reciprocal Rank
-  Fusion, cross-encoder rerank (on the pod, or a local CPU model, or off),
-  lost-in-the-middle reordering, optional restriction to selected documents.
+  Fusion, then a cross-encoder rerank (on the pod, or a local CPU model, or
+  off) that is skipped when the dense scores already show a clear winner that
+  fusion also ranked first; then lost-in-the-middle reordering. Optional
+  restriction to selected documents applies to both search legs.
 - **Knowledge graph** — the LLM extracts entities and relationships at ingest;
-  at answer time a subgraph scoped to the retrieved documents joins the prompt.
+  at answer time, after retrieval, a subgraph scoped to the retrieved documents
+  joins the prompt.
 - **Hard citations** — the LLM only emits `[Source N]` markers. File, page,
   section and quote are carried programmatically from the retrieved chunks;
-  out-of-range markers are dropped and every citation links to the page.
-- **Chat** — a structured pre-pass (rewrite + route), the answer, a memory
-  post-pass and a confidence score. A per-turn memory toggle shows what the
-  conversation context costs in tokens.
+  out-of-range markers are dropped and every citation links to the page. There
+  is no separate verification pass: the post-processing is the check.
+- **Chat** — a structured pre-pass (rewrite + route), the answer, and then,
+  after the answer has been sent, a memory post-pass and a confidence score. A
+  per-turn memory toggle shows what the conversation context costs in tokens.
 - **Library mode** — questions about the collection itself ("which Siemens
   manuals do you have?") are answered from the metadata database.
 
