@@ -26,8 +26,8 @@ class _RecordingLLM:
         self.answer = answer
         self.calls: list[dict] = []
 
-    async def complete(self, messages, temperature=0.0, max_tokens=None):
-        self.calls.append({"messages": messages, "max_tokens": max_tokens})
+    async def complete(self, messages, temperature=0.0, max_tokens=None, answer=False, purpose=""):
+        self.calls.append({"messages": messages, "max_tokens": max_tokens, "answer": answer})
         return self.answer
 
 
@@ -97,6 +97,7 @@ def test_library_query_passes_ceiling_and_placeholder_instruction(monkeypatch):
 
     call = agent._llm.calls[0]
     assert call["max_tokens"] == settings.library_answer_max_tokens
+    assert call["answer"] is True               # answer-only options (ANSWER_EXTRA_BODY) apply
     # The prompt must tell the model which marker to write.
     assert FILE_LIST_PLACEHOLDER in call["messages"][1]["content"]
 
@@ -215,3 +216,25 @@ def test_provider_is_quiet_on_a_normal_stop(monkeypatch):
     asyncio.run(provider.complete([{"role": "user", "content": "hi"}], max_tokens=5))
 
     assert warnings == []
+
+
+async def test_rag_answer_is_marked_as_an_answer_call(monkeypatch):
+    """The RAG agent's answer generation passes answer=True (so ANSWER_EXTRA_BODY applies)."""
+    from ragline.agent.rag_agent import RAGAgent
+    from ragline.chunking.models import Chunk
+    from ragline.vectorstore.base import SearchResult
+
+    chunk = Chunk(text="The DOP-107WV draws 8.4 W.", source_file="dop.pdf", document_id="d1",
+                  page_start=3, page_end=3, char_start=0, char_end=26)
+
+    class _Retrieval:
+        async def retrieve(self, question, **kw):
+            return [SearchResult(chunk=chunk, score=0.9)]
+
+        async def expand_neighbours(self, results):
+            return results
+
+    monkeypatch.setattr(settings, "enable_knowledge_graph", False)
+    llm = _RecordingLLM("8.4 W [Source 1]")
+    await RAGAgent(_Retrieval(), llm).query("How much power does the DOP-107WV draw?")
+    assert llm.calls[-1]["answer"] is True and llm.calls[-1]["max_tokens"] == settings.answer_max_tokens

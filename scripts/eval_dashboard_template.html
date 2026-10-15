@@ -1,0 +1,353 @@
+<title>Ragline Model Ladder</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column of decision sections, wide tables scroll in their own frames. */
+:root {
+  --bg: #f3f5f7; --panel: #ffffff; --ink: #18202a; --muted: #5b6776; --rule: #d9dfe6;
+  --accent: #1f6fb2; --accent-soft: #e3eef8;
+  --ok: #2f8f4e; --part: #c9881a; --bad: #c2412d; --abst: #7a8796; --decl: #4f7fa8;
+  --display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11161c; --panel: #18202a; --ink: #e6ebf0; --muted: #98a4b2; --rule: #2a3542;
+  --accent: #5aa7e6; --accent-soft: #1d3247;
+  --ok: #4fb46d; --part: #e0a540; --bad: #e0614c; --abst: #8d99a8; --decl: #7aa6cc; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #11161c; --panel: #18202a; --ink: #e6ebf0; --muted: #98a4b2; --rule: #2a3542;
+  --accent: #5aa7e6; --accent-soft: #1d3247;
+  --ok: #4fb46d; --part: #e0a540; --bad: #e0614c; --abst: #8d99a8; --decl: #7aa6cc; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 24px 56px; }
+.wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 28px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; letter-spacing: .01em; text-wrap: balance; margin: 0; }
+h1 { font-size: 2.4rem; line-height: 1.05; }
+h2 { font-size: 1.55rem; }
+h3 { font-size: 1.1rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+p { margin: 0; max-width: 68ch; }
+.sub { color: var(--muted); }
+.mono, td.num, .num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+header { display: grid; gap: 8px; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--muted); font-size: .9rem; }
+.meta b { color: var(--ink); font-weight: 700; }
+section { display: grid; gap: 14px; }
+.panel { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 16px; min-width: 0; }
+.grid2 { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.findings { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.findings li { display: grid; grid-template-columns: 7px 1fr; gap: 12px; align-items: stretch; }
+.findings li::before { content: ""; border-radius: 3px; background: var(--accent); }
+.findings li.warn::before { background: var(--part); }
+.findings li.bad::before { background: var(--bad); }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+th, td { padding: 7px 10px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+th { font-family: var(--display); font-weight: 600; font-size: .95rem; letter-spacing: .03em; color: var(--muted); white-space: nowrap; }
+td.num, th.num { text-align: right; white-space: nowrap; }
+.ci { color: var(--muted); font-size: .8rem; }
+.pill { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: .78rem; font-weight: 700; background: var(--accent-soft); color: var(--accent); }
+.chart { position: relative; height: 300px; }
+.chart.tall { height: 360px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .82rem; color: var(--muted); }
+.sw { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+.v-correct { background: var(--ok); } .v-partial { background: var(--part); } .v-wrong { background: var(--bad); }
+.v-abstained { background: var(--abst); } .v-declined { background: var(--decl); } .v-answered_wrong { background: var(--bad); } .v-null { background: var(--rule); }
+.cells { display: flex; gap: 3px; }
+.cells span { width: 13px; height: 13px; border-radius: 2px; display: inline-block; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+select, input[type="search"] { font: inherit; color: var(--ink); background: var(--panel); border: 1px solid var(--rule); border-radius: 4px; padding: 6px 8px; }
+button.linky { font: inherit; background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; text-align: left; }
+button.linky:focus-visible, select:focus-visible, input:focus-visible, tr:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+tr.q { cursor: pointer; }
+tr.q:hover td { background: var(--accent-soft); }
+#detail { display: grid; gap: 12px; }
+.ans { white-space: pre-wrap; font-size: .88rem; background: var(--bg); border: 1px solid var(--rule); border-radius: 4px; padding: 8px 10px; max-height: 220px; overflow: auto; }
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; font-size: .9rem; }
+.kv dt { color: var(--muted); } .kv dd { margin: 0; }
+.note { font-size: .85rem; color: var(--muted); }
+.codes { display: grid; grid-template-columns: max-content 1fr; gap: 3px 12px; font-size: .85rem; }
+.codes b { font-family: var(--mono); font-weight: 500; }
+/* `hidden` must win over the grid/flex display rules below. */
+[hidden] { display: none !important; }
+.status { border-left: 4px solid var(--part); }
+.status p { max-width: none; }
+.tabs { display: flex; gap: 4px; overflow-x: auto; border-bottom: 1px solid var(--rule); scrollbar-width: thin; }
+.tabs button { font: 600 1.02rem var(--display); letter-spacing: .02em; color: var(--muted); background: none; border: 0;
+  border-bottom: 3px solid transparent; padding: 8px 14px 7px; cursor: pointer; white-space: nowrap; }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+.tabs button .tag { font: 500 .72rem var(--mono); color: var(--muted); margin-left: 6px; }
+.tabs button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.planned { display: grid; gap: 12px; }
+.planned .model { font: 600 1.5rem var(--display); }
+#rungView { display: grid; gap: 28px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h3 id="eyebrow">Evaluation campaign</h3>
+    <h1>Ragline model ladder</h1>
+    <p class="sub">Which generator, which GPU tier and which settings give ragline the most correct, best-supported answers on the 100-question HMI golden set — and which faults are ragline's own.</p>
+    <div class="meta" id="meta"></div>
+  </header>
+
+  <div class="panel status"><p id="status"></p></div>
+  <nav class="tabs" role="tablist" aria-label="Rungs" id="tabs"></nav>
+  <div class="panel planned" id="planned" hidden></div>
+
+  <div id="rungView">
+
+  <section>
+    <h2>What the results say</h2>
+    <div class="panel"><ul class="findings" id="findings"></ul></div>
+  </section>
+
+  <section id="decide">
+    <h2>Which configuration</h2>
+    <p class="sub">Correct = the judge's "correct" on the 90 answerable questions, averaged over repeats, with a 95 % bootstrap interval. Partial earns nothing in the headline; the next column gives it half credit.</p>
+    <div class="panel scroll"><table id="decision"></table></div>
+    <div class="grid2">
+      <div class="panel"><h3>Quality against latency</h3><div class="chart"><canvas id="frontierLat" aria-label="Correct rate against median latency"></canvas></div></div>
+      <div class="panel"><h3>Quality against cost</h3><div class="chart"><canvas id="frontierCost" aria-label="Correct rate against cost per 1,000 questions"></canvas></div></div>
+    </div>
+    <div class="panel scroll"><h3>Paired comparisons</h3><table id="paired"></table></div>
+  </section>
+
+  <section id="thinking">
+    <h2>Thinking on or off</h2>
+    <div class="grid2">
+      <div class="panel"><h3>Verdict mix</h3><div class="chart"><canvas id="mix" aria-label="Share of correct, partial, wrong and abstained answers"></canvas></div>
+        <div class="legend"><span><i class="sw v-correct"></i>correct</span><span><i class="sw v-partial"></i>partial</span><span><i class="sw v-wrong"></i>wrong</span><span><i class="sw v-abstained"></i>abstained</span></div></div>
+      <div class="panel"><h3>Reasoning length by verdict</h3><div class="chart"><canvas id="reasoning" aria-label="Median reasoning characters per verdict"></canvas></div>
+        <p class="note">Median characters of hidden reasoning per answer, thinking runs only. Long reasoning goes with wrong answers.</p></div>
+    </div>
+    <div class="panel scroll"><h3>Correct rate by question type</h3><table id="categories"></table></div>
+  </section>
+
+  <section id="fix">
+    <h2>What to fix in ragline</h2>
+    <p class="sub" id="fixLead"></p>
+    <div class="grid2">
+      <div class="panel"><h3>Primary cause of each failure</h3><div class="chart tall"><canvas id="causes" aria-label="Primary cause counts"></canvas></div></div>
+      <div class="panel"><h3>Did the evidence reach the model?</h3><div class="chart"><canvas id="reached" aria-label="Evidence reached the model"></canvas></div>
+        <div class="codes" id="codeList"></div></div>
+    </div>
+  </section>
+
+  <section id="speed">
+    <h2>Speed</h2>
+    <div class="grid2">
+      <div class="panel"><h3>Where the time goes</h3><div class="chart tall"><canvas id="stages" aria-label="Median milliseconds per pipeline stage"></canvas></div></div>
+      <div class="panel"><h3>Throughput under load</h3><div class="chart"><canvas id="load" aria-label="Questions per minute at 1, 4 and 8 concurrent questions"></canvas></div>
+        <p class="note">Questions per minute on the 24-question probe, end to end.</p></div>
+    </div>
+  </section>
+
+  <section id="trust">
+    <h2>How solid the numbers are</h2>
+    <div class="grid2">
+      <div class="panel"><h3>Stability and judging</h3><dl class="kv" id="trustKv"></dl></div>
+      <div class="panel scroll"><h3>Pod sessions</h3><table id="sessions"></table></div>
+    </div>
+  </section>
+
+  <section id="explore">
+    <h2>Every question</h2>
+    <p class="sub">One row per question; each square is one pass, coloured by the judge's verdict. Select a row for the answers, the judge's reasons and the diagnosis.</p>
+    <div class="controls">
+      <label for="fCat">Type</label><select id="fCat"></select>
+      <label for="fShow">Show</label><select id="fShow"><option value="any">all questions</option><option value="fail">not correct every time</option><option value="flip">verdict differs between configurations</option><option value="diag">diagnosed failures</option></select>
+      <input type="search" id="fText" placeholder="Search question or id" aria-label="Search">
+      <span class="note" id="count"></span>
+    </div>
+    <div class="panel scroll"><table id="grid"></table></div>
+    <div class="panel" id="detailPanel" hidden><div id="detail"></div></div>
+  </section>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+const DATA = /*__DATA__*/null;
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const pct = v => v == null ? "—" : (100 * v).toFixed(1) + "%";
+const num = (v, d = 1) => v == null ? "—" : Number(v).toFixed(d);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const ALL = DATA.order;
+let keys = ALL;
+const C = k => DATA.configs[k];
+const label = k => { const c = C(k); return `${c.rung} · ${c.condition}`; };
+const VCOL = {correct: "--ok", partial: "--part", wrong: "--bad", abstained: "--abst", declined: "--decl", answered_wrong: "--bad"};
+const CODES = {"RET-CHUNK": "evidence chunk not retrieved", "RET-COMPARE": "comparison: one side never retrieved", "RET-RERANK": "retrieved but reranked out",
+  "MISLEAD": "a sibling/wrong-row chunk misled", "PARSE": "PDF parsing damaged the evidence", "CHUNK": "chunking lost the context",
+  "GEN-READ": "model misread the evidence", "GEN-STYLE": "answer format cost credit", "GEN-REFUSE": "model declined with evidence present",
+  "HISTORY": "follow-up rewrite changed the question", "ROUTE": "wrong mode", "GOLDEN": "golden answer issue", "JUDGE": "judge mis-graded"};
+
+/* header */
+const ms = DATA.measurements || {};
+document.getElementById("eyebrow").textContent = `Evaluation campaign ${DATA.campaign}`;
+document.getElementById("meta").innerHTML = [
+  `<span>Rungs run <b>${DATA.ladder.filter(t => ALL.some(k => C(k).rung === t.rung)).length} of ${DATA.ladder.filter(t => t.rung !== "r2-repeat").length}</b></span>`,
+  `<span>Questions <b>${DATA.questions.length}</b></span>`,
+  `<span>Judge <b>Claude Opus 5.5</b> (κ ${DATA.judge.kappa} vs hand grades)</span>`,
+  `<span>Updated <b>${esc(DATA.generated.replace("T", " "))} UTC</b></span>`].join("");
+
+Chart.defaults.font.family = css("--body"); Chart.defaults.color = css("--muted"); Chart.defaults.borderColor = css("--rule");
+/* Charts are rebuilt when the tab changes. */
+function mk(id, cfg) { const el = document.getElementById(id); Chart.getChart(el)?.destroy(); return new Chart(el, cfg); }
+
+/* One rung's results: every section below the tabs, for that rung's configurations. */
+function renderRung(rung) {
+  keys = ALL.filter(k => C(k).rung === rung);
+  /* findings, computed from the data */
+  const F = [];
+  for (const [r, cmp] of Object.entries(DATA.on_vs_off || {}).filter(([r]) => r === rung)) {
+    const sig = cmp.delta_ci[0] > 0 || cmp.delta_ci[1] < 0;
+    F.push({cls: sig ? "" : "warn", text: `<b>${r}: thinking ON ${cmp.delta >= 0 ? "+" : ""}${(100 * cmp.delta).toFixed(1)} points correct</b> (95 % CI ${(100 * cmp.delta_ci[0]).toFixed(1)} to ${(100 * cmp.delta_ci[1]).toFixed(1)}, McNemar p ${cmp.mcnemar_p}). ${sig ? "The difference is significant." : "Not significant on its own: more rungs and repeats will settle it."} It ${cmp.only_a_correct}–${cmp.only_b_correct} on questions only one condition got right by majority.`});
+    const on = C(`${r}/on`), off = C(`${r}/off`);
+    if (on && off) {
+      F.push({cls: "", text: `<b>Thinking changes the answer style.</b> Partial answers ${pct(off.verdict_mix.partial)} → ${pct(on.verdict_mix.partial)}, abstentions ${pct(off.verdict_mix.abstained)} → ${pct(on.verdict_mix.abstained)}; it cites the expected document less (${pct(off.source_hit_rate)} → ${pct(on.source_hit_rate)}) while being more often correct — citation counts alone rank the two the wrong way round.`});
+      F.push({cls: "warn", text: `<b>Thinking costs ${num(on.latency_median_s / off.latency_median_s, 1)}× the latency</b> (median ${num(off.latency_median_s)} s → ${num(on.latency_median_s)} s) and serves ${num(on.questions_per_min["1"], 1)} instead of ${num(off.questions_per_min["1"], 1)} questions a minute one at a time.`});
+      if (on.reasoning_by_verdict.correct && on.reasoning_by_verdict.wrong) F.push({cls: "", text: `<b>Long reasoning predicts a wrong answer:</b> median ${on.reasoning_by_verdict.correct.toLocaleString()} reasoning characters when correct, ${on.reasoning_by_verdict.wrong.toLocaleString()} when wrong — a candidate low-confidence signal.`});
+    }
+  }
+  const D = DATA.diagnosis;
+  const diagHere = DATA.questions.some(q => q.diagnosis && q.diagnosis.rung === rung);
+  if (D && D.n && diagHere) F.push({cls: "bad", text: `<b>${D.fixable} of ${D.n} failing questions trace to ragline, not the model</b> (${D.model_independent} model-independent). In ${(D.reached.find(r => r[0] === "never") || [0, 0])[1]} the evidence never reached the model. These are being fixed before the next model runs.`});
+  const base = keys.find(k => C(k).condition === "off") || keys[0];
+  const stg = C(base)?.stage_ms || {};
+  if (stg.graph && stg.answer && stg.graph > stg.answer) F.push({cls: "warn", text: `<b>The knowledge-graph stage is slower than the answer itself</b> on ${label(base)} (${num(stg.graph / 1000)} s vs ${num(stg.answer / 1000)} s median): the known per-query graph rebuild.`});
+  document.getElementById("findings").innerHTML = F.map(f => `<li class="${f.cls}"><p>${f.text}</p></li>`).join("");
+
+  /* decision table */
+  const vramFor = k => { for (const s of (ms[C(k).rung] || {}).session || []) if ((s.conditions || []).includes(C(k).condition)) return `${s.vram_gib}/${s.card_gib} GiB`; return "—"; };
+  document.getElementById("decision").innerHTML = `<thead><tr><th>Configuration</th><th>Model</th><th class="num">Correct</th><th class="num">+½ partial</th><th class="num">Wrong</th><th class="num">Abstained</th><th class="num">Unans. declined</th><th class="num">Claims supported</th><th class="num">Source hit</th><th class="num">Latency p50 / p90</th><th class="num">$ / 1,000 Q</th><th class="num">GPU memory</th></tr></thead><tbody>` +
+    keys.map(k => { const c = C(k); return `<tr><td><b>${esc(label(k))}</b><br><span class="ci">${esc(c.path)} path, ${c.repeats} pass${c.repeats > 1 ? "es" : ""}</span></td><td>${esc(c.model)}<br><span class="ci">${esc(c.quantization || "")} · ${esc(c.gpu || "")}</span></td>
+      <td class="num"><b>${pct(c.correct_rate)}</b><br><span class="ci">${pct(c.correct_ci[0])}–${pct(c.correct_ci[1])}</span></td>
+      <td class="num">${pct(c.correct_half_partial)}</td><td class="num">${pct(c.verdict_mix.wrong)}</td><td class="num">${pct(c.verdict_mix.abstained)}</td>
+      <td class="num">${pct(c.unanswerable.declined_rate)}</td><td class="num">${pct(c.faithfulness.supported_rate)}</td><td class="num">${pct(c.source_hit_rate)}</td>
+      <td class="num">${num(c.latency_median_s)} / ${num(c.latency_p90_s)} s</td><td class="num">${c.cost_per_1000_sequential_usd == null ? "—" : "$" + num(c.cost_per_1000_sequential_usd, 2)}</td><td class="num">${vramFor(k)}</td></tr>`; }).join("") + "</tbody>";
+
+  /* charts */
+  const condColor = k => C(k).condition === "on" ? css("--accent") : (C(k).condition === "off" ? css("--ink") : css("--abst"));
+  function scatter(id, xKey, xTitle) {
+    const pts = keys.filter(k => C(k)[xKey] != null).map(k => ({x: C(k)[xKey], y: 100 * C(k).correct_rate, k}));
+    mk(id, {type: "scatter", data: {datasets: [{data: pts, pointRadius: 7, pointHoverRadius: 9,
+      pointBackgroundColor: pts.map(p => condColor(p.k)), pointStyle: pts.map(p => C(p.k).condition === "on" ? "triangle" : "circle")}]},
+      options: {maintainAspectRatio: false, plugins: {legend: {display: false}, tooltip: {callbacks: {label: c => `${label(c.raw.k)}: ${c.raw.y.toFixed(1)}% at ${c.raw.x.toFixed(2)}`}}},
+        scales: {x: {title: {display: true, text: xTitle}, beginAtZero: true}, y: {title: {display: true, text: "Correct (%)"}, suggestedMin: 50, suggestedMax: 90}}}});
+  }
+  scatter("frontierLat", "latency_median_s", "Median latency per question (s)");
+  scatter("frontierCost", "cost_per_1000_sequential_usd", "$ per 1,000 questions (one at a time)");
+
+  const cmpRows = [...Object.entries(DATA.on_vs_off || {}).filter(([r]) => r === rung).map(([r, c]) => [`${r}: thinking ON vs OFF`, c]),
+    ...Object.entries(DATA.vs_baseline || {}).filter(([k]) => keys.includes(k)).map(([k, c]) => [`${label(k)} vs ${label(DATA.baseline)}`, c])];
+  document.getElementById("paired").innerHTML = `<thead><tr><th>Comparison</th><th class="num">Questions</th><th class="num">Difference</th><th class="num">95 % CI</th><th class="num">Only first right</th><th class="num">Only second right</th><th class="num">McNemar p</th></tr></thead><tbody>` +
+    cmpRows.map(([n, c]) => `<tr><td>${esc(n)}</td><td class="num">${c.questions}</td><td class="num"><b>${c.delta >= 0 ? "+" : ""}${(100 * c.delta).toFixed(1)}</b></td><td class="num">${(100 * c.delta_ci[0]).toFixed(1)} to ${(100 * c.delta_ci[1]).toFixed(1)}</td><td class="num">${c.only_a_correct}</td><td class="num">${c.only_b_correct}</td><td class="num">${c.mcnemar_p}</td></tr>`).join("") + "</tbody>";
+
+  mk("mix", {type: "bar", data: {labels: keys.map(label),
+    datasets: ["correct", "partial", "wrong", "abstained"].map(v => ({label: v, data: keys.map(k => 100 * C(k).verdict_mix[v]), backgroundColor: css(VCOL[v])}))},
+    options: {indexAxis: "y", maintainAspectRatio: false, plugins: {legend: {display: false}}, scales: {x: {stacked: true, max: 100, title: {display: true, text: "% of answerable answers"}}, y: {stacked: true}}}});
+
+  const rk = keys.filter(k => Object.keys(C(k).reasoning_by_verdict).length);
+  mk("reasoning", {type: "bar", data: {labels: ["correct", "partial", "wrong", "abstained"],
+    datasets: rk.map(k => ({label: label(k), data: ["correct", "partial", "wrong", "abstained"].map(v => C(k).reasoning_by_verdict[v] ?? null),
+      backgroundColor: ["correct", "partial", "wrong", "abstained"].map(v => css(VCOL[v]))}))},
+    options: {maintainAspectRatio: false, plugins: {legend: {display: rk.length > 1}}, scales: {y: {title: {display: true, text: "Median reasoning characters"}}}}});
+
+  const cats = [...new Set(keys.flatMap(k => Object.keys(C(k).by_category)))].sort();
+  const catN = cat => DATA.questions.filter(q => q.category === cat).length;
+  const pair = (DATA.on_vs_off || {})[rung] && C(`${rung}/on`) && C(`${rung}/off`) ? rung : null;
+  document.getElementById("categories").innerHTML = `<thead><tr><th>Type</th><th class="num">n</th>${keys.map(k => `<th class="num">${esc(label(k))}</th>`).join("")}${pair ? `<th class="num">ON − OFF (${esc(pair)})</th>` : ""}</tr></thead><tbody>` +
+    cats.map(cat => { const d = pair ? C(`${pair}/on`).by_category[cat] - C(`${pair}/off`).by_category[cat] : null;
+      return `<tr><td>${esc(cat)}</td><td class="num">${catN(cat)}</td>${keys.map(k => `<td class="num">${pct(C(k).by_category[cat])}</td>`).join("")}${pair ? `<td class="num" style="color:${d > 0.004 ? css("--ok") : (d < -0.004 ? css("--bad") : css("--muted"))}"><b>${d >= 0 ? "+" : ""}${(100 * d).toFixed(1)}</b></td>` : ""}</tr>`; }).join("") +
+    `</tbody>`;
+
+  document.getElementById("fix").hidden = !(D && D.n && diagHere);
+  if (D && D.n && diagHere) {
+    document.getElementById("fixLead").textContent = `${D.n} questions were not correct in every pass of ${[...new Set(DATA.questions.filter(q => q.diagnosis).map(q => q.diagnosis.rung))].join(", ")}. Each was traced from the golden evidence to the indexed chunk, its retrieval rank, what the model saw, the answer and the judge's reason. ${D.fixable} are fixable in ragline; ${D.model_independent} of those fixes help any model.`;
+    mk("causes", {type: "bar", data: {labels: D.primary.map(p => p[0]), datasets: [{data: D.primary.map(p => p[1]),
+      backgroundColor: D.primary.map(p => p[0].startsWith("GEN") ? css("--part") : (["JUDGE", "GOLDEN"].includes(p[0]) ? css("--abst") : css("--accent")))}]},
+      options: {indexAxis: "y", maintainAspectRatio: false, plugins: {legend: {display: false}, tooltip: {callbacks: {afterLabel: c => CODES[c.label] || ""}}}, scales: {x: {title: {display: true, text: "Questions"}, ticks: {precision: 0}}}}});
+    mk("reached", {type: "bar", data: {labels: D.reached.map(r => r[0]), datasets: [{data: D.reached.map(r => r[1]),
+      backgroundColor: D.reached.map(r => r[0] === "never" ? css("--bad") : (r[0] === "sometimes" ? css("--part") : css("--ok")))}]},
+      options: {maintainAspectRatio: false, plugins: {legend: {display: false}}, scales: {y: {ticks: {precision: 0}, title: {display: true, text: "Questions"}}}}});
+    document.getElementById("codeList").innerHTML = D.primary.map(p => `<b>${esc(p[0])}</b><span>${esc(CODES[p[0]] || "")}</span>`).join("");
+  }
+
+  const stageNames = ["prepass", "embed_query", "vector_search", "sparse_merge", "rerank", "graph", "answer", "library_answer"];
+  const stagePal = ["--abst", "--decl", "--rule", "--muted", "--part", "--bad", "--accent", "--ok"];
+  mk("stages", {type: "bar", data: {labels: keys.map(label),
+    datasets: stageNames.map((s, i) => ({label: s, data: keys.map(k => (C(k).stage_ms[s] || 0) / 1000), backgroundColor: css(stagePal[i])}))},
+    options: {indexAxis: "y", maintainAspectRatio: false, plugins: {legend: {position: "bottom", labels: {boxWidth: 11}}}, scales: {x: {stacked: true, title: {display: true, text: "Median seconds per stage"}}, y: {stacked: true}}}});
+  const lk = keys.filter(k => Object.keys(C(k).questions_per_min || {}).length);
+  mk("load", {type: "line", data: {labels: ["1", "4", "8"],
+    datasets: lk.map(k => ({label: label(k), data: ["1", "4", "8"].map(n => C(k).questions_per_min[n] ?? null), borderColor: condColor(k), backgroundColor: condColor(k), tension: .2}))},
+    options: {maintainAspectRatio: false, scales: {x: {title: {display: true, text: "Concurrent questions"}}, y: {beginAtZero: true, title: {display: true, text: "Questions per minute"}}}}});
+
+  /* trust */
+  document.getElementById("trustKv").innerHTML = keys.map(k => `<dt>${esc(label(k))}</dt><dd><span class="num">${C(k).stable_questions}/${C(k).questions}</span> questions with the same verdict in every pass</dd>`).join("") +
+    `<dt>Judge vs hand grades</dt><dd>κ <span class="num">${DATA.judge.kappa}</span> (${DATA.judge.agree} of ${DATA.judge.of} agree)</dd><dt>Second judge</dt><dd>GPT sample pending</dd>`;
+  const allSessions = Object.entries(ms).filter(([r]) => r === rung).flatMap(([r, v]) => (v.session || []).map(s => ({r, ...s})));
+  document.getElementById("sessions").innerHTML = `<thead><tr><th>Rung</th><th>Date</th><th>Conditions</th><th class="num">Boot</th><th class="num">GPU memory</th><th>Host CPU</th><th>Driver</th></tr></thead><tbody>` +
+    allSessions.map(s => `<tr><td>${esc(s.r)}</td><td class="num">${esc(s.date)}</td><td>${esc((s.conditions || []).join(", "))}</td><td class="num">${s.boot_s ? Math.round(s.boot_s / 60) + " min" : "—"}</td><td class="num">${s.vram_gib}/${s.card_gib} GiB</td><td>${esc(s.host_cpu)}</td><td class="num">${esc(s.driver)}</td></tr>`).join("") +
+    `</tbody>`;
+  drawGrid();
+}
+
+/* explore */
+const fCat = document.getElementById("fCat");
+fCat.innerHTML = `<option value="">all types</option>` + [...new Set(DATA.questions.map(q => q.category))].sort().map(c => `<option>${esc(c)}</option>`).join("");
+const allCorrect = q => keys.every(k => (q.cells[k] || []).every(c => c.label === "correct" || c.label === "declined"));
+const flips = q => new Set(keys.map(k => { const ls = (q.cells[k] || []).map(c => c.label); return ls.filter(l => l === "correct").length * 2 >= ls.length; })).size > 1;
+function drawGrid() {
+  const cat = fCat.value, show = document.getElementById("fShow").value, t = document.getElementById("fText").value.trim().toLowerCase();
+  const rows = DATA.questions.filter(q => (!cat || q.category === cat) && (show === "any" || (show === "fail" && !allCorrect(q)) || (show === "flip" && flips(q)) || (show === "diag" && q.diagnosis))
+    && (!t || q.id.toLowerCase().includes(t) || (q.question || "").toLowerCase().includes(t)));
+  document.getElementById("count").textContent = `${rows.length} of ${DATA.questions.length}`;
+  document.getElementById("grid").innerHTML = `<thead><tr><th>Id</th><th>Type</th><th>Question</th>${keys.map(k => `<th>${esc(label(k))}</th>`).join("")}<th>Diagnosis</th></tr></thead><tbody>` +
+    rows.map(q => `<tr class="q" tabindex="0" data-id="${esc(q.id)}"><td class="num">${esc(q.id)}</td><td>${esc(q.category)}</td><td>${esc(q.question)}</td>` +
+      keys.map(k => `<td><span class="cells">${(q.cells[k] || []).map(c => `<span class="v-${c.label ?? "null"}" title="${esc(c.label ?? "not judged")}"></span>`).join("")}</span></td>`).join("") +
+      `<td>${q.diagnosis ? q.diagnosis.causes.map(c => `<span class="pill" title="${esc(CODES[c] || "")}">${esc(c)}</span>`).join(" ") : ""}</td></tr>`).join("") + "</tbody>";
+}
+function showDetail(id) {
+  const q = DATA.questions.find(x => x.id === id); if (!q) return;
+  const d = q.diagnosis;
+  document.getElementById("detail").innerHTML = `<h2>${esc(q.id)} · ${esc(q.category)}</h2><p><b>${esc(q.question)}</b></p><dl class="kv"><dt>Expected</dt><dd>${esc(q.expected)}</dd>` +
+    (d ? `<dt>Diagnosis</dt><dd>${d.causes.map(c => `<span class="pill">${esc(c)}</span>`).join(" ")} · evidence reached the model: <b>${esc(d.reached)}</b><br>${esc(d.explanation)}</dd><dt>Ragline fix</dt><dd>${esc(d.fix)}${d.model_independent ? "" : " <span class='note'>(helps some models only)</span>"}</dd>` + (d.note ? `<dt>Golden / judge</dt><dd>${esc(d.note)}</dd>` : "") : "") + `</dl>` +
+    keys.map(k => `<h3>${esc(label(k))}</h3>` + (q.cells[k] || []).map((c, i) => `<div><span class="pill" style="background:${css(VCOL[c.label] || "--rule")};color:${css("--panel")}">${esc(c.label ?? "not judged")}</span> <span class="note">pass ${i + 1} · ${num(c.latency_s)} s · reasoning ${c.reasoning_chars.toLocaleString()} chars · cited ${esc(c.cited.join(", ") || "nothing")}</span><div class="ans">${esc(c.answer)}</div>${c.reason ? `<p class="note">Judge: ${esc(c.reason)}</p>` : ""}</div>`).join("")).join("");
+  const p = document.getElementById("detailPanel"); p.hidden = false; p.scrollIntoView({behavior: "smooth", block: "start"});
+}
+document.getElementById("grid").addEventListener("click", e => { const tr = e.target.closest("tr.q"); if (tr) showDetail(tr.dataset.id); });
+document.getElementById("grid").addEventListener("keydown", e => { const tr = e.target.closest("tr.q"); if (tr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); showDetail(tr.dataset.id); } });
+for (const id of ["fCat", "fShow", "fText"]) document.getElementById(id).addEventListener("input", drawGrid);
+
+/* status banner and rung tabs (#r3 in the address opens that tab) */
+document.getElementById("status").textContent = DATA.status;
+const hasData = t => ALL.some(k => C(k).rung === t.rung);
+const tabsEl = document.getElementById("tabs");
+tabsEl.innerHTML = DATA.ladder.map(t => `<button role="tab" id="tab-${esc(t.rung)}" data-rung="${esc(t.rung)}" aria-selected="false">${esc(t.title)}<span class="tag">${hasData(t) ? "results" : "planned"}</span></button>`).join("");
+function selectTab(rung) {
+  const t = DATA.ladder.find(x => x.rung === rung) || DATA.ladder[0];
+  for (const b of tabsEl.querySelectorAll("button")) b.setAttribute("aria-selected", String(b.dataset.rung === t.rung));
+  const view = document.getElementById("rungView"), plan = document.getElementById("planned");
+  if (hasData(t)) {
+    plan.hidden = true; view.hidden = false; document.getElementById("detailPanel").hidden = true;
+    renderRung(t.rung);
+  } else {
+    view.hidden = true; plan.hidden = false;
+    plan.innerHTML = `<h3>${esc(t.title)}</h3>` + (t.model ? `<div class="model">${esc(t.model)}</div>` : "") +
+      `<dl class="kv">${t.quantization ? `<dt>Quantisation</dt><dd>${esc(t.quantization)}</dd>` : ""}${t.weights_gb ? `<dt>Weights</dt><dd class="num">≈ ${t.weights_gb} GB on a 96 GB RTX PRO 6000</dd>` : ""}${t.conditions && t.conditions.length ? `<dt>Conditions</dt><dd>${t.conditions.map(c => c === "on" ? "thinking on" : (c === "off" ? "thinking off" : c)).map(esc).join(", ")}</dd>` : ""}${t.note ? `<dt>Note</dt><dd>${esc(t.note)}</dd>` : ""}</dl>` +
+      `<p><span class="pill">In progress</span> ${esc(t.planned || "")}</p>`;
+  }
+}
+tabsEl.addEventListener("click", e => { const b = e.target.closest("button[data-rung]"); if (b) { history.replaceState(null, "", "#" + b.dataset.rung); selectTab(b.dataset.rung); } });
+tabsEl.addEventListener("keydown", e => {
+  if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+  const bs = [...tabsEl.querySelectorAll("button")], i = bs.indexOf(document.activeElement);
+  const nb = bs[(i + (e.key === "ArrowRight" ? 1 : bs.length - 1)) % bs.length]; nb.focus(); nb.click();
+});
+selectTab(location.hash.slice(1) || (DATA.ladder.find(hasData) || DATA.ladder[0]).rung);
+</script>

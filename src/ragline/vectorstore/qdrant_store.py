@@ -182,6 +182,46 @@ class QdrantVectorStore(BaseVectorStore):
             log.warning("get_chunks_by_ids failed", error=str(e))
             return []
 
+    async def get_chunks_by_position(self, wanted: list[tuple[str, int]]) -> list[Chunk]:
+        """Fetch chunks by (document_id, chunk_index), one filtered scroll per document, run concurrently."""
+        by_doc: dict[str, set[int]] = {}
+        for document_id, index in wanted:
+            by_doc.setdefault(document_id, set()).add(index)
+
+        async def one(document_id: str, indices: set[int]) -> list[Chunk]:
+            """The wanted chunks of one document."""
+            try:
+                points, _ = await asyncio.to_thread(
+                    self._client.scroll,
+                    collection_name=self._collection,
+                    scroll_filter=Filter(must=[
+                        FieldCondition(key="document_id", match=MatchValue(value=document_id)),
+                        FieldCondition(key="chunk_index", match=MatchAny(any=sorted(indices))),
+                    ]),
+                    limit=len(indices),
+                    with_payload=True,
+                    with_vectors=False,
+                )
+            except Exception as e:
+                # A failed neighbour lookup only means no neighbour is added.
+                log.warning("get_chunks_by_position failed", error=str(e))
+                return []
+            return [self._payload_to_chunk(p.payload, str(p.id)) for p in points]
+
+        # Documents are looked up in parallel: this runs on every answer, after rerank.
+        groups = await asyncio.gather(*[one(d, i) for d, i in by_doc.items()])
+        return [c for group in groups for c in group]
+
+    async def count(self) -> int | None:
+        """Exact point count of the collection (0 when it does not exist)."""
+        if not await asyncio.to_thread(self._collection_exists):
+            return 0
+        # exact=True asks Qdrant to count rather than estimate.
+        result = await asyncio.to_thread(
+            self._client.count, collection_name=self._collection, exact=True
+        )
+        return int(result.count)
+
     async def get_all_chunks(self) -> list[Chunk]:
         """Scroll the whole collection — feeds the BM25 rebuild at startup.
 

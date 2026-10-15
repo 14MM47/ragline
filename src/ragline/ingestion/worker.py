@@ -27,6 +27,7 @@ from ragline.chunking.structural import chunk_document
 from ragline.config import settings
 from ragline.embeddings.base import BaseEmbedder
 from ragline.llm.base import BaseLLM
+from ragline.parsing.cache import configured_cache, parse_with_cache
 from ragline.parsing.registry import get_parser
 from ragline.storage.file_store import BaseFileStore
 from ragline.storage.metadata_db import (
@@ -62,10 +63,15 @@ def spawn_background(coro) -> asyncio.Task:
 
 
 def _parse_document(file_path_str: str):
-    """Parse a document in a worker thread, keeping the event loop free."""
+    """Parse a document in a worker thread, keeping the event loop free.
+
+    With PARSE_CACHE_DIR set, a parse already made by scripts/preparse.py (or a
+    previous ingest) is read instead, and a fresh parse is stored for next time.
+    """
     file_path = Path(file_path_str)
+    # Unsupported types raise ValueError here, before any cache work, as before.
     parser = get_parser(file_path)
-    return parser.parse(file_path)
+    return parse_with_cache(file_path, parser.parse, configured_cache())
 
 
 class BatchWorker:

@@ -2,7 +2,8 @@
 
 Ported from raggles (rule 6 is ragline's own: raggles' "Be concise but
 thorough" let a slow local model write a spec sheet when asked for two
-facts). These rules are half of the hard-citation
+facts; rules 7-7d are from the rung 2 failure diagnosis — answers dropped
+comparison winners and steps, and borrowed sibling models' values). These rules are half of the hard-citation
 contract: the model may ONLY answer from the numbered sources and must tag
 every claim with [Source N] markers, which extract_citations then validates
 against the actual chunk list (out-of-range numbers are dropped).
@@ -22,8 +23,13 @@ Rules:
 6a. When the user asks you to analyse, critique, or evaluate the source text itself \
 (e.g. find errors, ambiguities, grammar issues, or style problems), you may apply your own \
 expertise to the provided source text. Still cite which source you are analysing with [Source N].
-7. If conversation context is provided, use it to understand what has already been discussed. \
-Avoid repeating information already covered. Focus on NEW information the user is asking for.
+7. If conversation context is provided, use it only as background to understand the question. \
+Always answer the current question in full, even if part of the answer was given earlier.
+7a. Answer every part of the question. Give values with their units exactly as the sources state them.
+7b. For a comparison, give the value for each item compared and say which is higher, lower or better.
+7c. For a how-to or procedure question, give all the numbered steps in order.
+7d. Never substitute a value stated for a different model, variant or part number. If the sources \
+do not state the value for the item asked about, say so plainly, even when a sibling model's value is shown.
 8. If knowledge graph context is provided, use it to understand entity relationships and connections across documents. \
 This context provides verified relationships between technical entities."""
 

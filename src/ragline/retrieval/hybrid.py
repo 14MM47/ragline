@@ -6,6 +6,8 @@ of hybrid retrieval: exact part numbers and protocol names ("6ES7 214",
 ranked lists without needing their scores to be comparable.
 """
 
+import re
+
 import structlog
 from rank_bm25 import BM25Okapi
 
@@ -13,6 +15,81 @@ from ragline.chunking.models import Chunk
 from ragline.vectorstore.base import SearchResult
 
 log = structlog.get_logger()
+
+
+# ---------------------------------------------------------------------------
+# BM25 tokeniser — shared by the corpus and the query (plan item 1).
+#
+# ~27 % of this corpus is markdown tables whose cells fuse with pipes, `**`
+# bold markers and `<br>` into unmatchable tokens (`|**attribute**|**2715-t7cd**<br>**2715-t7cd-b**|`);
+# catalogue numbers in prose carry trailing punctuation (`2711p-t7c21d8s,`).
+# A single whitespace split hides those tokens from BM25 and the user's
+# "DOP-107WV" query never scores the table row that holds the answer.
+#
+# Rules applied, in order:
+#   1. Lowercase the whole string.
+#   2. Delete every HTML tag — `<br>`, `<sup>` and the rest — with `<[^>]*>`.
+#   3. Replace markdown emphasis markers (`*`, `_`) and table pipes (`|`)
+#      with a space so adjacent cells and bold runs fall apart cleanly.
+#   4. Walk the string with `_TOKEN`: a run starting and ending with
+#      alphanumerics, with any number of inner `-`, `.`, `/` characters.
+#      This keeps catalogue/part numbers (`2711p-t7c21d8s`, `dop-107wv`,
+#      `6200t-na`, `1756-l85e`, `v1.2`, `24vdc`, `8.4`) whole AND rejects
+#      stray punctuation at either edge (`2711p-t7c21d8s,` → `2711p-t7c21d8s`).
+#   5. For a kept whole token that contains `-`, `.` or `/`, also emit the
+#      parts split on those characters (`2711p-t7c21d8s` → whole,
+#      `2711p`, `t7c21d8s`; `v1.2` → whole, `v1`, `2`).
+#   6. Drop empty tokens.
+#
+# Units: alphanumerics are kept as tokens, so `w`, `c`, `vdc`, `mhz` survive.
+# Non-ASCII glyphs that are not alphanumeric (notably the degree sign in
+# `°c`) are dropped by step 4, so `°c` reduces to `c` — documented, so a
+# reader can see why the query `-20 °c` and the corpus text score together.
+# ---------------------------------------------------------------------------
+
+# HTML tag catch-all; a `<` with no closing `>` falls out of the regex and is
+# left alone (not a tag — probably a stray less-than from a datasheet).
+_HTML_TAG = re.compile(r"<[^>]*>")
+
+# Characters replaced with a single space before token extraction: markdown
+# emphasis markers that would otherwise fuse `**attribute**` into `attribute`
+# with surrounding punctuation, and table pipes that glue cell contents.
+_STRIP_TO_SPACE = str.maketrans({"*": " ", "_": " ", "|": " "})
+
+# A token: an alphanumeric head, zero or more inner characters where the
+# inner `-`, `.`, `/` are only kept when flanked by alphanumerics, and an
+# alphanumeric tail. The second alternative handles the single-character
+# case (`a`, `5`) that the first cannot match.
+_TOKEN = re.compile(r"[a-z0-9][a-z0-9\-./]*[a-z0-9]|[a-z0-9]")
+
+# Separators split out when a whole identifier is also emitted as its parts.
+_IDENT_SEP = re.compile(r"[-./]")
+
+
+def tokenise(text: str) -> list[str]:
+    """BM25 tokeniser used for both the corpus and the query — see rules above."""
+    # Rule 1: lowercase so BM25 is case-insensitive without a second pass.
+    lowered = text.lower()
+    # Rule 2: strip HTML tags that corrupt table rows (`<br>` especially).
+    without_tags = _HTML_TAG.sub(" ", lowered)
+    # Rule 3: markdown emphasis and table pipes become whitespace boundaries.
+    normalised = without_tags.translate(_STRIP_TO_SPACE)
+    tokens: list[str] = []
+    # Rule 4: extract clean, alphanumeric-anchored runs.
+    for match in _TOKEN.finditer(normalised):
+        token = match.group()
+        # Rule 6: skip the empty token (the regex never matches it, kept for safety).
+        if not token:
+            continue
+        tokens.append(token)
+        # Rule 5: also emit sub-parts for hyphen/dot/slash-joined identifiers.
+        if "-" in token or "." in token or "/" in token:
+            for part in _IDENT_SEP.split(token):
+                # The regex already rejects edge separators, so parts are non-empty,
+                # but check anyway in case a future change loosens rule 4.
+                if part:
+                    tokens.append(part)
+    return tokens
 
 
 def _expanded_excluded_casefold(excluded_source_files: list[str]) -> set[str]:
@@ -51,9 +128,9 @@ class BM25Index:
             self._index = None
             log.info("built bm25 index", num_chunks=0)
             return
-        # Simple whitespace tokenization, lowercased — adequate for technical
-        # text where part numbers matter more than stemming.
-        tokenized = [chunk.text.lower().split() for chunk in chunks]
+        # Shared tokeniser (see `tokenise` docstring): preserves catalogue
+        # numbers in table cells so the query leg can match them.
+        tokenized = [tokenise(chunk.text) for chunk in chunks]
         self._index = BM25Okapi(tokenized)
         log.info("built bm25 index", num_chunks=len(chunks))
 
@@ -67,8 +144,10 @@ class BM25Index:
         """Lexical search with the same scoping filters as the dense side."""
         if self._index is None or not self._chunks:
             return []
-        # Tokenize the query the same way as the corpus.
-        tokens = query.lower().split()
+        # Tokenise the query with the SAME function as the corpus (plan item 1):
+        # a catalogue number in the query must land on the same bag of tokens
+        # as the one indexed, parts and whole, or BM25 cannot match them.
+        tokens = tokenise(query)
         scores = self._index.get_scores(tokens)
         # Precompute filter sets (None = unrestricted).
         allowed_set = set(allowed_document_ids) if allowed_document_ids is not None else None

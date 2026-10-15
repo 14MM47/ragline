@@ -161,6 +161,10 @@ class ChatAgent:
             library_mode = {"library": "pure", "compound": "compound"}.get(prepass.mode)
             excluded_source_files = prepass.excluded_sources
             retrieval_query = rewritten
+            # The answer model is asked the user's question (made standalone),
+            # never the keyword rewrite; products named in it are searched one by one.
+            answer_question = prepass.answer_question.strip() or question
+            entity_queries = prepass.entity_queries
         else:
             # --- Memory off (or structured pre-pass disabled): no pre-pass.
             # Raw question, no context; keyword routing keeps library mode
@@ -172,6 +176,8 @@ class ChatAgent:
             library_mode = {QueryIntent.LIBRARY: "pure", QueryIntent.COMPOUND: "compound"}.get(intent)
             excluded_source_files = []
             retrieval_query = question
+            answer_question = question
+            entity_queries = []
             if not use_memory:
                 log.info("memory disabled, skipping pre-pass", query=question[:80])
 
@@ -193,10 +199,12 @@ class ChatAgent:
                 excluded_source_files=excluded_source_files,
             )
             cited = await self._rag.query(
-                retrieval_query,
+                answer_question,
                 allowed_document_ids=scope_intersection(allowed_document_ids, resolved_ids),
                 excluded_source_files=excluded_source_files,
                 conversation_context=conversation_context,
+                retrieval_query=retrieval_query,
+                entity_queries=entity_queries,
             )
             formatted = format_for_api(cited)
 
@@ -216,10 +224,12 @@ class ChatAgent:
                     excluded_source_files=excluded_source_files,
                 )
                 retried = await self._rag.query(
-                    retrieval_query,
+                    answer_question,
                     allowed_document_ids=scope_intersection(allowed_document_ids, retry_doc_ids),
                     excluded_source_files=excluded_source_files,
                     conversation_context=conversation_context,
+                    retrieval_query=retrieval_query,
+                    entity_queries=entity_queries,
                 )
                 retried_formatted = format_for_api(retried)
                 if retried_formatted.get("sources"):
@@ -240,10 +250,12 @@ class ChatAgent:
         else:
             # Standard RAG.
             cited = await self._rag.query(
-                retrieval_query,
+                answer_question,
                 allowed_document_ids=allowed_document_ids,
                 excluded_source_files=excluded_source_files,
                 conversation_context=conversation_context,
+                retrieval_query=retrieval_query,
+                entity_queries=entity_queries,
             )
             formatted = format_for_api(cited)
             formatted["used_rag"] = True
@@ -262,6 +274,13 @@ class ChatAgent:
         formatted["trace_id"] = trace_record.id
         formatted["prompt_tokens"] = trace_record.prompt_tokens
         formatted["completion_tokens"] = trace_record.completion_tokens
+        # Per-stage milliseconds and hidden-reasoning length, for the
+        # evaluation harness (the API schema ignores keys it does not declare).
+        formatted["step_ms"] = trace.steps_rounded()
+        formatted["reasoning_chars"] = trace_record.reasoning_chars
+        # Per-model-call records (purpose, tokens each way, time; text when
+        # LLM_CAPTURE_TRANSCRIPTS is on) — for the harness, ignored by the API.
+        formatted["llm_calls"] = list(trace.calls)
 
         return formatted, memory, rewritten
 
@@ -322,6 +341,8 @@ class ChatAgent:
                 formatted["completion_tokens"] = (
                     (formatted.get("completion_tokens") or 0) + post_trace.completion_tokens
                 )
+                # Their per-call records join the answer phase's.
+                formatted["llm_calls"] = (formatted.get("llm_calls") or []) + list(post_trace.calls)
 
                 # Stamp the confidence score onto the persisted trace row.
                 if score is not None and formatted.get("trace_id"):
@@ -501,8 +522,10 @@ class ChatAgent:
             )},
         ]
         with timed_step("library_answer"):
+            # answer=True: answer-only request options (e.g. thinking) apply here too.
             answer = await self._llm.complete(
-                messages, temperature=0.0, max_tokens=settings.library_answer_max_tokens
+                messages, temperature=0.0, max_tokens=settings.library_answer_max_tokens, answer=True,
+                purpose="library_answer",
             )
         answer = _complete_cut_off_marker(answer)
         if FILE_LIST_PLACEHOLDER in answer:
@@ -568,7 +591,9 @@ class ChatAgent:
             {"role": "user", "content": build_structured_pre_pass_user(memory, question)},
         ]
         try:
-            return await self._llm.complete_json(messages, PrePassResult)
+            # Capped: a degenerate JSON-mode generation must not run to the full context.
+            return await self._llm.complete_json(messages, PrePassResult,
+                                                 max_tokens=settings.prepass_max_tokens, purpose="prepass")
         except Exception as e:
             # A failed pre-pass must never fail the turn: fall back to the
             # raw question routed as plain retrieval.
@@ -581,7 +606,9 @@ class ChatAgent:
             {"role": "system", "content": POST_PASS_SYSTEM},
             {"role": "user", "content": build_post_pass_user(memory, question, answer)},
         ]
-        raw = await self._llm.complete(messages, temperature=0.0)
+        # Capped like the pre-pass: a few hundred tokens of JSON at most.
+        raw = await self._llm.complete(messages, temperature=0.0,
+                                       max_tokens=settings.post_pass_max_tokens, purpose="memory")
 
         try:
             data = json.loads(raw)
@@ -607,7 +634,9 @@ class ChatAgent:
             {"role": "system", "content": CONFIDENCE_SYSTEM},
             {"role": "user", "content": build_confidence_user(memory, question, answer, rewritten)},
         ]
-        raw = await self._llm.complete(messages, temperature=0.0)
+        # Capped like the pre-pass: a score and a short report.
+        raw = await self._llm.complete(messages, temperature=0.0,
+                                       max_tokens=settings.confidence_max_tokens, purpose="confidence")
 
         try:
             data = json.loads(raw)

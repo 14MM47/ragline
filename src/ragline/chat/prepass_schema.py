@@ -16,6 +16,13 @@ class PrePassResult(BaseModel):
     mode: Literal["library", "compound", "retrieval"] = "retrieval"
     # The query rewritten as a standalone retrieval query (pronouns resolved).
     rewritten_query: str
+    # The user's question as a standalone natural-language question (follow-ups
+    # resolved, intent words kept) — what the answer model is asked. Empty =
+    # use the user's question as typed.
+    answer_question: str = ""
+    # One search query per named product when the question names two or more
+    # (comparisons); each gets its own retrieval. Empty otherwise.
+    entity_queries: list[str] = Field(default_factory=list)
     # Source filenames the user asked to exclude ("ignoring the ABB manual").
     excluded_sources: list[str] = Field(default_factory=list)
     # Document names/keywords the user is referring to (e.g. ["M580"]).

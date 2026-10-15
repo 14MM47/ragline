@@ -1,0 +1,340 @@
+{
+  "source": "eval/results/2026-09-28_analysis.md",
+  "scale": [
+    "abstained",
+    "correct",
+    "partial",
+    "wrong"
+  ],
+  "mapping": {
+    "C": "correct",
+    "C-": "partial",
+    "A": "abstained",
+    "N": "wrong",
+    "W": "wrong"
+  },
+  "grades": [
+    {
+      "id": "A01",
+      "category": "spec",
+      "human_grade": "A",
+      "label": "abstained",
+      "note": "\"not enough information\"; gave heat dissipation 34 BTU/hr instead of 11 W. Review sheet already flags the expected value as a flattened-table column pick — verify in the PDF"
+    },
+    {
+      "id": "A02",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "exact values, right documents, useful extra context (i7 throttling, IP20 quote)"
+    },
+    {
+      "id": "A03",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "exact values, right documents, useful extra context (i7 throttling, IP20 quote)"
+    },
+    {
+      "id": "A04",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "exact values, right documents, useful extra context (i7 throttling, IP20 quote)"
+    },
+    {
+      "id": "A05",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "exact values, right documents, useful extra context (i7 throttling, IP20 quote)"
+    },
+    {
+      "id": "A06",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "exact values, right documents, useful extra context (i7 throttling, IP20 quote)"
+    },
+    {
+      "id": "A07",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "exact values, right documents, useful extra context (i7 throttling, IP20 quote)"
+    },
+    {
+      "id": "A08",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "exact values, right documents, useful extra context (i7 throttling, IP20 quote)"
+    },
+    {
+      "id": "A09",
+      "category": "spec",
+      "human_grade": "A",
+      "label": "abstained",
+      "note": "table row for 2715-T7CD blank in the chunk; model refused to copy the T10CA row — correct behaviour, chunking problem"
+    },
+    {
+      "id": "A10",
+      "category": "comparison",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "55 °C vs 50 °C, right; auto-scored miss only because the user manual wasn't also cited"
+    },
+    {
+      "id": "A11",
+      "category": "comparison",
+      "human_grade": "W",
+      "label": "wrong",
+      "note": "said both IP66; expected IP69/IP69K vs IP65. Confident wrong from the 5510 tech data table"
+    },
+    {
+      "id": "A12",
+      "category": "comparison",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "one vs two ports, DLR on the 5510"
+    },
+    {
+      "id": "B01",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": ""
+    },
+    {
+      "id": "B02",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": ""
+    },
+    {
+      "id": "B03",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": ""
+    },
+    {
+      "id": "B04",
+      "category": "spec",
+      "human_grade": "A",
+      "label": "abstained",
+      "note": "IFP V2 section 7.8 not in the retrieved chunks; retrieval miss inside a long document"
+    },
+    {
+      "id": "B05",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": ""
+    },
+    {
+      "id": "B06",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": ""
+    },
+    {
+      "id": "B07",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": ""
+    },
+    {
+      "id": "B08",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": ""
+    },
+    {
+      "id": "B09",
+      "category": "spec",
+      "human_grade": "N",
+      "label": "wrong",
+      "note": "gave the WOP-2080T dimensions, explicitly labelled as the T model, V model not found"
+    },
+    {
+      "id": "B10",
+      "category": "comparison",
+      "human_grade": "C",
+      "label": "correct",
+      "note": ""
+    },
+    {
+      "id": "B11",
+      "category": "comparison",
+      "human_grade": "A",
+      "label": "abstained",
+      "note": "Siemens side right; Beckhoff CP6600 not retrieved at all (nothing from that manual in top-8)"
+    },
+    {
+      "id": "C01",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "C02/C04/C05 are one-line answers — good calibration"
+    },
+    {
+      "id": "C02",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "C02/C04/C05 are one-line answers — good calibration"
+    },
+    {
+      "id": "C03",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "C02/C04/C05 are one-line answers — good calibration"
+    },
+    {
+      "id": "C04",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "C02/C04/C05 are one-line answers — good calibration"
+    },
+    {
+      "id": "C05",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "C02/C04/C05 are one-line answers — good calibration"
+    },
+    {
+      "id": "C06",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "C02/C04/C05 are one-line answers — good calibration"
+    },
+    {
+      "id": "C07",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "C02/C04/C05 are one-line answers — good calibration"
+    },
+    {
+      "id": "C08",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "C02/C04/C05 are one-line answers — good calibration"
+    },
+    {
+      "id": "C09",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "C02/C04/C05 are one-line answers — good calibration"
+    },
+    {
+      "id": "C10",
+      "category": "comparison",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "57 MB vs 32 MB; auto-miss only on the uncited catalog"
+    },
+    {
+      "id": "C11",
+      "category": "comparison",
+      "human_grade": "C-",
+      "label": "partial",
+      "note": "19 W vs **8.8 W** (expected 8.4 W) — check which figure the Delta docs actually give"
+    },
+    {
+      "id": "D01",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": ""
+    },
+    {
+      "id": "D02",
+      "category": "spec",
+      "human_grade": "W",
+      "label": "wrong",
+      "note": "1.6 kg vs expected 2.74 kg, cited as the cMT2158X column. Column misread OR the expected value is wrong — verify in the datasheet"
+    },
+    {
+      "id": "D03",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": "right, but a long self-correcting note about brochure column alignment"
+    },
+    {
+      "id": "D04",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": ""
+    },
+    {
+      "id": "D05",
+      "category": "spec",
+      "human_grade": "W",
+      "label": "wrong",
+      "note": "mapped \"G315C\" to the Graphite \"G15\" row (7.73 lb) — expected 11.41 lb. Wrong product row"
+    },
+    {
+      "id": "D06",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": ""
+    },
+    {
+      "id": "D07",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": ""
+    },
+    {
+      "id": "D08",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": ""
+    },
+    {
+      "id": "D09",
+      "category": "spec",
+      "human_grade": "C",
+      "label": "correct",
+      "note": ""
+    },
+    {
+      "id": "D10",
+      "category": "comparison",
+      "human_grade": "A",
+      "label": "abstained",
+      "note": "eMT3150A right; the eMT3070A datasheet chunk contained only the title and contact details — **ingestion of that PDF looks broken**"
+    },
+    {
+      "id": "D11",
+      "category": "comparison",
+      "human_grade": "C",
+      "label": "correct",
+      "note": ""
+    },
+    {
+      "id": "D12",
+      "category": "comparison",
+      "human_grade": "C",
+      "label": "correct",
+      "note": ""
+    }
+  ]
+}

@@ -3,6 +3,35 @@
 All notable changes to ragline are documented here. The format loosely follows
 [Keep a Changelog](https://keepachangelog.com); versions follow SemVer.
 
+## [Unreleased]
+
+### Evaluation
+- Golden set v1.0: 100 HMI questions (spec, comparison, unanswerable,
+  multi-hop, procedure, follow-up, library), each reviewed by hand.
+- Harness v2: chat path with follow-up history replay, retrieval metrics,
+  repeats, `--ids` subsets, per-call records and opt-in transcripts.
+- LLM judge (Claude Opus 5.5 via Claude Code headless), calibrated against
+  hand grades (κ 0.883); campaign report with bootstrap CIs and McNemar tests.
+- Gated campaign runner over a model ladder on one RTX PRO 6000, thinking off
+  and on, boot time and GPU memory per pod session, frozen evaluation index.
+- Throughput probe at 1/4/8 concurrent questions.
+- Rung 2 (Qwen3.8-27B-INT4) complete, with a per-question failure diagnosis;
+  interactive multi-tab results page (`scripts/eval_dashboard.py`).
+
+### Retrieval and answering (fixes from the rung 2 diagnosis, stage 1)
+- BM25 tokeniser that understands markdown tables and part numbers.
+- The answer model is asked the user's question; retrieval searches the
+  pre-pass rewrite.
+- Comparisons retrieve each named product separately, with reserved slots.
+- Neighbouring chunks are added when a table or numbered procedure crosses a
+  chunk boundary; duplicate and fragment chunks are dropped.
+- Answer rules: every part answered, units kept, comparison winners named,
+  all steps given, no borrowing a sibling model's value.
+
+### Ingestion
+- Table-aware chunking and tiny-chunk merging; parse cache so parsing can run
+  ahead of the GPU pod; side-call token ceilings and slow-call logging.
+
 ## [0.1.0] — 2026-10-05
 
 First public release. ragline was developed privately before this; the

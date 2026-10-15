@@ -22,7 +22,7 @@ class _RecordingLLM:
     def __init__(self):
         self.calls: list[dict] = []
 
-    async def complete(self, messages, temperature=0.0, max_tokens=None):
+    async def complete(self, messages, temperature=0.0, max_tokens=None, purpose=""):
         self.calls.append({"temperature": temperature, "max_tokens": max_tokens})
         # Minimal well-formed extraction payload.
         return '{"entities": [], "relationships": []}'

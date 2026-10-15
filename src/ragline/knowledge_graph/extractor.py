@@ -85,6 +85,7 @@ async def extract_entities_and_relationships(
                     messages,
                     temperature=0.0,
                     max_tokens=settings.kg_extraction_max_tokens,
+                    purpose="kg",                                  # names the call in records and the slow log
                 )
 
                 # Strip markdown code fences if the model added them.

@@ -36,9 +36,9 @@ def test_rules_forbid_the_observed_failures():
 
 
 def test_examples_are_valid_prepass_json():
-    """Four examples, each a complete PrePassResult (all six fields present)."""
+    """Five examples (one a comparison), each a complete PrePassResult (every field present)."""
     examples = _examples()
-    assert len(examples) == 4
+    assert len(examples) == 5
     for ex in examples:
         # Every schema field spelled out, so the model sees the full shape.
         assert set(ex) == set(PrePassResult.model_fields)

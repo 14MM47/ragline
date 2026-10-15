@@ -57,9 +57,11 @@ class _RecordingRag:
     def __init__(self):
         self.calls = []
 
-    async def query(self, question, allowed_document_ids=None, excluded_source_files=None, conversation_context=""):
+    async def query(self, question, allowed_document_ids=None, excluded_source_files=None, conversation_context="",
+                    retrieval_query=None, entity_queries=None):
         self.calls.append(
-            {"question": question, "allowed": allowed_document_ids, "excluded": excluded_source_files}
+            {"question": question, "allowed": allowed_document_ids, "excluded": excluded_source_files,
+             "retrieval_query": retrieval_query, "entity_queries": entity_queries}
         )
         # A minimal formatted-response-shaped dict; format_for_api is patched
         # to pass it through in the tests that use this fake.
@@ -122,6 +124,32 @@ async def test_chat_standard_branch_passes_scope(chat_agent, monkeypatch):
     assert rag.calls[-1]["allowed"] == ["d1"]
     await agent.chat("s1", "what is the IP rating?", use_memory=False)
     assert rag.calls[-1]["allowed"] is None
+
+
+async def test_chat_prepass_splits_question_from_search_query(chat_agent, monkeypatch):
+    """Memory on: the answer gets the pre-pass's standalone question, retrieval the rewrite + entities."""
+    from ragline.chat.prepass_schema import PrePassResult
+
+    agent, rag = chat_agent
+
+    async def prepass(memory, question):
+        return PrePassResult(rewritten_query="X Y max temp", answer_question="Which is hotter, X or Y?",
+                             entity_queries=["X temp", "Y temp"])
+
+    monkeypatch.setattr(settings, "use_structured_prepass", True)
+    monkeypatch.setattr(agent, "_structured_pre_pass", prepass)
+    await agent.chat("s1", "which is hotter, x or y", use_memory=True)
+    call = rag.calls[-1]
+    assert call["question"] == "Which is hotter, X or Y?"
+    assert call["retrieval_query"] == "X Y max temp" and call["entity_queries"] == ["X temp", "Y temp"]
+
+    # An empty answer_question falls back to the question as typed.
+    async def bare(memory, question):
+        return PrePassResult(rewritten_query="kw")
+
+    monkeypatch.setattr(agent, "_structured_pre_pass", bare)
+    await agent.chat("s2", "what is the IP rating?", use_memory=True)
+    assert rag.calls[-1]["question"] == "what is the IP rating?" and rag.calls[-1]["entity_queries"] == []
 
 
 async def test_chat_compound_branch_intersects_scope(chat_agent, monkeypatch):

@@ -26,7 +26,9 @@ class _FakeLLM(BaseLLM):
         # The exact text complete() will return.
         self.canned = canned
 
-    async def complete(self, messages, temperature=0.0):
+    async def complete(self, messages, temperature=0.0, max_tokens=None, answer=False, purpose=""):
+        # Remember the ceiling the default complete_json() passed through.
+        self.max_tokens = max_tokens
         return self.canned
 
     async def stream(self, messages, temperature=0.0):  # pragma: no cover - unused
@@ -53,3 +55,15 @@ async def test_complete_json_invalid_raises():
     llm = _FakeLLM("sorry, I cannot do that")
     with pytest.raises(Exception):
         await llm.complete_json([], _Result)
+
+
+
+async def test_default_complete_json_passes_the_ceiling_through():
+    """The fence-stripping fallback forwards max_tokens to complete()."""
+    llm = _FakeLLM('{"a": 1}')
+
+    class _M(BaseModel):
+        a: int
+
+    assert (await llm.complete_json([], _M, max_tokens=1024)).a == 1
+    assert llm.max_tokens == 1024

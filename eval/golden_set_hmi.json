@@ -148,7 +148,7 @@
   },
   {
     "question": "What ATEX certificate number covers the non-display VersaView 5200 thin client, catalog number 6200T-NA?",
-    "expected_answer": "It is covered by ATEX certificate DEMKO 19 ATEX 2252 X (marking II 3 G, Ex ec IIC T4 Gc), issued by UL International Demko A/S.",
+    "expected_answer": "It is covered by ATEX certificate DEMKO 19 ATEX 2252 X (marking II 3 G, Ex ec IIC T4 Gc), issued by UL International Demko A/S. The installation instructions also list a separate UK (UKEX) certificate UL21UKEX2323X and a China CCC certificate; mentioning those alongside is fine, but giving UL21UKEX2323X as the ATEX number is wrong.",
     "expected_sources": [
       "hmi/allen-bradley/versaview-5000/versaview_5000_declaration_of_conformity.pdf",
       "hmi/allen-bradley/versaview-5000/industrial_computers_and_monitors_technical_data.pdf",
@@ -193,13 +193,16 @@
     ],
     "category": "spec",
     "tags": [
-      "hmi",
       "allen-bradley",
       "certification",
-      "declaration-of-conformity"
+      "declaration-of-conformity",
+      "hmi",
+      "trap-sibling-certificate"
     ],
     "source_match": "any",
-    "id": "A06"
+    "id": "A06",
+    "difficulty": "distractor",
+    "review_note": "Only the installation instructions (a newer revision) carry the UK line 'United Kingdom (UK) II 3 G, Ex ec IIC T4 Gc, UL21UKEX2323X' and a China CCC line; the other three documents list US, Canada and Europe only. The UKEX number is a sibling certificate, not the ATEX one."
   },
   {
     "question": "What ingress protection rating does a VersaView 5100 industrial monitor (e.g. 6200M-15WBN) have when it is VESA-mounted instead of panel-mounted?",
@@ -2155,5 +2158,1461 @@
       "hmi/weintek/cmt-x-series/cmt3072xh_datasheet.pdf"
     ],
     "id": "F05"
+  },
+  {
+    "question": "What is the operating temperature range of a 19-inch Allen-Bradley PanelView Plus 7 Performance terminal (2711P-T19C22D9P) if it is a Series A unit?",
+    "expected_answer": "Series A 19-in. terminals are rated 0…50 °C (32…122 °F); Series B 19-in. terminals are rated 0…55 °C (32…131 °F).",
+    "expected_sources": [
+      "hmi/allen-bradley/panelview-plus7/panelview_plus7_performance_technical_data.pdf"
+    ],
+    "expected_pages": {
+      "hmi/allen-bradley/panelview-plus7/panelview_plus7_performance_technical_data.pdf": [
+        3
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/allen-bradley/panelview-plus7/panelview_plus7_performance_technical_data.pdf",
+        "page": 3,
+        "quote": "19-in. terminals (Series A) 0…50 °C (32…122 °F)"
+      },
+      {
+        "source": "hmi/allen-bradley/panelview-plus7/panelview_plus7_performance_technical_data.pdf",
+        "page": 3,
+        "quote": "19-in. terminals (Series B) 0…55 °C (32…131 °F)"
+      }
+    ],
+    "category": "spec",
+    "source_match": "any",
+    "difficulty": "distractor",
+    "review_note": "Environmental table splits the 19-in. row by series; all other sizes and the Series B 19-in. are 0…55 °C, so a retriever that lands on the generic line gives the wrong value. ArmorView Plus 7 is also 0…50 °C (another distractor).",
+    "tags": [
+      "hmi",
+      "allen-bradley",
+      "temperature",
+      "technical-data"
+    ],
+    "id": "A13"
+  },
+  {
+    "question": "What panel cutout dimensions are required for an Allen-Bradley ASEM 6300M 15.6-inch panel monitor (display code 15L, AF/GL/SR bezel)?",
+    "expected_answer": "Dimension A 389.8 mm (15.31 in.) by Dimension B 239.3 mm (9.42 in.), with all dimensions ±1 mm.",
+    "expected_sources": [
+      "hmi/allen-bradley/asem-6300/asem_6300m_user_manual.pdf"
+    ],
+    "expected_pages": {
+      "hmi/allen-bradley/asem-6300/asem_6300m_user_manual.pdf": [
+        27
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/allen-bradley/asem-6300/asem_6300m_user_manual.pdf",
+        "page": 27,
+        "quote": "15.6 15L AF-GL-SR 389.8 (15.31) 239.3 ( 9.42)"
+      },
+      {
+        "source": "hmi/allen-bradley/asem-6300/asem_6300m_user_manual.pdf",
+        "page": 27,
+        "quote": "All dimensions are ± 1 mm (0.04 in.)."
+      }
+    ],
+    "category": "spec",
+    "source_match": "any",
+    "difficulty": "table",
+    "review_note": "Table 16 lists 12 display sizes in consecutive rows; the 15.0-in. 15E row (370.0 x 295.0) sits directly above the 15.6-in. 15L row. Extracted text has a stray space in '( 9.42)'.",
+    "tags": [
+      "hmi",
+      "allen-bradley",
+      "asem",
+      "dimensions",
+      "cutout",
+      "user-manual"
+    ],
+    "id": "A14"
+  },
+  {
+    "question": "Which adapter kit lets you install a 15-inch PanelView Plus 7 Performance touch-screen terminal into the panel cutout of a legacy Allen-Bradley PanelView 1400 or 1400e touch-screen terminal?",
+    "expected_answer": "Adapter kit 2711P-RAAT15 (the keypad version of the 1400/1400e is replaced via 2711P-RAAK15 with a 15 in. keypad-with-touch terminal). These kits are for Plus 7 Performance terminals only, not Plus 7 Standard.",
+    "expected_sources": [
+      "hmi/allen-bradley/panelview-plus7/legacy_panelview_to_plus7_migration_guide.pdf"
+    ],
+    "expected_pages": {
+      "hmi/allen-bradley/panelview-plus7/legacy_panelview_to_plus7_migration_guide.pdf": [
+        39
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/allen-bradley/panelview-plus7/legacy_panelview_to_plus7_migration_guide.pdf",
+        "page": 39,
+        "quote": "2711P-RAAT15 1400 and 1400e terminals, touch screen 15 in. touch screen"
+      },
+      {
+        "source": "hmi/allen-bradley/panelview-plus7/legacy_panelview_to_plus7_migration_guide.pdf",
+        "page": 39,
+        "quote": "Do not install a PanelView Plus 7 Standard terminal with these adapter kits."
+      }
+    ],
+    "category": "spec",
+    "source_match": "any",
+    "difficulty": "table",
+    "review_note": "Adapter Kit Conversion Table has seven rows; 2711P-RAAK15 (1400 keypad) is the adjacent row and 2711P-RAAT12/-RAAT12K cover the 1000/1000e. Document is 118 pages.",
+    "tags": [
+      "hmi",
+      "allen-bradley",
+      "migration",
+      "accessories",
+      "application-guide"
+    ],
+    "id": "A15"
+  },
+  {
+    "question": "What is the display luminance (brightness) of the Advantech WebOP-3000T series operator panel WOP-3100T?",
+    "expected_answer": "The WOP-3100T (10.1\" WSVGA) has a luminance of 550 cd/m2 (the sibling WOP-3070T and WOP-3120T are 500 cd/m2).",
+    "expected_sources": [
+      "hmi/advantech/webop-3000t/advantech_intelligent_operator_panels_catalog.pdf"
+    ],
+    "expected_pages": {
+      "hmi/advantech/webop-3000t/advantech_intelligent_operator_panels_catalog.pdf": [
+        4
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/advantech/webop-3000t/advantech_intelligent_operator_panels_catalog.pdf",
+        "page": 4,
+        "quote": "Luminance 500 cd/m2 550 cd/m2 500 cd/m2"
+      }
+    ],
+    "category": "spec",
+    "source_match": "any",
+    "difficulty": "distractor",
+    "review_note": "Selection-guide table with three model columns (WOP-3070T | WOP-3100T | WOP-3120T); 550 cd/m2 is the middle column. Siblings WOP-3070T and WOP-3120T both have 500 cd/m2.",
+    "tags": [
+      "hmi",
+      "advantech",
+      "display",
+      "catalog"
+    ],
+    "id": "B12"
+  },
+  {
+    "question": "What is the power consumption without loads of the Siemens SIMATIC HMI IM-319A industrial monitor?",
+    "expected_answer": "The IM-319A draws 21 W without loads (24 W load-dependent); note the larger IM-322A is lower at 18 W without loads.",
+    "expected_sources": [
+      "hmi/siemens/industrial-monitors-im/im312a_315a_319a_322a_operating_instructions.pdf"
+    ],
+    "expected_pages": {
+      "hmi/siemens/industrial-monitors-im/im312a_315a_319a_322a_operating_instructions.pdf": [
+        52
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/siemens/industrial-monitors-im/im312a_315a_319a_322a_operating_instructions.pdf",
+        "page": 52,
+        "quote": "Power consumption, without loads 14 W 16 W 21 W 18 W"
+      }
+    ],
+    "category": "spec",
+    "source_match": "any",
+    "difficulty": "distractor",
+    "review_note": "Four-column table (IM-312A | IM-315A | IM-319A | IM-322A); 21 W is the third column. Counter-intuitive sibling: the bigger IM-322A is 18 W, so a retriever picking 'the largest value' or the last column fails. Column header line is a few lines above the value line on the same page.",
+    "tags": [
+      "hmi",
+      "siemens",
+      "power",
+      "user-manual"
+    ],
+    "id": "B13"
+  },
+  {
+    "question": "What is the maximum permitted ambient temperature for a Siemens SIMATIC TP2200 Comfort panel mounted vertically in landscape format?",
+    "expected_answer": "0 ... 45 °C for the TP1900 Comfort and TP2200 Comfort (a footnote to the 0 ... 50 °C value that applies to all other Comfort Panels).",
+    "expected_sources": [
+      "hmi/siemens/tp-comfort/tp_comfort_panels_hardware_manual.pdf"
+    ],
+    "expected_pages": {
+      "hmi/siemens/tp-comfort/tp_comfort_panels_hardware_manual.pdf": [
+        198
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/siemens/tp-comfort/tp_comfort_panels_hardware_manual.pdf",
+        "page": 198,
+        "quote": "TP1900 Comfort and TP2200 Comfort: 0 ... 45 °C"
+      }
+    ],
+    "category": "spec",
+    "source_match": "any",
+    "difficulty": "long-doc",
+    "review_note": "Footnote-qualified value: the table row 'Vertical 0 ... 50 °C 1' carries footnote 1 which lowers the limit to 45 °C for TP1900/TP2200 only. The hardware manual is >200 pages. The datasheet is a pictorial quick-install sheet whose extracted text is fragmentary; the quote exists but context is weak. The pictorial Comfort Panels datasheet also carries '45 °C (TP1900, TP2200)' but its extracted text is fragmentary, so it is not listed as a source.",
+    "tags": [
+      "hmi",
+      "siemens",
+      "temperature",
+      "user-manual",
+      "datasheet"
+    ],
+    "id": "B14"
+  },
+  {
+    "question": "What is the maximum apparent power and the maximum-load power consumption of the AC-powered Mitsubishi GT27 model GT2715-XTBA-040?",
+    "expected_answer": "The GT2715-XTBA-040 (100 to 240 V AC) has a maximum apparent power of 122 VA and consumes 44 W or less under the maximum load (25 W stand-alone, 10 W with backlight off).",
+    "expected_sources": [
+      "hmi/mitsubishi/got2000/gt27_general_description.pdf"
+    ],
+    "expected_pages": {
+      "hmi/mitsubishi/got2000/gt27_general_description.pdf": [
+        1
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/mitsubishi/got2000/gt27_general_description.pdf",
+        "page": 1,
+        "quote": "Max. apparent power 122VA 82VA"
+      },
+      {
+        "source": "hmi/mitsubishi/got2000/gt27_general_description.pdf",
+        "page": 1,
+        "quote": "maximum load 44W or less 36W or less 34W or less 33W or less"
+      }
+    ],
+    "category": "spec",
+    "source_match": "any",
+    "difficulty": "table",
+    "review_note": "The -040 models lack the extension interface, so their power figures differ from standard GT27 models in the hardware manual. GT2715 is the first column (122VA/44W); GT2712-STBA-040 etc. share 82VA. The DC GT2715-XTBD-040 is 30 W or less — different model suffix.",
+    "tags": [
+      "hmi",
+      "mitsubishi",
+      "power",
+      "general-description"
+    ],
+    "id": "C12"
+  },
+  {
+    "question": "When a Delta DOP-100 HMI is connected to a Delta CNC controller using the ASCII protocol, what are the HMI factory-default control area/status area addresses and the default serial settings?",
+    "expected_answer": "The factory default control area/status area is DT0/DT10, with baud rate 9600, 7 data bits, even parity, 1 stop bit and controller station number 1 (RS-485 connection).",
+    "expected_sources": [
+      "hmi/delta/dop-100/dop_100_series_connection_manual.pdf"
+    ],
+    "expected_pages": {
+      "hmi/delta/dop-100/dop_100_series_connection_manual.pdf": [
+        1
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/delta/dop-100/dop_100_series_connection_manual.pdf",
+        "page": 1,
+        "quote": "Control Area / Status Area: DT0/DT10"
+      },
+      {
+        "source": "hmi/delta/dop-100/dop_100_series_connection_manual.pdf",
+        "page": 1,
+        "quote": "Baud Rate: 9600. 7. Even. 1"
+      }
+    ],
+    "category": "spec",
+    "source_match": "any",
+    "difficulty": "distractor",
+    "review_note": "Same manual lists Delta AS series PLC (Standard Modbus / Modbus TCP) with control/status area D0/D10 and Modbus TCP port 502 on pages 3 and 5 — easy to confuse with the CNC ASCII entry (DT0/DT10).",
+    "tags": [
+      "hmi",
+      "delta",
+      "communication",
+      "connection-manual"
+    ],
+    "id": "C13"
+  },
+  {
+    "question": "When a Mitsubishi GOT connects to Siemens SIMATIC S7-300/400/1200/1500 PLCs over Ethernet using OP communication, how many PLCs can one GT21 or GS21 connect to, compared with a GT27/GT25?",
+    "expected_answer": "For an N:1 (PLC:GOT) OP-communication configuration, a GT21 or GS21 can connect to 4 PLCs or less, whereas GT27, GT25, GT23 and GS25 can connect to 128 or less.",
+    "expected_sources": [
+      "hmi/mitsubishi/got2000/got2000_connection_manual_non_mitsubishi_products_2.pdf"
+    ],
+    "expected_pages": {
+      "hmi/mitsubishi/got2000/got2000_connection_manual_non_mitsubishi_products_2.pdf": [
+        528
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/mitsubishi/got2000/got2000_connection_manual_non_mitsubishi_products_2.pdf",
+        "page": 528,
+        "quote": "<For GT27, GT25, GT23, and GS25> 128 or less"
+      },
+      {
+        "source": "hmi/mitsubishi/got2000/got2000_connection_manual_non_mitsubishi_products_2.pdf",
+        "page": 528,
+        "quote": "<For GT21, GS21> 4 or less"
+      }
+    ],
+    "category": "spec",
+    "source_match": "any",
+    "difficulty": "long-doc",
+    "review_note": "~700-page connection manual. The FETCH/WRITE table on p.526 says '16 PLCs or less for 1 GOT' — a different connection type; the 4/128 split is in the OP-communication table on p.528.",
+    "tags": [
+      "hmi",
+      "mitsubishi",
+      "siemens",
+      "ethernet",
+      "connection-manual"
+    ],
+    "id": "C14"
+  },
+  {
+    "question": "What is the rated power consumption of the Weintek cMT2078X 7-inch HMI?",
+    "expected_answer": "The cMT2078X consumes 820mA at 24VDC (input power 24±20% VDC).",
+    "expected_sources": [
+      "hmi/weintek/cmt-series/cmt2078x_7in_datasheet.pdf"
+    ],
+    "expected_pages": {
+      "hmi/weintek/cmt-series/cmt2078x_7in_datasheet.pdf": [
+        1
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/weintek/cmt-series/cmt2078x_7in_datasheet.pdf",
+        "page": 1,
+        "quote": "Power Consumption 820mA@24VDC"
+      }
+    ],
+    "category": "spec",
+    "source_match": "any",
+    "difficulty": "distractor",
+    "review_note": "Near-identical siblings cMT3072X and cMT3072XH (same 200.3 x 146.3 x 35.0 mm housing) are rated 850mA@24VDC; MT8071iE1 is 450mA@24VDC. Check the answer is 820 mA, not 850.",
+    "tags": [
+      "hmi",
+      "weintek",
+      "power",
+      "datasheet"
+    ],
+    "id": "D13"
+  },
+  {
+    "question": "At what maximum ambient temperature can a Red Lion CR3000 15-inch HMI operate when the cellular modem module is fitted?",
+    "expected_answer": "With the Cellular Modem Module (CRM000CMCMOD0000) or equivalent fitted, the CR3000 15\" is limited to -10 to 45 °C, instead of the normal -10 to 50 °C operating range.",
+    "expected_sources": [
+      "hmi/red-lion/cr-series/cr3000_series_user_manual.pdf"
+    ],
+    "expected_pages": {
+      "hmi/red-lion/cr-series/cr3000_series_user_manual.pdf": [
+        2
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/red-lion/cr-series/cr3000_series_user_manual.pdf",
+        "page": 2,
+        "quote": "CR3000 15\": Max operating temperature -10 to 45 °C when using Cellular Modem Module (CRM000CMCMOD0000) or equivalent."
+      }
+    ],
+    "category": "spec",
+    "source_match": "any",
+    "difficulty": "distractor",
+    "review_note": "The general line immediately above says -10 to 50 °C, and the CR1000/CR3000 datasheet also gives -10°C to 50°C with no modem qualifier; the answer must give the 45 °C qualified figure.",
+    "tags": [
+      "hmi",
+      "red-lion",
+      "temperature",
+      "user-manual"
+    ],
+    "id": "D14"
+  },
+  {
+    "question": "How much does the Schneider Harmony GTO HMIGTO5315 stainless-steel 10.4-inch panel weigh?",
+    "expected_answer": "The HMIGTO5315 weighs 2.500 kg (the standard HMIGTO5310 weighs 2.000 kg).",
+    "expected_sources": [
+      "hmi/schneider/harmony-gto/harmony_gto_catalog.pdf"
+    ],
+    "expected_pages": {
+      "hmi/schneider/harmony-gto/harmony_gto_catalog.pdf": [
+        15
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/schneider/harmony-gto/harmony_gto_catalog.pdf",
+        "page": 15,
+        "quote": "HMIGTO5315 2.500"
+      }
+    ],
+    "category": "spec",
+    "source_match": "any",
+    "difficulty": "distractor",
+    "review_note": "Flattened references table; the reference and weight (kg) are the last two cells of each row. Sibling HMIGTO5310 (standard version) is 2.000 kg and HMIGTO6315 is 3.000 kg, HMIGTO6310 2.500 kg - make sure the 2.500 is tied to HMIGTO5315.",
+    "tags": [
+      "hmi",
+      "schneider",
+      "weight",
+      "catalog"
+    ],
+    "id": "D15"
+  },
+  {
+    "question": "Which draws more power at maximum: the Allen-Bradley PanelView 5510 stainless-steel 15-inch terminal 2715P-T15CD-BSK or the PanelView Plus 7 Performance stainless-steel 15-inch terminal 2711P-T15C22D9P-BSHK (Series C)?",
+    "expected_answer": "The PanelView Plus 7 Performance 2711P-T15C22D9P-BSHK Series C is rated 39 W max, higher than the PanelView 5510 2715P-T15CD-BSK at 33 W.",
+    "expected_sources": [
+      "hmi/allen-bradley/panelview-5510/panelview_5510_stainless_steel_technical_data.pdf",
+      "hmi/allen-bradley/panelview-plus7/panelview_plus7_performance_technical_data.pdf"
+    ],
+    "expected_pages": {
+      "hmi/allen-bradley/panelview-5510/panelview_5510_stainless_steel_technical_data.pdf": [
+        2
+      ],
+      "hmi/allen-bradley/panelview-plus7/panelview_plus7_performance_technical_data.pdf": [
+        8
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/allen-bradley/panelview-5510/panelview_5510_stainless_steel_technical_data.pdf",
+        "page": 2,
+        "quote": "2715P-T15CD-BSK 33 W"
+      },
+      {
+        "source": "hmi/allen-bradley/panelview-plus7/panelview_plus7_performance_technical_data.pdf",
+        "page": 8,
+        "quote": "(Series C) 39 W max"
+      }
+    ],
+    "category": "comparison",
+    "source_match": "all",
+    "difficulty": "table",
+    "review_note": "Plus 7 Perf stainless table p.8 flattens four columns: the Series B 15-in. value is 50 W max, and '(Series C) 33 W max' (12.1-in.) appears immediately before '(Series C) 39 W max' (15-in.). 5510 stainless value is in a four-row table (24/25/26/33 W).",
+    "tags": [
+      "hmi",
+      "allen-bradley",
+      "power",
+      "stainless",
+      "technical-data"
+    ],
+    "id": "A16"
+  },
+  {
+    "question": "Which is heavier: the Allen-Bradley PanelView Plus 7 Standard 12-inch touch terminal 2711P-T12W21D8S or the PanelView Plus 7 Performance 12.1-inch touch terminal 2711P-T12W22D9P?",
+    "expected_answer": "The Plus 7 Performance 2711P-T12W22D9P weighs approx. 2.54 kg (5.60 lb), more than the Plus 7 Standard 2711P-T12W21D8S at approx. 1.95 kg (4.29 lb).",
+    "expected_sources": [
+      "hmi/allen-bradley/panelview-plus7/panelview_plus7_standard_technical_data.pdf",
+      "hmi/allen-bradley/panelview-plus7/panelview_plus7_performance_technical_data.pdf"
+    ],
+    "expected_pages": {
+      "hmi/allen-bradley/panelview-plus7/panelview_plus7_standard_technical_data.pdf": [
+        6
+      ],
+      "hmi/allen-bradley/panelview-plus7/panelview_plus7_performance_technical_data.pdf": [
+        6
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/allen-bradley/panelview-plus7/panelview_plus7_standard_technical_data.pdf",
+        "page": 6,
+        "quote": "Weight, approx. 1.95 kg (4.29 lb) 3.07 kg (6.75 lb)"
+      },
+      {
+        "source": "hmi/allen-bradley/panelview-plus7/panelview_plus7_performance_technical_data.pdf",
+        "page": 6,
+        "quote": "Weight, approx 2.28 kg (5.03 lb) 2.58 kg (5.69 lb) 2.54 kg (5.60 lb)"
+      }
+    ],
+    "category": "comparison",
+    "source_match": "all",
+    "difficulty": "table",
+    "review_note": "Standard TD p.6: 1.95 kg is the first of two columns (12-in., 15-in.). Performance TD p.6: 2.54 kg is the third of three columns (10.4 touch 2.28, 10.4 keypad 2.58, 12.1 touch 2.54).",
+    "tags": [
+      "hmi",
+      "allen-bradley",
+      "weight",
+      "technical-data"
+    ],
+    "id": "A17"
+  },
+  {
+    "question": "Which draws more power: the Advantech WOP-3070T 7-inch operator panel or the Siemens SIMATIC KTP700 Basic (2nd generation)?",
+    "expected_answer": "The Advantech WOP-3070T draws more: 7 W versus 5.5 W for the Siemens KTP700 Basic (both 24 V DC).",
+    "expected_sources": [
+      "hmi/advantech/webop-3000t/advantech_intelligent_operator_panels_catalog.pdf",
+      "hmi/siemens/ktp-basic/ktp_basic_panels_2nd_gen_hardware.pdf"
+    ],
+    "expected_pages": {
+      "hmi/advantech/webop-3000t/advantech_intelligent_operator_panels_catalog.pdf": [
+        4
+      ],
+      "hmi/siemens/ktp-basic/ktp_basic_panels_2nd_gen_hardware.pdf": [
+        117
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/advantech/webop-3000t/advantech_intelligent_operator_panels_catalog.pdf",
+        "page": 4,
+        "quote": "Power Consumption 7W 9W 12W"
+      },
+      {
+        "source": "hmi/siemens/ktp-basic/ktp_basic_panels_2nd_gen_hardware.pdf",
+        "page": 117,
+        "quote": "Power consumption 1 3 W 5.5 W 5.5 W"
+      }
+    ],
+    "category": "comparison",
+    "source_match": "all",
+    "difficulty": "table",
+    "review_note": "Both values are first/second columns of flattened multi-model tables: Advantech 7W is the WOP-3070T column (9W = 3100T, 12W = 3120T); Siemens 5.5 W is the KTP700 Basic column (3 W = KTP400 Basic, 5.5 W = KTP700 Basic DP too). The Siemens '1' after 'Power consumption' is a footnote marker.",
+    "tags": [
+      "hmi",
+      "advantech",
+      "siemens",
+      "power",
+      "catalog",
+      "user-manual"
+    ],
+    "id": "B15"
+  },
+  {
+    "question": "How does the front degree of protection of the Siemens TP700 Comfort Outdoor compare with that of the standard TP700 Comfort panel?",
+    "expected_answer": "The TP700 Comfort Outdoor front is rated IP66 (Type 4X/Type 12 indoor/outdoor) when mounted, one step higher than the standard TP700 Comfort front, which is IP65 according to IEC 60529 (Type 4X/Type 12 indoor use only). Both have IP20 at the rear.",
+    "expected_sources": [
+      "hmi/siemens/tp-comfort/tp_comfort_outdoor_panels_manual.pdf",
+      "hmi/siemens/tp-comfort/tp_comfort_panels_hardware_manual.pdf"
+    ],
+    "expected_pages": {
+      "hmi/siemens/tp-comfort/tp_comfort_outdoor_panels_manual.pdf": [
+        28
+      ],
+      "hmi/siemens/tp-comfort/tp_comfort_panels_hardware_manual.pdf": [
+        200
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/siemens/tp-comfort/tp_comfort_outdoor_panels_manual.pdf",
+        "page": 28,
+        "quote": "When mounted: • IP66"
+      },
+      {
+        "source": "hmi/siemens/tp-comfort/tp_comfort_panels_hardware_manual.pdf",
+        "page": 200,
+        "quote": "IP65 according to IEC 60529"
+      }
+    ],
+    "category": "comparison",
+    "source_match": "all",
+    "difficulty": "long-doc",
+    "review_note": "Near-identical product names (TP700 Comfort vs TP700 Comfort Outdoor) make this a strong distractor case; the Outdoor compact manual explicitly takes precedence over the standard Comfort Panels manual. Hardware manual is >200 pages.",
+    "tags": [
+      "hmi",
+      "siemens",
+      "ip-rating",
+      "user-manual"
+    ],
+    "id": "B16"
+  },
+  {
+    "question": "Which draws more power at maximum: the Omron NA5-12W (V2) HMI or the Mitsubishi GOT2000 GT2512-WXTBD, and what are the figures?",
+    "expected_answer": "The Omron NA5-12W-V2 draws more: 28 W max., versus 20 W or less under the maximum load for the Mitsubishi GT2512-WXTBD.",
+    "expected_sources": [
+      "hmi/omron/na-series/na_series_hardware_v2_user_manual.pdf",
+      "hmi/mitsubishi/got2000/gt25_wide_general_description.pdf"
+    ],
+    "expected_pages": {
+      "hmi/omron/na-series/na_series_hardware_v2_user_manual.pdf": [
+        44
+      ],
+      "hmi/mitsubishi/got2000/gt25_wide_general_description.pdf": [
+        1
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/omron/na-series/na_series_hardware_v2_user_manual.pdf",
+        "page": 44,
+        "quote": "Power consumption 29 W max. 28 W max. 23 W max. 19 W max."
+      },
+      {
+        "source": "hmi/mitsubishi/got2000/gt25_wide_general_description.pdf",
+        "page": 1,
+        "quote": "maximum load 20 W or less 16 W or less"
+      }
+    ],
+    "category": "comparison",
+    "source_match": "all",
+    "difficulty": "distractor",
+    "review_note": "Cross-vendor. NA5-12W is the second column (28 W) between NA5-15W (29 W) and NA5-9W (23 W); the older NA5-12W-V1 is 25 W max. in the V1 manual. GT2512-WX is the 20 W column; GT2510/GT2507 are 16 W.",
+    "tags": [
+      "hmi",
+      "omron",
+      "mitsubishi",
+      "power",
+      "hardware-manual",
+      "general-description"
+    ],
+    "id": "C15"
+  },
+  {
+    "question": "Did the maximum power consumption of the Omron NA5-12W change between the V1 and V2 hardware versions? Give both values.",
+    "expected_answer": "Yes: the NA5-12W-V1 is rated 25 W max., while the NA5-12W-V2 is rated 28 W max., so the V2 draws 3 W more (the 15W, 9W and 7W models are unchanged at 29, 23 and 19 W).",
+    "expected_sources": [
+      "hmi/omron/na-series/na_series_hardware_v1_user_manual.pdf",
+      "hmi/omron/na-series/na_series_hardware_v2_user_manual.pdf"
+    ],
+    "expected_pages": {
+      "hmi/omron/na-series/na_series_hardware_v1_user_manual.pdf": [
+        44
+      ],
+      "hmi/omron/na-series/na_series_hardware_v2_user_manual.pdf": [
+        44
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/omron/na-series/na_series_hardware_v1_user_manual.pdf",
+        "page": 44,
+        "quote": "12.1 inches 25 W max. 2.4 kg max."
+      },
+      {
+        "source": "hmi/omron/na-series/na_series_hardware_v2_user_manual.pdf",
+        "page": 44,
+        "quote": "Power consumption 29 W max. 28 W max. 23 W max. 19 W max."
+      }
+    ],
+    "category": "comparison",
+    "source_match": "all",
+    "difficulty": "distractor",
+    "review_note": "Same model family, two manuals, same page number (44) in each. V2 value must be read as the 2nd of 4 columns; V1 value appears in the model list (p.44) and again in the general specs (p.46).",
+    "tags": [
+      "hmi",
+      "omron",
+      "power",
+      "hardware-manual"
+    ],
+    "id": "C16"
+  },
+  {
+    "question": "Which 15-inch HMI is heavier: the Red Lion Graphite G15 or the Weintek cMT3152X?",
+    "expected_answer": "The Red Lion Graphite G15 is heavier at 7.73 lb (3.50 kg), versus approx. 2.85 kg for the Weintek cMT3152X.",
+    "expected_sources": [
+      "hmi/red-lion/graphite/graphite_series_full_datasheet.pdf",
+      "hmi/weintek/cmt-series/cmt3152x_15in_datasheet.pdf"
+    ],
+    "expected_pages": {
+      "hmi/red-lion/graphite/graphite_series_full_datasheet.pdf": [
+        2
+      ],
+      "hmi/weintek/cmt-series/cmt3152x_15in_datasheet.pdf": [
+        1
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/red-lion/graphite/graphite_series_full_datasheet.pdf",
+        "page": 2,
+        "quote": "G15 – 7.73 lb. (3.50 kg)"
+      },
+      {
+        "source": "hmi/weintek/cmt-series/cmt3152x_15in_datasheet.pdf",
+        "page": 1,
+        "quote": "Weight Approx. 2.85 kg"
+      }
+    ],
+    "category": "comparison",
+    "source_match": "all",
+    "difficulty": "distractor",
+    "review_note": "Cross-vendor. The Graphite weight is also in graphite_hmi_datasheet.pdf; the G315C datasheet (older Graphite G3) gives 11.41 lbs and cMT3162X is 1.6 kg / cMT2158X 2.74 kg - confirm the right pair is used.",
+    "tags": [
+      "hmi",
+      "red-lion",
+      "weintek",
+      "weight",
+      "datasheet"
+    ],
+    "id": "D16"
+  },
+  {
+    "question": "What front-panel ingress protection do the Weintek eMT3105P and eMT3070A have, and which is rated higher?",
+    "expected_answer": "The eMT3070A has a NEMA4 / IP66 compliant front panel, while the eMT3105P is only NEMA4 / IP65 compliant, so the eMT3070A is rated higher.",
+    "expected_sources": [
+      "hmi/weintek/emt-series/emt3105p_10in_datasheet.pdf",
+      "hmi/weintek/emt-series/emt3070a_7in_datasheet.pdf"
+    ],
+    "expected_pages": {
+      "hmi/weintek/emt-series/emt3105p_10in_datasheet.pdf": [
+        1
+      ],
+      "hmi/weintek/emt-series/emt3070a_7in_datasheet.pdf": [
+        1
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/weintek/emt-series/emt3105p_10in_datasheet.pdf",
+        "page": 1,
+        "quote": "NEMA4 / IP65 Compliant Front Panel"
+      },
+      {
+        "source": "hmi/weintek/emt-series/emt3070a_7in_datasheet.pdf",
+        "page": 1,
+        "quote": "NEMA4 / IP66 Compliant Front Panel"
+      }
+    ],
+    "category": "comparison",
+    "source_match": "all",
+    "difficulty": "distractor",
+    "review_note": "Same eMT family, one digit difference (IP65 vs IP66). The eMT3150A sibling is also in the corpus; the brochure text may claim IP66 for the family generally.",
+    "tags": [
+      "hmi",
+      "weintek",
+      "ip-rating",
+      "datasheet"
+    ],
+    "id": "D17"
+  },
+  {
+    "question": "What is the power consumption of the Siemens SIMATIC KTP1500 Basic panel?",
+    "expected_answer": "There is no KTP1500 Basic in the documents; the Basic Panels 2nd Generation range is KTP400/700/900/1200. The answer should say the model is not found and must not return the KTP1200 Basic figure as if it were the KTP1500's.",
+    "expected_sources": [],
+    "expected_pages": {},
+    "evidence": [],
+    "category": "unanswerable",
+    "source_match": "none",
+    "absence_check": "grep -rlE 'KTP ?1500' hmi/ -> 0 files; KTP1200 appears in 1 file (ktp_basic_panels_2nd_gen_hardware) and is asked in B01",
+    "difficulty": "distractor",
+    "review_note": "Near-miss trap: the sibling KTP1200 Basic exists with a real power figure (B01). A wrong answer here is one that silently substitutes the KTP1200 value.",
+    "tags": [
+      "hmi",
+      "unanswerable",
+      "siemens",
+      "trap-nonexistent-model"
+    ],
+    "id": "E10"
+  },
+  {
+    "question": "What SIL (Safety Integrity Level) is the Beijer X2 pro 10 B2 certified to?",
+    "expected_answer": "The Beijer documents do not state any SIL rating for the X2 pro 10 B2. The answer should say so and must not borrow a SIL figure from another vendor's document.",
+    "expected_sources": [],
+    "expected_pages": {},
+    "evidence": [],
+    "category": "unanswerable",
+    "source_match": "none",
+    "absence_check": "grep -rlE '\\bSIL\\b' hmi/beijer -> 0 files; 'SIL' appears in 5 files from other vendors (ASEM 6300, GOT2000, Siemens IFP/IM)",
+    "difficulty": "distractor",
+    "review_note": "Cross-vendor trap: SIL text exists in Siemens/Mitsubishi/ASEM documents and could be retrieved for a 'safety' query. The product itself exists (x2_pro_10_b2_hardware_manual).",
+    "tags": [
+      "hmi",
+      "unanswerable",
+      "beijer",
+      "trap-cross-vendor"
+    ],
+    "id": "E11"
+  },
+  {
+    "question": "Does the Schneider Harmony ST6 HMIST6700 support Power over Ethernet (PoE)?",
+    "expected_answer": "The documents do not mention Power over Ethernet for any Harmony ST6 model (or any HMI in the library). The answer should say the documents do not state PoE support rather than asserting yes or no.",
+    "expected_sources": [],
+    "expected_pages": {},
+    "evidence": [],
+    "category": "unanswerable",
+    "source_match": "none",
+    "absence_check": "grep -rliE '\\bPoE\\b|power over ethernet' hmi/ -> 0 files; HMIST6700 exists (harmony_st6_user_manual, basic_and_web_hmi_panels_catalog) and D06 asks its power consumption",
+    "difficulty": "distractor",
+    "review_note": "Yes/no trap: the ST6 manual has Ethernet-interface and 24 V power sections that an LLM may combine into an invented 'no PoE' or 'yes' answer; the correct behaviour is to say it is not stated.",
+    "tags": [
+      "hmi",
+      "unanswerable",
+      "schneider",
+      "trap-yes-no"
+    ],
+    "id": "E12"
+  },
+  {
+    "question": "Does the Beckhoff CP6600 panel PC have built-in Wi-Fi?",
+    "expected_answer": "The Beckhoff documents do not mention Wi-Fi, WLAN or any wireless interface for the CP6600 (or any Beckhoff panel in the library). The answer should say this is not stated, not infer an answer from the wired-interface list.",
+    "expected_sources": [],
+    "expected_pages": {},
+    "evidence": [],
+    "category": "unanswerable",
+    "source_match": "none",
+    "absence_check": "grep -rliE 'wi-?fi|wlan|wireless' hmi/beckhoff -> 0 files (wireless terms appear in 28 files from 9 other vendors); CP6600 exists (cp6600_panel_pc_manual, asked in B11)",
+    "difficulty": "distractor",
+    "review_note": "Cross-vendor + yes/no trap: Weintek/Mitsubishi/Red Lion documents discuss Wi-Fi and may be retrieved; the CP6600 manual lists only wired interfaces.",
+    "tags": [
+      "hmi",
+      "unanswerable",
+      "beckhoff",
+      "trap-cross-vendor",
+      "trap-yes-no"
+    ],
+    "id": "E13"
+  },
+  {
+    "question": "Which of these Allen-Bradley small-format (6.5 to 7 in.) terminals has the highest display resolution: the PanelView 800 2711R-T7T, the PanelView Plus 7 Standard 2711P-T7C21D8S, or the PanelView 5510 2715P-T7CD?",
+    "expected_answer": "The PanelView 800 2711R-T7T at 800 x 480 (WVGA). Both the Plus 7 Standard 2711P-T7C21D8S (6.5 in.) and the PanelView 5510 2715P-T7CD (6.5 in.) are 640 x 480 VGA.",
+    "expected_sources": [
+      "hmi/allen-bradley/panelview-800/panelview_800_technical_data.pdf",
+      "hmi/allen-bradley/panelview-plus7/panelview_plus7_standard_technical_data.pdf",
+      "hmi/allen-bradley/panelview-5510/panelview_5510_technical_data.pdf"
+    ],
+    "expected_pages": {
+      "hmi/allen-bradley/panelview-800/panelview_800_technical_data.pdf": [
+        5
+      ],
+      "hmi/allen-bradley/panelview-plus7/panelview_plus7_standard_technical_data.pdf": [
+        5
+      ],
+      "hmi/allen-bradley/panelview-5510/panelview_5510_technical_data.pdf": [
+        4
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/allen-bradley/panelview-800/panelview_800_technical_data.pdf",
+        "page": 5,
+        "quote": "Resolution (pixels) 480 x 272 800 x 480 800 x 600"
+      },
+      {
+        "source": "hmi/allen-bradley/panelview-plus7/panelview_plus7_standard_technical_data.pdf",
+        "page": 5,
+        "quote": "640 x 480 VGA, 18-bit color graphics 800 x 480 WVGA, 18-bit color graphics"
+      },
+      {
+        "source": "hmi/allen-bradley/panelview-5510/panelview_5510_technical_data.pdf",
+        "page": 4,
+        "quote": "Display resolution/aspect ratio 640 x 480 VGA/4:3 800 x 480 WVGA/5:3"
+      }
+    ],
+    "category": "multihop",
+    "source_match": "all",
+    "difficulty": "table",
+    "review_note": "The Plus 7 Standard 2711P-T7C21D8S and the 5510 2715P-T7CD are 6.5 in. displays despite the '7' in the catalog number. Each value is a column pick: PV800 TD p.5 columns are T4T/T7T/T10T (800 x 480 is the middle one); Std TD p.5 columns 7-in/9-in/10-in; 5510 TD p.4 the 7 in. wide 2715P-T7WD is 800 x 480 but the asked 2715P-T7CD (6.5 in.) is 640 x 480.",
+    "tags": [
+      "hmi",
+      "allen-bradley",
+      "display",
+      "resolution",
+      "technical-data"
+    ],
+    "id": "G01"
+  },
+  {
+    "question": "What is the primary PanelView Plus 7 replacement for a legacy Allen-Bradley PanelView Standard 550 terminal 2711-K5A1, and how much does that replacement terminal weigh?",
+    "expected_answer": "The primary replacement is the PanelView Plus 7 Standard 6-in. touch terminal 2711P-T6C21D8S (cutout 123 x 156 mm, 640 x 480, one Ethernet port); it weighs approximately 0.70 kg (1.53 lb).",
+    "expected_sources": [
+      "hmi/allen-bradley/panelview-plus7/legacy_panelview_to_plus7_migration_guide.pdf",
+      "hmi/allen-bradley/panelview-plus7/panelview_plus7_standard_technical_data.pdf"
+    ],
+    "expected_pages": {
+      "hmi/allen-bradley/panelview-plus7/legacy_panelview_to_plus7_migration_guide.pdf": [
+        21
+      ],
+      "hmi/allen-bradley/panelview-plus7/panelview_plus7_standard_technical_data.pdf": [
+        4
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/allen-bradley/panelview-plus7/legacy_panelview_to_plus7_migration_guide.pdf",
+        "page": 21,
+        "quote": "2711P-T6C21D8S 123 (4.84) 156 (6.14) 640 x 480"
+      },
+      {
+        "source": "hmi/allen-bradley/panelview-plus7/panelview_plus7_standard_technical_data.pdf",
+        "page": 4,
+        "quote": "Weight, approx 0.44 kg (0.97 lb) 0.70 kg (1.53 lb)"
+      }
+    ],
+    "category": "multihop",
+    "source_match": "all",
+    "difficulty": "long-doc",
+    "review_note": "Hop 1 is the 550 Primary Replacement table in the 118-page migration guide (row 2711-K5A1 -> 2711P-T6C21D8S); hop 2 is the Standard TD p.4 weight row where 0.70 kg is the second column (4-in. is 0.44 kg).",
+    "tags": [
+      "hmi",
+      "allen-bradley",
+      "migration",
+      "weight",
+      "application-guide",
+      "technical-data"
+    ],
+    "id": "G02"
+  },
+  {
+    "question": "Which of the Beckhoff CP37xx panel PC, CP6700 panel PC and CP39xx-0000 multi-touch control panel may be operated at an ambient temperature of 55 °C?",
+    "expected_answer": "Only the CP39xx-0000 control panel (operation 0 °C ... +55 °C). The CP37xx is limited to 0 °C to +45 °C and the CP6700 to 0 °C ... +50 °C.",
+    "expected_sources": [
+      "hmi/beckhoff/cp3xxx-series/cp37xx_panel_pc_manual.pdf",
+      "hmi/beckhoff/cp6000-series/cp6700_panel_pc.pdf",
+      "hmi/beckhoff/cp3xxx-series/cp39xx_multitouch_control_panel_manual.pdf"
+    ],
+    "expected_pages": {
+      "hmi/beckhoff/cp3xxx-series/cp37xx_panel_pc_manual.pdf": [
+        47
+      ],
+      "hmi/beckhoff/cp6000-series/cp6700_panel_pc.pdf": [
+        40
+      ],
+      "hmi/beckhoff/cp3xxx-series/cp39xx_multitouch_control_panel_manual.pdf": [
+        45
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/beckhoff/cp3xxx-series/cp37xx_panel_pc_manual.pdf",
+        "page": 47,
+        "quote": "Operation: 0 °C to +45 °C"
+      },
+      {
+        "source": "hmi/beckhoff/cp6000-series/cp6700_panel_pc.pdf",
+        "page": 40,
+        "quote": "Operation: 0 °C ... +50 °C"
+      },
+      {
+        "source": "hmi/beckhoff/cp3xxx-series/cp39xx_multitouch_control_panel_manual.pdf",
+        "page": 45,
+        "quote": "Operation: 0 °C ... +55 °C"
+      }
+    ],
+    "category": "multihop",
+    "source_match": "all",
+    "difficulty": "distractor",
+    "review_note": "Three documents with identically-worded 'Permissible ambient temperature' rows but different limits. Extra trap: the CP39xx-0010 variant (p46 of the same manual) is only 0 ... +50 °C, and the CP6600 (separate manual) is 0 ... +55 °C — the question deliberately names CP6700, not CP6600.",
+    "tags": [
+      "hmi",
+      "beckhoff",
+      "temperature",
+      "user-manual"
+    ],
+    "id": "G03"
+  },
+  {
+    "question": "Which of these HMI fronts are rated IP66 rather than IP65: Advantech WOP-3070T, Siemens TP700 Comfort Outdoor, Siemens TP700 Comfort (standard), Beckhoff CP3907?",
+    "expected_answer": "The Advantech WOP-3070T (IP66-rated front panel) and the Siemens TP700 Comfort Outdoor (front IP66 when mounted) are IP66; the standard Siemens TP700 Comfort front is IP65 according to IEC 60529 and the Beckhoff CP3907 (CP39xx) is IP65.",
+    "expected_sources": [
+      "hmi/advantech/webop-3000t/advantech_intelligent_operator_panels_catalog.pdf",
+      "hmi/siemens/tp-comfort/tp_comfort_outdoor_panels_manual.pdf",
+      "hmi/siemens/tp-comfort/tp_comfort_panels_hardware_manual.pdf",
+      "hmi/beckhoff/cp3xxx-series/cp39xx_multitouch_control_panel_manual.pdf"
+    ],
+    "expected_pages": {
+      "hmi/advantech/webop-3000t/advantech_intelligent_operator_panels_catalog.pdf": [
+        4
+      ],
+      "hmi/siemens/tp-comfort/tp_comfort_outdoor_panels_manual.pdf": [
+        28
+      ],
+      "hmi/siemens/tp-comfort/tp_comfort_panels_hardware_manual.pdf": [
+        200
+      ],
+      "hmi/beckhoff/cp3xxx-series/cp39xx_multitouch_control_panel_manual.pdf": [
+        45
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/advantech/webop-3000t/advantech_intelligent_operator_panels_catalog.pdf",
+        "page": 4,
+        "quote": "IP66-rated front panel"
+      },
+      {
+        "source": "hmi/siemens/tp-comfort/tp_comfort_outdoor_panels_manual.pdf",
+        "page": 28,
+        "quote": "When mounted: • IP66"
+      },
+      {
+        "source": "hmi/siemens/tp-comfort/tp_comfort_panels_hardware_manual.pdf",
+        "page": 200,
+        "quote": "IP65 according to IEC 60529"
+      },
+      {
+        "source": "hmi/beckhoff/cp3xxx-series/cp39xx_multitouch_control_panel_manual.pdf",
+        "page": 45,
+        "quote": "Protection rating IP65"
+      }
+    ],
+    "category": "multihop",
+    "source_match": "all",
+    "difficulty": "distractor",
+    "review_note": "Four documents, three vendors. 'IP66-rated front panel' appears in all three WOP-3000T columns on the Advantech page (same value, so column position does not matter). TP700 Comfort vs TP700 Comfort Outdoor is the sibling trap; the Beckhoff IP65 is 'all-round', not front-only.",
+    "tags": [
+      "hmi",
+      "advantech",
+      "siemens",
+      "beckhoff",
+      "ip-rating",
+      "catalog",
+      "user-manual"
+    ],
+    "id": "G04"
+  },
+  {
+    "question": "Of the three Mitsubishi 7-inch wide panels GT2107-WTBD, GS2107-WTBD and GT2507-WTBD, which consume more than 10 W under the maximum load? Give each value.",
+    "expected_answer": "GT2107-WTBD (11.3 W or less) and GT2507-WTBD (16 W or less) exceed 10 W; the GS2107-WTBD does not, at 6.5 W (271 mA/24 V) or less.",
+    "expected_sources": [
+      "hmi/mitsubishi/got2000/gt21_wide_general_description.pdf",
+      "hmi/mitsubishi/got-simple-gs21/gs21_general_description.pdf",
+      "hmi/mitsubishi/got2000/got2000_gt27_gt25_hardware_user_manual.pdf"
+    ],
+    "expected_pages": {
+      "hmi/mitsubishi/got2000/gt21_wide_general_description.pdf": [
+        1
+      ],
+      "hmi/mitsubishi/got-simple-gs21/gs21_general_description.pdf": [
+        1
+      ],
+      "hmi/mitsubishi/got2000/got2000_gt27_gt25_hardware_user_manual.pdf": [
+        113
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/mitsubishi/got2000/gt21_wide_general_description.pdf",
+        "page": 1,
+        "quote": "Under the maximum load 11.3 W or less"
+      },
+      {
+        "source": "hmi/mitsubishi/got-simple-gs21/gs21_general_description.pdf",
+        "page": 1,
+        "quote": "6.5W (271mA/24V) or less"
+      },
+      {
+        "source": "hmi/mitsubishi/got2000/got2000_gt27_gt25_hardware_user_manual.pdf",
+        "page": 113,
+        "quote": "Under the maximum load 20 W or less 16 W or less 16 W or less"
+      }
+    ],
+    "category": "multihop",
+    "source_match": "all",
+    "difficulty": "distractor",
+    "review_note": "Needs three documents. GS21 row is 'GS2110-WTBD 7.6W / GS2107-WTBD 6.5W' flattened; GT2507 value is the 3rd column of the GT25-wide row in the hardware manual (GT25 wide general description p.1 also gives 16 W).",
+    "tags": [
+      "hmi",
+      "mitsubishi",
+      "power",
+      "general-description",
+      "hardware-manual"
+    ],
+    "id": "G05"
+  },
+  {
+    "question": "In Delta DOPSoft, what is the default password offered when creating an Auto Update Data File with protection enabled, and if both a USB disk and an SD card contain an HMI_AutoUP folder, which one does the DOP-100 HMI update from first?",
+    "expected_answer": "The default copy-protection password is 12345678, and the HMI updates from the USB Disk first and then from the SD Card.",
+    "expected_sources": [
+      "hmi/delta/dop-100/dopsoft_user_manual.pdf"
+    ],
+    "expected_pages": {
+      "hmi/delta/dop-100/dopsoft_user_manual.pdf": [
+        56,
+        57
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/delta/dop-100/dopsoft_user_manual.pdf",
+        "page": 56,
+        "quote": "The default is 12345678, as shown in Figure 2.2.1.7.1."
+      },
+      {
+        "source": "hmi/delta/dop-100/dopsoft_user_manual.pdf",
+        "page": 57,
+        "quote": "the HMI first updates the USB Disk and then the SD Card."
+      }
+    ],
+    "category": "multihop",
+    "source_match": "any",
+    "difficulty": "long-doc",
+    "review_note": "1803-page manual; the two facts are on consecutive pages of section 2.2.1.7. 'Create Screen Data File' (2.2.1.6) is a sibling function without the auto-update prompt.",
+    "tags": [
+      "hmi",
+      "delta",
+      "software",
+      "firmware",
+      "user-manual"
+    ],
+    "id": "G06"
+  },
+  {
+    "question": "Which of the Weintek 15-inch cMT models cMT2158X, cMT3152X and cMT3162X have an SD card slot?",
+    "expected_answer": "The cMT2158X and cMT3152X both have an SD card slot supporting SD/SDHC cards; the cMT3162X has no SD card slot (N/A).",
+    "expected_sources": [
+      "hmi/weintek/cmt-series/cmt2158x_15in_datasheet.pdf",
+      "hmi/weintek/cmt-series/cmt3152x_15in_datasheet.pdf",
+      "hmi/weintek/cmt-series/cmt3162x_15in_datasheet.pdf"
+    ],
+    "expected_pages": {
+      "hmi/weintek/cmt-series/cmt2158x_15in_datasheet.pdf": [
+        1
+      ],
+      "hmi/weintek/cmt-series/cmt3152x_15in_datasheet.pdf": [
+        1
+      ],
+      "hmi/weintek/cmt-series/cmt3162x_15in_datasheet.pdf": [
+        1
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/weintek/cmt-series/cmt2158x_15in_datasheet.pdf",
+        "page": 1,
+        "quote": "SD Card Slot SD/SDHC"
+      },
+      {
+        "source": "hmi/weintek/cmt-series/cmt3152x_15in_datasheet.pdf",
+        "page": 1,
+        "quote": "SD Card Slot SD/SDHC"
+      },
+      {
+        "source": "hmi/weintek/cmt-series/cmt3162x_15in_datasheet.pdf",
+        "page": 1,
+        "quote": "SD Card Slot N/A"
+      }
+    ],
+    "category": "multihop",
+    "source_match": "all",
+    "difficulty": "distractor",
+    "review_note": "Needs the I/O Port row from three sibling datasheets. Many other Weintek datasheets contain 'SD Card Slot N/A' (cMT2078X, cMT3072X, cMT3092X, cMT3103, MT8071iE1), so retrieval could cite the wrong model.",
+    "tags": [
+      "hmi",
+      "weintek",
+      "memory",
+      "datasheet"
+    ],
+    "id": "G07"
+  },
+  {
+    "question": "Which Schneider Harmony GTO panel models cannot be expanded with an SD card?",
+    "expected_answer": "The HMIGTO1300, HMIGTO1310 and HMIGTO2300 have no SD card interface; all other GTO models (HMIGTO2310, 3510, 4310, 5310, 6310 and the 2315/5315/6315 stainless versions) accept the 4 GB SD card HMIZSD4G.",
+    "expected_sources": [
+      "hmi/schneider/harmony-gto/harmony_gto_catalog.pdf",
+      "hmi/schneider/harmony-gto/hmigto5310_manual.pdf"
+    ],
+    "expected_pages": {
+      "hmi/schneider/harmony-gto/harmony_gto_catalog.pdf": [
+        15
+      ],
+      "hmi/schneider/harmony-gto/hmigto5310_manual.pdf": [
+        18
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/schneider/harmony-gto/harmony_gto_catalog.pdf",
+        "page": 15,
+        "quote": "96 MB No 1 COM 1 1 HMIGTO1310 0.400"
+      },
+      {
+        "source": "hmi/schneider/harmony-gto/hmigto5310_manual.pdf",
+        "page": 18,
+        "quote": "The HMIGTO1300/1310 and HMIGTO2300 do not have a SD card interface."
+      }
+    ],
+    "category": "multihop",
+    "source_match": "all",
+    "difficulty": "long-doc",
+    "review_note": "Catalog p15 'Memory expansion by SD card' column reads No for HMIGTO1300, HMIGTO1310 and HMIGTO2300 and 'Yes (2)' for the rest; the manual footnote *7 (p18 of a 138-page manual) states it directly. Catalog p5 also says 'By 4 GB SD card (except HMIGTO2300)' for the 5.7\" column.",
+    "tags": [
+      "hmi",
+      "schneider",
+      "memory",
+      "catalog",
+      "user-manual"
+    ],
+    "id": "G08"
+  },
+  {
+    "question": "How do you replace the real-time clock battery in an Allen-Bradley PanelView Plus 7 Standard terminal (e.g. 2711P-T10C21D8S)?",
+    "expected_answer": "1) Disconnect power from the terminal. 2) Remove the battery cover by rotating it from C (closed) to O (open). 3) Press the vertical center tab on the metal latch away from the battery to release it. 4) Insert the new battery (2711P-RY2032 / CR2032) at an angle under the metal latch with the + side up. 5) Gently press down on the opposite side until it locks into place. 6) Replace the cover and rotate it from O (open) to C (closed).",
+    "expected_sources": [
+      "hmi/allen-bradley/panelview-plus7/panelview_plus7_standard_user_manual.pdf"
+    ],
+    "expected_pages": {
+      "hmi/allen-bradley/panelview-plus7/panelview_plus7_standard_user_manual.pdf": [
+        125,
+        126
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/allen-bradley/panelview-plus7/panelview_plus7_standard_user_manual.pdf",
+        "page": 125,
+        "quote": "Remove the battery cover by rotating it from the C (closed) to the O (open) position."
+      },
+      {
+        "source": "hmi/allen-bradley/panelview-plus7/panelview_plus7_standard_user_manual.pdf",
+        "page": 126,
+        "quote": "Insert the new battery at an angle under the metal latch, with the positive polarity (+) up."
+      }
+    ],
+    "category": "procedure",
+    "source_match": "any",
+    "difficulty": "long-doc",
+    "review_note": "156-page manual; steps 1-2 on p.125, steps 3-6 on p.126. Existing A02 covers the PanelView 800 battery part number, not this procedure.",
+    "tags": [
+      "hmi",
+      "allen-bradley",
+      "battery",
+      "procedure",
+      "user-manual"
+    ],
+    "id": "H01"
+  },
+  {
+    "question": "What are the steps to mount an Allen-Bradley PanelView 5510 stainless-steel terminal (e.g. 2715P-T12WD-BSK) in a panel, and what torque is applied to the mounting clips?",
+    "expected_answer": "1) Cut the panel opening using the shipped cutout template (or the user-manual dimensions). 2) Place the terminal screen-down on a clean, flat surface. 3) Position the gasket on the bezel with the alignment plugs facing the bezel alignment features and 4) press each plug into place (compression seal, no sealing compounds). 5) Place the terminal in the cutout. 6) Position the backing plate over the terminal. 7) Slide the mounting clips into the slots. 8) Hand-tighten the clip screws until the backing plate contacts the panel uniformly. 9) Torque the clip screws to 2.3…2.6 N•m (20…23 lb•in) in the specified sequence, 10) repeating until all clips are at torque.",
+    "expected_sources": [
+      "hmi/allen-bradley/panelview-5510/panelview_5510_stainless_steel_technical_data.pdf"
+    ],
+    "expected_pages": {
+      "hmi/allen-bradley/panelview-5510/panelview_5510_stainless_steel_technical_data.pdf": [
+        3
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/allen-bradley/panelview-5510/panelview_5510_stainless_steel_technical_data.pdf",
+        "page": 3,
+        "quote": "Cut an opening in the panel by using the panel cutout template that is shipped with the terminal"
+      },
+      {
+        "source": "hmi/allen-bradley/panelview-5510/panelview_5510_stainless_steel_technical_data.pdf",
+        "page": 3,
+        "quote": "Torque the mounting clip screws to 2.3…2.6 N•m (20…23 lb•in) by using the specified sequence."
+      }
+    ],
+    "category": "procedure",
+    "source_match": "any",
+    "difficulty": "easy",
+    "review_note": "All 10 steps on p.3 of the 4-page product-information sheet; the clip counts (8/8/10/12 for 9/10/12.1/15-in.) appear in the torque-sequence drawings on the same page. Power-wiring screw torque 0.4…0.5 N•m on the same page is a potential confusion.",
+    "tags": [
+      "hmi",
+      "allen-bradley",
+      "mounting",
+      "torque",
+      "procedure",
+      "product-information"
+    ],
+    "id": "H02"
+  },
+  {
+    "question": "How is the mounting arm tube fitted to the mounting arm adapter of a Beckhoff CP39xx control panel, and what torques are specified?",
+    "expected_answer": "1. Unscrew the hexagon socket screw a few turns with a 3 mm Allen key. 2. Push the panel's connecting cables through the mounting arm tube. 3. Insert the tube 50.2 mm into the adapter up to the stop. 4. Retighten the hexagon socket screw to 3 Nm. 5. Tighten the adapter's slotted nut clockwise with a size 58-62 hook wrench (C9900-Z263) to 20 Nm. (Adapters fit Rittal/Rolec 48 mm tubes.)",
+    "expected_sources": [
+      "hmi/beckhoff/cp3xxx-series/cp39xx_multitouch_control_panel_manual.pdf"
+    ],
+    "expected_pages": {
+      "hmi/beckhoff/cp3xxx-series/cp39xx_multitouch_control_panel_manual.pdf": [
+        30
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/beckhoff/cp3xxx-series/cp39xx_multitouch_control_panel_manual.pdf",
+        "page": 30,
+        "quote": "1. Unscrew the hexagon socket screw (1) a few turns with a 3 mm Allen key (section A)."
+      },
+      {
+        "source": "hmi/beckhoff/cp3xxx-series/cp39xx_multitouch_control_panel_manual.pdf",
+        "page": 30,
+        "quote": "3. Insert the mounting arm tube 50.2 mm into the mounting arm adapter to the stop (section B)."
+      }
+    ],
+    "category": "procedure",
+    "source_match": "any",
+    "difficulty": "easy",
+    "review_note": "Section 4.2.2 'Mounting arm tube installation'. Two different torques on the same page (3 Nm screw, 20 Nm slotted nut) — check the answer does not swap them. The CP37xx panel PC manual has a near-identical procedure, so retrieval may land there.",
+    "tags": [
+      "hmi",
+      "beckhoff",
+      "procedure",
+      "mounting",
+      "user-manual"
+    ],
+    "id": "H03"
+  },
+  {
+    "question": "Using the SIMATIC IPC Panel Drivers and Tools (PDT) UPDD Console, how do you perform the extended 25-point touch calibration on a SIMATIC IFP V2 with resistive single-touch screen?",
+    "expected_answer": "1. Open the \"UPDD Console\" dialog. 2. Select the touch controller of the device in the dialog header. 3. Click the \"Calibration\" tab. 4. Deactivate \"Use eeprom storage\". 5. Enter \"25\" under \"Number of points\". 6. Click \"Calibrate\" (calibration screen appears on the selected display). 7. Touch the selections one after the other (each confirmed with a check mark). 8. Confirm all prompts until the whole screen is calibrated. 9. Press \"Confirm\" at the final prompt. Unlike the 3-point calibration, the data is stored in the OS on the PC, not in the device EEPROM.",
+    "expected_sources": [
+      "hmi/siemens/ifp-v2/ipc_ifp_panel_driver_tool_user_manual.pdf"
+    ],
+    "expected_pages": {
+      "hmi/siemens/ifp-v2/ipc_ifp_panel_driver_tool_user_manual.pdf": [
+        46
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/siemens/ifp-v2/ipc_ifp_panel_driver_tool_user_manual.pdf",
+        "page": 46,
+        "quote": "4. Deactivate the option \"Use eeprom storage\"."
+      },
+      {
+        "source": "hmi/siemens/ifp-v2/ipc_ifp_panel_driver_tool_user_manual.pdf",
+        "page": 46,
+        "quote": "5. Enter the value \"25\" under \"Number of points\"."
+      }
+    ],
+    "category": "procedure",
+    "source_match": "any",
+    "difficulty": "distractor",
+    "review_note": "Section 4.8.3.2 'Extended calibration'. The 'Standard calibration' procedure (p45-46) is nearly identical but ACTIVATES 'Use eeprom storage' and uses 3 points — answer must not mix the two. Introductory sentence about EEPROM vs OS storage is on p45.",
+    "tags": [
+      "hmi",
+      "siemens",
+      "procedure",
+      "touch-calibration",
+      "software-manual"
+    ],
+    "id": "H04"
+  },
+  {
+    "question": "What is the procedure for installing the BootOS or system application on a Mitsubishi GOT2000 (GT27/GT25) from an SD card using the utility?",
+    "expected_answer": "1. Insert the SD card holding the BootOS/system application/project data into the GOT's SD card interface. 2. Close the SD card interface cover. 3. Open the data control function screen in the utility and install the BootOS/system application from the SD card. 4. The SD card access LED stays lit during installation - do not remove the card or open the cover. 5. The GOT restarts automatically when installation completes. 6. After a normal restart, confirm the access LED is off and remove the SD card.",
+    "expected_sources": [
+      "hmi/mitsubishi/got2000/got2000_gt27_gt25_utility_user_manual.pdf"
+    ],
+    "expected_pages": {
+      "hmi/mitsubishi/got2000/got2000_gt27_gt25_utility_user_manual.pdf": [
+        398
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/mitsubishi/got2000/got2000_gt27_gt25_utility_user_manual.pdf",
+        "page": 398,
+        "quote": "Install the SD card where the BootOS, system application or project data is stored in the SD card interface of the GOT."
+      },
+      {
+        "source": "hmi/mitsubishi/got2000/got2000_gt27_gt25_utility_user_manual.pdf",
+        "page": 398,
+        "quote": "GOT restarts automatically after installation is completed."
+      }
+    ],
+    "category": "procedure",
+    "source_match": "any",
+    "difficulty": "long-doc",
+    "review_note": "Section 7.2 'Installation Using Data Storage'; a parallel USB-memory procedure follows on p.399 with fewer steps — make sure the answer is the SD-card variant.",
+    "tags": [
+      "hmi",
+      "mitsubishi",
+      "sd-card",
+      "procedure",
+      "utility-manual"
+    ],
+    "id": "H05"
+  },
+  {
+    "question": "How do I enter Calibrate Mode and calibrate the touch panel on an Omron NB-series HMI using the rear DIP switches?",
+    "expected_answer": "1. Set rear DIP switches SW1 to OFF and SW2 to ON. 2. Press the Reset switch to restart the NB unit into Calibrate Mode. 3. Touch each '+' shown on the screen (a touch sound confirms each) until the '+' disappears and 'TP Adjust Success!' is displayed. 4. Set both SW1 and SW2 to OFF. 5. Press the Reset switch again. (Alternatively, a Function Key component set to 'Touch Calibration' starts calibration from a project screen.)",
+    "expected_sources": [
+      "hmi/omron/nb-series/nb_series_setup_manual.pdf"
+    ],
+    "expected_pages": {
+      "hmi/omron/nb-series/nb_series_setup_manual.pdf": [
+        88
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/omron/nb-series/nb_series_setup_manual.pdf",
+        "page": 88,
+        "quote": "Set the DIP switches SW1 and SW2 on the back side respectively to OFF and ON."
+      },
+      {
+        "source": "hmi/omron/nb-series/nb_series_setup_manual.pdf",
+        "page": 88,
+        "quote": "Set both of the DIP switches SW1 and SW2 to OFF, press the Reset switch again."
+      }
+    ],
+    "category": "procedure",
+    "source_match": "any",
+    "difficulty": "long-doc",
+    "review_note": "DIP table on p.35: ON/ON = System Setting Mode, OFF/ON = Calibrate Mode, ON/OFF = Downloader Mode — easy to mix up the switch states.",
+    "tags": [
+      "hmi",
+      "omron",
+      "calibration",
+      "procedure",
+      "setup-manual"
+    ],
+    "id": "H06"
+  },
+  {
+    "question": "How is a Pro-face SP5000 box module (e.g. SP-5B40) attached to the display module or DC power supply adapter?",
+    "expected_answer": "1) Pull the LOCK on the top of the Box Module forward to release the lock. 2) Insert the protruding points on the bottom left and right of the Box Module into the two holes on the back of the Display Module (or DC Power Supply Adapter for Box Module) to attach it. 3) Fully push the LOCK on the top of the Box Module to secure it to the Display Module or adapter.",
+    "expected_sources": [
+      "hmi/proface/sp5000/sp5000_box_module_installation_guide.pdf"
+    ],
+    "expected_pages": {
+      "hmi/proface/sp5000/sp5000_box_module_installation_guide.pdf": [
+        21,
+        22,
+        23
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/proface/sp5000/sp5000_box_module_installation_guide.pdf",
+        "page": 21,
+        "quote": "Pull the LOCK forward on the top of the Box Module to release the lock as illustrated."
+      },
+      {
+        "source": "hmi/proface/sp5000/sp5000_box_module_installation_guide.pdf",
+        "page": 22,
+        "quote": "Insert the protruding points on the bottom left and right of the Box Module into the two holes on the back of the Display Module"
+      }
+    ],
+    "category": "procedure",
+    "source_match": "any",
+    "difficulty": "easy",
+    "review_note": "Only three steps, spread over PDF pages 21-23 (printed page numbers 22-24). The same procedure text also appears in sp5000_series_hardware_manual.pdf, so an answer citing that manual is still correct; the Removal Procedure on p24 is the reverse and must not be confused.",
+    "tags": [
+      "hmi",
+      "proface",
+      "installation",
+      "procedure",
+      "installation-guide"
+    ],
+    "id": "H07"
+  },
+  {
+    "question": "What is the installation process for mounting a Beijer X2 pro 4 B2 HMI panel in a cabinet door?",
+    "expected_answer": "1) Unpack and check the delivery; notify the supplier of any damage. 2) Cut the opening using the cut-out dimensions in the outline drawing (130 x 89 mm). 3) Make sure the mounting surface of the cutout is smooth and free of burrs/debris. 4) Install the HMI panel into the cutout. 5) Secure it using all fastening holes and the provided brackets and screws, tightened to 0.5 - 1.0 Nm. 6) Where the front seal (IP54+/NEMA-4X) is critical, use a torque wrench to confirm the screw torque. 7) Connect the cables in the specified order (A, then B power using 14-20 AWG at 180-220 N-cm, then C Ethernet, then D). 8) Carefully remove the protective film from the display, avoiding static.",
+    "expected_sources": [
+      "hmi/beijer/x2-pro/x2_pro_4_b2_hardware_manual.pdf"
+    ],
+    "expected_pages": {
+      "hmi/beijer/x2-pro/x2_pro_4_b2_hardware_manual.pdf": [
+        11,
+        12,
+        13
+      ]
+    },
+    "evidence": [
+      {
+        "source": "hmi/beijer/x2-pro/x2_pro_4_b2_hardware_manual.pdf",
+        "page": 11,
+        "quote": "Unpack and check the delivery. If damage is found, notify the supplier."
+      },
+      {
+        "source": "hmi/beijer/x2-pro/x2_pro_4_b2_hardware_manual.pdf",
+        "page": 12,
+        "quote": "Tighten the screws to 0.5 - 1.0 Nm."
+      }
+    ],
+    "category": "procedure",
+    "source_match": "any",
+    "difficulty": "distractor",
+    "review_note": "The X2 pro 10 B2 manual contains the identical 8-step process with the same wording (the X2 pro 15 B2 manual differs slightly in the torque line), so the retriever may cite a sibling manual; the cut-out size (130 x 89 mm, from p14) is specific to the X2 pro 4.",
+    "tags": [
+      "hmi",
+      "beijer",
+      "installation",
+      "procedure",
+      "hardware-manual"
+    ],
+    "id": "H08"
   }
 ]

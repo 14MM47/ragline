@@ -20,6 +20,14 @@ class SearchResult:
 
 
 class BaseVectorStore(ABC):
+    async def count(self) -> int | None:
+        """Number of stored chunks, or None when the backend cannot say.
+
+        Used by the evaluation harness to fingerprint the index a run used;
+        not part of the serving path, hence a default rather than abstract.
+        """
+        return None
+
     @abstractmethod
     async def upsert_chunks(self, chunks: list[Chunk], embeddings: list[list[float]]) -> None:
         """Store chunks with their dense embeddings (idempotent by chunk id)."""
@@ -40,6 +48,13 @@ class BaseVectorStore(ABC):
     async def delete_by_document_id(self, document_id: str) -> None:
         """Remove every chunk belonging to one document."""
         ...
+
+    async def get_chunks_by_position(self, wanted: list[tuple[str, int]]) -> list[Chunk]:
+        """Chunks by (document_id, chunk_index) — used to add a hit's neighbour.
+
+        Default: none (stores without the lookup simply skip neighbour expansion).
+        """
+        return []
 
     @abstractmethod
     async def get_all_chunks(self) -> list[Chunk]:

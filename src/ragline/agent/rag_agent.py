@@ -42,19 +42,42 @@ class RAGAgent:
         allowed_document_ids: list[str] | None = None,
         excluded_source_files: list[str] | None = None,
         conversation_context: str = "",
+        retrieval_query: str | None = None,
+        entity_queries: list[str] | None = None,
     ) -> CitedResponse:
-        """Answer one question with hard citations."""
+        """Answer one question with hard citations.
+
+        `question` is what the answer prompt asks (the user's question, made
+        standalone); `retrieval_query` is what is searched (the pre-pass's
+        keyword rewrite) and defaults to the question. With two or more
+        `entity_queries` (a question naming several products) each product is
+        retrieved separately and given reserved context slots.
+        """
         trace = get_current_trace()
+        search = retrieval_query or question
 
         # --- retrieve ------------------------------------------------------
-        results = await self._retrieval.retrieve(
-            question,
-            allowed_document_ids=allowed_document_ids,
-            excluded_source_files=excluded_source_files,
-        )
-        # Lost-in-the-middle mitigation: best chunks at both prompt edges.
-        if settings.enable_context_reordering:
+        multi = settings.entity_slots > 0 and bool(entity_queries) and len(entity_queries) >= 2
+        if multi:
+            results = await self._retrieval.retrieve_multi(
+                search,
+                entity_queries,
+                allowed_document_ids=allowed_document_ids,
+                excluded_source_files=excluded_source_files,
+            )
+        else:
+            results = await self._retrieval.retrieve(
+                search,
+                allowed_document_ids=allowed_document_ids,
+                excluded_source_files=excluded_source_files,
+            )
+        # Lost-in-the-middle mitigation: best chunks at both prompt edges. Not
+        # for a multi-product context: it is grouped by product, not ranked.
+        if settings.enable_context_reordering and not multi:
             results = sandwich_reorder(results)
+        # Continuations of cut tables / numbered steps go straight after their parent.
+        with timed_step("neighbours"):
+            results = await self._retrieval.expand_neighbours(results)
         # THE chunk list — prompt numbering and citation extraction both
         # index into this exact list.
         chunks = [r.chunk for r in results]
@@ -77,7 +100,7 @@ class RAGAgent:
             if settings.enable_knowledge_graph:
                 with timed_step("graph"):
                     graph_context = await get_graph_context_for_query_scoped(
-                        question, doc_ids, embedder=self._embedder
+                        search, doc_ids, embedder=self._embedder
                     )
             if graph_context:
                 used_graph = True
@@ -103,7 +126,9 @@ class RAGAgent:
 
         # --- generate ------------------------------------------------------
         with timed_step("answer"):
-            raw_text = await self._llm.complete(messages, max_tokens=settings.answer_max_tokens)
+            # answer=True: answer-only request options (e.g. thinking) apply here.
+            raw_text = await self._llm.complete(messages, max_tokens=settings.answer_max_tokens, answer=True,
+                                              purpose="answer")
 
         # --- extract citations ---------------------------------------------
         model_name = self._llm.model if hasattr(self._llm, "model") else "unknown"

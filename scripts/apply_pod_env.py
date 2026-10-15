@@ -84,6 +84,10 @@ def parse_block(text: str) -> dict[str, str]:
 
 def merge(env_text: str, updates: dict[str, str]) -> str:
     """Replace each key's first `KEY=` line in place; append the rest under MARKER."""
+    # A value with a line break would become extra KEY=VALUE lines: refuse it.
+    for key, value in updates.items():
+        if "\n" in str(value) or "\r" in str(value):
+            raise ValueError(f"env value for {key} must not contain a newline")
     lines = env_text.splitlines()
     pending = dict(updates)
     for i, line in enumerate(lines):

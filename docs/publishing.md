@@ -129,3 +129,39 @@ Command references:
 [repository creation](https://cli.github.com/manual/gh_repo_create),
 [repository settings](https://cli.github.com/manual/gh_repo_edit),
 [private vulnerability reporting](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/configure-for-a-repository).
+
+## Later syncs (after the first release)
+
+The public repository is kept in step with private `main` by exporting the
+committed tree again and committing it on top of the public `main` — a new
+commit each time, never the private history.
+
+```bash
+set -euo pipefail
+test -z "$(git status --porcelain -- . ':!eval/results/*/r*-s*')"   # committed work only
+out=$(mktemp -d)/export
+.venv/bin/python scripts/export_public.py "$out"     # archive + mask + public page + residual scan
+gitleaks dir "$out" --redact                          # must report no leaks
+```
+
+Compare the environment-file secret values against `$out` as above (values
+never printed). Then, in a clone of the public repository:
+
+```bash
+git rm -rq . && cp -a "$out"/. . && git add --all
+git diff --cached --stat                               # review what changes
+git commit -m "Sync with private main <short sha>: <what changed>"
+```
+
+`export_public.py` masks RunPod pod and network-volume ids and local paths,
+and rebuilds `eval/results/<campaign>/dashboard.html` with
+`eval_dashboard.py --public` (ladder rungs only, no spend ledger or pod ids).
+
+### The evaluation page (GitHub Pages)
+
+The live write-up is served from the public repository's `gh-pages` branch:
+`index.html` (the exported `dashboard.html`), `og.png` (the 1200×630
+link-card image, `eval/results/<campaign>/og.png`) and an empty `.nojekyll`.
+After each rung: rebuild the page, refresh `og.png` if the charts changed,
+commit both to `gh-pages` and push. Link-card tags point at
+`https://14mm47.github.io/ragline/` (`--site-url`).

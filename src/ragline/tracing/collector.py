@@ -66,6 +66,10 @@ class TraceCollector:
         # every completion and every embedding-free LLM call in the turn.
         self.prompt_tokens = 0
         self.completion_tokens = 0
+        # Characters of hidden reasoning the server separated out of the
+        # answer (thinking models behind a reasoning parser); 0 otherwise.
+        # Incremented by the LLM provider; the text itself is never kept.
+        self.reasoning_chars = 0
         # Response facts recorded by the chat route once the answer exists.
         self.citation_count = 0
         self.source_files: list[str] = []
@@ -73,6 +77,12 @@ class TraceCollector:
         # Stage name -> accumulated milliseconds (see timed_step). A stage
         # entered twice (e.g. two RAG legs in compound mode) sums.
         self.steps: dict[str, float] = {}
+        # One entry per model call in the turn, appended by the LLM provider:
+        # purpose, tokens each way, reasoning chars, ms, finish reason, ceiling,
+        # temperature (and, with LLM_CAPTURE_TRANSCRIPTS on, the messages,
+        # response and reasoning text). Not persisted to QueryTrace; read by
+        # the evaluation harness.
+        self.calls: list[dict] = []
         # Register self as the active collector for this request context.
         self._token = _current_trace.set(self)
 
@@ -80,6 +90,10 @@ class TraceCollector:
         """Record answer-level facts (called by the chat route after citation extraction)."""
         self.citation_count = citation_count
         self.source_files = source_files
+
+    def add_call(self, entry: dict) -> None:
+        """Append one model call's record (see `calls`)."""
+        self.calls.append(entry)
 
     def add_step(self, name: str, ms: float) -> None:
         """Add `ms` to stage `name`."""
@@ -101,6 +115,7 @@ class TraceCollector:
             session_id=self.session_id,
             prompt_tokens=self.prompt_tokens,
             completion_tokens=self.completion_tokens,
+            reasoning_chars=self.reasoning_chars,
             total_ms=round(total_ms, 1),
             citation_count=self.citation_count,
             confidence_score=self.confidence_score,

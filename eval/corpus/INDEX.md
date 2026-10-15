@@ -9,7 +9,7 @@
 | Category | Documents | Pages | Size (MB) | Vendors | With source URL | Cited by golden set |
 |---|---:|---:|---:|---:|---:|---:|
 | dcs | 95 | 8,348 | 325 | 6 | 85 | 0 |
-| **hmi** | 119 | 11,723 | 706 | 12 | 78 | 68 |
+| **hmi** | 119 | 11,723 | 706 | 12 | 78 | 93 |
 | instrumentation | 52 | 5,681 | 374 | 7 | 47 | 0 |
 | io | 71 | 8,151 | 481 | 7 | 67 | 0 |
 | networking | 66 | 9,856 | 270 | 8 | 62 | 0 |
@@ -29,14 +29,14 @@ The recorded evaluation runs ingested exactly this category, and [`eval/golden_s
 | Product family | File | Title (PDF metadata) | Pages | Golden Qs | Source |
 |---|---|---|---:|---|---|
 | webop-3000t | `advantech_industrial_operator_panels_catalog.pdf` | WOP_leaflet_6p_final_cs2 | 2 | B09 | [link](https://advcloudfiles.advantech.com/ecatalog/2011/2242011400.pdf) |
-| webop-3000t | `advantech_intelligent_operator_panels_catalog.pdf` | 0829_IOP.indd | 20 | — | [link](https://advcloudfiles.advantech.com/ecatalog/2017/09151338.pdf) |
+| webop-3000t | `advantech_intelligent_operator_panels_catalog.pdf` | 0829_IOP.indd | 20 | B12 B15 G04 | [link](https://advcloudfiles.advantech.com/ecatalog/2017/09151338.pdf) |
 
 ### allen-bradley (25)
 
 | Product family | File | Title (PDF metadata) | Pages | Golden Qs | Source |
 |---|---|---|---:|---|---|
 | asem-6300 | `asem_6300_monitors_pcs_thin_clients_technical_data.pdf` | Industrial Computers, Thin Clients, and Monitors Specifications | 64 | A08 | [link](https://literature.rockwellautomation.com/idc/groups/literature/documents/td/6300-td001_-en-p.pdf) |
-| asem-6300 | `asem_6300m_user_manual.pdf` | ASEM 6300M/6300M-YW0 Panel Industrial Monitors User Manual | 50 | — | [link](https://literature.rockwellautomation.com/idc/groups/literature/documents/um/6300m-um001_-en-p.pdf) |
+| asem-6300 | `asem_6300m_user_manual.pdf` | ASEM 6300M/6300M-YW0 Panel Industrial Monitors User Manual | 50 | A14 | [link](https://literature.rockwellautomation.com/idc/groups/literature/documents/um/6300m-um001_-en-p.pdf) |
 | asem-6300 | `asem_6300ma_user_manual.pdf` | ASEM 6300MA / 6300MA-YA0 On-Machine Monitors and 6300PA / 6300PA-KA0 On- Machine Panel PCs User Manual | 108 | — | [link](https://literature.rockwellautomation.com/idc/groups/literature/documents/um/6300-um002_-en-p.pdf) |
 | asem-6300 | `asem_6300p_panel_pcs_technical_data.pdf` | ASEM 6300P, 6300P-SW0 Panel PCs and 6300B-PBD, 6300B-TW0,6300B-PBC, 6300B-SW0 Box PCs Technical Data | 12 | A08 | [link](https://literature.rockwellautomation.com/idc/groups/literature/documents/td/6300-td005_-en-p.pdf) |
 | asem-6300 | `asem_6300p_panel_pcs_user_manual.pdf` | ASEM 6300P/6300P-SW0 Panel PCs User Manual | 48 | A08 | [link](https://literature.rockwellautomation.com/idc/groups/literature/documents/um/6300p-um001_-en-p.pdf) |
@@ -44,17 +44,17 @@ The recorded evaluation runs ingested exactly this category, and [`eval/golden_s
 | panelview-5310 | `panelview_5310_user_manual.pdf` | untitled | 114 | A03 A12 | [link](https://literature.rockwellautomation.com/idc/groups/literature/documents/um/2713p-um001_-en-p.pdf) |
 | panelview-5500 | `panelview_5500_technical_data.pdf` | PanelView 5500 Terminal Specifications Technical Data, 2715-TD001C-EN-P | 10 | A09 A10 | — |
 | panelview-5500 | `panelview_5500_user_manual.pdf` | PanelView 5500 Terminals User Manual | 110 | A09 A10 | — |
-| panelview-5510 | `panelview_5510_stainless_steel_technical_data.pdf` | PanelView 5510 Stainless Steel Terminals Product Information | 4 | — | [link](https://literature.rockwellautomation.com/idc/groups/literature/documents/pc/2715p-pc002_-en-p.pdf) |
-| panelview-5510 | `panelview_5510_technical_data.pdf` | PanelView 5510 Terminals Specifications Technical Data | 14 | A11 A12 F02 | [link](https://literature.rockwellautomation.com/idc/groups/literature/documents/td/2715p-td001_-en-p.pdf) |
+| panelview-5510 | `panelview_5510_stainless_steel_technical_data.pdf` | PanelView 5510 Stainless Steel Terminals Product Information | 4 | A16 H02 | [link](https://literature.rockwellautomation.com/idc/groups/literature/documents/pc/2715p-pc002_-en-p.pdf) |
+| panelview-5510 | `panelview_5510_technical_data.pdf` | PanelView 5510 Terminals Specifications Technical Data | 14 | A11 A12 F02 G01 | [link](https://literature.rockwellautomation.com/idc/groups/literature/documents/td/2715p-td001_-en-p.pdf) |
 | panelview-5510 | `panelview_5510_user_manual.pdf` | PanelView 5510 Terminals User Manual | 110 | A12 | [link](https://literature.rockwellautomation.com/idc/groups/literature/documents/um/2715p-um001_-en-p.pdf) |
 | panelview-800 | `panelview_800_brochure.pdf` | PanelView 800 Graphic Terminals eBook | 6 | — | — |
-| panelview-800 | `panelview_800_technical_data.pdf` | 2711R-TD001B-EN-P PanelView 800 Terminals Technical Data | 12 | A01 A10 | — |
+| panelview-800 | `panelview_800_technical_data.pdf` | 2711R-TD001B-EN-P PanelView 800 Terminals Technical Data | 12 | A01 A10 G01 | — |
 | panelview-800 | `panelview_800_user_manual.pdf` | 2711R-UM001J-EN-E PanelView 800 HMI Terminals User Manual | 182 | A02 F01 | — |
-| panelview-plus7 | `legacy_panelview_to_plus7_migration_guide.pdf` | Legacy PanelView to PanelView Plus 7 Migration Guide | 118 | — | [link](https://literature.rockwellautomation.com/idc/groups/literature/documents/ap/2711p-ap006_-en-p.pdf) |
-| panelview-plus7 | `panelview_plus7_performance_technical_data.pdf` | PanelView Plus 7 Performance Terminals Technical Data | 16 | — | [link](https://literature.rockwellautomation.com/idc/groups/literature/documents/td/2711p-td009_-en-p.pdf) |
+| panelview-plus7 | `legacy_panelview_to_plus7_migration_guide.pdf` | Legacy PanelView to PanelView Plus 7 Migration Guide | 118 | A15 G02 | [link](https://literature.rockwellautomation.com/idc/groups/literature/documents/ap/2711p-ap006_-en-p.pdf) |
+| panelview-plus7 | `panelview_plus7_performance_technical_data.pdf` | PanelView Plus 7 Performance Terminals Technical Data | 16 | A13 A16 A17 | [link](https://literature.rockwellautomation.com/idc/groups/literature/documents/td/2711p-td009_-en-p.pdf) |
 | panelview-plus7 | `panelview_plus7_performance_user_manual.pdf` | PanelView Plus 7 Performance Terminals User Manual | 212 | A05 | [link](https://literature.rockwellautomation.com/idc/groups/literature/documents/um/2711p-um008_-en-p.pdf) |
-| panelview-plus7 | `panelview_plus7_standard_technical_data.pdf` | PanelView Plus 7 Standard Terminals Technical Data | 10 | A04 | — |
-| panelview-plus7 | `panelview_plus7_standard_user_manual.pdf` | PanelView Plus 7 Standard Terminals User Manual | 156 | — | — |
+| panelview-plus7 | `panelview_plus7_standard_technical_data.pdf` | PanelView Plus 7 Standard Terminals Technical Data | 10 | A04 A17 G01 G02 | — |
+| panelview-plus7 | `panelview_plus7_standard_user_manual.pdf` | PanelView Plus 7 Standard Terminals User Manual | 156 | H01 | — |
 | versaview-5000 | `industrial_computers_and_monitors_technical_data.pdf` | Industrial Computers and Industrial Monitors Specifications | 50 | A06 A07 | [link](https://literature.rockwellautomation.com/idc/groups/literature/documents/td/ic-td001_-en-p.pdf) |
 | versaview-5000 | `versaview_5000_declaration_of_conformity.pdf` | VersaView 5000 Industrial Computer Product Family - CE DoC (6200-CT002E-EN-E) | 3 | A06 | — |
 | versaview-5000 | `versaview_5000_installation_instructions.pdf` | VersaView 5000 Thin Clients, Industrial Computers, and Accessories for Hazardous Locations Installation Instructions | 28 | A06 | [link](https://literature.rockwellautomation.com/idc/groups/literature/documents/in/6200-in001_-en-p.pdf) |
@@ -65,10 +65,10 @@ The recorded evaluation runs ingested exactly this category, and [`eval/golden_s
 
 | Product family | File | Title (PDF metadata) | Pages | Golden Qs | Source |
 |---|---|---|---:|---|---|
-| cp3xxx-series | `cp37xx_panel_pc_manual.pdf` | Manual Panel PC | 53 | B07 | [link](https://download.beckhoff.com/download/Document/ipc/industrial-pc/CP37xx_en.pdf) |
-| cp3xxx-series | `cp39xx_multitouch_control_panel_manual.pdf` | Manual Control Panel | 52 | — | [link](https://download.beckhoff.com/download/Document/ipc/industrial-pc/CP39xx_en.pdf) |
+| cp3xxx-series | `cp37xx_panel_pc_manual.pdf` | Manual Panel PC | 53 | B07 G03 | [link](https://download.beckhoff.com/download/Document/ipc/industrial-pc/CP37xx_en.pdf) |
+| cp3xxx-series | `cp39xx_multitouch_control_panel_manual.pdf` | Manual Control Panel | 52 | G03 G04 H03 | [link](https://download.beckhoff.com/download/Document/ipc/industrial-pc/CP39xx_en.pdf) |
 | cp6000-series | `cp6600_panel_pc_manual.pdf` | Manual Panel PC | 39 | B11 | — |
-| cp6000-series | `cp6700_panel_pc.pdf` | Manual Economy Panel PC | 47 | B08 | — |
+| cp6000-series | `cp6700_panel_pc.pdf` | Manual Economy Panel PC | 47 | B08 G03 | — |
 | cp7000-series | `cp70xx_control_panel_operating_instructions.pdf` | CP70xx | 17 | — | [link](https://download.beckhoff.com/download/document/ipc/industrial-pc/cp70xxen.pdf) |
 
 ### beijer (4)
@@ -77,7 +77,7 @@ The recorded evaluation runs ingested exactly this category, and [`eval/golden_s
 |---|---|---|---:|---|---|
 | x2-pro | `x2_pro_10_b2_hardware_manual.pdf` | Hardware and Installation Manual | 28 | D12 | [link](https://www.beijerelectronics.com/docs/X2-pro-10-Installation/X2_pro_10_Installation_MAEN220_2024-01-25.pdf) |
 | x2-pro | `x2_pro_15_b2_hardware_manual.pdf` | Hardware and Installation Manual | 28 | D08 | [link](https://www.beijerelectronics.com/docs/X2-pro-15-Installation/X2_pro_15_Installation_MAEN224_2024-01-25.pdf) |
-| x2-pro | `x2_pro_4_b2_hardware_manual.pdf` | Hardware and Installation Manual | 28 | — | [link](https://www.beijerelectronics.com/docs/X2-pro-4-Installation/X2_pro_4_Installation_MAEN350_2024-01-25.pdf) |
+| x2-pro | `x2_pro_4_b2_hardware_manual.pdf` | Hardware and Installation Manual | 28 | H08 | [link](https://www.beijerelectronics.com/docs/X2-pro-4-Installation/X2_pro_4_Installation_MAEN350_2024-01-25.pdf) |
 | x2-series | `x2_series_operator_panels_brochure.pdf` | — | 32 | D08 D12 | [link](https://www.basicjp.com/pdf/BEIJER/X2%20brochure_EN_201807_low.pdf) |
 
 ### delta (4)
@@ -85,27 +85,27 @@ The recorded evaluation runs ingested exactly this category, and [`eval/golden_s
 | Product family | File | Title (PDF metadata) | Pages | Golden Qs | Source |
 |---|---|---|---:|---|---|
 | dop-100 | `dop_100_series_catalog.pdf` | — | 40 | C09 C11 F03 | [link](https://landing.deltaww.com/IA/downloadcenter/catalogue/3.Control/DOP-100/DELTA_IA-HMI-DOP-100_C_EN_20200109_web.pdf) |
-| dop-100 | `dop_100_series_connection_manual.pdf` | Allen-Bradley Micro Logix | 11 | — | [link](https://www.wolfautomation.com/content/delta-dop-100-hmi-connectmans.pdf) |
+| dop-100 | `dop_100_series_connection_manual.pdf` | Allen-Bradley Micro Logix | 11 | C13 | [link](https://www.wolfautomation.com/content/delta-dop-100-hmi-connectmans.pdf) |
 | dop-100 | `dop_100_series_selection_guide.pdf` | — | 48 | C09 C11 F03 | [link](https://assets.rs-online.com/v1695390379/Datasheets/ef456d47ccf0267a97630ef6c2978199.pdf) |
-| dop-100 | `dopsoft_user_manual.pdf` | — | 1803 | C08 | [link](https://www.wolfautomation.com/content/delta-dop-100-hmi-dopsoft-userman.pdf) |
+| dop-100 | `dopsoft_user_manual.pdf` | — | 1803 | C08 G06 | [link](https://www.wolfautomation.com/content/delta-dop-100-hmi-dopsoft-userman.pdf) |
 
 ### mitsubishi (13)
 
 | Product family | File | Title (PDF metadata) | Pages | Golden Qs | Source |
 |---|---|---|---:|---|---|
 | got-simple-gs21 | `got_simple_series_catalog.pdf` | Graphic Operation Terminal GOT SIMPLE Series | 40 | C03 C10 | [link](https://dl.mitsubishielectric.com/dl/fa/document/catalog/got/l08649eng/l08649engb.pdf) |
-| got-simple-gs21 | `gs21_general_description.pdf` | GS21 General Description | 1 | C03 | [link](https://dl.mitsubishielectric.com/dl/fa/document/manual/got/ib0800523eng/ib0800523engf.pdf) |
+| got-simple-gs21 | `gs21_general_description.pdf` | GS21 General Description | 1 | C03 G05 | [link](https://dl.mitsubishielectric.com/dl/fa/document/manual/got/ib0800523eng/ib0800523engf.pdf) |
 | got-simple-gs21 | `gs25_gs21_user_manual.pdf` | GOT SIMPLE Series User's Manual | 426 | C03 | [link](https://dl.mitsubishielectric.com/dl/fa/document/manual/got/jy997d52901/jy997d52901s.pdf) |
 | got2000 | `got2000_connection_manual_microcomputer_modbus.pdf` | GOT2000 Series Connection Manual (Microcomputers, MODBUS/Fieldbus Products, Peripherals) For GT Works3 Version1 | 466 | C02 | [link](https://dl.mitsubishielectric.com/dl/fa/document/manual/got/sh081200eng/sh081200engam.pdf) |
 | got2000 | `got2000_connection_manual_non_mitsubishi_products_1.pdf` | GOT2000 Series Connection Manual (Non-Mitsubishi Electric Products 1) For GT Works3 Version1 | 712 | C01 | [link](https://dl.mitsubishielectric.com/dl/fa/document/manual/got/sh081198eng/sh081198engal.pdf) |
-| got2000 | `got2000_connection_manual_non_mitsubishi_products_2.pdf` | GOT2000 Series Connection Manual (Non-Mitsubishi Electric Products 2) For GT Works3 Version1 | 672 | — | [link](https://dl.mitsubishielectric.com/dl/fa/document/manual/got/sh081199eng/sh081199engaq.pdf) |
+| got2000 | `got2000_connection_manual_non_mitsubishi_products_2.pdf` | GOT2000 Series Connection Manual (Non-Mitsubishi Electric Products 2) For GT Works3 Version1 | 672 | C14 | [link](https://dl.mitsubishielectric.com/dl/fa/document/manual/got/sh081199eng/sh081199engaq.pdf) |
 | got2000 | `got2000_graphic_operation_catalog.pdf` | Mitsubishi Graphic Operation Terminal GOT2000 Series | 84 | C10 | — |
-| got2000 | `got2000_gt27_gt25_hardware_user_manual.pdf` | GOT2000 Series User's Manual (Hardware) | 448 | C04 C10 | [link](https://dl.mitsubishielectric.com/dl/fa/document/manual/got/sh081194eng/sh081194engaq.pdf) |
-| got2000 | `got2000_gt27_gt25_utility_user_manual.pdf` | GOT2000 Series User's Manual (Utility) | 706 | — | [link](https://dl.mitsubishielectric.com/dl/fa/document/manual/got/sh081195eng/sh081195engap.pdf) |
+| got2000 | `got2000_gt27_gt25_hardware_user_manual.pdf` | GOT2000 Series User's Manual (Hardware) | 448 | C04 C10 G05 | [link](https://dl.mitsubishielectric.com/dl/fa/document/manual/got/sh081194eng/sh081194engaq.pdf) |
+| got2000 | `got2000_gt27_gt25_utility_user_manual.pdf` | GOT2000 Series User's Manual (Utility) | 706 | H05 | [link](https://dl.mitsubishielectric.com/dl/fa/document/manual/got/sh081195eng/sh081195engap.pdf) |
 | got2000 | `got2000_series_catalog.pdf` | Graphic Operation Terminal GOT2000 Series Wide Model | 28 | C04 | — |
-| got2000 | `gt21_wide_general_description.pdf` | GT21 Wide Model General Description | 1 | — | [link](https://www.lcautomation.com/wb_documents/Mitsubishi/GT21%20Wide%20Model%20General%20Description.pdf) |
-| got2000 | `gt25_wide_general_description.pdf` | GT25 Wide Model General Description | 2 | — | — |
-| got2000 | `gt27_general_description.pdf` | GT27 General Description | 2 | — | — |
+| got2000 | `gt21_wide_general_description.pdf` | GT21 Wide Model General Description | 1 | G05 | [link](https://www.lcautomation.com/wb_documents/Mitsubishi/GT21%20Wide%20Model%20General%20Description.pdf) |
+| got2000 | `gt25_wide_general_description.pdf` | GT25 Wide Model General Description | 2 | C15 | — |
+| got2000 | `gt27_general_description.pdf` | GT27 General Description | 2 | C12 | — |
 
 ### omron (11)
 
@@ -114,12 +114,12 @@ The recorded evaluation runs ingested exactly this category, and [`eval/golden_s
 | na-series | `na5_v1_series_datasheet.pdf` | CSM_NA_V457-E1_3_8 | 40 | C11 | — |
 | na-series | `na5_v2_datasheet.pdf` | CSM_NA5-V2_V471-E1_1_1 | 32 | C11 | — |
 | na-series | `na_series_device_connection_user_manual.pdf` | NA-series Programmable Terminal Device Connection User’s Manual | 134 | C06 | [link](https://files.omron.eu/downloads/latest/manual/en/v119_na_series_programmable_terminal_device_connection_users_manual_en.pdf?v=2) |
-| na-series | `na_series_hardware_v1_user_manual.pdf` | NA-series Programmable Terminal Hardware(-V1) User’s Manual | 188 | C11 | [link](https://files.omron.eu/downloads/latest/manual/en/v125_programmable_terminal_na-series_(v1)_users_manual_en.pdf?v=1) |
-| na-series | `na_series_hardware_v2_user_manual.pdf` | NA-series Programmable Terminal Hardware(-V2) User’s Manual | 178 | C11 | [link](https://files.omron.eu/downloads/latest/manual/en/v128_na-series_programmable_terminal_hardware_(-v2)_users_manual_en.pdf?v=1769688610) |
+| na-series | `na_series_hardware_v1_user_manual.pdf` | NA-series Programmable Terminal Hardware(-V1) User’s Manual | 188 | C11 C16 | [link](https://files.omron.eu/downloads/latest/manual/en/v125_programmable_terminal_na-series_(v1)_users_manual_en.pdf?v=1) |
+| na-series | `na_series_hardware_v2_user_manual.pdf` | NA-series Programmable Terminal Hardware(-V2) User’s Manual | 178 | C11 C15 C16 | [link](https://files.omron.eu/downloads/latest/manual/en/v128_na-series_programmable_terminal_hardware_(-v2)_users_manual_en.pdf?v=1769688610) |
 | na-series | `na_series_software_user_manual.pdf` | NA-series Programmable Terminal Software User’s Manual | 346 | — | [link](https://files.omron.eu/downloads/latest/manual/en/v118_na_series_programmable_terminal_software_users_manual_en.pdf?v=1) |
 | nb-series | `nb_series_host_connection_manual.pdf` | NB-series Programmable Terminals Host Connection Manual | 218 | — | [link](https://files.omron.eu/downloads/latest/manual/en/v108_nb-series_host_connection_setup_manual_en.pdf?v=1) |
 | nb-series | `nb_series_programmable_terminals_manual.pdf` | Omron NB-Series Web Interface Operating Instrution Manual | 24 | — | — |
-| nb-series | `nb_series_setup_manual.pdf` | NB-series Programmable Terminals Setup Manual | 116 | C05 | [link](https://files.omron.eu/downloads/latest/manual/en/v107_nb-series_setup_manual_en.pdf?v=1) |
+| nb-series | `nb_series_setup_manual.pdf` | NB-series Programmable Terminals Setup Manual | 116 | C05 H06 | [link](https://files.omron.eu/downloads/latest/manual/en/v107_nb-series_setup_manual_en.pdf?v=1) |
 | nb-series | `nb_series_startup_guide.pdf` | NB-series Programmable Terminals Startup Guide Manual | 132 | C05 | [link](https://files.omron.eu/downloads/latest/manual/en/v109_nb-series_getting_started_guide_en.pdf?v=1) |
 | ns-series | `ns_series_datasheet.pdf` | — | 40 | C07 | — |
 
@@ -129,7 +129,7 @@ The recorded evaluation runs ingested exactly this category, and [`eval/golden_s
 |---|---|---|---:|---|---|
 | gp4000 | `gp4000_series_datasheet.pdf` | GP4000 Series Catalog | 5 | — | — |
 | sp5000 | `sp5000_box_module_datasheet.pdf` | SP5000 Series Datasheet | 3 | — | [link](https://www.pro-face.com/files/pdf/datasheet/sp5000_datasheet/datasheet_sp5000_boxmodule_EN.pdf) |
-| sp5000 | `sp5000_box_module_installation_guide.pdf` | SP5000 Series (Box Module) Installation Guide | 33 | — | [link](https://www.pro-face.com/otasuke/files/manual/pdf/HRB78714_EN.pdf) |
+| sp5000 | `sp5000_box_module_installation_guide.pdf` | SP5000 Series (Box Module) Installation Guide | 33 | H07 | [link](https://www.pro-face.com/otasuke/files/manual/pdf/HRB78714_EN.pdf) |
 | sp5000 | `sp5000_series_hardware_manual.pdf` | SP5000 Series Hardware Manual - 11/2019 | 175 | — | [link](https://www.pro-face.com/otasuke/files/manual/pdf/sp5000.pdf) |
 | stm6000 | `stm6000_series_hardware_manual.pdf` | STM6000 Series Hardware Manual | 64 | D07 | [link](https://www.pro-face.com/otasuke/ql/STM6000/pdf/STM6000-MM01-EN_01.pdf) |
 | stw6000 | `stw6000_series_hardware_manual.pdf` | STW6000 Series Hardware Manual (STW6000-MM01-EN-05) | 68 | — | [link](https://www.proface.com/data/ql/STW6000/STW6000%20Series%20Hardware%20Manual/English/STW6000-MM01-EN-05.pdf) |
@@ -139,7 +139,7 @@ The recorded evaluation runs ingested exactly this category, and [`eval/golden_s
 | Product family | File | Title (PDF metadata) | Pages | Golden Qs | Source |
 |---|---|---|---:|---|---|
 | cr-series | `cr1000_cr3000_hmi_datasheet.pdf` | Red Lion CR-serie HMI - datasheet (ENG).pdf | 4 | — | [link](https://intercontrol.eu/wp-content/uploads/2022/10/Red-Lion-CR-serie-HMI-datasheet-ENG.pdf) |
-| cr-series | `cr3000_series_user_manual.pdf` | Manual HMI CR3000 series | 8 | — | [link](https://www.ateg.de/frontend/media/productfilepool/1545131010_Manual_HMI_CR3000_series.pdf) |
+| cr-series | `cr3000_series_user_manual.pdf` | Manual HMI CR3000 series | 8 | D14 | [link](https://www.ateg.de/frontend/media/productfilepool/1545131010_Manual_HMI_CR3000_series.pdf) |
 | cr-series | `graphite_and_cr_series_hmi_brochure.pdf` | — | 16 | — | [link](https://media.hms-networks.com/image/upload/v1746532286/Documents/Brochures/Red_LIon_HMI_brochure.pdf) |
 | flexedge | `flexedge_communication_sleds_datasheet.pdf` | — | 7 | — | [link](https://www.farnell.com/datasheets/2997263.pdf) |
 | flexedge | `flexedge_da50a_datasheet.pdf` | — | 4 | D11 | [link](https://cdn.logic-control.com/docs/red-lion/Datasheets/Flexedge%20DA50/FlexEdge%E2%84%A2_DA50A_datasheet.pdf) |
@@ -147,16 +147,16 @@ The recorded evaluation runs ingested exactly this category, and [`eval/golden_s
 | graphite | `g310c_datasheet.pdf` | G310 - Graphic LCD Operator Interface Terminal with VGA Display and Touchscreen | 8 | D04 | — |
 | graphite | `g315c_datasheet.pdf` | G315C Data Sheet/Manual PDF | 8 | D05 | — |
 | graphite | `graphite_hmi_datasheet.pdf` | Graphite Data Sheet | 4 | — | — |
-| graphite | `graphite_series_full_datasheet.pdf` | — | 4 | — | — |
+| graphite | `graphite_series_full_datasheet.pdf` | — | 4 | D16 | — |
 
 ### schneider (7)
 
 | Product family | File | Title (PDF metadata) | Pages | Golden Qs | Source |
 |---|---|---|---:|---|---|
-| harmony-gto | `harmony_gto_catalog.pdf` | Harmony GTO | 27 | — | — |
+| harmony-gto | `harmony_gto_catalog.pdf` | Harmony GTO | 27 | D15 G08 | — |
 | harmony-gto | `harmony_gto_vijeo_designer_user_manual.pdf` | Harmony - HMI GTO for Vijeo Designer - User Manual - 11/2019 | 140 | — | [link](https://docs.rs-online.com/68c8/A700000012779850.pdf) |
 | harmony-gto | `hmigto2300_datasheet.pdf` | Magelis - HMI GTO for Vijeo XD - User Manual - 01/2016 | 130 | — | — |
-| harmony-gto | `hmigto5310_manual.pdf` | Harmony - HMI GTO for EcoStruxure™ Operator Terminal Expert - Hardware Guide - 11/2019 | 138 | — | — |
+| harmony-gto | `hmigto5310_manual.pdf` | Harmony - HMI GTO for EcoStruxure™ Operator Terminal Expert - Hardware Guide - 11/2019 | 138 | G08 | — |
 | harmony-st6 | `basic_and_web_hmi_panels_catalog.pdf` | Harmony ST6 | 21 | D12 | [link](https://media.distributordatasolutions.com/schneider2/2020q2/documents/1090d3c47f075345124f214666095a5c93225174.pdf) |
 | harmony-st6 | `harmony_st6_user_manual.pdf` | Harmony ST6 User Manual | 62 | D06 D12 | [link](https://media.distributordatasolutions.com/228/schneider_synd_json/25423f1b59fff4a86d47161834e2d75c3e5ffb2f.pdf) |
 | magelis-gtu | `magelis_gtu_user_manual.pdf` | Magelis GTU User Manual | 186 | — | — |
@@ -167,13 +167,13 @@ The recorded evaluation runs ingested exactly this category, and [`eval/golden_s
 |---|---|---|---:|---|---|
 | ifp-basic | `ifp_basic_operating_instructions.pdf` | IFP Basic | 84 | B10 | [link](https://cache.industry.siemens.com/dl/files/107/109767107/att_983371/v2/ifp_basic_operating_instructions_enUS_en-US.pdf) |
 | ifp-v2 | `ifp_v2_operating_instructions.pdf` | IFP V2, IFP V2 PRO, IFP V2 ETH | 139 | B04 | [link](https://cache.industry.siemens.com/dl/files/495/109767495/att_1000013/v3/ifp_v2_operating_instructions_enUS_en-US.pdf?download=true) |
-| ifp-v2 | `ipc_ifp_panel_driver_tool_user_manual.pdf` | PDT V1.7 for IPC/IFP with single- and multi-touch screen | 53 | — | [link](https://cache.industry.siemens.com/dl/files/159/109974159/att_1296423/v1/MTST_ipc_pdt_user_manual_en-US_en-US.pdf) |
-| industrial-monitors-im | `im312a_315a_319a_322a_operating_instructions.pdf` | SIMATIC HMI IM-312A/315A/319A/322A | 67 | B10 | [link](https://cache.industry.siemens.com/dl/files/556/109988556/att_1328350/v2/ifp_basic_operating_instructions_enUS_en-US.pdf) |
-| ktp-basic | `ktp_basic_panels_2nd_gen_hardware.pdf` | Basic Panels 2nd Generation | 136 | B01 | — |
+| ifp-v2 | `ipc_ifp_panel_driver_tool_user_manual.pdf` | PDT V1.7 for IPC/IFP with single- and multi-touch screen | 53 | H04 | [link](https://cache.industry.siemens.com/dl/files/159/109974159/att_1296423/v1/MTST_ipc_pdt_user_manual_en-US_en-US.pdf) |
+| industrial-monitors-im | `im312a_315a_319a_322a_operating_instructions.pdf` | SIMATIC HMI IM-312A/315A/319A/322A | 67 | B10 B13 | [link](https://cache.industry.siemens.com/dl/files/556/109988556/att_1328350/v2/ifp_basic_operating_instructions_enUS_en-US.pdf) |
+| ktp-basic | `ktp_basic_panels_2nd_gen_hardware.pdf` | Basic Panels 2nd Generation | 136 | B01 B15 | — |
 | ktp-basic | `ktp_basic_panels_operating_instructions.pdf` | Basic Panels | 162 | — | — |
 | tp-comfort | `simatic_hmi_comfort_panels_datasheet.pdf` | SIMATIC HMI Comfort Panels | 2 | — | — |
-| tp-comfort | `tp_comfort_outdoor_panels_manual.pdf` | TP700 Comfort Outdoor, TP1500 Comfort Outdoor | 38 | — | — |
-| tp-comfort | `tp_comfort_panels_hardware_manual.pdf` | Comfort Panels | 252 | B03 | — |
+| tp-comfort | `tp_comfort_outdoor_panels_manual.pdf` | TP700 Comfort Outdoor, TP1500 Comfort Outdoor | 38 | B16 G04 | — |
+| tp-comfort | `tp_comfort_panels_hardware_manual.pdf` | Comfort Panels | 252 | B03 B14 B16 G04 | — |
 | tp-comfort | `tp_comfort_panels_operating_instructions.pdf` | Comfort Panels | 232 | B03 | — |
 | unified-comfort-mtp | `unified_comfort_panels_operating_instructions.pdf` | Unified Comfort Panels | 178 | B02 B11 | [link](https://cache.industry.siemens.com/dl/files/257/109773257/att_1019074/v1/hmi_unified_comfort_panels_operating_instructions_enUS_en-US.pdf) |
 | wincc-unified | `wincc_unified_certificate_manager_operating_manual.pdf` | Certificate Manager | 20 | — | [link](https://cache.industry.siemens.com/dl/files/117/109779117/att_1018476/v1/WinCCUnifiedCert_enUS_en-US.pdf) |
@@ -185,10 +185,10 @@ The recorded evaluation runs ingested exactly this category, and [`eval/golden_s
 | Product family | File | Title (PDF metadata) | Pages | Golden Qs | Source |
 |---|---|---|---:|---|---|
 | cmt-gateway | `cmt_g03_datasheet.pdf` | cMT-G03_Datasheet_ENG | 2 | — | [link](https://dl.weintek.com/public/cMT/eng/Datasheet/cMT-G03_Datasheet_ENG.pdf) |
-| cmt-series | `cmt2078x_7in_datasheet.pdf` | cMT2078X_Datasheet_ENG | 2 | — | — |
-| cmt-series | `cmt2158x_15in_datasheet.pdf` | cMT2158X_Datasheet_ENG | 2 | D02 | — |
-| cmt-series | `cmt3152x_15in_datasheet.pdf` | cMT3152X_Datasheet_ENG | 2 | — | — |
-| cmt-series | `cmt3162x_15in_datasheet.pdf` | cMT3162X_Datasheet_ENG | 2 | — | — |
+| cmt-series | `cmt2078x_7in_datasheet.pdf` | cMT2078X_Datasheet_ENG | 2 | D13 | — |
+| cmt-series | `cmt2158x_15in_datasheet.pdf` | cMT2158X_Datasheet_ENG | 2 | D02 G07 | — |
+| cmt-series | `cmt3152x_15in_datasheet.pdf` | cMT3152X_Datasheet_ENG | 2 | D16 G07 | — |
+| cmt-series | `cmt3162x_15in_datasheet.pdf` | cMT3162X_Datasheet_ENG | 2 | G07 | — |
 | cmt-series | `cmt_series_brochure.pdf` | — | 22 | D02 D03 | — |
 | cmt-svr | `cmt_svr_200_202_datasheet.pdf` | cMT-SVR-200_202_Datasheet_ENG | 2 | D03 | [link](https://dl.weintek.com/public/cMT/eng/Datasheet/cMT_SVR_200_202_Datasheet_ENG.pdf) |
 | cmt-x-series | `cmt3072x_datasheet.pdf` | cMT3072X_Datasheet_ENG | 2 | F05 | [link](https://dl.weintek.com/public/cMT/eng/Datasheet/cMT3072X_Datasheet_ENG.pdf) |
@@ -196,8 +196,8 @@ The recorded evaluation runs ingested exactly this category, and [`eval/golden_s
 | cmt-x-series | `cmt3092x_datasheet.pdf` | cMT3092X_Datasheet_ENG | 2 | — | [link](https://dl.weintek.com/public/cMT/eng/Datasheet/cMT3092X_Datasheet_ENG.pdf) |
 | cmt-x-series | `cmt3103_datasheet.pdf` | cMT3103_Datasheet_ENG | 2 | — | [link](https://dl.weintek.com/public/cMT/eng/Datasheet/cMT3103_Datasheet_ENG.pdf) |
 | cmt-x-series | `cmt_series_edge_computing_brochure.pdf` | — | 23 | D02 D03 D09 | [link](https://dl.weintek.com/public/cMT/eng/Brochure/cMT_Brochure_ENG.pdf) |
-| emt-series | `emt3070a_7in_datasheet.pdf` | eMT3070A1_Datasheet_ENG | 2 | D10 | — |
-| emt-series | `emt3105p_10in_datasheet.pdf` | eMT3105P1_Datasheet_ENG | 2 | — | — |
+| emt-series | `emt3070a_7in_datasheet.pdf` | eMT3070A1_Datasheet_ENG | 2 | D10 D17 | — |
+| emt-series | `emt3105p_10in_datasheet.pdf` | eMT3105P1_Datasheet_ENG | 2 | D17 | — |
 | emt-series | `emt3150a_15in_datasheet.pdf` | eMT3150A1_Datasheet_ENG | 2 | D10 | — |
 | ie-series | `mt6071_8071_8101ie1_installation_guide.pdf` | GME680710_MT6071_6072_8071_8072_8101iE1 | 2 | — | [link](https://dl.weintek.com/public/MT8000iE/eng/Installation/GME6871E0_MT6071_8071_8101iE1_Installation.pdf) |
 | ie-series | `mt8071ie1_datasheet.pdf` | MT8071iE1_Datasheet_ENG | 2 | — | [link](https://dl.weintek.com/public/MT8000iE/eng/Datasheet/MT8071iE1_Datasheet_ENG.pdf) |

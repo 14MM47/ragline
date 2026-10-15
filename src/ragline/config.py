@@ -24,6 +24,29 @@ class Settings(BaseSettings):
     llm_base_url: str = "https://api.openai.com/v1"  # OpenAI-compatible server root
     llm_api_key: str = ""                            # bearer token for that server
     llm_model: str = "gpt-4o"                        # model name as the server knows it
+    # Extra JSON merged into EVERY chat-completion request body as the SDK's
+    # `extra_body` (server-specific parameters the OpenAI schema has no field
+    # for). The evaluation campaign uses it to switch a hybrid model's thinking
+    # mode per run, e.g. '{"chat_template_kwargs": {"enable_thinking": true}}'
+    # against vLLM. Empty = send nothing extra (production default). Must be a
+    # JSON object; validated at startup so a typo fails loudly, not per call.
+    llm_extra_body: str = ""
+    # Extra JSON merged over LLM_EXTRA_BODY for ANSWER generation only (the RAG
+    # answer and the library answer) — not for the query pre-pass, confidence,
+    # memory or graph extraction. Lets thinking be switched on where it can
+    # improve the answer without making every side call reason (slow, and a
+    # truncation risk for their small output ceilings). Nested objects such as
+    # chat_template_kwargs merge key by key. Empty = answers send LLM_EXTRA_BODY
+    # unchanged (production default). Same JSON-object rules as LLM_EXTRA_BODY.
+    answer_extra_body: str = ""
+    # Sampling temperature for ANSWER generation only (RAG and library answers).
+    # Empty = the caller's own temperature (0.0, greedy — production default).
+    # Exists because thinking models are tuned for sampled decoding: Qwen's
+    # thinking-mode guidance is temperature 0.6 (top_p/top_k/min_p go through
+    # ANSWER_EXTRA_BODY) and warns that greedy decoding degrades answers and
+    # causes endless repetition. `temperature` itself is a reserved key in the
+    # extra bodies, hence a setting of its own.
+    answer_temperature: float | None = None
 
     # ------------------------------------------------------------------
     # Embeddings — same API shape. Empty base_url/api_key fall back to the
@@ -41,9 +64,35 @@ class Settings(BaseSettings):
     # and other non-instruction embedders). Changing it needs no re-index.
     embedding_query_instruction: str = ""
 
-    @field_validator("embedding_dimensions", mode="before")
+    @field_validator("llm_extra_body", "answer_extra_body")
     @classmethod
-    def _blank_int_is_none(cls, v):
+    def _extra_body_is_json_object(cls, v: str, info) -> str:
+        """Accept empty or a JSON object; reject anything else at startup."""
+        # Empty (or whitespace) means "no extra body" — normalise to "".
+        if not v or not v.strip():
+            return ""
+        import json
+
+        # Must parse, and must be an object: the SDK merges extra_body as a
+        # mapping, so a list or scalar would only fail later, inside a request.
+        try:
+            parsed = json.loads(v)
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"{info.field_name.upper()} is not valid JSON: {exc}") from exc
+        if not isinstance(parsed, dict):
+            raise ValueError(f"{info.field_name.upper()} must be a JSON object, e.g. {{\"key\": value}}")
+        # The SDK merges extra_body OVER the named parameters, so these keys
+        # would silently redirect or rewrite every request if .env were tampered.
+        reserved = {"model", "messages", "temperature", "max_tokens", "stream", "stream_options",
+                    "n", "stop", "tools", "tool_choice", "response_format"}
+        clash = sorted(set(parsed) & reserved)
+        if clash:
+            raise ValueError(f"{info.field_name.upper()} may not set request parameters: {clash}")
+        return v
+
+    @field_validator("embedding_dimensions", "answer_temperature", mode="before")
+    @classmethod
+    def _blank_int_is_none(cls, v):  # also ANSWER_TEMPERATURE (see the decorator)
         """Treat an empty env value (EMBEDDING_DIMENSIONS=) as None.
 
         env.template ships this key blank to mean "use the model's native
@@ -147,6 +196,24 @@ class Settings(BaseSettings):
     # ------------------------------------------------------------------
     retrieval_top_k: int = 20                        # hybrid candidates before rerank
     rerank_top_k: int = 8                            # chunks that reach the LLM prompt
+    # Spare reranked candidates kept so dropped duplicates / fragments can be
+    # backfilled without a second rerank (ragline-fixes-plan item 5).
+    rerank_spare: int = 4
+    # Chunks shorter than this (characters) are fragments — page footers, a
+    # lone document code — and are dropped from the final context.
+    min_context_chars: int = 100
+    # Comparison / multi-entity questions: one retrieval per named product, with
+    # this many reserved slots each in the final context (0 = per-entity off).
+    entity_slots: int = 2
+    # At most this many per-product sub-queries are run for one question.
+    max_entity_queries: int = 4
+    # In a multi-product context, the main query's fill takes at most this many
+    # chunks from any one document (the reserved product slots are not capped).
+    entity_doc_cap: int = 4
+    # Add the next chunk of a hit that ends inside (or is followed by) a table or
+    # numbered list — recovers rows and steps split across chunks/pages.
+    neighbour_expansion: bool = True
+    neighbour_max_added: int = 4                     # cap on neighbour chunks added
     enable_context_reordering: bool = True           # lost-in-the-middle mitigation
     enable_hyde: bool = False                        # reserved: accepted but unused (no HyDE code path)
 
@@ -155,8 +222,10 @@ class Settings(BaseSettings):
     # ------------------------------------------------------------------
     chunk_max_tokens: int = 512                      # token budget per chunk
     chunk_overlap_fraction: float = 0.15             # overlap carried into next chunk
+    chunk_min_tokens: int = 48                       # smaller chunks fold into a same-page neighbour
     enable_layout_analysis: bool = True              # strip repeated headers/footers
     enable_ocr_fallback: bool = True                 # OCR pages with <50 chars of text
+    parse_cache_dir: str = ""                         # parsed-document cache (scripts/preparse.py); empty = off
 
     # ------------------------------------------------------------------
     # Knowledge graph.
@@ -183,6 +252,21 @@ class Settings(BaseSettings):
     # its last citation, so keep the RAG ceiling well above a normal answer.
     answer_max_tokens: int = 1500                    # output cap for a RAG answer
     library_answer_max_tokens: int = 600             # output cap for a library-mode answer
+    # Output ceilings for the side calls of a chat turn. Their normal outputs are
+    # ~100-300 tokens of JSON; without a ceiling a degenerate generation (JSON
+    # mode can loop on whitespace or repeat) runs to the model's full context —
+    # ~14 min at 77 tok/s on the eval pod, which stalled a run on 2026-10-14.
+    prepass_max_tokens: int = 1024                   # structured pre-pass (rewrite + route)
+    post_pass_max_tokens: int = 1024                 # memory post-pass (summary, key facts)
+    confidence_max_tokens: int = 1024                # confidence pass (score + report)
+    # Any model call slower than this is logged with its purpose, duration and
+    # tokens, so a stall names the call that caused it. 0 disables the warning.
+    llm_slow_call_s: float = 120.0
+    # EVALUATION ONLY: keep the full text of every model call on the query
+    # trace — messages sent, response, and the separated reasoning text — for
+    # the harness to write to a transcript sidecar. Off in production: with it
+    # off, reasoning text is never stored (only its length is counted).
+    llm_capture_transcripts: bool = False
 
     # ------------------------------------------------------------------
     # Ingestion.
@@ -217,6 +301,36 @@ class Settings(BaseSettings):
     def effective_embedding_api_key(self) -> str:
         """Embedding API key: explicit value, else the LLM API key."""
         return self.embedding_api_key or self.llm_api_key
+
+    @property
+    def llm_extra_body_dict(self) -> dict:
+        """LLM_EXTRA_BODY parsed to a dict; {} when unset.
+
+        Parsed on each access (cheap, a few bytes) so a test or script that
+        assigns `settings.llm_extra_body` after construction is honoured.
+        """
+        if not self.llm_extra_body:
+            return {}
+        import json
+
+        return json.loads(self.llm_extra_body)
+
+    @field_validator("answer_temperature")
+    @classmethod
+    def _answer_temperature_in_range(cls, v):
+        """None (unset) or a sampling temperature the OpenAI API accepts (0-2)."""
+        if v is not None and not 0.0 <= v <= 2.0:
+            raise ValueError("ANSWER_TEMPERATURE must be between 0 and 2")
+        return v
+
+    @property
+    def answer_extra_body_dict(self) -> dict:
+        """ANSWER_EXTRA_BODY parsed to a dict; {} when unset (parsed per access, as above)."""
+        if not self.answer_extra_body:
+            return {}
+        import json
+
+        return json.loads(self.answer_extra_body)
 
     @model_validator(mode="after")
     def _load_file_secrets(self):

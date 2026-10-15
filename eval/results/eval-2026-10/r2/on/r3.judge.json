@@ -1,0 +1,4785 @@
+{
+  "tasks": {
+    "correctness": {
+      "prompt_hash": "ad926a73b52a",
+      "model": "claude-opus-5-5",
+      "calls": 5,
+      "cost_usd_reported": 0.9166,
+      "at": "2026-10-15T14:06:35+00:00"
+    },
+    "faithfulness": {
+      "prompt_hash": "a7cdb81870ed",
+      "model": "claude-opus-5-5",
+      "calls": 25,
+      "cost_usd_reported": 1.807,
+      "at": "2026-10-15T14:11:41+00:00"
+    },
+    "citation_support": {
+      "prompt_hash": "2d544d7e2f62",
+      "model": "claude-opus-5-5",
+      "calls": 9,
+      "cost_usd_reported": 0.8956,
+      "at": "2026-10-15T14:14:32+00:00"
+    }
+  },
+  "per_question": {
+    "A01": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 11 W (0.40 A @ 24 V DC), matching the reference.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The maximum power consumption of the PanelView 800 7-inch terminal 2711R-T7T is 11 W",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The 2711R-T7T draws 0.40 A at 24 V DC",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "panelview_800_user_manual.pdf",
+            "page": 1,
+            "used": false
+          }
+        ]
+      }
+    },
+    "A02": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer names 2711P-Y2032 or an equivalent such as the Matsushita/Duracell DL2032, matching the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The real-time clock battery in 2711R-T4T/T7T/T10T terminals is a replaceable lithium battery",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The replacement battery is 2711P-Y2032",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "A manufacturer's equivalent such as Matsushita or Duracell DL2032 can be used",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The battery backs up only the real-time clock and is not used for application backup or retention",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Battery life is a minimum of 5 years at 25 °C (77 °F)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Verify power is removed before replacing the battery",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Work in a static-free environment with a grounded ESD wristband",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Make sure the area is nonhazardous because connecting or disconnecting the battery can create an electrical arc",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Do not dispose of the battery in a fire or incinerator; dispose of it according to local regulations",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "panelview_800_technical_data.pdf",
+            "page": 5,
+            "used": false
+          },
+          {
+            "source": "panelview_800_user_manual.pdf",
+            "page": 1,
+            "used": false
+          },
+          {
+            "source": "panelview_800_user_manual.pdf",
+            "page": 130,
+            "used": false
+          }
+        ]
+      }
+    },
+    "A03": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 105…110 °C (221…230 °F) causing a delayed automatic restart, matching the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "A PanelView 5310 over-temperature condition occurs at 105…110 °C (221…230 °F)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The over-temperature condition causes a delayed automatic system restart",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Restarts continue indefinitely until the system is cool enough to resume normal operation",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "panelview_5310_user_manual.pdf",
+            "page": 62,
+            "used": false
+          }
+        ]
+      }
+    },
+    "A04": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "Answer says the heat dissipation isn't stated and gives no value; the reference is 30 W = 102 BTU.",
+        "label": "abstained"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The sources list environmental specifications for the 2711P-T12W21D8S",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "DC power consumption of the 12-in. terminals is 50 W max",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The sources do not state a heat dissipation value for the terminal",
+            "supported": true,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "panelview_plus7_standard_technical_data.pdf",
+            "page": 2,
+            "used": false
+          },
+          {
+            "source": "panelview_plus7_standard_technical_data.pdf",
+            "page": 6,
+            "used": false
+          }
+        ]
+      }
+    },
+    "A05": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives Normal at 2.75 V or higher, matching the 2.75V DC minimum in the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "On a PanelView Plus 7 Performance terminal, the real-time clock battery condition is Normal at 2.75 V or higher",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "panelview_plus7_performance_user_manual.pdf",
+            "page": 114,
+            "used": false
+          }
+        ]
+      }
+    },
+    "A06": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives DEMKO 19 ATEX 2252 X, matching the reference ATEX certificate.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The ATEX certificate number for Cat. No. 6200T-NA is DEMKO 19 ATEX 2252 X",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Cat. No. 6200T-NA is a 5200 Thin Client Non-display Model",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The hazardous-location table lists 6200T-NA under Europe (ATEX) with the rating II 3 G, Ex ec IIC T4 Gc",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "versaview_5000_thin_clients_and_industrial_computers_user_manual.pdf",
+            "page": 17,
+            "used": false
+          },
+          {
+            "source": "versaview_5000_thin_clients_and_industrial_computers_user_manual.pdf",
+            "page": 19,
+            "used": false
+          }
+        ]
+      }
+    },
+    "A07": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives IP20 when VESA-mounted (reduced from IP66), matching the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "A VESA-mounted 6200M-15WBN is rated IEC IP20",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "A panel-mounted 6200M-15WBN is rated NEMA 4X",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "A panel-mounted 6200M-15WBN is rated IEC IP66",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "VESA mounting lowers the monitor's IP rating from IP66 to IP20",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "industrial_computers_and_monitors_technical_data.pdf",
+            "page": 31,
+            "used": false
+          },
+          {
+            "source": "versaview_5100_industrial_monitors_user_manual.pdf",
+            "page": 19,
+            "used": false
+          }
+        ]
+      }
+    },
+    "A08": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 0…45 °C (32…113 °F) with Core i7, matching the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "An ASEM 6300P panel PC with a Core i7 processor has an operating temperature range of 0…45 °C (32…113 °F)",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "asem_6300_monitors_pcs_thin_clients_technical_data.pdf",
+            "page": 21,
+            "used": false
+          },
+          {
+            "source": "asem_6300p_panel_pcs_technical_data.pdf",
+            "page": 5,
+            "used": false
+          }
+        ]
+      }
+    },
+    "A09": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "Answer says the RAM and storage values aren't provided; the reference is 512 MB RAM and 250 MB storage.",
+        "label": "abstained"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The 2715-T7CD is a 6.5-in. VGA touch PanelView 5500 terminal",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "'User' memory is defined as memory that is available for you to store applications",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The RAM and User application storage values for the 2715-T7CD are not provided in the sources",
+            "supported": true,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "panelview_5500_technical_data.pdf",
+            "page": 3,
+            "used": false
+          },
+          {
+            "source": "panelview_5500_user_manual.pdf",
+            "page": 16,
+            "used": false
+          }
+        ]
+      }
+    },
+    "A10": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 55 °C for the 2715-T10CD vs 50 °C for the 2711R-T10T and correctly names the PanelView 5500 as higher.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "PanelView 5500 2715-T10CD maximum operating temperature is 55 °C (131 °F)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "PanelView 5500 2715-T10CD operating range is 0…55 °C (32…131 °F)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "PanelView 800 2711R-T10T maximum operating temperature is 50 °C (122 °F)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "PanelView 800 2711R-T10T operating range is 0…50 °C (32…122 °F)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The 2715-T10CD has a 5 °C higher maximum operating temperature than the 2711R-T10T",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "panelview_5500_technical_data.pdf",
+            "page": 2,
+            "used": false
+          },
+          {
+            "source": "panelview_800_technical_data.pdf",
+            "page": 3,
+            "used": false
+          }
+        ]
+      }
+    },
+    "A11": {
+      "correctness": {
+        "verdict": "wrong",
+        "reason": "Answer gives IP66 for both terminals, but the evidence says IP69/IP69K for the stainless 2715P-T12WD-BSK and IP65 for the capacitive 2715P-C12WD.",
+        "label": "wrong"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The sources do not list different IP ratings for the two models",
+            "supported": true,
+            "passage": null
+          },
+          {
+            "claim": "The PanelView 5510 environmental specifications table covers both resistive-touch and capacitive-touch terminals",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Enclosure rating is NEMA and UL Type 1, 4X, 12 and 13, rated IP66 as Classified by UL",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "2715P-T12WD-BSK is a PanelView 5510 Stainless Steel terminal and a 12.1-in. resistive-touch terminal",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "2715P-T12WD-BSK is rated IP66 as Classified by UL",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "2715P-C12WD is a PanelView 5510 Capacitive Touch terminal, 12.1-in. capacitive-touch",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "2715P-C12WD is rated IP66 as Classified by UL",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Capacitive-touch terminals require panel thickness of 3…6 mm",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Stainless-steel/resistive-touch terminals require panel thickness of 1.5…4.8 mm",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "A flat, clean panel surface is required to maintain the seal and rating",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "panelview_5510_technical_data.pdf",
+            "page": 2,
+            "used": false
+          },
+          {
+            "source": "panelview_5510_technical_data.pdf",
+            "page": 3,
+            "used": false
+          },
+          {
+            "source": "panelview_5510_technical_data.pdf",
+            "page": 5,
+            "used": false
+          },
+          {
+            "source": "panelview_5510_user_manual.pdf",
+            "page": 8,
+            "used": false
+          },
+          {
+            "source": "panelview_5510_user_manual.pdf",
+            "page": 27,
+            "used": false
+          }
+        ]
+      }
+    },
+    "A12": {
+      "correctness": {
+        "verdict": "partial",
+        "reason": "Answer correctly gives two ports with DLR for the PanelView 5510 but says the 5310 port count isn't specified, where the evidence says one port.",
+        "label": "partial"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The number of Ethernet ports on the PanelView 5310 is not specified in the sources",
+            "supported": true,
+            "passage": null
+          },
+          {
+            "claim": "DLR support for the PanelView 5310 is not specified in the sources",
+            "supported": true,
+            "passage": null
+          },
+          {
+            "claim": "PanelView 5510 has two Ethernet ports, two 10/100Base-T connectors with RJ45 connectors",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "PanelView 5510 supports Device Level Ring (DLR), linear, or star network topologies",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "In a DLR topology the PanelView 5510 operates only as a ring node",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "PanelView 5310 connects over an EtherNet/IP network",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "panelview_5310_user_manual.pdf",
+            "page": 11,
+            "used": false
+          },
+          {
+            "source": "panelview_5510_user_manual.pdf",
+            "page": 9,
+            "used": false
+          },
+          {
+            "source": "panelview_5510_user_manual.pdf",
+            "page": 14,
+            "used": false
+          },
+          {
+            "source": "panelview_5510_user_manual.pdf",
+            "page": 36,
+            "used": false
+          },
+          {
+            "source": "panelview_5510_user_manual.pdf",
+            "page": 38,
+            "used": false
+          }
+        ]
+      }
+    },
+    "B01": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 13.2 W for the KTP1200 Basic DP, matching the reference.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The SIMATIC KTP1200 Basic DP has a power consumption of 13.2 W",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "It is rated for +24 V DC",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Typical current consumption is approximately 550 mA",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Maximum constant current is approximately 800 mA",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "ifp_basic_operating_instructions.pdf",
+            "page": 68,
+            "used": false
+          },
+          {
+            "source": "ktp_basic_panels_2nd_gen_hardware.pdf",
+            "page": 119,
+            "used": false
+          }
+        ]
+      }
+    },
+    "B02": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 28.8 W (1.2 A at 24 V DC) without loads, matching the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The MTP1900 Unified Comfort panel's power consumption without loads is 28.8 W at 24 V DC",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The rated current at 24 V DC without loads is 1.2 A",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "unified_comfort_panels_operating_instructions.pdf",
+            "page": 159,
+            "used": false
+          }
+        ]
+      }
+    },
+    "B03": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 1920 × 1080 pixels, matching the reference.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The SIMATIC TP2200 Comfort panel has a display resolution of 1920 × 1080 pixels",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "tp_comfort_panels_hardware_manual.pdf",
+            "page": 221,
+            "used": false
+          },
+          {
+            "source": "tp_comfort_panels_operating_instructions.pdf",
+            "page": 193,
+            "used": false
+          }
+        ]
+      }
+    },
+    "B04": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "Answer says there isn't enough information and gives no value; the reference is 36 W.",
+        "label": "abstained"
+      },
+      "faithfulness": {
+        "claims": []
+      }
+    },
+    "B05": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer says disabled by default with ports 9222 (screen) and 9224 (job), matching the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The WinCC Unified Runtime script debugger is disabled by default",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The screen debugger default port number is 9222",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The job/scheduler debugger default port number is 9224",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "wincc_unified_runtime_system_manual.pdf",
+            "page": 233,
+            "used": false
+          }
+        ]
+      }
+    },
+    "B06": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives a maximum of 300 tags simulated at the same time, matching the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The WinCC Unified Tag Simulator can simulate at most 300 tags at the same time",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "More tags can be configured and saved than can be simulated",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Only the first 300 inserted tags are activated",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "wincc_unified_runtime_system_manual.pdf",
+            "page": 291,
+            "used": false
+          },
+          {
+            "source": "wincc_unified_runtime_system_manual.pdf",
+            "page": 294,
+            "used": false
+          },
+          {
+            "source": "wincc_unified_runtime_system_manual.pdf",
+            "page": 297,
+            "used": false
+          }
+        ]
+      }
+    },
+    "B07": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 0 °C to +45 °C operation, matching the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The CP37xx series includes the CP3716",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The permitted ambient temperature during operation for the CP37xx series is 0 °C to +45 °C",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The transport and storage temperature range is −20 °C to +65 °C",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "cp37xx_panel_pc_manual.pdf",
+            "page": 47,
+            "used": false
+          }
+        ]
+      }
+    },
+    "B08": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer says No, fTPM 2.0 is not enabled on the CP6700-0001-0050, matching the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The CP6700-0001-0050 does not have fTPM 2.0 enabled",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The CP6700-0001-0060 has fTPM 2.0 enabled",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The CP6700-0001-0070 has fTPM 2.0 enabled",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "cp6700_panel_pc.pdf",
+            "page": 1,
+            "used": false
+          },
+          {
+            "source": "cp6700_panel_pc.pdf",
+            "page": 40,
+            "used": false
+          }
+        ]
+      }
+    },
+    "B09": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 232.5 x 175.8 x 42.9 mm (9.15\" x 6.92\" x 1.69\"), which matches the reference exactly.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The WebOP-2080V (WOP-2080V-N4AE) measures 232.5 x 175.8 x 42.9 mm (W x H x D)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The dimensions in inches are 9.15\" x 6.92\" x 1.69\"",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "advantech_industrial_operator_panels_catalog.pdf",
+            "page": 1,
+            "used": false
+          }
+        ]
+      }
+    },
+    "B10": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Both values are given (IFP1500 Basic 24 V DC, +20.4 to +28.8 V; IM-315A 12-24 V DC, 9 to 36 V) and the answer correctly says the IM-315A range is wider.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The SIMATIC IFP1500 Basic is supplied at 24 V DC",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The IFP1500 Basic's permitted voltage range is +20.4 V to +28.8 V",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The SIMATIC HMI IM-315A's nominal supply is 12–24 V DC",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The IM-315A accepts a minimum of 9 V and a maximum of 36 V",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The IM-315A has a wider permitted DC range than the IFP1500 Basic, with a lower minimum (9 V vs 20.4 V) and a higher maximum (36 V vs 28.8 V)",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "ifp_basic_operating_instructions.pdf",
+            "page": 68,
+            "used": false
+          },
+          {
+            "source": "im312a_315a_319a_322a_operating_instructions.pdf",
+            "page": 52,
+            "used": false
+          },
+          {
+            "source": "im312a_315a_319a_322a_operating_instructions.pdf",
+            "page": 58,
+            "used": false
+          }
+        ]
+      }
+    },
+    "B11": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Both panels are covered: MTP1500 front IP65 / rear IP20 and CP6600-0001-0020 front IP54 / rear IP20, matching the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The Siemens MTP1500 Unified Comfort front is rated IP65 when mounted, according to IEC 60529",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The MTP1500 front is Type 4X/Type 12, indoor use only, front face only, according to UL50",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The MTP1500 rear is rated IP20 (protection against contact with standard test probes; no protection against water, dust or noxious gas)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The front IP65 rating is guaranteed only if the mounting seal lies flush against the mounting cutout",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Mounting cutout requirements are a material thickness of 2–6 mm, plane deviation of 0.5 mm or less, and surface roughness of 120 µm or less",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The Beckhoff CP6600-0001-0020 front is rated IP54",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The Beckhoff CP6600-0001-0020 rear is rated IP20",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Both devices are rated IP20 at the rear",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "cp6600_panel_pc_manual.pdf",
+            "page": 33,
+            "used": false
+          },
+          {
+            "source": "unified_comfort_panels_operating_instructions.pdf",
+            "page": 33,
+            "used": false
+          },
+          {
+            "source": "unified_comfort_panels_operating_instructions.pdf",
+            "page": 150,
+            "used": false
+          }
+        ]
+      }
+    },
+    "C01": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives default port No. 8501, which matches the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The default Port No. in [Connected Ethernet Controller Setting] for a GOT2000 connected to a KEYENCE PLC is 8501",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The PLC side must use the same port number as the GOT's [Connected Ethernet Controller Setting]",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The GOT Communication Port No. in the communication detail settings defaults to 5025 for the KEYENCE connection",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "got2000_connection_manual_non_mitsubishi_products_1.pdf",
+            "page": 337,
+            "used": false
+          },
+          {
+            "source": "got2000_connection_manual_non_mitsubishi_products_1.pdf",
+            "page": 338,
+            "used": false
+          },
+          {
+            "source": "got2000_connection_manual_non_mitsubishi_products_1.pdf",
+            "page": 340,
+            "used": false
+          }
+        ]
+      }
+    },
+    "C02": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives up to 63 GOT modules per DeviceNet master, which matches the reference.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "A maximum of 63 GOT2000 units can be connected as DeviceNet slaves to one DeviceNet master",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "got2000_connection_manual_microcomputer_modbus.pdf",
+            "page": 241,
+            "used": false
+          }
+        ]
+      }
+    },
+    "C03": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 6.5 W (271 mA/24 V) or less, plus 3.8 W with the backlight off, matching the reference.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "GS2107-WTBD maximum power consumption is 6.5 W (271 mA at 24 V) or less",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "GS2107-WTBD power consumption with backlight off is 3.8 W (158 mA at 24 V) or less",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "got_simple_series_catalog.pdf",
+            "page": 36,
+            "used": false
+          },
+          {
+            "source": "gs21_general_description.pdf",
+            "page": 1,
+            "used": false
+          },
+          {
+            "source": "gs25_gs21_user_manual.pdf",
+            "page": 146,
+            "used": false
+          }
+        ]
+      }
+    },
+    "C04": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives ±45 seconds/month at 25 °C, matching the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "GT2107-W built-in clock precision is ±45 seconds/month",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The clock precision is specified at an ambient temperature of 25 °C",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "got2000_gt27_gt25_hardware_user_manual.pdf",
+            "page": 102,
+            "used": false
+          }
+        ]
+      }
+    },
+    "C05": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 1525 g, matching the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "Omron NB10W-TW01B (non-V1) weighs 1525 g",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "nb_series_setup_manual.pdf",
+            "page": 90,
+            "used": false
+          },
+          {
+            "source": "nb_series_startup_guide.pdf",
+            "page": 29,
+            "used": false
+          }
+        ]
+      }
+    },
+    "C06": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer names Modbus/TCP and the controller-side command Sys.ModbusServerEnable=1 entered from the PowerPMAC IDE terminal, matching the reference.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The NA-series HMI connects to an OMRON Programmable Multi-Axis Controller using Modbus/TCP",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Programmable Multi-Axis Motion Controller settings are made from PowerPMAC IDE",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Enter Sys.ModbusServerEnable=1 from the PowerPMAC IDE terminal",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "In PowerPMAC IDE, under Tools > Options > Network Settings, set the built-in EtherNet port IP address, subnet mask, and default gateway",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "HMI settings are made from Sysmac Studio",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Double-click HMI Settings under Configuration and Setup in the Multiview Explorer",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Register the Programmable Multi-Axis Controller as a connected device in Device References",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Configure the external device with Device Vendor: Omron",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Configure the external device with Device Series: CK3, the model connected",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Configure the external device with Communication Driver: Modbus/TCP",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Set the communications configuration: IP address of the connected device, Timeout, and Communication start wait time",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Remove the Communication Error Indication checkmark if you do not want an error dialog box on communication errors",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "na_series_device_connection_user_manual.pdf",
+            "page": 107,
+            "used": false
+          },
+          {
+            "source": "na_series_device_connection_user_manual.pdf",
+            "page": 108,
+            "used": false
+          },
+          {
+            "source": "na_series_device_connection_user_manual.pdf",
+            "page": 109,
+            "used": false
+          },
+          {
+            "source": "na_series_device_connection_user_manual.pdf",
+            "page": 111,
+            "used": false
+          },
+          {
+            "source": "na_series_device_connection_user_manual.pdf",
+            "page": 114,
+            "used": false
+          }
+        ]
+      }
+    },
+    "C07": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 0 to 40°C, matching the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The Omron NSH5-V2 hand-held PT has an ambient operating temperature range of 0 to 40°C",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "ns_series_datasheet.pdf",
+            "page": 39,
+            "used": false
+          }
+        ]
+      }
+    },
+    "C08": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 32 actions each for press, release and long press, 96 in total, matching the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "A DOPSoft Multiple actions button can be configured with up to 32 actions for each of press, release, and long press",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The total maximum is 32 × 3 = 96 actions",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "dopsoft_user_manual.pdf",
+            "page": 376,
+            "used": false
+          }
+        ]
+      }
+    },
+    "C09": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 1024 × 600 pixels, matching the reference.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The Delta DOP-110WS 10.1\" HMI has a display resolution of 1024 × 600 pixels",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "dop_100_series_catalog.pdf",
+            "page": 26,
+            "used": false
+          },
+          {
+            "source": "dop_100_series_selection_guide.pdf",
+            "page": 28,
+            "used": false
+          }
+        ]
+      }
+    },
+    "C10": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Both values are given (GT2712-S 57 MB, GT2512-S 32 MB) and the answer correctly says the GT2712-S has 25 MB more.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "GT2712-S user memory for storage (ROM) is 57 MB",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "GT2512-S user memory for storage (ROM) is 32 MB",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "GT2712-S has 25 MB more ROM than GT2512-S",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "got2000_gt27_gt25_hardware_user_manual.pdf",
+            "page": 70,
+            "used": false
+          },
+          {
+            "source": "got2000_gt27_gt25_hardware_user_manual.pdf",
+            "page": 86,
+            "used": false
+          }
+        ]
+      }
+    },
+    "C11": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "Answer says the sources lack the power figures and gives neither the NA5-7W 19 W nor the DOP-107WV 8.4 W.",
+        "label": "abstained"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "DOP-107WV is a 7\" Advanced Narrow Frame Type HMI",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "DOP-107WV has WVGA TFT resolution",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Delta power-consumption values are the power consumed by the HMI with no peripheral devices connected",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The sources do not give a maximum power-consumption value for DOP-107WV",
+            "supported": true,
+            "passage": null
+          },
+          {
+            "claim": "The sources do not include specifications for Omron NA5-7W",
+            "supported": true,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "dop_100_series_catalog.pdf",
+            "page": 26,
+            "used": false
+          },
+          {
+            "source": "dop_100_series_catalog.pdf",
+            "page": 27,
+            "used": false
+          },
+          {
+            "source": "dop_100_series_catalog.pdf",
+            "page": 28,
+            "used": false
+          },
+          {
+            "source": "dop_100_series_catalog.pdf",
+            "page": 32,
+            "used": false
+          },
+          {
+            "source": "dop_100_series_selection_guide.pdf",
+            "page": 28,
+            "used": false
+          },
+          {
+            "source": "dop_100_series_selection_guide.pdf",
+            "page": 30,
+            "used": false
+          },
+          {
+            "source": "dop_100_series_selection_guide.pdf",
+            "page": 31,
+            "used": false
+          },
+          {
+            "source": "dop_100_series_selection_guide.pdf",
+            "page": 35,
+            "used": false
+          }
+        ]
+      }
+    },
+    "D01": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 10.5–28 VDC, matching the reference.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "Weintek MT8071iP input voltage range is 10.5–28 VDC",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "mt8071ip1_datasheet.pdf",
+            "page": 1,
+            "used": false
+          }
+        ]
+      }
+    },
+    "D02": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives approx. 2.74 kg, matching the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "Weintek cMT2158X weight is approx. 2.74 kg",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "cmt_series_brochure.pdf",
+            "page": 12,
+            "used": false
+          }
+        ]
+      }
+    },
+    "D03": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives −10 to 55°C (14 to 131°F), matching the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The Weintek cMT-SVR-200 (with cMT-SVR-202) has an operating temperature range of −10°C to 55°C (14°F to 131°F)",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "cmt_series_brochure.pdf",
+            "page": 17,
+            "used": false
+          },
+          {
+            "source": "cmt_series_edge_computing_brochure.pdf",
+            "page": 17,
+            "used": false
+          },
+          {
+            "source": "cmt_svr_200_202_datasheet.pdf",
+            "page": 1,
+            "used": false
+          }
+        ]
+      }
+    },
+    "D04": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives +24 VDC ±20% with 33 W maximum, matching the reference values (it cites an unrelated source, but the values are right).",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The Red Lion G310C input power requirement is +24 VDC ±20%",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The Red Lion G310C maximum power is 33 W",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "cr3000_series_user_manual.pdf",
+            "page": 2,
+            "used": false
+          }
+        ]
+      }
+    },
+    "D05": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "Answer says the information is not available and does not give the 11.41 lbs (5.17 kg) weight.",
+        "label": "abstained"
+      },
+      "faithfulness": {
+        "claims": []
+      }
+    },
+    "D06": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives a maximum of 18.5 W for the HMIST6700, matching the evidence; the extra 15 W note does not contradict it.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The Schneider Harmony ST6 HMIST6700 maximum power consumption is 18.5 W",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Power consumption is 15 W or less when power is not supplied to external devices",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "basic_and_web_hmi_panels_catalog.pdf",
+            "page": 1,
+            "used": false
+          },
+          {
+            "source": "harmony_st6_user_manual.pdf",
+            "page": 22,
+            "used": false
+          }
+        ]
+      }
+    },
+    "D07": {
+      "correctness": {
+        "verdict": "partial",
+        "reason": "The answer gives the correct 22.5 mm (0.88 in) diameter but credits it only to the STM-6200WA and says the STM-6400WA value is not stated, so the right value is hedged as uncertain.",
+        "label": "partial"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The provided documents do not state the panel cutout dimensions for the STM-6400WA",
+            "supported": true,
+            "passage": null
+          },
+          {
+            "claim": "The STM-6400WA external dimensions are 201.2 × 137.2 × 17.1 mm",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The STM-6400WA external dimensions are 7.92 × 5.4 × 0.67 in",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The STM-6400WA external dimensions exclude protrusions",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The STM-6200WA panel cut is diameter 22.5 mm (0.88 in)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The STM specification table has a blank panel-cut cell for the STM-6400WA",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The STW-6400WA panel cut is 190 × 135 mm",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The STW-6400WA panel thickness is 1.6–5 mm",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "stm6000_series_hardware_manual.pdf",
+            "page": 22,
+            "used": false
+          },
+          {
+            "source": "stm6000_series_hardware_manual.pdf",
+            "page": 31,
+            "used": false
+          },
+          {
+            "source": "stw6000_series_hardware_manual.pdf",
+            "page": 23,
+            "used": false
+          },
+          {
+            "source": "stw6000_series_hardware_manual.pdf",
+            "page": 38,
+            "used": false
+          }
+        ]
+      }
+    },
+    "D08": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "The answer gives 31.2 W at rated voltage (+24 VDC), matching the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The X2 pro 15 B2 power consumption at rated voltage is 31.2 W",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The X2 pro 15 B2 rated power supply is +24 VDC",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The X2 pro 15 B2 supply range is 18–32 V DC",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "x2_pro_15_b2_hardware_manual.pdf",
+            "page": 15,
+            "used": false
+          }
+        ]
+      }
+    },
+    "D09": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "The answer gives 1024 x 600 on a 7\" IPS display, matching the datasheet.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The cMT3072XH has a 7-inch display",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The cMT3072XH display is IPS",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The cMT3072XH resolution is 1024 x 600",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "cmt3072xh_datasheet.pdf",
+            "page": 1,
+            "used": false
+          }
+        ]
+      }
+    },
+    "D10": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "The answer gives both ranges correctly (eMT3070A -20~50°C, eMT3150A 0~50°C) and correctly says the eMT3070A handles colder conditions.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The eMT3070A operating temperature range is -20°C to 50°C (-4°F to 122°F)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The eMT3150A operating temperature range is 0°C to 50°C (32°F to 122°F)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The eMT3070A has a wider operating temperature range than the eMT3150A",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Both models have the same maximum operating temperature of 50°C",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "emt3070a_7in_datasheet.pdf",
+            "page": 1,
+            "used": false
+          },
+          {
+            "source": "emt3150a_15in_datasheet.pdf",
+            "page": 1,
+            "used": false
+          }
+        ]
+      }
+    },
+    "D11": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "The answer gives both weights correctly (DA50A 13 oz / 404.3 g, DA70A 2 lb 2.5 oz / 978.05 g) and correctly names the DA70A as heavier.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "Red Lion FlexEdge DA50A weighs 13 oz (404.3 g)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Red Lion FlexEdge DA70A weighs 2 lb 2.5 oz (978.05 g)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "DA70A is heavier than DA50A by 21.5 oz (573.75 g)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "DA70A is about 2.4 times heavier than DA50A",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "flexedge_da50a_datasheet.pdf",
+            "page": 3,
+            "used": false
+          },
+          {
+            "source": "flexedge_da70a_datasheet.pdf",
+            "page": 3,
+            "used": false
+          }
+        ]
+      }
+    },
+    "D12": {
+      "correctness": {
+        "verdict": "partial",
+        "reason": "The answer gives the X2 pro -10°C to +60°C correctly, but gives only an upper limit of 50°C for the HMIST6500 (missing the stated 0°C low end), so it does not name the X2 pro 10 B2 as the clear winner.",
+        "label": "partial"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "Schneider Harmony ST6 operating temperature is up to 50 °C",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "HMIST6500 is the 10.1-inch Harmony ST6 panel",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The sources do not provide a lower operating-temperature limit for the HMIST6500",
+            "supported": true,
+            "passage": null
+          },
+          {
+            "claim": "Beijer X2 pro operating temperature is -10°C to +60°C",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The exact X2 pro 10 B2 model is not separately itemized in the sources",
+            "supported": true,
+            "passage": null
+          },
+          {
+            "claim": "X2 pro 21 operating temperature is 0°C to +50°C",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The X2 pro maximum operating temperature is 10°C higher than the Harmony ST6 maximum",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "basic_and_web_hmi_panels_catalog.pdf",
+            "page": 1,
+            "used": false
+          },
+          {
+            "source": "basic_and_web_hmi_panels_catalog.pdf",
+            "page": 8,
+            "used": false
+          },
+          {
+            "source": "x2_series_operator_panels_brochure.pdf",
+            "page": 5,
+            "used": false
+          }
+        ]
+      }
+    },
+    "E01": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "The answer says no MTBF is given for the cMT3072X, and it does not present the backlight life it mentions as an MTBF.",
+        "label": "declined"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "MTBF is defined as Mean Time Between Failures",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The sources do not provide an MTBF value for the Weintek cMT3072X",
+            "supported": true,
+            "passage": null
+          },
+          {
+            "claim": "The cMT3072X datasheet lists a backlight life of >30,000 hrs",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "cmt3072x_datasheet.pdf",
+            "page": 1,
+            "used": false
+          },
+          {
+            "source": "unified_comfort_panels_operating_instructions.pdf",
+            "page": 173,
+            "used": false
+          }
+        ]
+      }
+    },
+    "E02": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "The answer says it lacks the information, which is correct because no pricing exists in the documents.",
+        "label": "declined"
+      },
+      "faithfulness": {
+        "claims": []
+      }
+    },
+    "E03": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "The answer gives no Bluetooth version and says the information is not available.",
+        "label": "declined"
+      },
+      "faithfulness": {
+        "claims": []
+      }
+    },
+    "E04": {
+      "correctness": {
+        "verdict": "wrong",
+        "reason": "The answer correctly says the cMT3252X is not listed, but then supplies the sibling cMT3152X's 0~50°C range, which is exactly the substitution the reference forbids.",
+        "label": "answered_wrong"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The provided sources do not list a model named cMT3252X.",
+            "supported": true,
+            "passage": null
+          },
+          {
+            "claim": "The sources list a model named cMT3152X.",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The cMT3152X operating temperature range is 0° ~ 50° C (32° ~ 122° F).",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "cmt_series_brochure.pdf",
+            "page": 10,
+            "used": false
+          },
+          {
+            "source": "cmt_series_edge_computing_brochure.pdf",
+            "page": 9,
+            "used": false
+          }
+        ]
+      }
+    },
+    "E05": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "The answer gives no resolution and says the information is not available, which is correct because there are no Phoenix Contact HMI documents.",
+        "label": "declined"
+      },
+      "faithfulness": {
+        "claims": []
+      }
+    },
+    "E06": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "The answer gives no kernel version and says the information is not available.",
+        "label": "declined"
+      },
+      "faithfulness": {
+        "claims": []
+      }
+    },
+    "E07": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "The answer lists all 12 vendors in the reference (Advantech through Weintek).",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The HMI document library covers 12 vendors",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Vendors covered are Advantech, Allen-Bradley, Beckhoff, Beijer, Delta, Mitsubishi, Omron, Proface, Red Lion, Schneider, Siemens, Weintek",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "There are 119 documents in total across these HMI vendor categories",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      }
+    },
+    "E08": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "The answer gives 18 Weintek documents, matching the reference.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The Weintek category contains 18 documents",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      }
+    },
+    "E09": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "The answer gives 10 GOT2000 documents, and its listing includes exactly the 10 reference files; the full library listing around them is extra context.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The library contains 10 GOT2000-specific documents",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The GOT2000 documents total 3,121 pages",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The GOT2000 documents total 4,644 chunks",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "GOT2000 documents cover catalogs, connection manuals, hardware/utility manuals, and general descriptions",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Library totals are 119 documents and 11,723 pages",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "GOT2000 documents: got2000_connection_manual_microcomputer_modbus.pdf (466 pages), got2000_connection_manual_non_mitsubishi_products_1.pdf (712 pages), got2000_connection_manual_non_mitsubishi_products_2.pdf (672 pages), got2000_graphic_operation_catalog.pdf (84 pages), got2000_gt27_gt25_hardware_user_manual.pdf (448 pages), got2000_gt27_gt25_utility_user_manual.pdf (706 pages), got2000_series_catalog.pdf (28 pages), gt21_wide_general_description.pdf (1 page), gt25_wide_general_description.pdf (2 pages), gt27_general_description.pdf (2 pages)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Mitsubishi has 13 documents, including 3 GOT Simple GS21 documents (got_simple_series_catalog.pdf 40 pages, gs21_general_description.pdf 1 page, gs25_gs21_user_manual.pdf 426 pages)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Advantech has 2 documents (with the listed file names and page counts)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Allen-Bradley has 25 documents (with the listed file names and page counts)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Beckhoff has 5 documents (with the listed file names and page counts)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Beijer has 4 documents (with the listed file names and page counts)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Delta has 4 documents (with the listed file names and page counts, including a 1803-page DOPSoft user manual)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Omron has 11 documents (with the listed file names and page counts)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Proface has 6 documents (with the listed file names and page counts)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Red Lion has 10 documents (with the listed file names and page counts)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Schneider has 7 documents (with the listed file names and page counts)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Siemens has 14 documents (with the listed file names and page counts)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Weintek has 18 documents (with the listed file names and page counts)",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      }
+    },
+    "F01": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "The answer names 2711P-Y2032 or an equivalent such as the Matsushita/Duracell DL2032, matching the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The product is the PanelView 800 2711R-T7T",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The real-time clock battery is a replaceable lithium battery",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The battery is intended to be replaced during the life of the product",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The battery provides backup for the real-time clock only and is not used for application backup or retention",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Use only battery 2711P-Y2032",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "A manufacturer's equivalent such as Matsushita or Duracell DL2032 may be used",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Minimum battery lifespan is 5 years at 25 °C",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Before replacing, verify power is removed",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Work in a static-free environment with a properly grounded ESD wristband",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Ensure the area is nonhazardous because connecting or disconnecting the battery can create an electrical arc",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Do not dispose of the battery in a fire or incinerator; dispose of it according to local regulations",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "panelview_800_technical_data.pdf",
+            "page": 5,
+            "used": false
+          },
+          {
+            "source": "panelview_800_user_manual.pdf",
+            "page": 12,
+            "used": false
+          },
+          {
+            "source": "panelview_800_user_manual.pdf",
+            "page": 130,
+            "used": false
+          }
+        ]
+      }
+    },
+    "F02": {
+      "correctness": {
+        "verdict": "wrong",
+        "reason": "The answer says IP66, but the evidence says IP69 (UL), tested for IP69K.",
+        "label": "wrong"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The PanelView 5510 stainless-steel terminals are rated IP66 as classified by UL",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "To maintain the IP rating, the terminals must be installed in a panel or enclosure with an equivalent rating",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Stainless-steel resistive-touch terminals require a panel thickness of 1.5…4.8 mm (0.06…0.19 in.)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "A flat, clean panel surface is required to maintain the seal",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "panelview_5510_technical_data.pdf",
+            "page": 3,
+            "used": false
+          },
+          {
+            "source": "panelview_5510_user_manual.pdf",
+            "page": 19,
+            "used": false
+          },
+          {
+            "source": "panelview_5510_user_manual.pdf",
+            "page": 27,
+            "used": false
+          }
+        ]
+      }
+    },
+    "F03": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "The answer says it lacks the information and does not give the DOP-107WV's Max. 8.4 W.",
+        "label": "abstained"
+      },
+      "faithfulness": {
+        "claims": []
+      }
+    },
+    "F04": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "The answer gives 2 lb 2.5 oz (978.05 g), matching the datasheet.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The Red Lion FlexEdge DA70A weighs 2 lb 2.5 oz (978.05 g)",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "flexedge_da70a_datasheet.pdf",
+            "page": 3,
+            "used": false
+          }
+        ]
+      }
+    },
+    "F05": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "The answer gives 800 x 480 on a 7\" TFT, matching the datasheet.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The Weintek cMT3072X has a display resolution of 800 x 480",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The Weintek cMT3072X has a 7\" TFT panel",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "cmt3072x_datasheet.pdf",
+            "page": 1,
+            "used": false
+          }
+        ]
+      }
+    },
+    "A13": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Gives 0…50 °C (32…122 °F) for the Series A 19-in. unit, which matches the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The 2711P-T19C22D9P Series A operating temperature range is 0…50 °C (32…122 °F)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The 2711P-T19C22D9P is a 19-inch PanelView Plus 7 Performance terminal",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The '9' in the catalog number denotes Series A",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "legacy_panelview_to_plus7_migration_guide.pdf",
+            "page": 17,
+            "used": false
+          },
+          {
+            "source": "panelview_plus7_performance_technical_data.pdf",
+            "page": 3,
+            "used": false
+          },
+          {
+            "source": "panelview_plus7_performance_user_manual.pdf",
+            "page": 211,
+            "used": false
+          }
+        ]
+      }
+    },
+    "A14": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Gives 389.8 mm (15.31 in.) × 239.3 mm (9.42 in.) with ±1 mm tolerance, which matches the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "For display code 15L with AF-GL-SR bezel, cutout dimension A is 389.8 mm (15.31 in.)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "For display code 15L with AF-GL-SR bezel, cutout dimension B is 239.3 mm (9.42 in.)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Panel cutout dimensions tolerance is ± 1 mm (0.04 in.)",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "asem_6300_monitors_pcs_thin_clients_technical_data.pdf",
+            "page": 19,
+            "used": false
+          },
+          {
+            "source": "asem_6300m_user_manual.pdf",
+            "page": 27,
+            "used": false
+          }
+        ]
+      }
+    },
+    "A15": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Names 2711P-RAAT15 for the 1400/1400e touch-screen terminals and adds the correct Performance-only restriction.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "Adapter kit 2711P-RAAT15 is listed for replacing 1400 and 1400e touch-screen terminals with a 15 in. touch-screen PanelView Plus 7 Performance terminal",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The adapter kit provides hardware for installing a PanelView Plus 7 Performance terminal into the cutout of an existing PanelView terminal",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The adapter kits are only for PanelView Plus 7 Performance terminals and must not be used with PanelView Plus 7 Standard terminals",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "legacy_panelview_to_plus7_migration_guide.pdf",
+            "page": 39,
+            "used": false
+          }
+        ]
+      }
+    },
+    "B12": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "Says the luminance is not stated and gives no value; the expected value was 550 cd/m2.",
+        "label": "abstained"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The WOP-3100T has a 10.1\" WSVGA (16:9) TFT LCD",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The WOP-3100T max resolution is 1024 x 600",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The source does not state a display luminance/brightness value for the WOP-3100T",
+            "supported": true,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "advantech_intelligent_operator_panels_catalog.pdf",
+            "page": 4,
+            "used": false
+          }
+        ]
+      }
+    },
+    "B13": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Gives 21 W without loads, which matches the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The Siemens SIMATIC HMI IM-319A has a power consumption without loads of 21 W",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "im312a_315a_319a_322a_operating_instructions.pdf",
+            "page": 52,
+            "used": false
+          }
+        ]
+      }
+    },
+    "B14": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Gives a maximum of 45 °C for the TP2200, which matches the evidence of 0 ... 45 °C.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "For the TP2200 Comfort, the maximum permitted ambient temperature in vertical landscape mounting (0° tilt) is +45 °C",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The valid mounting positions diagram lists 45 °C for TP1900 and TP2200",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "simatic_hmi_comfort_panels_datasheet.pdf",
+            "page": 1,
+            "used": false
+          },
+          {
+            "source": "tp_comfort_panels_operating_instructions.pdf",
+            "page": 31,
+            "used": false
+          }
+        ]
+      }
+    },
+    "C12": {
+      "correctness": {
+        "verdict": "wrong",
+        "reason": "Gives 140 VA and 51 W or less, but the evidence says 122 VA and 44 W or less.",
+        "label": "wrong"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The GT2715-XTBA is AC-powered with 100 V AC to 240 V AC input",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Maximum apparent power of GT2715-XTBA is 140 VA",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Power consumption under maximum load of GT2715-XTBA is 51 W or less",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "got2000_gt27_gt25_hardware_user_manual.pdf",
+            "page": 112,
+            "used": false
+          }
+        ]
+      }
+    },
+    "C13": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Gives DT0/DT10, 9600/7/Even/1, station 1 and RS-485, which all match the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The protocol section is named 'Delta CNC Controller ASCII'",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Applicable HMI models are DOP-B / DOP-W / DOP-H / HMC series, DOP-100",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Default serial settings are 9600, 7, Even, 1",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Default controller station number is 1",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Default Control Area / Status Area addresses are DT0/DT10",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Connection type is RS-485",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Wiring: DOP 9-pin D-sub D+ (pin 1) to controller D+, and D- (pin 6) to controller D-",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "dop_100_series_connection_manual.pdf",
+            "page": 1,
+            "used": false
+          }
+        ]
+      }
+    },
+    "C14": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Gives 4 PLCs or fewer for GT21/GS21 and 128 or fewer for GT27/GT25, which matches the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "For Ethernet OP communication in an N:1 configuration, a GT21 can connect to 4 Siemens SIMATIC PLCs or fewer",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "For Ethernet OP communication in an N:1 configuration, a GS21 can connect to 4 Siemens SIMATIC PLCs or fewer",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "For Ethernet OP communication in an N:1 configuration, a GT27 can connect to 128 Siemens SIMATIC PLCs or fewer",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "For Ethernet OP communication in an N:1 configuration, a GT25 can connect to 128 Siemens SIMATIC PLCs or fewer",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The OP communication connection tables include SIMATIC S7-300, S7-400, S7-1200 and S7-1500",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "got2000_connection_manual_non_mitsubishi_products_2.pdf",
+            "page": 515,
+            "used": false
+          },
+          {
+            "source": "got2000_connection_manual_non_mitsubishi_products_2.pdf",
+            "page": 527,
+            "used": false
+          },
+          {
+            "source": "got2000_connection_manual_non_mitsubishi_products_2.pdf",
+            "page": 528,
+            "used": false
+          }
+        ]
+      }
+    },
+    "D13": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Gives 820 mA @ 24 VDC, which matches the evidence; the derived ~19.7 W is extra context.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The cMT2078X datasheet lists power consumption as 820 mA @ 24 VDC",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The datasheet does not state a rated power value in watts",
+            "supported": true,
+            "passage": null
+          },
+          {
+            "claim": "820 mA at 24 VDC is approximately 19.7 W",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "cmt2078x_7in_datasheet.pdf",
+            "page": 1,
+            "used": false
+          }
+        ]
+      }
+    },
+    "D14": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Gives a maximum of 45 °C (-10 to 45 °C) with the cellular modem fitted, which matches the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The maximum operating temperature of the Red Lion CR3000 15-inch with the Cellular Modem Module is 45 °C",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The specification gives the operating temperature range as -10 to 45 °C when using the Cellular Modem Module (CRM000CMCMOD0000) or equivalent",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "cr3000_series_user_manual.pdf",
+            "page": 2,
+            "used": false
+          }
+        ]
+      }
+    },
+    "D15": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Gives 2.5 kg, which is equivalent to the evidence value of 2.500 kg for the HMIGTO5315.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The HMIGTO5315 is the stainless-steel version of the 10.4-inch Harmony GTO panel",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The HMIGTO5315 weighs 2.5 kg (5.5 lb) or less, main unit only",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "harmony_gto_catalog.pdf",
+            "page": 13,
+            "used": false
+          },
+          {
+            "source": "harmony_gto_vijeo_designer_user_manual.pdf",
+            "page": 81,
+            "used": false
+          },
+          {
+            "source": "hmigto5310_manual.pdf",
+            "page": 79,
+            "used": false
+          }
+        ]
+      }
+    },
+    "A16": {
+      "correctness": {
+        "verdict": "partial",
+        "reason": "Gives the correct 33 W for the 2715P-T15CD-BSK but leaves out the Plus 7's 39 W and names no winner.",
+        "label": "partial"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The PanelView 5510 terminal 2715P-T15CD-BSK is a 15-in. Resistive Touch terminal",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "2715P-T15CD-BSK has a maximum power consumption of 33 W",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "2711P-T15C22D9P-BSHK is a PanelView Plus 7 Performance Stainless Steel terminal",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The sources do not provide the maximum power consumption of 2711P-T15C22D9P-BSHK",
+            "supported": true,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "panelview_5510_technical_data.pdf",
+            "page": 6,
+            "used": false
+          },
+          {
+            "source": "panelview_plus7_performance_technical_data.pdf",
+            "page": 2,
+            "used": false
+          }
+        ]
+      }
+    },
+    "A17": {
+      "correctness": {
+        "verdict": "partial",
+        "reason": "Gives the correct 1.95 kg for the 2711P-T12W21D8S but leaves out the 2.54 kg Performance weight and names no winner.",
+        "label": "partial"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "2711P-T12W21D8S is a PanelView Plus 7 Standard 12-in. touch terminal",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "2711P-T12W21D8S has an approximate weight of 1.95 kg (4.29 lb)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "2711P-T12W22D9P is a PanelView Plus 7 Performance 12.1-in. touch terminal",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The sources do not state the weight of 2711P-T12W22D9P",
+            "supported": true,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "panelview_plus7_performance_user_manual.pdf",
+            "page": 1,
+            "used": false
+          },
+          {
+            "source": "panelview_plus7_standard_technical_data.pdf",
+            "page": 6,
+            "used": false
+          }
+        ]
+      }
+    },
+    "B15": {
+      "correctness": {
+        "verdict": "partial",
+        "reason": "Gives the correct 5.5 W for the KTP700 Basic but says the WOP-3070T's 7 W is not stated, so there is no comparison.",
+        "label": "partial"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "Siemens SIMATIC KTP700 Basic 2nd generation power consumption is 5.5 W",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Advantech WOP-3070T is a 7-inch panel",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Advantech WOP-3070T has 800 x 480 resolution",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The sources do not state the power consumption of the Advantech WOP-3070T",
+            "supported": true,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "advantech_intelligent_operator_panels_catalog.pdf",
+            "page": 4,
+            "used": false
+          },
+          {
+            "source": "ktp_basic_panels_2nd_gen_hardware.pdf",
+            "page": 111,
+            "used": false
+          }
+        ]
+      }
+    },
+    "B16": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Gives IP66 for the Outdoor model and IP65 for the standard TP700 Comfort, so the Outdoor model is higher, which matches the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "TP700 Comfort Outdoor front degree of protection is IP66 when mounted",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "TP700 Comfort Outdoor front is rated Type 4X/Type 12 (Indoor/Outdoor)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Standard TP700 Comfort front degree of protection is IP65 when mounted",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Standard TP700 Comfort front is rated Type 4X/Type 12 (indoor use only, front face only)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The front degree of protection is guaranteed only if the mounting seal lies flush against the mounting cutout",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "tp_comfort_outdoor_panels_manual.pdf",
+            "page": 28,
+            "used": false
+          },
+          {
+            "source": "unified_comfort_panels_operating_instructions.pdf",
+            "page": 150,
+            "used": false
+          }
+        ]
+      }
+    },
+    "C15": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Gives 28 W max for the NA5-12W-V2 and 20 W or less for the GT2512-WXTBD, with Omron the higher; this matches the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "Omron NA5-12W-V2 maximum power consumption is 28 W max.",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Mitsubishi GOT2000 GT2512-WXTBD maximum power consumption under maximum load is 20 W or less.",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The Omron NA5-12W-V2 has the higher maximum power consumption.",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The Omron NA5-12W-V2's maximum is 8 W higher than the GT2512-WXTBD's.",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "gt25_wide_general_description.pdf",
+            "page": 1,
+            "used": false
+          },
+          {
+            "source": "na_series_hardware_v2_user_manual.pdf",
+            "page": 44,
+            "used": false
+          }
+        ]
+      }
+    },
+    "C16": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Gives 25 W max for V1 and 28 W max for V2, which matches the evidence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "NA5-12W V1 maximum power consumption is 25 W max.",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "NA5-12W V2 maximum power consumption is 28 W max.",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "na5_v1_series_datasheet.pdf",
+            "page": 30,
+            "used": false
+          },
+          {
+            "source": "na5_v2_datasheet.pdf",
+            "page": 23,
+            "used": false
+          },
+          {
+            "source": "na_series_hardware_v1_user_manual.pdf",
+            "page": 46,
+            "used": false
+          },
+          {
+            "source": "na_series_hardware_v2_user_manual.pdf",
+            "page": 44,
+            "used": false
+          }
+        ]
+      }
+    },
+    "D16": {
+      "correctness": {
+        "verdict": "partial",
+        "reason": "Gives the correct G15 weight of 3.50 kg but says the cMT3152X weight (2.85 kg) is missing and compares against sibling models instead.",
+        "label": "partial"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The sources give the Red Lion Graphite G15 weight as 7.73 lb (3.50 kg).",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The sources do not list a weight for the Weintek cMT3152X.",
+            "supported": true,
+            "passage": null
+          },
+          {
+            "claim": "Weintek eMT3150A (15\") weighs 2.75 kg.",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Weintek cMT3162X (15.6\") weighs approx. 1.6 kg.",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The Graphite G15 is 0.75 kg heavier than the eMT3150A.",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The Graphite G15 is 1.9 kg heavier than the cMT3162X.",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "cmt3162x_15in_datasheet.pdf",
+            "page": 1,
+            "used": false
+          },
+          {
+            "source": "emt3150a_15in_datasheet.pdf",
+            "page": 1,
+            "used": false
+          },
+          {
+            "source": "graphite_hmi_datasheet.pdf",
+            "page": 2,
+            "used": false
+          },
+          {
+            "source": "graphite_series_full_datasheet.pdf",
+            "page": 2,
+            "used": false
+          }
+        ]
+      }
+    },
+    "D17": {
+      "correctness": {
+        "verdict": "partial",
+        "reason": "Gives the correct IP66 for the eMT3070A but says the eMT3105P's IP65 is not stated, so it names no winner.",
+        "label": "partial"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The eMT3105P source excerpt does not list a front-panel ingress protection rating.",
+            "supported": true,
+            "passage": null
+          },
+          {
+            "claim": "The eMT3105P source excerpt only lists dimensions and connectivity details.",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Weintek eMT3070A has a NEMA4 / IP66 compliant front panel.",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "advantech_industrial_operator_panels_catalog.pdf",
+            "page": 1,
+            "used": false
+          },
+          {
+            "source": "emt3070a_7in_datasheet.pdf",
+            "page": 1,
+            "used": false
+          }
+        ]
+      }
+    },
+    "E10": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "The answer says there is no KTP1500 Basic and gives no power figure for it; the TP1500 Basic and IFP1500 Basic (17 W) values are clearly labelled as other models, and it does not use the KTP1200 figure.",
+        "label": "declined"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The sources list a device named TP1500 Basic color PN",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The sources do not list a device named KTP1500 Basic",
+            "supported": true,
+            "passage": null
+          },
+          {
+            "claim": "TP1500 Basic color PN rated voltage is +24 V DC",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "TP1500 Basic color PN current consumption is approx. 800 mA typical",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "TP1500 Basic color PN current consumption is approx. 1000 mA maximum",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The sources do not state a power-consumption value in watts for TP1500 Basic color PN",
+            "supported": true,
+            "passage": null
+          },
+          {
+            "claim": "SIMATIC IFP1500 Basic power consumption is 17 W",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "ifp_basic_operating_instructions.pdf",
+            "page": 68,
+            "used": true
+          },
+          {
+            "source": "ktp_basic_panels_operating_instructions.pdf",
+            "page": 4,
+            "used": true
+          },
+          {
+            "source": "ktp_basic_panels_operating_instructions.pdf",
+            "page": 10,
+            "used": true
+          },
+          {
+            "source": "ktp_basic_panels_operating_instructions.pdf",
+            "page": 135,
+            "used": true
+          },
+          {
+            "source": "ktp_basic_panels_operating_instructions.pdf",
+            "page": 136,
+            "used": true
+          }
+        ]
+      }
+    },
+    "E11": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "The answer says the sources do not state a SIL certification for the X2 pro 10 B2 and does not borrow a SIL figure from another vendor.",
+        "label": "declined"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The sources do not state that the Beijer X2 pro 10 B2 has SIL certification",
+            "supported": true,
+            "passage": null
+          },
+          {
+            "claim": "X2 pro 10 B2 technical data lists approvals CE/FCC/KCC",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "X2 pro 10 B2 technical data includes UL approval information",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "X2 pro 10 B2 technical data includes marine certificate information",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "x2_pro_10_b2_hardware_manual.pdf",
+            "page": 15,
+            "used": true
+          }
+        ]
+      }
+    },
+    "E12": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "The answer says it cannot confirm PoE support for the HMIST6700 and does not assert yes or no.",
+        "label": "declined"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The HMIST6700 has 2x Ethernet ports",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The 500/600/700 panels have Ethernet interfaces ETH1/ETH2",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The 500/600/700 panels have a separate power plug connector",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "basic_and_web_hmi_panels_catalog.pdf",
+            "page": 13,
+            "used": true
+          },
+          {
+            "source": "basic_and_web_hmi_panels_catalog.pdf",
+            "page": 14,
+            "used": true
+          }
+        ]
+      }
+    },
+    "E13": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "The answer says the CP6600 sources do not mention Wi-Fi or wireless, and it does not infer a yes or no from the wired interfaces.",
+        "label": "declined"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The CP6600 has an ARM processor",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The CP6600 has a 10/100BASE-T port",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The CP6600 has EtherCAT",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The CP6600 has MicroSD",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The CP6600 has 2x USB",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The CP6600 has 1x RS232",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The CP6600 has Ethernet RJ45",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The CP6600 interface description lists a power supply",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The sources do not mention built-in Wi-Fi or wireless connectivity for the CP6600",
+            "supported": true,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "cp6600_panel_pc_manual.pdf",
+            "page": 9,
+            "used": true
+          },
+          {
+            "source": "cp6600_panel_pc_manual.pdf",
+            "page": 11,
+            "used": true
+          }
+        ]
+      }
+    },
+    "G01": {
+      "correctness": {
+        "verdict": "partial",
+        "reason": "It gives the PanelView 800 2711R-T7T at 800 x 480 correctly but has no values for the other two terminals (both 640 x 480), so the comparison is one-sided.",
+        "label": "partial"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "PanelView 800 2711R-T7T has a display resolution of 800 x 480 WVGA",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "panelview_800_brochure.pdf",
+            "page": 5,
+            "used": true
+          },
+          {
+            "source": "panelview_800_technical_data.pdf",
+            "page": 5,
+            "used": true
+          }
+        ]
+      }
+    },
+    "G02": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "It says the sources do not give a replacement or a weight, so it names neither the 2711P-T6C21D8S nor 0.70 kg.",
+        "label": "abstained"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "2711-K5A1 and 2711-K5A1L1 are PanelView Standard 550 terminals",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "2711-K5A1 and 2711-K5A1L1 use Remote I/O communication",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The sources do not provide a PanelView Plus 7 replacement catalog number or weight for 2711-K5A1",
+            "supported": true,
+            "passage": null
+          }
+        ]
+      }
+    },
+    "G03": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "It correctly names only the CP39xx-0000 (0 to +55 °C) and gives the CP6700 (+50 °C) and CP37xx (+45 °C) limits.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "CP39xx-0000 permissible ambient temperature in operation is 0 °C to +55 °C",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "CP6700 (CP6700-0001) permissible ambient temperature in operation is 0 °C to +50 °C",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "CP37xx permissible ambient temperature in operation is 0 °C to +45 °C",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Only CP39xx-0000 among the listed devices may be operated at 55 °C",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "cp37xx_panel_pc_manual.pdf",
+            "page": 47,
+            "used": true
+          },
+          {
+            "source": "cp39xx_multitouch_control_panel_manual.pdf",
+            "page": 45,
+            "used": true
+          },
+          {
+            "source": "cp6700_panel_pc.pdf",
+            "page": 40,
+            "used": true
+          }
+        ]
+      }
+    },
+    "G04": {
+      "correctness": {
+        "verdict": "partial",
+        "reason": "It correctly identifies the TP700 Comfort Outdoor as IP66 but has no information on the Advantech WOP-3070T (IP66), the standard TP700 Comfort (IP65) or the CP3907 (IP65).",
+        "label": "partial"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "Siemens TP700 Comfort Outdoor degree of protection can be guaranteed for IP66",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Alternatively front-face-only Type 4X/Type 12 indoor/outdoor protection applies",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Installation requires 2–6 mm material thickness at the mounting cutout",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Installation requires plane deviation of ≤0.5 mm",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Installation requires surface roughness of ≤120 µm",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "If the mounting seal is damaged, the degree of protection is not guaranteed",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The sources do not state an IP65 rating for the TP700 Comfort Outdoor",
+            "supported": true,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "tp_comfort_outdoor_panels_manual.pdf",
+            "page": 18,
+            "used": true
+          },
+          {
+            "source": "tp_comfort_outdoor_panels_manual.pdf",
+            "page": 20,
+            "used": true
+          }
+        ]
+      }
+    },
+    "G05": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "All three values match the evidence (GT2107 11.3 W, GS2107 6.5 W, GT2507 16 W), which identifies the GT2107 and GT2507 as the two above 10 W.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "GT2107-WTBD maximum power consumption is 11.3 W or less",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "GS2107-WTBD maximum power consumption is 6.5 W or less",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "GT2507-WTBD maximum power consumption is 16 W or less",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "got2000_gt27_gt25_hardware_user_manual.pdf",
+            "page": 113,
+            "used": true
+          },
+          {
+            "source": "got2000_gt27_gt25_hardware_user_manual.pdf",
+            "page": 118,
+            "used": true
+          },
+          {
+            "source": "got2000_series_catalog.pdf",
+            "page": 21,
+            "used": true
+          },
+          {
+            "source": "got_simple_series_catalog.pdf",
+            "page": 36,
+            "used": true
+          }
+        ]
+      }
+    },
+    "G06": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "It gives the default password 12345678 and the update order USB Disk first, then SD Card.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "Protection is enabled by checking 'Enable Protection' in Create Auto Update Data File",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The default password is '12345678'",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The data file is saved to a specified directory, usually on an SD card or USB drive",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Once the auto update screen file is created, an HMI_AutoUP folder is saved on the external device",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "If both USB Disk and SD Card contain HMI_AutoUP, update priority is USB Disk first, then SD Card",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The provided sources do not mention DOP-100",
+            "supported": true,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "dopsoft_user_manual.pdf",
+            "page": 56,
+            "used": true
+          },
+          {
+            "source": "dopsoft_user_manual.pdf",
+            "page": 57,
+            "used": true
+          }
+        ]
+      }
+    },
+    "G07": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "The cMT2158X and cMT3152X have SD/SDHC slots and the cMT3162X is N/A, matching the reference.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "cMT2158X has an SD/SDHC card slot",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "cMT3152X has an SD/SDHC card slot",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "cMT3162X SD card slot is N/A",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "cmt3162x_15in_datasheet.pdf",
+            "page": 1,
+            "used": true
+          },
+          {
+            "source": "cmt_series_brochure.pdf",
+            "page": 10,
+            "used": true
+          },
+          {
+            "source": "cmt_series_brochure.pdf",
+            "page": 12,
+            "used": true
+          }
+        ]
+      }
+    },
+    "G08": {
+      "correctness": {
+        "verdict": "partial",
+        "reason": "It quotes the correct exception list (HMIGTO1300/1310/2300) but sets it against a conflicting 'except HMIGTO2300' row and never gives a clear final answer.",
+        "label": "partial"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "Harmony GTO SD-card expansion is limited to a 4 GB SD card",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The SD card accessory reference is HMIZSD4G",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The operating-modes section states the SD memory card is available except HMIGTO 1300/1310/2300",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "A selection-guide row says expansion is 'By 4 GB SD card (except HMIGTO2300)'",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Maximum number of pages is limited by capacity of internal Flash EPROM memory or of SD card",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "HMIGTO4310, HMIGTO5310, HMIGTO6310, HMIGTO2315, HMIGTO5315 and HMIGTO6315 are listed with 4 GB SD-card expansion",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "HMIGTO3510/HMIGTO4310 have an SD card slot",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "harmony_gto_catalog.pdf",
+            "page": 5,
+            "used": true
+          },
+          {
+            "source": "harmony_gto_catalog.pdf",
+            "page": 9,
+            "used": true
+          },
+          {
+            "source": "harmony_gto_catalog.pdf",
+            "page": 12,
+            "used": true
+          },
+          {
+            "source": "harmony_gto_catalog.pdf",
+            "page": 15,
+            "used": true
+          },
+          {
+            "source": "harmony_gto_catalog.pdf",
+            "page": 16,
+            "used": true
+          }
+        ]
+      }
+    },
+    "H01": {
+      "correctness": {
+        "verdict": "wrong",
+        "reason": "It gives the PanelView Plus 7 Performance procedure (unscrew and lift off the logic module) instead of the Standard procedure (rotate the cover C to O, release the latch, insert the battery + up, rotate the cover back O to C).",
+        "label": "wrong"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The sources do not include a Standard 10-in-specific battery-replacement procedure for the 2711P-T10C21D8S",
+            "supported": true,
+            "passage": null
+          },
+          {
+            "claim": "Replacement battery is a CR2032 lithium coin cell",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Allen-Bradley replacement part number is 2711P-RY2032",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Procedure comes from the PanelView Plus 7 Performance manual",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Step 1: remove power from the terminal",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Step 2: loosen the screws that secure the logic module to the back of the display",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Step 3: lift the logic module away from the display module and turn it over to expose the circuit board",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Step 4: replace the battery only with 2711P-RY2032 or an equivalent CR2032 coin cell",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Do not replace the battery unless power is removed and the area is known to be nonhazardous",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "There is a danger of explosion if the battery is incorrectly replaced",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Follow ESD prevention guidelines",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Do not dispose of the battery in a fire or incinerator",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "panelview_plus7_performance_user_manual.pdf",
+            "page": 163,
+            "used": true
+          },
+          {
+            "source": "panelview_plus7_standard_technical_data.pdf",
+            "page": 4,
+            "used": true
+          },
+          {
+            "source": "panelview_plus7_standard_technical_data.pdf",
+            "page": 6,
+            "used": true
+          },
+          {
+            "source": "panelview_plus7_standard_user_manual.pdf",
+            "page": 155,
+            "used": true
+          }
+        ]
+      }
+    },
+    "H02": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "All the mounting steps are given in order (template cutout, gasket plugs, backing plate, clips, hand-tighten), with the torque of 2.3…2.6 N•m (20…23 lb•in) in sequence.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "Use 2711P-RTMC mounting clips for stainless-steel terminals",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The 2715P-T12WD-BSK requires 10 mounting clips",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Each 2711P-RTMC kit contains 8 clips; order two kits if more than 8 are needed",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Tools required: panel cutout tools, large slotted or Phillips screwdriver, torque wrench",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Torque mounting clip screws to 2.3…2.6 N•m (20…23 lb•in)",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Repeat the torque sequence because clips loosen as the adjacent clip is tightened",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Disconnect power, clear the area around the cutout, clean the panel, ensure cutout edges have no burrs",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Cut the opening using the shipped template or cutout dimensions in publication 2715P-UM001",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Place the terminal screen-down on a clean, flat surface",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Position the gasket with alignment plugs facing the bezel alignment features; no sealing compounds; slip inside corners under bezel shroud corners",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Press each gasket alignment plug into the bezel alignment feature until it snaps into place",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Place the terminal in the panel cutout and hold it so it does not fall out",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Position the backing plate over the terminal with the flat side facing away from the panel",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Slide the ends of the mounting clips into the slots on the terminal",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Hand-tighten clip screws until the backing plate contacts the panel uniformly",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Torque the clip screws to 2.3…2.6 N•m in the specified sequence and repeat until all are at torque",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "panelview_5510_stainless_steel_technical_data.pdf",
+            "page": 3,
+            "used": true
+          },
+          {
+            "source": "panelview_5510_technical_data.pdf",
+            "page": 11,
+            "used": true
+          },
+          {
+            "source": "panelview_5510_user_manual.pdf",
+            "page": 31,
+            "used": true
+          },
+          {
+            "source": "panelview_plus7_performance_user_manual.pdf",
+            "page": 33,
+            "used": true
+          },
+          {
+            "source": "panelview_plus7_performance_user_manual.pdf",
+            "page": 167,
+            "used": true
+          }
+        ]
+      }
+    },
+    "H03": {
+      "correctness": {
+        "verdict": "partial",
+        "reason": "The torques are right (hex socket screw 3 Nm, slotted nut 20 Nm), but it leaves out the fitting steps: 3 mm Allen key, routing the cables, and inserting the tube 50.2 mm to the stop.",
+        "label": "partial"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "Hexagon socket screw for the mounting arm tube/adapter is torqued to 3 Nm",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Slotted nut of the mounting arm adapter is tightened clockwise with a hook wrench size 58–62",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Slotted nut torque is 20 Nm",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Optional C9900-M761 or C9900-M763 mounting arm adapter is mounted to the adapter plate with four screws",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Those four screws are tightened to 6 Nm",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "cp39xx_multitouch_control_panel_manual.pdf",
+            "page": 28,
+            "used": true
+          },
+          {
+            "source": "cp39xx_multitouch_control_panel_manual.pdf",
+            "page": 30,
+            "used": true
+          }
+        ]
+      }
+    },
+    "H04": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "All 9 steps are given in order, including deactivating 'Use eeprom storage', 25 points, Calibrate and Confirm, plus the note that data is stored in the OS.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "The sources describe an extended 25-point calibration for resistive single-touch screens using the UPDD Console in PDT V1.7 for IPC/IFP",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The sources do not explicitly name SIMATIC IFP V2",
+            "supported": true,
+            "passage": null
+          },
+          {
+            "claim": "The manual is identified as 'PDT V1.7 for IPC/IFP with single- and multi-touch screen'",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Open the UPDD Console dialog",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The UPDD Console configures the UPDD driver and is accessible via the Configuration Center's 'UPDD Settings' tab",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Select the touch controller of the device in the dialog header",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Click the 'Calibration' tab",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Deactivate 'Use eeprom storage'",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Enter '25' under 'Number of points'",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Click 'Calibrate'; the calibration screen is displayed on the selected display",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Touch the selections in turn; each is confirmed by a check mark and the next is displayed",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Confirm all input prompts until the complete screen is calibrated",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Finally press 'Confirm' for the input prompt",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The touch screen is pre-calibrated on delivery with a 3-point calibration",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Extended calibration with up to 25 points is recommended for special accuracy requirements",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Extended calibration data are stored in the PC operating system rather than device EEPROM",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "If touch does not respond as expected, check the selected controller and repeat calibration",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Only an active touch controller can be calibrated; a removed controller is displayed in red",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "ipc_ifp_panel_driver_tool_user_manual.pdf",
+            "page": 18,
+            "used": true
+          },
+          {
+            "source": "ipc_ifp_panel_driver_tool_user_manual.pdf",
+            "page": 42,
+            "used": true
+          },
+          {
+            "source": "ipc_ifp_panel_driver_tool_user_manual.pdf",
+            "page": 45,
+            "used": true
+          },
+          {
+            "source": "ipc_ifp_panel_driver_tool_user_manual.pdf",
+            "page": 46,
+            "used": true
+          },
+          {
+            "source": "ipc_ifp_panel_driver_tool_user_manual.pdf",
+            "page": 48,
+            "used": true
+          }
+        ]
+      }
+    },
+    "H05": {
+      "correctness": {
+        "verdict": "partial",
+        "reason": "It covers inserting the SD card, closing the cover, not removing the card while the LED is lit, the automatic restart and removing the card once the LED is off, but it mixes this with the S.MODE boot-time and data-copy procedures and never clearly states installing from the utility's data control screen.",
+        "label": "partial"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "Installation on GT27/GT25 using a GOT requires a data storage device such as an SD card storing the BootOS or system application",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "BootOS/system application is written to the SD card from GT Designer3 using [To Memory Card] or from the utility of another GOT",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Copying data to the SD card with software other than GT Designer3 may cause installation not to execute properly",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "SD card capacity can be checked using [To Memory Card] or [Write Option] in GT Designer3",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "For the SD-card boot method, set the OS boot drive to A drive",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Power OFF the GOT and install the SD card into the GOT SD-card interface",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Close the SD-card interface cover",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Hold down the S.MODE switch and power on the GOT",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "For the 1-point press installation function/GT2505-V, touch the lower right side of the screen while powering on",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "If the SD card stores data with OS boot drive set to A drive, the S.MODE switch-pressing installation function is not available",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "BootOS or system application is written to the GOT's built-in flash memory during installation",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Do not remove the SD card or power off the GOT while the SD-card access LED is lit",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "After installation the GOT restarts automatically; if system application already installed, touch [OK] to restart",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Confirm normal restart and that the access LED is not lit, then remove the SD card",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "For the utility method, power OFF the GOT and attach the SD card storing the basic system application and communication driver",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "While touching the upper left corner of the screen, power ON the GOT",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Select [Data copy] on the selection screen",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Use the data copy/data control utility to select and transfer the system application or project data to the GOT",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Install BootOS first, then system applications",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Installing BootOS initializes built-in flash memory and erases all system applications and project data",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Do not power off, press reset, or remove data storage during installation",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "To run the GOT utility, install BootOS and system applications on C drive built-in flash memory or set package data boot drive to [A:SD card]",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "BootOS is installed at factory shipment; basic system application is not",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "If BootOS installation fails, consult local Mitsubishi service center; if basic system application installation fails, refer to 'Installing when starting the GOT'",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "got2000_gt27_gt25_utility_user_manual.pdf",
+            "page": 394,
+            "used": true
+          },
+          {
+            "source": "got2000_gt27_gt25_utility_user_manual.pdf",
+            "page": 396,
+            "used": true
+          },
+          {
+            "source": "got2000_gt27_gt25_utility_user_manual.pdf",
+            "page": 695,
+            "used": true
+          },
+          {
+            "source": "got2000_gt27_gt25_utility_user_manual.pdf",
+            "page": 696,
+            "used": true
+          },
+          {
+            "source": "got2000_gt27_gt25_utility_user_manual.pdf",
+            "page": 698,
+            "used": true
+          },
+          {
+            "source": "gs25_gs21_user_manual.pdf",
+            "page": 391,
+            "used": true
+          },
+          {
+            "source": "gs25_gs21_user_manual.pdf",
+            "page": 392,
+            "used": true
+          },
+          {
+            "source": "gs25_gs21_user_manual.pdf",
+            "page": 394,
+            "used": true
+          }
+        ]
+      }
+    },
+    "H06": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "It gives SW1 OFF and SW2 ON, Reset, touch '+' until 'TP Adjust Success!', then both switches OFF and Reset, in the right order.",
+        "label": "correct"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "Set DIP switches SW1 and SW2 on the back to OFF and ON respectively",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Press the Reset switch or turn on power; the unit enters Calibrate Mode",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Touch the '+' symbol repeatedly until it disappears and 'TP Adjust Success!' appears",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "After calibration, set SW1 and SW2 to OFF and press Reset again",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "SW1/SW2 are common to all models",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "NB5Q/NB7W models have two DIP switches; NB3Q/NB10W have four",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "The reset switch is on the back and reboots the system",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "nb_series_setup_manual.pdf",
+            "page": 35,
+            "used": true
+          },
+          {
+            "source": "nb_series_setup_manual.pdf",
+            "page": 43,
+            "used": true
+          },
+          {
+            "source": "nb_series_setup_manual.pdf",
+            "page": 84,
+            "used": true
+          },
+          {
+            "source": "nb_series_setup_manual.pdf",
+            "page": 88,
+            "used": true
+          },
+          {
+            "source": "nb_series_startup_guide.pdf",
+            "page": 37,
+            "used": true
+          }
+        ]
+      }
+    },
+    "H07": {
+      "correctness": {
+        "verdict": "partial",
+        "reason": "It gives releasing the LOCK and pushing the LOCK closed but leaves out the step of inserting the bottom protruding points into the two holes on the back of the Display Module.",
+        "label": "partial"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "SP-5B40 is also called the Open Box, global model number PFXSP5B40",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Remove all power from the device before installing or removing accessories, hardware, or cables",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Unplug the power cable from the Display Module/DC Power Supply Adapter and the power supply",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Use a properly rated voltage sensing device to confirm power is off",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Replace and secure all covers before applying power",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "If mounted vertically, install the Box Module before attaching to the panel",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Place the Display Module or adapter on a clean, level surface with screen facing downward",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Pull the LOCK forward on top of the Box Module to release the lock",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Fully push the LOCK to mount the Box Module on the Display Module or DC Power Supply Adapter",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "SP-5B40 can connect to the DC Power Supply Adapter for Box Module, model PFXZCDADEXP1",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "SP-5B40 supports only Display Modules with resolution XGA or less",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "SP-5B40 supports listed Display Modules except SP-5700WC, SP-5800WC, and SP-5600TA",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "If mounted vertically, remove the Display Module/adapter from the panel first, then remove the Box Module",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "magelis_gtu_user_manual.pdf",
+            "page": 127,
+            "used": false
+          },
+          {
+            "source": "sp5000_box_module_installation_guide.pdf",
+            "page": 6,
+            "used": true
+          },
+          {
+            "source": "sp5000_box_module_installation_guide.pdf",
+            "page": 23,
+            "used": true
+          },
+          {
+            "source": "sp5000_series_hardware_manual.pdf",
+            "page": 15,
+            "used": true
+          },
+          {
+            "source": "sp5000_series_hardware_manual.pdf",
+            "page": 125,
+            "used": true
+          }
+        ]
+      }
+    },
+    "H08": {
+      "correctness": {
+        "verdict": "wrong",
+        "reason": "Several required steps are missing (smooth cutout surface, installing and securing with brackets at 0.5–1.0 Nm, cable order, removing the protective film), and it substitutes the X2 pro 15 B2 torque of 0.7 ± 0.2 Nm from a sibling model.",
+        "label": "wrong"
+      },
+      "faithfulness": {
+        "claims": [
+          {
+            "claim": "Use a Phillips/slot screwdriver",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Installation plate thickness must not exceed 11 mm",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Unpack and check delivery; notify supplier if damaged",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Place the HMI panel on a stable surface during installation",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Cut the opening using cut-out dimensions in the outline drawing; a separate cut-out drawing is available",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Mounting clamps do not provide a secure grounding connection between panel and cabinet",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Connect a wire between the quickconnect terminal on the HMI and the panel chassis",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Connect a wire or grounding braid between panel chassis and closest grounding point on the door",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Connect a strong short grounding braid between door and device cabinet",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "2 turns around the ferrite core give 4x suppression of 1 turn; 3 turns give 9x",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "X2 Pro 15 B2: ensure cutout surface is smooth and clean, install panel, screw slotted thumb screw clockwise until bracket flips out and tightens",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Tighten screws to 0.7 ± 0.2 Nm",
+            "supported": false,
+            "passage": null
+          },
+          {
+            "claim": "Use a torque wrench if IP54 or greater/NEMA-4X front seal is critical",
+            "supported": false,
+            "passage": null
+          }
+        ]
+      },
+      "citation_support": {
+        "citations": [
+          {
+            "source": "x2_pro_15_b2_hardware_manual.pdf",
+            "page": 12,
+            "used": true
+          },
+          {
+            "source": "x2_pro_4_b2_hardware_manual.pdf",
+            "page": 11,
+            "used": true
+          },
+          {
+            "source": "x2_pro_4_b2_hardware_manual.pdf",
+            "page": 20,
+            "used": true
+          }
+        ]
+      }
+    }
+  },
+  "results_file": "eval/results/eval-2026-10/r2/on/r3.json",
+  "golden_sha256": "a9c5b770795f",
+  "summary": {
+    "verdicts": {
+      "correct": 63,
+      "abstained": 8,
+      "wrong": 5,
+      "partial": 14,
+      "declined": 9,
+      "answered_wrong": 1
+    },
+    "by_category": {
+      "comparison": {
+        "correct": 9,
+        "wrong": 1,
+        "partial": 7,
+        "abstained": 1
+      },
+      "followup": {
+        "correct": 3,
+        "wrong": 1,
+        "abstained": 1
+      },
+      "library": {
+        "correct": 3
+      },
+      "multihop": {
+        "partial": 3,
+        "abstained": 1,
+        "correct": 4
+      },
+      "procedure": {
+        "wrong": 2,
+        "correct": 3,
+        "partial": 3
+      },
+      "spec": {
+        "correct": 41,
+        "abstained": 5,
+        "partial": 1,
+        "wrong": 1
+      },
+      "unanswerable": {
+        "declined": 9,
+        "answered_wrong": 1
+      }
+    },
+    "correct_rate_answerable": 0.7,
+    "claims": {
+      "total": 433,
+      "supported": 28,
+      "supported_rate": 0.0647
+    },
+    "citations": {
+      "total": 217,
+      "used": 67,
+      "used_rate": 0.3088
+    }
+  }
+}

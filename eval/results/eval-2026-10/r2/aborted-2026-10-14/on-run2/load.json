@@ -1,0 +1,501 @@
+{
+  "run": {
+    "label": "eval-2026-10/r2/on",
+    "at": "2026-10-14T14:25:32+00:00",
+    "ragline_rev": "618b01d",
+    "golden_set": "eval/golden_set_hmi.json",
+    "golden_sha256": "a9c5b770795f",
+    "path": "rag",
+    "thinking": "on",
+    "llm_extra_body": {
+      "chat_template_kwargs": {
+        "enable_thinking": true
+      }
+    },
+    "repeat": 1,
+    "repeats": 1,
+    "warmup": 0,
+    "seed": 0,
+    "campaign": "eval-2026-10",
+    "rung": "r2",
+    "condition": "on",
+    "llm_model": "ragline-llm",
+    "llm_host": "<pod-id>-8000.proxy.runpod.net",
+    "embedding_model": "Qwen/Qwen3-Embedding-8B",
+    "embedding_host": "<pod-id>-8080.proxy.runpod.net",
+    "embedding_dimensions": 4096,
+    "reranker_provider": "api",
+    "reranker_model": null,
+    "reranker_host": "<pod-id>-8081.proxy.runpod.net",
+    "reranker_api_format": "cohere",
+    "retrieval_top_k": 20,
+    "rerank_top_k": 8,
+    "parser_version": "1.28.2",
+    "index": {
+      "collection": "ragline_eval_v1",
+      "points": 15064
+    },
+    "extra": {
+      "gpu": "RTX PRO 6000 Blackwell 96GB",
+      "cloud": "RunPod Secure",
+      "rate_usd_per_hr": 2.49,
+      "model_id": "RedHatAI/Qwen3.8-27B-INT4",
+      "quantization": "INT4 (GPTQ)",
+      "weights_gb": 17,
+      "reasoning_parser": "qwen3",
+      "profile": "eval-r2-qwen3.8-27b-int4",
+      "condition_env": {
+        "LLM_EXTRA_BODY": "'{\"chat_template_kwargs\": {\"enable_thinking\": true}}'",
+        "ANSWER_MAX_TOKENS": "5500"
+      },
+      "rung_note": "Recorded baseline; the 24 GB tier. Must reproduce the known source-hit range before any other rung runs.",
+      "boot_s": 947.0,
+      "boot_source": "podlink"
+    },
+    "probe": {
+      "subset_ids": [
+        "A10",
+        "G01",
+        "H01",
+        "A01",
+        "E01",
+        "B10",
+        "G02",
+        "H02",
+        "B01",
+        "E02",
+        "C10",
+        "G03",
+        "H03",
+        "C01",
+        "E03",
+        "D10",
+        "G04",
+        "H04",
+        "D01",
+        "E04",
+        "A11",
+        "G05",
+        "H05",
+        "A02"
+      ],
+      "levels": [
+        1,
+        4,
+        8
+      ]
+    }
+  },
+  "at": "2026-10-14T14:29:03+00:00",
+  "end_to_end": [
+    {
+      "concurrency": 1,
+      "questions": 24,
+      "errors": 23,
+      "wall_s": 94.5,
+      "questions_per_min": 0.63,
+      "latency_s": {
+        "median": 9.376,
+        "p90": 9.376,
+        "max": 9.376
+      },
+      "answer_tok_s": {
+        "median": 55.84,
+        "p90": 55.84,
+        "max": 55.84
+      },
+      "completion_tokens_total": 168,
+      "rows": [
+        {
+          "id": "A10",
+          "latency_s": 9.376,
+          "completion_tokens": 168,
+          "prompt_tokens": 4837,
+          "answer_s": 3.009,
+          "answer_tok_s": 55.84,
+          "cited": false
+        },
+        {
+          "id": "G01",
+          "error": "RetryError[<Future at 0x7acbc10062a0 state=finished raised HTTPStatusError>]"
+        },
+        {
+          "id": "H01",
+          "error": "RetryError[<Future at 0x7acbc0e50230 state=finished raised InternalServerError>]"
+        },
+        {
+          "id": "A01",
+          "error": "RetryError[<Future at 0x7acbc0e45730 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "E01",
+          "error": "RetryError[<Future at 0x7acbc0e3bf20 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "B10",
+          "error": "RetryError[<Future at 0x7acbc0fecef0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "G02",
+          "error": "RetryError[<Future at 0x7acbc0e3fd10 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "H02",
+          "error": "RetryError[<Future at 0x7acbc0e2b3b0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "B01",
+          "error": "RetryError[<Future at 0x7acbc0e5eba0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "E02",
+          "error": "RetryError[<Future at 0x7acbc0e15130 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "C10",
+          "error": "RetryError[<Future at 0x7acbc0e51910 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "G03",
+          "error": "RetryError[<Future at 0x7acbc0e51b80 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "H03",
+          "error": "RetryError[<Future at 0x7acbc0e5ee40 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "C01",
+          "error": "RetryError[<Future at 0x7acbc0e5c2c0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "E03",
+          "error": "RetryError[<Future at 0x7acbc0e54620 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "D10",
+          "error": "RetryError[<Future at 0x7acbc0e17890 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "G04",
+          "error": "RetryError[<Future at 0x7acbc0e53ef0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "H04",
+          "error": "RetryError[<Future at 0x7acbc0e38f20 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "D01",
+          "error": "RetryError[<Future at 0x7acbc0e0fa70 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "E04",
+          "error": "RetryError[<Future at 0x7acbc0e17680 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "A11",
+          "error": "RetryError[<Future at 0x7acbc0ff8e30 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "G05",
+          "error": "RetryError[<Future at 0x7acbc0e55880 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "H05",
+          "error": "RetryError[<Future at 0x7acbc0e17680 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "A02",
+          "error": "RetryError[<Future at 0x7acbc1005610 state=finished raised NotFoundError>]"
+        }
+      ]
+    },
+    {
+      "concurrency": 4,
+      "questions": 24,
+      "errors": 24,
+      "wall_s": 19.0,
+      "questions_per_min": 0.0,
+      "latency_s": {
+        "median": null,
+        "p90": null,
+        "max": null
+      },
+      "answer_tok_s": {
+        "median": null,
+        "p90": null,
+        "max": null
+      },
+      "completion_tokens_total": 0,
+      "rows": [
+        {
+          "id": "A10",
+          "error": "RetryError[<Future at 0x7acbc0e55040 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "G01",
+          "error": "RetryError[<Future at 0x7acbc10074d0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "H01",
+          "error": "RetryError[<Future at 0x7acbc0e146b0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "A01",
+          "error": "RetryError[<Future at 0x7acbc1004950 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "E01",
+          "error": "RetryError[<Future at 0x7acbc0e56e70 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "B10",
+          "error": "RetryError[<Future at 0x7acbc0e51610 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "G02",
+          "error": "RetryError[<Future at 0x7acbc0e98320 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "H02",
+          "error": "RetryError[<Future at 0x7acbc1004710 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "B01",
+          "error": "RetryError[<Future at 0x7acbc0e1dd90 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "E02",
+          "error": "RetryError[<Future at 0x7acbc0eb0bf0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "C10",
+          "error": "RetryError[<Future at 0x7acbc0e38650 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "G03",
+          "error": "RetryError[<Future at 0x7acbc0e97e90 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "H03",
+          "error": "RetryError[<Future at 0x7acbc0e17500 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "C01",
+          "error": "RetryError[<Future at 0x7acbc11d29f0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "E03",
+          "error": "RetryError[<Future at 0x7acbc1393aa0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "D10",
+          "error": "RetryError[<Future at 0x7acbc0ebbf20 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "G04",
+          "error": "RetryError[<Future at 0x7acbc0ea0620 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "H04",
+          "error": "RetryError[<Future at 0x7acbc0fff2c0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "D01",
+          "error": "RetryError[<Future at 0x7acbc0ffcd40 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "E04",
+          "error": "RetryError[<Future at 0x7acbc0ffca10 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "A11",
+          "error": "RetryError[<Future at 0x7acbc0e1ecf0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "G05",
+          "error": "RetryError[<Future at 0x7acbc11a7770 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "H05",
+          "error": "RetryError[<Future at 0x7acbc0e994c0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "A02",
+          "error": "RetryError[<Future at 0x7acbc0e99a60 state=finished raised NotFoundError>]"
+        }
+      ]
+    },
+    {
+      "concurrency": 8,
+      "questions": 24,
+      "errors": 24,
+      "wall_s": 9.49,
+      "questions_per_min": 0.0,
+      "latency_s": {
+        "median": null,
+        "p90": null,
+        "max": null
+      },
+      "answer_tok_s": {
+        "median": null,
+        "p90": null,
+        "max": null
+      },
+      "completion_tokens_total": 0,
+      "rows": [
+        {
+          "id": "A10",
+          "error": "RetryError[<Future at 0x7acbc0e475f0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "G01",
+          "error": "RetryError[<Future at 0x7acbc0e29ac0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "H01",
+          "error": "RetryError[<Future at 0x7acbc0e3a270 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "A01",
+          "error": "RetryError[<Future at 0x7acbc0fed9d0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "E01",
+          "error": "RetryError[<Future at 0x7acbc0ebec30 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "B10",
+          "error": "RetryError[<Future at 0x7acbc0e45580 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "G02",
+          "error": "RetryError[<Future at 0x7acbc0e44a70 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "H02",
+          "error": "RetryError[<Future at 0x7acbc0e5d3a0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "B01",
+          "error": "RetryError[<Future at 0x7acbc0e52e10 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "E02",
+          "error": "RetryError[<Future at 0x7acbc0ed8080 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "C10",
+          "error": "RetryError[<Future at 0x7acbc0fdbf80 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "G03",
+          "error": "RetryError[<Future at 0x7acbc0eccc80 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "H03",
+          "error": "RetryError[<Future at 0x7acbc0e97710 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "C01",
+          "error": "RetryError[<Future at 0x7acbc0e9a9c0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "E03",
+          "error": "RetryError[<Future at 0x7acbc0e99850 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "D10",
+          "error": "RetryError[<Future at 0x7acbc0e3f110 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "G04",
+          "error": "RetryError[<Future at 0x7acbc0e1f410 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "H04",
+          "error": "RetryError[<Future at 0x7acbc0ef0410 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "D01",
+          "error": "RetryError[<Future at 0x7acbc0ef23c0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "E04",
+          "error": "RetryError[<Future at 0x7acbc0eee960 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "A11",
+          "error": "RetryError[<Future at 0x7acbc0eeed80 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "G05",
+          "error": "RetryError[<Future at 0x7acbc0ee4320 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "H05",
+          "error": "RetryError[<Future at 0x7acbc0ee16a0 state=finished raised NotFoundError>]"
+        },
+        {
+          "id": "A02",
+          "error": "RetryError[<Future at 0x7acbc10041d0 state=finished raised NotFoundError>]"
+        }
+      ]
+    }
+  ],
+  "streaming": [
+    {
+      "concurrency": 1,
+      "prompts": 0,
+      "errors": 0,
+      "wall_s": 0.0,
+      "ttft_s": {
+        "median": null,
+        "p90": null,
+        "max": null
+      },
+      "decode_tok_s": {
+        "median": null,
+        "p90": null,
+        "max": null
+      },
+      "chunks_total": 0,
+      "rows": []
+    },
+    {
+      "concurrency": 4,
+      "prompts": 0,
+      "errors": 0,
+      "wall_s": 0.0,
+      "ttft_s": {
+        "median": null,
+        "p90": null,
+        "max": null
+      },
+      "decode_tok_s": {
+        "median": null,
+        "p90": null,
+        "max": null
+      },
+      "chunks_total": 0,
+      "rows": []
+    },
+    {
+      "concurrency": 8,
+      "prompts": 0,
+      "errors": 0,
+      "wall_s": 0.0,
+      "ttft_s": {
+        "median": null,
+        "p90": null,
+        "max": null
+      },
+      "decode_tok_s": {
+        "median": null,
+        "p90": null,
+        "max": null
+      },
+      "chunks_total": 0,
+      "rows": []
+    }
+  ]
+}

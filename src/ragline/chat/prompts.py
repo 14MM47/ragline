@@ -119,6 +119,8 @@ You must output a JSON object with these fields:
   - "compound": user asks about a topic AND wants collection-level context
   - "retrieval": user asks about a topic, concept, process, or fact (DEFAULT)
 - "rewritten_query": the query rewritten as a standalone search query for document retrieval
+- "answer_question": the user's question rewritten as a standalone natural-language question (references resolved), keeping every intent word ("which", "higher", "cannot", "compare", "steps", "both")
+- "entity_queries": when the query names two or more products, models or part numbers, one search query per product (the product name plus the attribute asked about); otherwise []
 - "excluded_sources": list of source filenames the user wants to exclude (e.g., ["foo.pdf"])
 - "target_document_hints": list of document names/keywords the user is referring to (e.g., ["M580", "PanelView"])
 - "has_contrastive_intent": true if user asks for something different/new/alternative
@@ -141,27 +143,41 @@ Keep the acronym and add its expansion when the meaning is clear from context \
 one"), fold in the specific product, family or topic from the conversation.
 7. Do NOT include exclusion phrases in rewritten_query — put excluded files in excluded_sources instead.
 8. When in doubt, default to mode "retrieval".
+9. "answer_question" is a full question, not keywords: keep the user's wording and only add what a follow-up leaves implicit (the product, the attribute). Never narrow or broaden what is asked.
+10. "entity_queries": only for two or more distinct named products (comparisons, "X and Y", "which of X, Y"); at most 4; each query names one product exactly as written plus the attribute. One product, or a family named generically, gives [].
 
 Examples (conversation context -> new query -> JSON):
 
 Context: previous turn was about the PanelView 800 operator panel.
 Query: more about hmis
 {"mode": "retrieval", "rewritten_query": "HMI human-machine interface operator panels PanelView 800 features specifications", \
+"answer_question": "Tell me more about HMIs such as the PanelView 800.", "entity_queries": [], \
 "excluded_sources": [], "target_document_hints": ["PanelView 800"], "has_contrastive_intent": false, "is_collection_wide": false}
 
 Context: previous turn was about the 1756-OB16E output module.
 Query: what's its max output current?
 {"mode": "retrieval", "rewritten_query": "1756-OB16E maximum output current per channel", \
+"answer_question": "What is the maximum output current of the 1756-OB16E?", "entity_queries": [], \
 "excluded_sources": [], "target_document_hints": ["1756-OB16E"], "has_contrastive_intent": false, "is_collection_wide": false}
 
 Context: previous turn recommended the Modicon M580 PLC from M580_datasheet.pdf.
 Query: anything else besides the M580?
-{"mode": "retrieval", "rewritten_query": "PLC controllers alternatives", "excluded_sources": ["M580_datasheet.pdf"], \
+{"mode": "retrieval", "rewritten_query": "PLC controllers alternatives", \
+"answer_question": "What PLC controllers are there besides the Modicon M580?", "entity_queries": [], \
+"excluded_sources": ["M580_datasheet.pdf"], \
 "target_document_hints": [], "has_contrastive_intent": true, "is_collection_wide": false}
 
 Context: first query in the conversation.
+Query: which has more user memory, the Modicon M580 BMEP584040 or the ControlLogix 1756-L83E?
+{"mode": "retrieval", "rewritten_query": "Modicon M580 BMEP584040 ControlLogix 1756-L83E user memory size", \
+"answer_question": "Which has more user memory, the Modicon M580 BMEP584040 or the ControlLogix 1756-L83E?", \
+"entity_queries": ["Modicon M580 BMEP584040 user memory", "ControlLogix 1756-L83E user memory"], \
+"excluded_sources": [], "target_document_hints": ["BMEP584040", "1756-L83E"], "has_contrastive_intent": false, "is_collection_wide": false}
+
+Context: first query in the conversation.
 Query: how many datasheets have been uploaded?
-{"mode": "library", "rewritten_query": "number of uploaded datasheets", "excluded_sources": [], \
+{"mode": "library", "rewritten_query": "number of uploaded datasheets", \
+"answer_question": "How many datasheets have been uploaded?", "entity_queries": [], "excluded_sources": [], \
 "target_document_hints": [], "has_contrastive_intent": false, "is_collection_wide": true}
 
 Output ONLY valid JSON, no explanation."""

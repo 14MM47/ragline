@@ -37,3 +37,12 @@ eval/ingest-*.log
 .claude/
 .DS_Store
 *:Zone.Identifier
+# Campaign runner logs: subprocess output, kept local even though results are published.
+eval/results/**/campaign.log
+
+# Evaluation transcripts (full prompts, responses, reasoning) — kept out of git and
+# archived off-machine by scripts/eval_archive.py (docs/eval/call-capture-plan.md).
+eval/results/**/*.transcripts.jsonl.gz
+# Detached campaign-runner output and pid files.
+eval/results/**/runner-*.out
+eval/results/**/runner.pid

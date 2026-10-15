@@ -151,6 +151,7 @@ async def init_db():
                 # one re-login rather than silently skipping revocation checks.
                 ("auth_session", "validated_at", "TIMESTAMP"),
                 ("querytrace", "step_ms", "TEXT DEFAULT '{}'"),
+                ("querytrace", "reasoning_chars", "INTEGER DEFAULT 0"),
             ]
             for table, column, ddl in _added_columns:
                 cols = [

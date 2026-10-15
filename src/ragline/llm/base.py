@@ -20,9 +20,14 @@ T = TypeVar("T", bound=BaseModel)
 class BaseLLM(ABC):
     @abstractmethod
     async def complete(
-        self, messages: list[dict], temperature: float = 0.0, max_tokens: int | None = None
+        self, messages: list[dict], temperature: float = 0.0, max_tokens: int | None = None,
+        answer: bool = False, purpose: str = "",
     ) -> str:
         """Run one chat completion and return the assistant text.
+
+        answer=True marks answer generation (RAG and library answers); a
+        provider may apply answer-only request options (ANSWER_EXTRA_BODY).
+        purpose names the call (e.g. "prepass") for the slow-call log.
 
         max_tokens is an optional output ceiling; None leaves it to the server
         (the default everywhere except knowledge-graph extraction, which caps it
@@ -36,7 +41,8 @@ class BaseLLM(ABC):
         ...
 
     async def complete_json(
-        self, messages: list[dict], response_model: type[T], temperature: float = 0.0
+        self, messages: list[dict], response_model: type[T], temperature: float = 0.0,
+        max_tokens: int | None = None, purpose: str = "",
     ) -> T:
         """Complete a chat request expecting JSON output, validated against a
         Pydantic model.
@@ -46,7 +52,7 @@ class BaseLLM(ABC):
         the server's native JSON mode (response_format) when available.
         """
         # Get the raw completion text.
-        raw = await self.complete(messages, temperature=temperature)
+        raw = await self.complete(messages, temperature=temperature, max_tokens=max_tokens, purpose=purpose)
         # Models sometimes wrap JSON in ```json ... ``` fences — strip them.
         stripped = raw.strip()
         if stripped.startswith("```"):

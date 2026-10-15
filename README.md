@@ -24,10 +24,11 @@ card?"* with numbers rather than impressions:
 - **One pipeline, swappable models.** The LLM, the embedder and the reranker
   are each a base URL, a key and a model name. Nothing else changes when the
   hardware or the weights do.
-- **A golden question set with evidence.** 60 questions over 119 HMI
+- **A golden question set with evidence.** 100 questions over 119 HMI
   datasheets and manuals, each with the expected answer, the document and page
   it comes from, and the quoted line — including comparisons, follow-ups and
-  questions that deliberately have no answer in the corpus.
+  questions that deliberately have no answer in the corpus, every one reviewed
+  by hand against its PDF.
 - **Recorded runs.** `scripts/evaluate.py` writes a results file per run with
   the stack it ran against, per-question answers, citations, latency, token
   counts and per-stage timings, so two stacks can be compared after the fact.
@@ -193,6 +194,42 @@ have been run, and how to serve the three models yourself.
     -o eval/results/$(date +%F)_my-stack.json --label my-stack
 ```
 
+### Model-ladder evaluation (in progress)
+
+**Live write-up: [14mm47.github.io/ragline](https://14mm47.github.io/ragline/)**,
+an interactive page with one tab per rung, updated as each rung completes. The
+same page is committed at
+[eval/results/eval-2026-10/dashboard.html](eval/results/eval-2026-10/dashboard.html).
+
+The campaign compares answer-generating LLMs from 27B to 122B on one RTX PRO
+6000 (96 GB), each with thinking off and on, on the
+[100-question HMI golden set](eval/golden_set_hmi.json) (48 spec, 18 comparison,
+10 unanswerable, 8 multi-hop, 8 procedure, 5 follow-up, 3 library; every
+question reviewed by hand against its PDF). Each condition runs 3 full passes;
+every answer is graded by Claude Opus 5.5 as a judge (κ 0.883 against 46 hand
+grades) for correctness and claim support, with bootstrap confidence intervals
+and McNemar tests for paired comparisons.
+
+| Rung | Model | Status |
+|---|---|---|
+| 2 | `RedHatAI/Qwen3.8-27B-INT4` | done: thinking off 68.1 % correct, on 71.1 % (+3.0 points, 95 % CI −0.7 to +7.0, not significant); median latency 11.3 s vs 25.1 s |
+| 3 | `Qwen3-30B-A3B-2507` (Instruct AWQ / Thinking FP8) | planned |
+| 4 | `Qwen/Qwen3.6-35B-A3B-FP8` | planned |
+| 5 | `RedHatAI/gemma-4-26B-A4B-it-FP8-dynamic` | planned |
+| 6 | `Qwen/Qwen3.5-122B-A10B-GPTQ-Int4` | planned |
+| 2 again | rung 2 on the fixed ragline | planned |
+
+Rung 2 doubles as ragline's initial-state test. All 35 questions it did not
+get right in every pass were traced from the golden evidence to the indexed
+chunk, its retrieval rank, what the model saw and the judge's reason
+([diagnosis](eval/results/eval-2026-10/r2/diagnosis.json)): every one traces to
+ragline rather than the model, and in 22 the evidence never reached the model.
+Those faults are being fixed before the next model runs
+([fix plan](docs/eval/ragline-fixes-plan.md)) — stage 1 (query-time retrieval
+and prompt fixes) is merged and under verification. Method:
+[evaluation plan](docs/evaluation-plan.md), [docs/eval/](docs/eval/); raw runs,
+judge files and notes: [eval/results/eval-2026-10/](eval/results/eval-2026-10/).
+
 ### The corpus is indexed, not included
 
 The test corpus is 803 vendor datasheets and manuals for industrial automation
@@ -210,9 +247,9 @@ hand before the fetch log existed), including 22 of the 68 that the golden set
 cites. They are listed with their title and digest so they can be found and
 verified; until they are in place, the questions that rely on them will miss.
 
-### Recorded runs
+### Earlier recorded runs (September, 60-question set)
 
-One stack so far, on two cards: `RedHatAI/Qwen3.8-27B-INT4` (thinking off) for
+Before the campaign, one stack on two cards: `RedHatAI/Qwen3.8-27B-INT4` (thinking off) for
 every LLM call, `Qwen/Qwen3-Embedding-8B` (4096-dim) and `Qwen3-Reranker-0.6B`,
 all three on a single GPU. 60 questions; the source hit-rate is scored on the
 51 that name an expected source.
@@ -238,16 +275,14 @@ questions in the automatic score is noise. Details:
 
 ## Known limitations
 
-- **Tables.** Specification tables are flattened to text at parse time, and
-  that is where the wrong answers come from.
-- **Comparisons.** A two-product question is embedded as one query and often
-  retrieves only one product's document.
-- **The evaluator scores sources, not answers.** Correctness is graded by
-  hand; follow-up questions are run without their previous turn; the three
-  library-mode questions cannot be answered by chunk retrieval at all.
-- **The golden set is not fully reviewed.** 8 of 60 expected answers have been
-  checked against the PDF by a person
-  ([review sheet](eval/golden_set_hmi_review.md)); three are flagged as doubtful.
+- **Tables.** Specification tables are flattened to text at parse time;
+  merged cells and multi-column layouts lose their row/column link, which is
+  where many wrong answers come from (stage 2 of the fix plan).
+- **Comparisons.** Fixed at query time in stage 1 (one retrieval per named
+  product, with reserved prompt slots); under verification.
+- **Judging is by an LLM.** Answers are graded by Claude Opus 5.5, calibrated
+  against hand grades (κ 0.883); identical answers can still receive different
+  verdicts across passes, which the fix plan addresses.
 - **Scale.** BM25 is rebuilt in memory, metadata lives in SQLite, and the
   knowledge-graph index is rebuilt per query. Fine for hundreds of documents;
   not designed for more yet.

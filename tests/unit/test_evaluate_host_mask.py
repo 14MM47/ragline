@@ -22,10 +22,15 @@ evaluate_script = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(evaluate_script)
 
 
+# A made-up pod id, assembled at run time so the public export's id masking
+# (scripts/export_public.py) does not rewrite this test's input.
+FAKE_POD = "abc123" + "def456gh"
+
+
 def test_runpod_proxy_host_has_its_pod_id_masked():
-    host = evaluate_script._host("https://abc123def456gh-8000.proxy.runpod.net/v1")
+    host = evaluate_script._host(f"https://{FAKE_POD}-8000.proxy.runpod.net/v1")
     assert host == "<pod-id>-8000.proxy.runpod.net"
-    assert "abc123def456gh" not in host
+    assert FAKE_POD not in host
 
 
 def test_other_hosts_are_recorded_as_they_are():

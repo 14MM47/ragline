@@ -1,0 +1,985 @@
+{
+ "rung": "r2",
+ "generated": "2026-10-15",
+ "method": "evidence trace (scratchpad r2_dossier.py) + per-question diagnosis in four groups, checked against chunk text in ragline_eval_v1",
+ "questions": [
+  {
+   "id": "A04",
+   "causes": [
+    "CHUNK",
+    "RET-CHUNK",
+    "GEN-REFUSE"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "Table 1 on p2 of panelview_plus7_standard_technical_data.pdf is split into two chunks. Chunk 577652ae (chunk_index 2), which holds the title, the catalogue list including 2711P-T12W21D8S and the temperature/humidity rows, reached the top-8 in all 6 passes. Its continuation e5e4946a (chunk_index 3), which holds '12 in., 30 W= 102 BTU', has only a bare '|Attribute|Value|' header and no product name or catalogue number, so it never made the top-20. BM25 could not match it on 'heat dissipation' either: the corpus is tokenised with str.split(), which yields '|heat' and 'dissipation|4'. Seeing temperature rows but no heat row, every model abstained, and the OFF model offered the 50 W power consumption instead.",
+   "ragline_fixable": true,
+   "proposed_fix": "(1) Carry the table title, catalogue-number caption and header row into every continuation chunk of a split table, and prepend the document title and section to the embedded and BM25-indexed text (Chunk.context_prefix exists but is dead code: worker.py embeds c.text). (2) Tokenise BM25 on non-alphanumerics (split on |, <br>, hyphen and slash) instead of whitespace. (3) Expand neighbours: when chunk N of a table is retrieved, also include N+1 and N-1 from the same page and section.",
+   "model_independent": true,
+   "golden_or_judge_note": "",
+   "labels": {
+    "off": [
+     "abstained",
+     "abstained",
+     "abstained"
+    ],
+    "on": [
+     "abstained",
+     "abstained",
+     "abstained"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "spec"
+  },
+  {
+   "id": "A09",
+   "causes": [
+    "RET-CHUNK",
+    "PARSE",
+    "CHUNK"
+   ],
+   "evidence_reached_model": "always",
+   "explanation": "The clean evidence is in technical_data p3 chunk 88f04c62. It continues table chunk 56085cf2, which was reranked #1, and reads 'Memory RAM Use available | 512 MB RAM 250 MB nonvolatile storage for projects' under the 2715-T7CD column. 88f04c62 was never in the top-20: its catalogue numbers are glued to markdown ('|**attribute**|**2715-t7cd**<br>...'), so BM25 matches none of '2715-t7cd', 'ram' or 'panelview'. The only memory evidence the model saw was user_manual p16 (84d32cdf, top-8 #5). In that chunk the parser put the row-spanning 512 MB / 250 MB cell only on the 2715-T10CA row, leaving the T7CD cells empty, so all 6 passes read it literally and abstained. Two of the 8 slots were boilerplate chunks (user_manual p109 is only a page footer; technical_data p9 is 'Notes:').",
+   "ragline_fixable": true,
+   "proposed_fix": "(1) BM25 tokenizer: strip markdown/HTML (**, <br>, <sup>, |) and split on non-alphanumerics while keeping hyphenated part numbers, so table cells and catalogue numbers become matchable tokens. (2) Expand to neighbours: when a table chunk is a top hit, also add the next chunk of the same table (56085cf2 -> 88f04c62). (3) At ingest, drop chunks that are only a running header/footer. (4) PARSE: fill a row-spanning cell into every row it spans, or flag empty cells under a spanning value.",
+   "model_independent": true,
+   "golden_or_judge_note": "",
+   "labels": {
+    "off": [
+     "abstained",
+     "abstained",
+     "abstained"
+    ],
+    "on": [
+     "abstained",
+     "abstained",
+     "abstained"
+    ]
+   },
+   "evidence_class": "in_top8_always",
+   "category": "spec"
+  },
+  {
+   "id": "A10",
+   "causes": [
+    "GEN-STYLE",
+    "HISTORY",
+    "JUDGE"
+   ],
+   "evidence_reached_model": "always",
+   "explanation": "Both evidence chunks were in the top-8 in every pass (PV5500 tech data p2 69ae678a at #2 with 0…55 °C; PV800 tech data p3 b1e2edaa at #1 with 0…50 °C), and all 6 answers give 55 °C vs 50 °C. The thinking-OFF answers never name the winner. The likely reason: the answer prompt's 'Question:' is the pre-pass keyword rewrite ('PanelView 5500 2715-T10CD vs PanelView 800 2711R-T10T maximum operating temperature'), not the user's 'Which has the higher…'. chat_agent.py passes retrieval_query to RAGAgent.query, which formats QUERY_TEMPLATE with it. The only lost credit is one OFF pass graded partial.",
+   "ragline_fixable": true,
+   "proposed_fix": "Give the answer LLM the user's original question (with follow-ups resolved into a natural-language standalone question) and use the keyword rewrite only for retrieval. Also add a prompt rule: for 'which is higher/heavier/more' questions, state the winner explicitly and give both values with units.",
+   "model_independent": true,
+   "golden_or_judge_note": "Judge was inconsistent: the three OFF answers are byte-identical, but two were graded correct and one partial. Both values are given, so 'correct' is defensible; at minimum the grades should match.",
+   "labels": {
+    "off": [
+     "correct",
+     "correct",
+     "partial"
+    ],
+    "on": [
+     "correct",
+     "correct",
+     "correct"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "comparison"
+  },
+  {
+   "id": "A11",
+   "causes": [
+    "PARSE",
+    "CHUNK",
+    "MISLEAD",
+    "RET-CHUNK"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "The p3 Environmental table has 3 columns (Resistive / Stainless-steel / Capacitive; verified with raw PyMuPDF text). The parse dropped the 'Stainless-steel Terminals' header from chunk 75df2e8b (index 5, in the top-8 every pass), which keeps only the resistive cell 'Rated IP66 as Classified by UL' under a 'Resistive Touch / Capacitive Touch' header. So it reads as if IP66 applies to both kinds. The stainless (IP69/IP69K) and capacitive (IP65) cells were moved into chunk 809202a5 (index 7), after the Certifications table, with no attribute label and no catalogue number. That chunk was never in the top-20. All 6 passes answered 'both IP66' from the misleading chunk.",
+   "ragline_fixable": true,
+   "proposed_fix": "Parsing: detect multi-column spec tables that pymupdf4llm emits as loose text and re-extract them as markdown tables, keeping the column headers. A fallback is to keep each table as one chunk and never split it across the following table. Retrieval: expand the top hits with neighbouring chunks (±2 chunk_index on the same page) so an orphaned continuation of a top-8 table reaches the model.",
+   "model_independent": true,
+   "golden_or_judge_note": "",
+   "labels": {
+    "off": [
+     "wrong",
+     "wrong",
+     "wrong"
+    ],
+    "on": [
+     "wrong",
+     "wrong",
+     "wrong"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "comparison"
+  },
+  {
+   "id": "A12",
+   "causes": [
+    "RET-COMPARE",
+    "RET-CHUNK",
+    "PARSE"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "Seven of the top-8 slots went to PanelView 5510/5500 chunks (DLR topology pages 14/36/38, 5510 TD p1). The only 5310 chunk that sometimes got in was the UM p11 overview (ca2014ff), which has no port count. The 5310 evidence never made the top-20: UM p12 Table 1 (492312f9) and TD p4 (63f37dc0). The TD chunk is also damaged by the parser, with its Ethernet row split across shifted cells ('One 10/100Base-T, Auto|MDI/MDI-X Ethernet port for|controller communication.'). The models answered the 5510 side correctly and correctly declined to invent the 5310 count, so the failure lies in retrieval.",
+   "ragline_fixable": true,
+   "proposed_fix": "Decompose comparison and multi-entity questions in the pre-pass into one sub-query per entity ('PanelView 5310 Ethernet ports', 'PanelView 5510 Ethernet ports DLR'), retrieve for each, and guarantee each entity k slots in the top-8. Secondary: fix the spanning-cell fragmentation in pymupdf4llm table output and use punctuation-aware BM25 tokenisation.",
+   "model_independent": true,
+   "golden_or_judge_note": "Partial is fair: the 5310 side is missing.",
+   "labels": {
+    "off": [
+     "partial",
+     "partial",
+     "partial"
+    ],
+    "on": [
+     "partial",
+     "partial",
+     "partial"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "comparison"
+  },
+  {
+   "id": "A16",
+   "causes": [
+    "RET-COMPARE",
+    "RET-CHUNK",
+    "CHUNK"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "Neither golden chunk was reached. The 5510 side was still answered correctly (33 W) from the sibling panelview_5510_technical_data p6 (cda7ec9a), whose column lists 2715P-T15CD-BSK. The Plus 7 side is in performance_technical_data p8 chunk 2395e4cc ('(Series C) 39 W max' under 2711P-T15C22D9P-BSHK), which never made the top-20. BM25 matches none of '2711p-t15c22d9p-bshk', 'power' or 'consumption' because the tokens are glued to markdown. The dense leg favoured part-number-heavy catalogue list chunks (perf tech data p2 twice, user manual p17, migration guide p17/p18). So all passes gave 33 W and correctly said the Plus 7 value was missing. Golden 5510 chunk 520e8c9a (stainless p2) sits under a 'Product Advisories' header with an empty-column table.",
+   "ragline_fixable": true,
+   "proposed_fix": "Per-entity sub-queries for comparisons (one retrieval per catalogue number). BM25 tokenizer that keeps catalogue numbers as clean tokens. Optionally an exact catalogue-number boost: when a query contains a part-number pattern, force the chunks containing it into the rerank pool.",
+   "model_independent": true,
+   "golden_or_judge_note": "Partial is right: one side is correct, the other honestly declined.",
+   "labels": {
+    "off": [
+     "partial",
+     "partial",
+     "partial"
+    ],
+    "on": [
+     "partial",
+     "partial",
+     "partial"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "comparison"
+  },
+  {
+   "id": "A17",
+   "causes": [
+    "RET-COMPARE",
+    "PARSE",
+    "CHUNK",
+    "RET-CHUNK"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "The Standard side always reached the model: standard tech data p6 9a3e922c (markdown table with '2711P-T12W21D8S' and 'Weight, approx.|1.95 kg') at top-8 #2, and every answer gives 1.95 kg. The Performance weight is in performance tech data p6 chunk 1957da19. That table was parsed as linearised plain text, not markdown: three bare values '2.28 kg / 2.58 kg / 2.54 kg', no catalogue numbers, and column labels ('10.4-in. Touch / … / 12.1-in.') only as a truncated trailer. The catalogue numbers 2711P-T12W22D9P sit in the previous chunk 51c6e20d. Neither chunk reached the top-20 or the top-8, and BM25 cannot match the part number in 51c6e20d because the token is '2711p-t12w22d9p,' with a trailing comma. All six answers correctly said the Performance weight was missing → partial.",
+   "ragline_fixable": true,
+   "proposed_fix": "(1) Per-entity sub-queries for comparisons. (2) Contextual chunk text: prepend doc title + section_header ('Technical Specifications - PanelView Plus 7 Performance 10-in and 12-in Terminals') + the table's catalogue-number header row to every table-continuation chunk, for embedding, BM25 and rerank. Note Chunk.context_prefix already exists in chunking/models.py but is never used; worker.py embeds bare c.text. (3) Neighbour expansion: when a chunk naming the asked catalogue number is retrieved, also pull chunk_index±1. (4) Fix this page's parse (no table detected), e.g. re-parse with table-strategy fallback. (5) Punctuation-stripping BM25 tokeniser.",
+   "model_independent": true,
+   "golden_or_judge_note": "Golden 2.54 kg relies on mapping the third weight value to the '12.1-in. Touch' column, which this parse makes ambiguous even if retrieved.",
+   "labels": {
+    "off": [
+     "partial",
+     "partial",
+     "partial"
+    ],
+    "on": [
+     "partial",
+     "partial",
+     "partial"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "comparison"
+  },
+  {
+   "id": "B04",
+   "causes": [
+    "RET-CHUNK",
+    "PARSE",
+    "MISLEAD"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "The 36 W value is in ifp_v2 p126 chunk aa5e7534, in the 'DC power supply' table. Its columns are only 12\"/15\"/19\"/22\"/24\" under 'IFP V2 devices', so 'IFP2400' never appears. Reading order puts the next section's heading ('7.9 Technical specifications of the Transceiver Unit') at the top of the chunk, so the chunk looks like Transceiver Unit specs. BM25 cannot match 'consumption' because the token is 'consumption<sup>1</sup>|15.6'. Instead the top-8 led with the sibling IFP Basic power table (ifp_basic p68, rank 1) plus V2 preface, TOC and dimension-drawing chunks, so all 6 passes abstained.",
+   "ragline_fixable": true,
+   "proposed_fix": "Clean BM25 tokenization. Prepend document title + section path to each chunk's embedded/BM25/rerank text (e.g. 'SIMATIC IFP V2 operating instructions > 7.8 Technical specifications of the IFPs > DC power supply'). Second, document-scoped pass: once the top documents are known, re-query the attribute ('power consumption') inside them. Optional: map size columns to model names (24\" -> IFP2400) via a per-document alias table.",
+   "model_independent": true,
+   "golden_or_judge_note": "",
+   "labels": {
+    "off": [
+     "abstained",
+     "abstained",
+     "abstained"
+    ],
+    "on": [
+     "abstained",
+     "abstained",
+     "abstained"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "spec"
+  },
+  {
+   "id": "B12",
+   "causes": [
+    "CHUNK",
+    "RET-CHUNK"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "The WebOP-2000/3000 selection-guide table on p4 is parsed as linear text and split in two. Chunk 7f3fae10 (index 3, only 469 chars) holds the Model row 'WOP-3070T WOP-3100T WOP-3120T' plus CPU…Size; it reached top-8 #1 every pass. Chunk 675eb20a (index 4) holds 'Luminance 500 cd/m2 550 cd/m2 500 cd/m2' with no model names or product context, and was never in the top-20. The model saw the header chunk, noticed it 'is cut off', and refused in all 6 passes. That is a correct refusal given its context.",
+   "ragline_fixable": true,
+   "proposed_fix": "(1) When a chunk is cut inside a table, repeat the table's header/Model row (and section header) at the top of each continuation chunk. (2) At answer time, add the next chunk (chunk_index+1, same doc) for any top-8 chunk that ends inside a table. (3) Do not end chunks at 469 chars inside a table; merge small table fragments forward.",
+   "model_independent": true,
+   "golden_or_judge_note": "",
+   "labels": {
+    "off": [
+     "abstained",
+     "abstained",
+     "abstained"
+    ],
+    "on": [
+     "abstained",
+     "abstained",
+     "abstained"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "spec"
+  },
+  {
+   "id": "B15",
+   "causes": [
+    "RET-COMPARE",
+    "CHUNK",
+    "RET-CHUNK"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "The Siemens side reached the model: KTP Basic 2nd-gen p117 '5.5 W' was top-8 #1 every pass, and all 6 answers gave 5.5 W. The Advantech side is the same header-less continuation chunk 675eb20a as in B12 ('Power Consumption 7W 9W 12W', no model names), and it never reached the top-20. Only the header chunk 7f3fae10 (Model…Size) got in, so every pass said the WOP-3070T value was missing. Also, 6 of the 8 slots went to the KTP manual, because one blended query lets one entity dominate.",
+   "ragline_fixable": true,
+   "proposed_fix": "Same table-header repetition / next-chunk expansion as B12. Add per-entity sub-queries for comparison questions (one retrieval per named product, with top-k split across entities) so each side keeps reserved slots.",
+   "model_independent": true,
+   "golden_or_judge_note": "Partial is correct (one side only).",
+   "labels": {
+    "off": [
+     "partial",
+     "partial",
+     "partial"
+    ],
+    "on": [
+     "partial",
+     "partial",
+     "partial"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "comparison"
+  },
+  {
+   "id": "C11",
+   "causes": [
+    "RET-CHUNK",
+    "RET-COMPARE",
+    "MISLEAD",
+    "HISTORY"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "No Omron chunk entered the top-20 or the top-8; the whole top-8 is Delta DOP-100 catalog/selection-guide chunks. The DOP-107WV power row lives in 4cda96ff (catalog p26, 2nd half of the table) and 7c7eeaaf (selection guide p28). Both chunks repeat the '|**DOP-103WQ**|**DOP-107WV**|' header and the 'Power Consumption' row, yet neither was retrieved. Instead the reranker filled slots 2–7 with footnote/weight chunks that only say 'The value of the power consumption indicates the electrical power consumed by the HMI with no peripheral devices connected'. Verified by replaying ragline's BM25 offline: whitespace tokenisation turns markdown table rows into glued tokens like '||**dop-103wq**|**dop-107wv**|**dop-110ws**|', so 4cda96ff, 7c7eeaaf and the NA hardware-manual evidence chunks score exactly 0 for the query and NA5 datasheet a3e429fd matches only 'power' (rank 1994). With a regex tokeniser ([a-z0-9]+(?:[-./][a-z0-9]+)*) and per-entity sub-queries, BM25 ranks the evidence #2/#4 (Omron) and #3/#7 (Delta). The models abstained correctly given what they saw.",
+   "ragline_fixable": true,
+   "proposed_fix": "(1) Replace BM25 whitespace .split() with a tokeniser that strips markdown/punctuation (|, **, <br>, trailing commas) and keeps hyphenated part numbers, both at index time (hybrid.py build) and at query time. (2) For comparison questions, have the pre-pass emit one sub-query per entity, retrieve each separately and reserve top-8 slots per entity. (3) Down-weight or deduplicate repeated catalog footnote boilerplate.",
+   "model_independent": true,
+   "golden_or_judge_note": "",
+   "labels": {
+    "off": [
+     "abstained",
+     "abstained",
+     "abstained"
+    ],
+    "on": [
+     "abstained",
+     "abstained",
+     "abstained"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "comparison"
+  },
+  {
+   "id": "C12",
+   "causes": [
+    "MISLEAD",
+    "PARSE",
+    "RET-CHUNK",
+    "GEN-READ"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "The -040 variant has its own spec (122 VA / 44 W) in gt27_general_description.pdf p1, but that leaflet was parsed in a scrambled multi-column reading order. Chunk 87442d49 has the model headers ('GT2715-\\nXTBA-040', where the line break also defeats BM25 and exact matching) and chunk ee53c7c1 has the bare values ('apparent power 122VA 82VA ... maximum load 44W or less...'), with no row/column linkage and neither in the top-20. The top-8 led with the hardware manual table for the base GT2715-XTBA (3c06b511: 140 VA, 51 W), which every model reported. Chunk f546575a (in the top-8) warns that for the -040 products 'the maximum apparent power and power consumption (at the maximum load) are different', and no model heeded it, so this is a reading failure too.",
+   "ragline_fixable": true,
+   "proposed_fix": "(1) Re-parse the gt27_general_description leaflet with a layout-aware or VLM parser, since its multi-column fold-out is unusable as linear text. (2) Normalise hyphen and line-break-split catalogue numbers before indexing ('GT2715-\\nXTBA-040' to 'GT2715-XTBA-040'). (3) Add an answer-prompt rule: if a source says a variant's specs differ, do not report the base model's values for the variant; state the variant value or say it is unavailable.",
+   "model_independent": true,
+   "golden_or_judge_note": "Golden looks right (the -040 leaflet values). Even with perfect retrieval the current chunk text cannot answer it without layout repair.",
+   "labels": {
+    "off": [
+     "wrong",
+     "wrong",
+     "wrong"
+    ],
+    "on": [
+     "wrong",
+     "wrong",
+     "wrong"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "spec"
+  },
+  {
+   "id": "D05",
+   "causes": [
+    "RET-CHUNK",
+    "MISLEAD"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "The evidence chunk 6b16b71d (g315c_datasheet p2, '13. WEIGHT: 11.41 lbs (5.17 Kg)') is part of a numbered spec list that never names G315C. Its only context is section_header 'SPECIFICATIONS', which is stored in the payload but not embedded. So neither BM25 nor dense search could tie it to 'G315C weight'. The top-8 was taken by G315C chunks that name the product but say nothing about weight (p4 configuring/wiring, p1, p5, p7), plus the newer Graphite G07–G15 weight lists (graphite_hmi/series datasheets p2) and a FlexEdge DA50A weight. The model correctly refused in all 6 passes.",
+   "ragline_fixable": true,
+   "proposed_fix": "Index every chunk with a context header (document title/filename-derived product name, e.g. 'G315C datasheet', plus section header) in the dense embedding, the BM25 tokens and the reranker input. Chunk.context_prefix already exists in chunking/models.py but is dead code: ingestion/worker.py embeds c.text only, BM25 (retrieval/hybrid.py) indexes chunk.text only, and the reranker scores chunk.text only.",
+   "model_independent": true,
+   "golden_or_judge_note": "",
+   "labels": {
+    "off": [
+     "abstained",
+     "abstained",
+     "abstained"
+    ],
+    "on": [
+     "abstained",
+     "abstained",
+     "abstained"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "spec"
+  },
+  {
+   "id": "D07",
+   "causes": [
+    "PARSE",
+    "MISLEAD",
+    "GEN-READ"
+   ],
+   "evidence_reached_model": "always",
+   "explanation": "Evidence chunk 6c6607bb (stm6000 p22) was rank 2 in the top-8 every pass. In the PDF, 'Panel cut dimensions: Diameter 22.5 mm' is a merged cell spanning both models, but the parser emitted '|Panel cut dimensions|Diameter 22.5 mm (0.88 in)||', which leaves the STM-6400WA cell empty. ON pass 3 read it literally ('STM-6400WA panel-cut cell is blank') and hedged, and the judge marked it partial. The sibling STW6000 cut-out tables (4434f098 p38, rank 1; a61171e0 p23: STW-6400WA 190 x 135 mm) also outranked the evidence, and several answers had to explicitly reject them. The detailed cut-out chunk 452ed690 (p38, with the +0/-0.3 tolerance) has no product or heading context ('EQUIPMENT DAMAGE / Pressure Differences / Panel Cut Dimensions...') and never made the top-20.",
+   "ragline_fixable": true,
+   "proposed_fix": "Parser and table post-processing: forward-fill horizontally merged cells, or annotate them as '(all models)', when a row has a value in the first data column and empties after it. Prepend document title and section to chunks so p38 is findable. Optionally boost exact model-string matches (STM vs STW) during rerank.",
+   "model_independent": true,
+   "golden_or_judge_note": "Expected answer adds the +0/-0.3 mm tolerance; the judge correctly treated its omission as minor. The on3 partial is a fair grade given the hedge.",
+   "labels": {
+    "off": [
+     "correct",
+     "correct",
+     "correct"
+    ],
+    "on": [
+     "correct",
+     "correct",
+     "partial"
+    ]
+   },
+   "evidence_class": "in_top8_always",
+   "category": "spec"
+  },
+  {
+   "id": "D12",
+   "causes": [
+    "RET-COMPARE",
+    "RET-CHUNK",
+    "GEN-STYLE",
+    "JUDGE"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "Neither golden chunk reached the model. Harmony ST6 user_manual p23 (b8ede14e) says 'Ambient air temperature 0...50 °C', but the chunk never names ST6 or HMIST6500, its section_header is 'CAUTION', and it says 'ambient air' rather than 'operating'. x2_pro_10_b2 p15 (2016feaf) has its section_header mislabelled '4.1 Compass Safe Distance'. The model instead saw catalog p8 'Operating temperature: up to 50 °C/22 °F' (the °F is a source typo) and the brochure p15 X2 control -10..+60 °C, and quoted both faithfully. OFF passes never named a winner. The answer prompt receives the keyword rewrite ('operating temperature range comparison ...') instead of 'Which has the wider...?', so the 'which' intent is lost.",
+   "ragline_fixable": true,
+   "proposed_fix": "Split comparisons into one sub-query per entity, each with its own top-k, then merge. Prepend doc title/product to chunk text. Add a synonym rule to the query rewrite (operating temperature <-> ambient air temperature). Pass the ORIGINAL user question (not only the rewritten search query) to the answer prompt, and add a rule: for comparison questions, state both values and name the winner.",
+   "model_independent": true,
+   "golden_or_judge_note": "'up to 50 °C' is a faithful quote from the Harmony catalog, and -10..+60 °C is clearly wider on both ends. The ON passes that named the X2 pro as wider (ON-1, per its judge reason) arguably deserve 'correct'. The OFF passes (no winner) are fairly 'partial'.",
+   "labels": {
+    "off": [
+     "partial",
+     "partial",
+     "partial"
+    ],
+    "on": [
+     "partial",
+     "partial",
+     "partial"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "comparison"
+  },
+  {
+   "id": "D16",
+   "causes": [
+    "RET-COMPARE",
+    "RET-CHUNK",
+    "MISLEAD"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "The G15 weight chunk (c149335e/ec30d103) was ranks 1-2 every pass, but the Graphite brochure and datasheets filled most of the top-8, and the Weintek slots went to siblings (cmt3162x 15.6\" at 1.6 kg, eMT3150A at 2.75 kg). The cMT3152X weight chunk 415613bc is a long, header-less spec dump in which 'cMT3152X' appears once near the end. It missed the top-20; only the pin-assignment chunk 84ede632 of that datasheet reached merged rank 11 and was reranked out. All models correctly refused to substitute the sibling weights.",
+   "ragline_fixable": true,
+   "proposed_fix": "Per-entity sub-queries for comparisons, with a guaranteed slot per entity. Prepend the document title and model name (from the filename or page-1 heading) to each chunk's embedded, BM25 and rerank text, so the weight chunk carries 'cMT3152X'.",
+   "model_independent": true,
+   "golden_or_judge_note": "Partial is fair: one side is missing.",
+   "labels": {
+    "off": [
+     "partial",
+     "partial",
+     "partial"
+    ],
+    "on": [
+     "partial",
+     "partial",
+     "partial"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "comparison"
+  },
+  {
+   "id": "D17",
+   "causes": [
+    "RET-COMPARE",
+    "RET-CHUNK",
+    "PARSE"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "The eMT3070A evidence (4bf02da5/02b7a903, p1) reached the top-8 at #3, but neither eMT3105P p1 chunk did. e38cc7ae has 'UL Type 4X / NEMA4 / IP65 Compliant', but the PDF reading order splits 'Protection Structure' from 'Front Panel' and the text never names eMT3105P. 97518538 has 'NEMA4 / IP65 Compliant Front Panel' with the product name only as a trailing line. The generic query words 'ingress protection rating IP rating comparison' filled the top-20 with Siemens/ASEM protection-class sections, so the model saw only eMT3105P p2 (dimensions/ordering) and said the 3105P rating was not given (6/6).",
+   "ragline_fixable": true,
+   "proposed_fix": "Per-entity sub-queries ('eMT3105P front panel IP rating', 'eMT3070A front panel IP rating'). Prepend doc title/product name to every chunk (the datasheet is single-product, so the name belongs on every chunk). Document-scoped follow-up retrieval within each named product's datasheet.",
+   "model_independent": true,
+   "golden_or_judge_note": "",
+   "labels": {
+    "off": [
+     "partial",
+     "partial",
+     "partial"
+    ],
+    "on": [
+     "partial",
+     "partial",
+     "partial"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "comparison"
+  },
+  {
+   "id": "E04",
+   "causes": [
+    "GEN-STYLE",
+    "JUDGE",
+    "GOLDEN"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "Unanswerable trap: cMT3252X is not in the corpus. Retrieval returned cMT brochure spec tables that list the cMT3152X. Five of six passes declined. ON pass 3 said the cMT3252X isn't listed, then gave the cMT3152X range (0~50 °C) and was graded answered_wrong. ON pass 1 gave the same cMT3152X range as 'If you meant cMT3152X…' and was graded declined.",
+   "ragline_fixable": true,
+   "proposed_fix": "Prompt rule: 'If the exact model/catalogue number asked about does not appear in the sources, say so and do NOT give values for similarly named models (you may name them without values).' A cheap extra guard is a post-check that flags answers whose quoted values cite a chunk lacking the asked identifier.",
+   "model_independent": true,
+   "golden_or_judge_note": "Judge was inconsistent: ON pass 1 ('If you meant cMT3152X, its range is 0~50 °C') = declined, but ON pass 3 (the same value labelled as cMT3152X) = answered_wrong. Under the stated rule (labelled sibling value = wrong), both should be answered_wrong. Golden wording 'must not substitute' is ambiguous about a clearly labelled alternative. Tighten it to 'must not give any sibling model's value'.",
+   "labels": {
+    "off": [
+     "declined",
+     "declined",
+     "declined"
+    ],
+    "on": [
+     "declined",
+     "declined",
+     "answered_wrong"
+    ]
+   },
+   "evidence_class": "no_evidence_listed",
+   "category": "unanswerable"
+  },
+  {
+   "id": "E07",
+   "causes": [
+    "GEN-READ"
+   ],
+   "evidence_reached_model": "always",
+   "explanation": "This is a library-mode question (routed correctly, used_library=true). The summary from render_library_summary lists per-category headers but gives no category/vendor count. Thinking-OFF wrote the headline '10 vendors', listed 12, then added a self-correcting note. It also named Mitsubishi/Siemens/Weintek as the largest collections although Allen-Bradley (25 docs) is larger. Thinking-ON counted 12 correctly in all 3 passes. This is a counting/reading slip by the model.",
+   "ragline_fixable": true,
+   "proposed_fix": "In render_library_summary (storage/metadata_db.py), add a precomputed line such as 'Library totals: 119 documents in 12 categories: Advantech, Allen-Bradley, …', with per-category doc counts sorted by size. The model then copies the count and ranking instead of computing them.",
+   "model_independent": true,
+   "golden_or_judge_note": "Partial is fair: the headline count contradicts the list.",
+   "labels": {
+    "off": [
+     "partial",
+     "partial",
+     "partial"
+    ],
+    "on": [
+     "correct",
+     "correct",
+     "correct"
+    ]
+   },
+   "evidence_class": "no_evidence_listed",
+   "category": "library"
+  },
+  {
+   "id": "E10",
+   "causes": [
+    "GEN-STYLE",
+    "JUDGE",
+    "GOLDEN"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "Trap: no KTP1500 Basic exists. Retrieval returned KTP Basic, TP Comfort and IFP Basic pages, including a 1st-gen 'TP1500 Basic color PN' (~800 mA) and the IFP1500 Basic (17 W). All six passes said the KTP1500 Basic isn't in the sources. Five also offered a clearly labelled near-miss: TP1500 800 mA in the OFF passes and ON passes 1/3, IFP1500 17 W in ON passes 2/3. Only ON pass 2 was graded answered_wrong.",
+   "ragline_fixable": true,
+   "proposed_fix": "Same prompt rule as E04: when the exact identifier is absent, decline and do not quote values for other models (name them only).",
+   "model_independent": true,
+   "golden_or_judge_note": "Judge was inconsistent: ON pass 3 also gives 'IFP1500 Basic … 17 W' ('If you meant…') and was graded declined, while ON pass 2 got answered_wrong for the same thing. The OFF passes give TP1500 Basic current figures and were graded declined. Under the stated sibling rule, all five passes with labelled values should be answered_wrong, or all declined. The golden note mentions only the KTP1200 trap. It should also name the TP1500 Basic (1st gen) and IFP1500 Basic that the corpus actually contains.",
+   "labels": {
+    "off": [
+     "declined",
+     "declined",
+     "declined"
+    ],
+    "on": [
+     "declined",
+     "answered_wrong",
+     "declined"
+    ]
+   },
+   "evidence_class": "no_evidence_listed",
+   "category": "unanswerable"
+  },
+  {
+   "id": "F02",
+   "causes": [
+    "PARSE",
+    "RET-CHUNK",
+    "MISLEAD"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "The rewrite resolved the follow-up correctly ('PanelView 5510 stainless steel IP rating'), so history is not the cause. The environmental table on 5510 TD p3 was parsed as plain text with columns scrambled. Chunk 75df2e8b (index 5) has the resistive/capacitive columns with 'Rated IP66 as Classified by UL', but the 'PanelView 5510 Stainless-steel Terminals' column, with 'Rated IP69... IP69K', landed at the tail of chunk 809202a5 (index 7), behind a page of certifications text (CE/UKCA/RoHS). 809202a5 never made the top-20, so every model took IP66 from 75df2e8b (rank 1) and applied it to the stainless version. Even in 809202a5 the column-to-value mapping is ambiguous (IP65 and IP69 sit side by side).",
+   "ragline_fixable": true,
+   "proposed_fix": "Re-parse p3 with table detection working (or a layout-aware or VLM table extractor for pages where pymupdf4llm falls back to text), and start a new chunk at a column-group header. Add BM25 tokenisation that splits 'Stainless-steel' into 'stainless' and 'steel' so the query term matches. Neighbour expansion (±2) within the same section would also have pulled in index 7.",
+   "model_independent": true,
+   "golden_or_judge_note": "",
+   "labels": {
+    "off": [
+     "wrong",
+     "wrong",
+     "wrong"
+    ],
+    "on": [
+     "wrong",
+     "wrong",
+     "wrong"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "followup"
+  },
+  {
+   "id": "F03",
+   "causes": [
+    "HISTORY",
+    "GEN-STYLE",
+    "RET-CHUNK"
+   ],
+   "evidence_reached_model": "sometimes",
+   "explanation": "OFF: the evidence was in the top-8 (selection_guide p28 7c7eeaaf #1, catalog p26 4cda96ff #2), and the model answered 'Max. 8.4 W' but never compared with 19 W. The pre-pass rewrote 'How does that compare with ...' into 'Delta DOP-107WV 7-inch maximum power consumption', and chat_agent passes that rewritten string as the Question to the answer prompt. Prompt rule 7 ('Avoid repeating information already covered') also discourages restating 19 W. ON: the rewrite only added 'HMI', yet both evidence chunks left the top-20. BM25 matches zero query tokens in either (cells are glued to markdown), so the dense leg picks among near-identical sibling DOP family tables (p28/p30/p31 'Hardware Specifications' tails). The model saw only the first half of the p26 table (224e8197, no power row) and abstained 3/3.",
+   "ragline_fixable": true,
+   "proposed_fix": "Give the answer prompt the original user question plus the resolved standalone question. Rewrite rule: keep comparison intent and fold in the prior value ('compare DOP-107WV max power with NA5-7W 19 W'). Soften rule 7 for comparisons ('restate the earlier value when comparing'). BM25 tokenizer fix plus neighbour expansion for table continuations (224e8197 -> 4cda96ff).",
+   "model_independent": true,
+   "golden_or_judge_note": "",
+   "labels": {
+    "off": [
+     "partial",
+     "partial",
+     "partial"
+    ],
+    "on": [
+     "abstained",
+     "abstained",
+     "abstained"
+    ]
+   },
+   "evidence_class": "in_top8_sometimes",
+   "category": "followup"
+  },
+  {
+   "id": "F05",
+   "causes": [
+    "GEN-READ",
+    "HISTORY"
+   ],
+   "evidence_reached_model": "always",
+   "explanation": "Retrieval was perfect: the rewrite 'Weintek cMT3072X display resolution' is correct, and cmt3072x_datasheet p1 (7772d8ff, '7\" 800 x 480 TFT', 'Resolution|800 x 480') was the #1 chunk in every pass. All three thinking-OFF answers still said 'The display resolution of the Weintek cMT3072XH is 1024 x 600 [Source 8]'. That restates the previous turn from the injected conversation context, citing Source 8 = cmt3092x p1, which says 1024 x 768. Thinking-ON was correct 3/3. So the failure is model-side anchoring on the prior assistant turn, and nothing in the prompt counteracts it. Rule 7 only says 'use [context] to understand what has already been discussed'.",
+   "ragline_fixable": true,
+   "proposed_fix": "Partial mitigation: in the answer prompt, state 'The current question is about <entity>. Conversation context is background only; never re-answer the previous question'. Better, put the resolved standalone question after the context and the sources (recency), or pass only a compact context summary instead of the prior answer text when the rewrite names a different entity.",
+   "model_independent": false,
+   "golden_or_judge_note": "",
+   "labels": {
+    "off": [
+     "wrong",
+     "wrong",
+     "wrong"
+    ],
+    "on": [
+     "correct",
+     "correct",
+     "correct"
+    ]
+   },
+   "evidence_class": "in_top8_always",
+   "category": "followup"
+  },
+  {
+   "id": "G01",
+   "causes": [
+    "RET-COMPARE",
+    "RET-CHUNK",
+    "MISLEAD"
+   ],
+   "evidence_reached_model": "sometimes",
+   "explanation": "Only the PanelView 800 evidence (1669ece5, p5 Table 4) reached the model. The PV Plus 7 Standard 6.5-in chunk d2c79197 (p5) and the PV5510 6.5/7/9-in chunk aeac677b (p4) were never in the top-20. Ten of the 20 merged slots went to legacy_panelview_to_plus7_migration_guide, and the model saw the PV+7 Standard p6 (12/15-in) and PV+7 Performance p8 tables instead. Both missing chunks contain the exact catalogue numbers, but BM25 tokenizes with lower().split(). In aeac677b the token is a single blob '|**attribute**|**2715p-t7cd**<br>**2715p-t7cd-b**…' and in d2c79197 it is '2711p-t7c21d8s,', so the query token never matches. All 6 answers gave 800x480 and said the other two were unavailable, which is a correct partial given the context.",
+   "ragline_fixable": true,
+   "proposed_fix": "(1) BM25 tokenizer: strip markdown (|, *, <br>, _), split on punctuation other than '-', and keep hyphenated part numbers whole (also index their sub-parts). (2) Per-entity sub-queries for 3-way comparisons. (3) Context header (doc title) in indexed text so migration-guide chunks stop crowding out technical data.",
+   "model_independent": true,
+   "golden_or_judge_note": "Partial is reasonable: right winner's value, no comparison.",
+   "labels": {
+    "off": [
+     "partial",
+     "partial",
+     "partial"
+    ],
+    "on": [
+     "partial",
+     "partial",
+     "partial"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "multihop"
+  },
+  {
+   "id": "G02",
+   "causes": [
+    "RET-COMPARE",
+    "PARSE",
+    "CHUNK",
+    "GEN-REFUSE"
+   ],
+   "evidence_reached_model": "sometimes",
+   "explanation": "This is a two-hop question. Hop 1 (replacement) was in the top-8: e457b568 (p21) lists '2711-K5A1' in a Remote I/O row with an empty replacement cell, and its continuation 0156d319 shows '2711P-T6C21D8S' only on the 2711-K5A5L1/K5A9 row. The replacement is a vertically merged cell covering all 550 rows, which the parser does not repeat. The OFF passes inferred the mapping (partial). The ON passes refused, saying no catalogue number is given for K5A1. Hop 2 (weight 0.70 kg, TD p4 chunk 639a30d1, whose header names 2711P-T6C21D8S) never made the top-20, because the rewritten query could not contain the not-yet-known catalogue number.",
+   "ragline_fixable": true,
+   "proposed_fix": "(1) Iterative or multi-hop retrieval: after the first retrieval, extract new entity identifiers (catalogue numbers) from the top chunks or a draft answer and run a follow-up query ('2711P-T6C21D8S weight'). (2) Forward-fill vertically merged cells in parsed tables so each 2711-K5A* row carries its replacement. (3) Repeat the table header in continuation chunks.",
+   "model_independent": true,
+   "golden_or_judge_note": "The judge grades are right: partial for OFF (replacement right, weight missing) and abstained for ON.",
+   "labels": {
+    "off": [
+     "partial",
+     "partial",
+     "partial"
+    ],
+    "on": [
+     "abstained",
+     "abstained",
+     "abstained"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "multihop"
+  },
+  {
+   "id": "G04",
+   "causes": [
+    "RET-COMPARE",
+    "MISLEAD",
+    "CHUNK",
+    "RET-RERANK"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "All 8 top-8 slots in every pass came from tp_comfort_outdoor_panels_manual. The rewritten query names 'TP700 Comfort' twice plus 'Outdoor', so that one document swamps the 4-entity question. Only the Outdoor IP66 evidence (0f0ca84e/29b5c315) reached the model. The Advantech chunk at merged rank 7 (7cd361d0) is the WOP-2xxx table and was reranked out. The WOP-3070T IP66 row is in continuation chunk 675eb20a (p4), which has no model name because the plain-text table's 'Model WOP-3070T...' header stayed in chunk 7f3fae10. Standard TP700 Comfort (13f74eaa p200, a generic 'protection class' section) and CP3907 (d7233bec p46, 'Protection rating IP65' with CP3907 only in a weight row) never surfaced.",
+   "ragline_fixable": true,
+   "proposed_fix": "Per-entity sub-queries with a per-entity top-k quota, plus a per-document cap or MMR in the final top-8 (e.g. at most 3 chunks per document). Repeat header/model rows for non-markdown (plain-text) table continuations, as is already done for markdown tables. Prepend doc title/section to chunk text.",
+   "model_independent": true,
+   "golden_or_judge_note": "The golden Advantech evidence chunk list includes 7cd361d0 (the WOP-2040T..2100T table), which is not WOP-3070T evidence. 675eb20a / ef6a8fa4 ('All panels are equipped with an IP66-rated front panel') are the right ones.",
+   "labels": {
+    "off": [
+     "partial",
+     "partial",
+     "partial"
+    ],
+    "on": [
+     "partial",
+     "partial",
+     "partial"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "multihop"
+  },
+  {
+   "id": "G06",
+   "causes": [
+    "JUDGE",
+    "GEN-STYLE"
+   ],
+   "evidence_reached_model": "always",
+   "explanation": "Both evidence chunks were #1 and #2 in the top-8 in every pass: dopsoft p56 32dda621 ('The default is 12345678') and p57 58004290 ('the HMI first updates the USB Disk and then the SD Card'). All six answers give both facts. ON pass 2 was graded partial only for its closing line 'I don't have enough information … to answer the DOP-100 part specifically'. ON passes 1 and 3 carry the same DOP-100 caveat and were graded correct. The hedge comes from the DOPSoft manual chunks not naming DOP-100, a literal-minded reading.",
+   "ragline_fixable": true,
+   "proposed_fix": "Optional prompt tweak: 'If the sources answer the question for the product family/software in question, answer; mention missing product names in one short clause, not as a refusal.' Mostly a judge issue.",
+   "model_independent": true,
+   "golden_or_judge_note": "ON pass 2 should be correct: both asked-for values are present, and passes with the same caveat were graded correct.",
+   "labels": {
+    "off": [
+     "correct",
+     "correct",
+     "correct"
+    ],
+    "on": [
+     "correct",
+     "partial",
+     "correct"
+    ]
+   },
+   "evidence_class": "in_top8_always",
+   "category": "multihop"
+  },
+  {
+   "id": "G07",
+   "causes": [
+    "GEN-READ",
+    "JUDGE",
+    "RET-CHUNK"
+   ],
+   "evidence_reached_model": "always",
+   "explanation": "The answer was in the top-8 every pass: cmt_series_brochure p10 (a9a77f2c: cMT3152X column 'SD/SDHC', cMT3162X 'N/A') and p12 (bb6f1be7: cMT2158X 'SD/SDHC', next to cMT2128X 'Micro SD x 1'), plus cMT3162X datasheet p1 'SDCard Slot N/A'. Thinking-OFF misread adjacent columns of these 6-column markdown tables. It gave cMT2158X as 'Micro SD x 1' (the cMT2128X cell) in all 3 passes, and in pass 2 also gave cMT3152X as 'N/A'. Thinking-ON was correct 3/3. The single-model datasheet chunks (34ea4094, b6974254) would be unambiguous, but they never name the model, so they missed the top-20.",
+   "ragline_fixable": true,
+   "proposed_fix": "For wide multi-model tables, also emit a per-model row serialization in the chunk (e.g. 'cMT2158X — SD Card Slot: SD/SDHC'), or transpose so each model's values stay together. Prepend the document title/model name to single-model datasheet chunks so those win retrieval.",
+   "model_independent": false,
+   "golden_or_judge_note": "Judge inconsistency: OFF passes 0 and 2 have identical answer text, but one was graded partial and the other correct. Partial is the right grade for both (correct yes/no set, wrong slot type for cMT2158X).",
+   "labels": {
+    "off": [
+     "partial",
+     "wrong",
+     "correct"
+    ],
+    "on": [
+     "correct",
+     "correct",
+     "correct"
+    ]
+   },
+   "evidence_class": "evidence_damaged_or_split",
+   "category": "multihop"
+  },
+  {
+   "id": "G08",
+   "causes": [
+    "GEN-STYLE",
+    "HISTORY",
+    "PARSE"
+   ],
+   "evidence_reached_model": "sometimes",
+   "explanation": "OFF passes were 3/3 correct with table chunk 1aa4ce88 (p15, rows marked 'No' for HMIGTO1300/1310/2300) at top-8 rank 6. In ON mode the rewrite became 'SD card expansion limitations', dropping the 'which models cannot' intent. 1aa4ce88 fell to top-20 rank 8 and was reranked out, and answers turned into a list of limitations. ON pass 3 then set the correct 'except HMIGTO 1300/1310/2300' against a selection-guide cell 'By 4 GB SD card (except HMIGTO2300)'. That cell refers only to the 5.7\" column, but the parse lost the column context. The model gave no clear final list, so the judge marked it partial. The hmigto5310_manual p18 footnote (4161fb36) never made the top-20.",
+   "ragline_fixable": true,
+   "proposed_fix": "Pre-pass rewrite rule: keep the question's answer type and negation ('which models', 'cannot') in the rewritten query, and add a test for it. Answer prompt: when asked 'which X', end with an explicit list, and reconcile apparently conflicting sources by scope (column or model group) instead of listing both.",
+   "model_independent": false,
+   "golden_or_judge_note": "The on3 partial is borderline: it quotes the exact correct list but hedges. Arguably correct, but partial is defensible.",
+   "labels": {
+    "off": [
+     "correct",
+     "correct",
+     "correct"
+    ],
+    "on": [
+     "correct",
+     "correct",
+     "partial"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "multihop"
+  },
+  {
+   "id": "H01",
+   "causes": [
+    "RET-RERANK",
+    "MISLEAD",
+    "CHUNK"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "The Standard manual's 'Replace the Battery' chunk b516bc92 (p125) was at merged rank 17 but reranked out of the top-8. It is a long warning paragraph that ends mid-procedure at '2. Remove the battery cov'; steps 3-6 are on p126 in d7cb7b68, which has no section header and was never retrieved, because chunks may not span pages. The top-8 was taken by Standard/Performance tech-data spec tables (matched on the catalogue number in the query), PanelView 800 manual pages, a footer-only chunk (standard_user_manual p155), and the sibling Performance manual's 'Replace the Battery' (ef353f2b, logic-module removal). All 6 passes presented the Performance procedure (ON passes labelled it as such), so the judge graded wrong.",
+   "ragline_fixable": true,
+   "proposed_fix": "Let procedure/numbered-step text continue across a page break: merge the chunk with the next page's continuation, or carry the section heading forward to header-less pages. Expand neighbours for top hits whose numbered steps are cut off. Drop footer-only chunks. Raise the rerank candidate depth or keep a per-document quota so the exact-product manual (Standard) beats the sibling (Performance). Product-family-aware filter: when the query names 'Standard', penalise 'Performance' documents.",
+   "model_independent": true,
+   "golden_or_judge_note": "",
+   "labels": {
+    "off": [
+     "wrong",
+     "wrong",
+     "wrong"
+    ],
+    "on": [
+     "wrong",
+     "wrong",
+     "wrong"
+    ]
+   },
+   "evidence_class": "retrieved_not_reranked_top8",
+   "category": "procedure"
+  },
+  {
+   "id": "H03",
+   "causes": [
+    "HISTORY",
+    "GEN-STYLE"
+   ],
+   "evidence_reached_model": "always",
+   "explanation": "The full 5-step procedure (3 mm Allen key, push cables through, insert 50.2 mm, 3 Nm, 20 Nm with hook wrench 58-62) is in one chunk, cp39xx p30 c8c84615, at top-8 #3 in every pass. The near-identical CP37xx procedure is at #1, with the same values. All six answers listed only the torques (plus the 6 Nm adapter-plate screws from p28) and dropped the fitting steps. The user asked 'How is the mounting arm tube fitted … and what torques are specified?', but the pre-pass rewrite 'Beckhoff CP39xx control panel mounting arm tube fitting mounting arm adapter specified torques' is what goes into the answer prompt's 'Question:' line. That turns a how-to question into a torque lookup. Rule 6 ('answer directly in a few sentences') further encourages brevity.",
+   "ragline_fixable": true,
+   "proposed_fix": "Send the user's original (follow-up-resolved) natural-language question to the answer LLM; keep the keyword rewrite for retrieval only. Add to rule 6: 'For procedure/how-to questions, give all numbered steps from the source, in order.'",
+   "model_independent": true,
+   "golden_or_judge_note": "",
+   "labels": {
+    "off": [
+     "partial",
+     "partial",
+     "partial"
+    ],
+    "on": [
+     "partial",
+     "partial",
+     "partial"
+    ]
+   },
+   "evidence_class": "in_top8_always",
+   "category": "procedure"
+  },
+  {
+   "id": "H05",
+   "causes": [
+    "RET-RERANK",
+    "MISLEAD",
+    "GOLDEN"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "The exact evidence (utility/data-control install procedure, chunk cbac4026, p398, chunk_index 516) was at merged rank 11 but was reranked out of the top-8. The dossier counts it as 'in top-8' only because chunk 9ab032ba (p396, index 514) shares steps 1, 2, 5 and 6, but 9ab032ba is the startup S.MODE method. The top-8 was filled with near-duplicates: 3 chunks from the sibling GS25/GS21 manual (p391/392/394) and 2 'Preparation before installation' passages repeated in different chapters (p696, p394). So the model described the power-on S.MODE/1-point-press method instead of 'Display the data control function screen (Utility) … touch [Install]'.",
+   "ragline_fixable": true,
+   "proposed_fix": "(1) De-duplicate near-identical chunks (same text in another chapter or a sibling manual) before taking the top-8, keeping the doc that matches the named product. (2) Neighbour expansion: add chunk_index ±1/±2 of top hits in the same section (9ab032ba at 514 → cbac4026 at 516). (3) Raise rerank top-k to 10–12 for procedure questions.",
+   "model_independent": true,
+   "golden_or_judge_note": "Slightly ambiguous: 'using the utility' can be read as 'per the utility manual'. The startup method answer is also valid, so partial is fair and not a model error.",
+   "labels": {
+    "off": [
+     "partial",
+     "partial",
+     "partial"
+    ],
+    "on": [
+     "partial",
+     "partial",
+     "partial"
+    ]
+   },
+   "evidence_class": "in_top8_always",
+   "category": "procedure"
+  },
+  {
+   "id": "H06",
+   "causes": [
+    "GEN-STYLE"
+   ],
+   "evidence_reached_model": "always",
+   "explanation": "Evidence chunk 775cca02 (setup manual p88, sections 4-1/4-2) was top-8 rank 1 in every pass and holds the full procedure. ON passes 1-3 and OFF pass 1 gave all five steps. OFF passes 2 and 3 stopped after entering Calibrate Mode (SW1 OFF/SW2 ON, Reset) and omitted the '+'-touching, 'TP Adjust Success!' and switch-back steps, although the question asked both 'enter ... and calibrate'. This is answer truncation by the model, possibly encouraged by prompt rule 6 ('answer directly in a few sentences').",
+   "ragline_fixable": true,
+   "proposed_fix": "Answer prompt: 'Address every part of a multi-part question; for procedures, give all steps through to completion and exit.' Optionally soften rule 6 for how-to/procedure questions.",
+   "model_independent": false,
+   "golden_or_judge_note": "",
+   "labels": {
+    "off": [
+     "correct",
+     "partial",
+     "partial"
+    ],
+    "on": [
+     "correct",
+     "correct",
+     "correct"
+    ]
+   },
+   "evidence_class": "in_top8_always",
+   "category": "procedure"
+  },
+  {
+   "id": "H07",
+   "causes": [
+    "CHUNK",
+    "RET-CHUNK"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "The 3-step procedure is split one step per page with no heading context. Step 1 (p21, 39710ace, 200 chars), step 2 (p22, 57a256f5) and step 3 (p23) all have section_header '' because the 'Installation Procedure' heading is on p20. Step 3 (ab267642) reached the top-8 #2 and step 1 arrived via the hardware manual p125 (efdd6fb6), but step 2 (protruding points into the two holes) never did, in either the install guide (57a256f5) or the hardware manual (p126, 3f9cad69). So every pass gave pull-lock / push-lock and missed or blurred the insert step.",
+   "ragline_fixable": true,
+   "proposed_fix": "Carry the last heading forward to header-less pages and prepend it to chunk text. Merge consecutive tiny step-pages of one procedure into a single chunk. Neighbour expansion: when chunk N of a 'Step Action' sequence is retrieved, also add N-1 and N+1 (p23 -> p22; p125 -> p126).",
+   "model_independent": true,
+   "golden_or_judge_note": "Partial is fair.",
+   "labels": {
+    "off": [
+     "partial",
+     "partial",
+     "partial"
+    ],
+    "on": [
+     "partial",
+     "partial",
+     "partial"
+    ]
+   },
+   "evidence_class": "not_retrieved_top20",
+   "category": "procedure"
+  },
+  {
+   "id": "H08",
+   "causes": [
+    "CHUNK",
+    "RET-RERANK",
+    "MISLEAD",
+    "HISTORY"
+   ],
+   "evidence_reached_model": "never",
+   "explanation": "The X2 pro 4 B2 procedure spans three per-page chunks. Step 1–2 (p11 fbc51e2b) reached the top-8 at #2 in all passes. Steps 3–7 with brackets at 0.5–1.0 Nm (p12 339102ff) were in the top-20 at #10 but reranked out. Step 8, removing the protective film (p13 e0795eb3), never appeared. The p12/p13 continuation chunks carry no product identity, only 'Installation … Beijer Electronics, MAEN350'. The near-identical X2 pro 15 B2 p12 chunk 0386f0da ('slotted thumb screw … built-in bracket … 0.7 ± 0.2 Nm') took its top-8 slot, as did the 10 B2/15 B2 p11 and p20 sibling chunks (5 of 8 slots are sibling manuals). Every pass either took the 0.7 ± 0.2 Nm thumb-screw method from the sibling or said the later steps were missing.",
+   "ragline_fixable": true,
+   "proposed_fix": "(1) Prepend document title/product (e.g. 'X2 pro 4 B2 hardware manual') + section path to each chunk's text for embedding, BM25 and the reranker; the existing unused Chunk.context_prefix does most of this. (2) Don't break numbered procedures at page boundaries: merge a section's continuation pages, or add neighbour expansion that pulls chunk_index+1/+2 of the same document when a chunk ends mid-procedure. (3) Doc-diversity guard: when the pre-pass names one model, filter or penalise other models' manuals (target_document_hints already exists but only scopes 'compound' mode).",
+   "model_independent": true,
+   "golden_or_judge_note": "The golden's '130 x 89 mm' cutout comes from Technical Data p14 (d2199fde), not the installation section, so a full-credit answer needs 4 chunks. The judge was inconsistent across OFF passes: all three use the sibling 0.7 ± 0.2 Nm, but passes 1/3 were graded partial and pass 2 wrong. By the sibling-value rule all three are wrong.",
+   "labels": {
+    "off": [
+     "partial",
+     "wrong",
+     "partial"
+    ],
+    "on": [
+     "wrong",
+     "partial",
+     "wrong"
+    ]
+   },
+   "evidence_class": "in_top8_always",
+   "category": "procedure"
+  }
+ ]
+}

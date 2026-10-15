@@ -1,0 +1,35 @@
+# Hand-taken measurements per pod session (RunPod console, Telemetry tab), in a
+# machine-readable form for the report and dashboard. The narrative is in NOTES.md.
+# vram_gib = GPU memory in use at the reading; card_gib = the card's memory.
+
+[[r2.session]]
+date = "2026-10-14"
+conditions = ["off"]
+pod = "<pod-id>"
+vram_gib = 48
+card_gib = 96
+during = "thinking-OFF throughput probe"
+host_cpu = "AMD EPYC 9335"
+driver = "595.91.07 / CUDA 13.2"
+boot_s = 828
+
+[[r2.session]]
+date = "2026-10-15"
+conditions = ["on", "off-rag"]
+pod = "run 4 (reading taken on aborted run 3, pod <pod-id>, same model and settings)"
+vram_gib = 48
+card_gib = 96
+during = "thinking-ON pass 1 (run 3)"
+host_cpu = "AMD EPYC 9554"
+driver = "580.173.02 / CUDA 13.0"
+boot_s = 868.5
+
+[[r2-s1.session]]
+date = "2026-10-15"
+conditions = ["off", "on"]
+pod = "<pod-id>"
+vram_gib = 49
+card_gib = 96
+during = "thinking-OFF pass 1 (stage 1 verification, 50-question subset), uptime 17m 14s"
+host_cpu = "AMD EPYC 9355"
+driver = "595.91.07 / CUDA 13.2"

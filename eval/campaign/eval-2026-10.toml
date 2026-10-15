@@ -1,0 +1,160 @@
+# Evaluation campaign eval-2026-10 — the seven-rung LLM ladder on one RTX PRO 6000.
+# Read by scripts/eval_campaign.py, one rung per invocation (gated). See
+# docs/evaluation-plan.md (Phase 2, per-rung protocol) and docs/eval/phase1-build-plan.md.
+#
+# Model ids verified on their Hugging Face model cards on 2026-10-13 (see the notes);
+# profiles live in podlink/deploy/profiles/eval/ (examples) and ~/.config/podlink/profiles/.
+# A rung whose profile is missing fails preflight, not mid-run.
+
+[campaign]
+name = "eval-2026-10"
+golden = "eval/golden_set_hmi.json"
+results_dir = "eval/results"            # runs land in eval/results/eval-2026-10/<rung>/<condition>/
+budget_cap_usd = 300                    # hard ceiling for the whole campaign (GPU + OpenAI)
+stop_ask_usd = 250                      # the runner refuses to start a rung at or above this
+repeats = 3                             # full passes per condition
+warmup = 3                              # untimed questions before pass 1
+path = "chat"                           # default answer path: the product path (follow-ups replayed)
+load_levels = [1, 4, 8]                 # throughput probe streams
+judge_model = "claude-opus-5-5"
+gpu = "RTX PRO 6000 Blackwell 96GB"     # recorded in every manifest; the rate comes from podlink live
+cloud = "RunPod Secure"
+console = "http://127.0.0.1:8765"       # podlink console (localhost only)
+podlink_dir = "../podlink"              # for start.sh --check
+ragline_env = ".env"                    # where condition variables are merged (same routine as the handoff hook)
+
+# The frozen evaluation index (docs/eval/phase0-index-plan.md, plan 0.4). Pinned into
+# the environment of every evaluate/load process, so .env (dev/prod index) is never
+# read for retrieval; the runner refuses to start a rung if it is missing or empty.
+# `points` is filled in from the index digest once the build is done; when set, any
+# other count also fails preflight.
+[index]
+collection = "ragline_eval_v1"
+database_url = "sqlite+aiosqlite:///./data/ragline_eval_v1.db"
+points = 15064                          # docs/eval/index-eval-2026-10-v1.md; any other count fails preflight
+
+# Evaluation transcripts (docs/eval/call-capture-plan.md, approved 2026-10-15): full
+# text of every model call per question, written beside each results file as
+# rN.transcripts.jsonl.gz — kept OUT of git (.gitignore) and copied after every rung
+# to the Windows archive below, together with a one-off snapshot of the eval index.
+[capture]
+transcripts = true
+
+[archive]
+dest = "/mnt/c/Users/<user>/Documents/ragline-eval-archive"
+
+# Thinking OFF / ON are per-request template switches on the same pod for the Qwen
+# hybrids. ON also raises the answer ceiling: vLLM counts reasoning tokens inside
+# max_tokens, so 1500 would truncate a thinking answer; 4k reasoning + 1.5k answer.
+# Revised 2026-10-14 after two aborted rung 2 ON runs (eval/results/eval-2026-10/NOTES.md):
+# thinking is now ON FOR ANSWERS ONLY (ANSWER_EXTRA_BODY on the RAG and library answer
+# calls); the query pre-pass, confidence and memory calls keep thinking off, exactly
+# as in OFF. vLLM counts reasoning inside max_tokens and 5500 starved 10 of 100
+# answers to empty, so ON gets a 16k answer ceiling (library answers too); answers
+# that still hit it are counted as truncated. OFF requests are byte-for-byte what
+# rung 2 OFF ran with (ANSWER_EXTRA_BODY empty = nothing extra on answer calls).
+# Revised again 2026-10-15 (user-approved): ON answers use the vendor's thinking-mode
+# sampling — Qwen: temperature 0.6, top_p 0.95, top_k 20, min_p 0, and "DO NOT use
+# greedy decoding" (degradation, endless repetition). OFF stays greedy (temperature 0),
+# the standard for grounded-QA evaluation; the report states the asymmetry. ON
+# answers therefore vary between passes — the 3 repeats and bootstrap CIs cover it.
+# Other model families publish their own thinking sampling: check the card per rung.
+[conditions.off]
+env = { LLM_EXTRA_BODY = "'{\"chat_template_kwargs\": {\"enable_thinking\": false}}'", ANSWER_EXTRA_BODY = "", ANSWER_TEMPERATURE = "", ANSWER_MAX_TOKENS = "1500", LIBRARY_ANSWER_MAX_TOKENS = "600" }
+[conditions.on]
+env = { LLM_EXTRA_BODY = "'{\"chat_template_kwargs\": {\"enable_thinking\": false}}'", ANSWER_EXTRA_BODY = "'{\"chat_template_kwargs\": {\"enable_thinking\": true}, \"top_p\": 0.95, \"top_k\": 20, \"min_p\": 0}'", ANSWER_TEMPERATURE = "0.6", ANSWER_MAX_TOKENS = "16384", LIBRARY_ANSWER_MAX_TOKENS = "16384" }
+
+# Restored into .env at the end of every rung (even on failure), so the dev/prod
+# stack is never left in thinking mode.
+[restore]
+env = { LLM_EXTRA_BODY = "", ANSWER_EXTRA_BODY = "", ANSWER_TEMPERATURE = "", ANSWER_MAX_TOKENS = "1500", LIBRARY_ANSWER_MAX_TOKENS = "600" }
+
+# Rung order for the campaign: r2 first (shakedown against the four recorded runs),
+# then r3, r4, r5, r6. Reduced from seven rungs to five on 2026-10-14 (user
+# decision): r1 (4B) and r1b (8B) are kept below, marked `deferred`, so the full
+# 4B–122B ladder can be resumed later; the runner refuses a deferred rung unless
+# --include-deferred is passed. Their podlink profiles stay installed.
+
+[rungs.r2]
+model = "RedHatAI/Qwen3.8-27B-INT4"
+profile = "eval-r2-qwen3.8-27b-int4"
+quantization = "INT4 (GPTQ)"
+weights_gb = 17
+reasoning_parser = "qwen3"
+conditions = ["off", "on"]
+# Shakedown only: one rag-path pass so the result can be set against the four
+# recorded rag-path runs (42–45/51 source hits).
+extra_conditions = [{ name = "off-rag", base = "off", path = "rag", repeats = 1, load = false }]
+note = "Recorded baseline; the 24 GB tier. Must reproduce the known source-hit range before any other rung runs."
+
+# Stage 1 verification (docs/eval/ragline-fixes-plan.md, Verification): the r2
+# model and profile on the fixed query path, index v1 unchanged, over the 50-question
+# subset in eval/campaign/verify-stage1.ids (35 diagnosed faults + 15 controls).
+# Its own rung name so the rung 2 baseline files are never overwritten. Run with
+# --ids-file eval/campaign/verify-stage1.ids --skip-load.
+[rungs.r2-s1]
+model = "RedHatAI/Qwen3.8-27B-INT4"
+profile = "eval-r2-qwen3.8-27b-int4"
+quantization = "INT4 (GPTQ)"
+weights_gb = 17
+reasoning_parser = "qwen3"
+conditions = ["off", "on"]
+note = "Stage 1 verification of ragline's query-time fixes against the rung 2 baseline (same model)."
+
+[rungs.r1]
+model = "Qwen/Qwen3-4B-FP8"
+profile = "eval-r1-qwen3-4b"
+quantization = "FP8"
+weights_gb = 4
+reasoning_parser = "qwen3"
+conditions = ["off", "on"]
+deferred = true                         # 2026-10-14: five-rung set; run later with --include-deferred
+note = "Floor of the spread. Card suggests deepseek_r1 for vLLM; qwen3 is used because it handles the no-think case (enable_thinking false) cleanly."
+
+[rungs.r1b]
+model = "Qwen/Qwen3-8B-FP8"
+profile = "eval-r1b-qwen3-8b"
+quantization = "FP8"
+weights_gb = 8
+reasoning_parser = "qwen3"
+conditions = ["off", "on"]
+deferred = true                         # 2026-10-14: five-rung set; run later with --include-deferred
+note = "Second small-dense point (added 2026-10-13)."
+
+[rungs.r3]
+model = "stelterlab/Qwen3-30B-A3B-Instruct-2507-AWQ"
+profile = "eval-r3-qwen3-30b-a3b-2507-awq"
+quantization = "AWQ"
+weights_gb = 18
+reasoning_parser = "qwen3"
+conditions = ["off"]
+# The 2507 pair ships thinking as a separate checkpoint: ON is its own pod session.
+extra_conditions = [{ name = "on", base = "on", profile = "eval-r3-qwen3-30b-a3b-thinking-2507-fp8", model = "Qwen/Qwen3-30B-A3B-Thinking-2507-FP8", separate_pod = true }]
+note = "Deployed prod generator; fast MoE. ON = the sibling Thinking-2507 checkpoint, official FP8 (no official AWQ exists; the community AWQ builds are unverified) — different weights AND a different quantisation, which the report states. The Thinking model always thinks (vLLM parser deepseek_r1) — on EVERY call, side calls included: the answer-only switch cannot apply to a checkpoint with no switch, which the report states."
+
+[rungs.r4]
+model = "Qwen/Qwen3.6-35B-A3B-FP8"
+profile = "eval-r4-qwen3.6-35b-a3b-fp8"
+quantization = "FP8"
+weights_gb = 37
+reasoning_parser = "qwen3"
+conditions = ["off", "on"]
+note = "Candidate replacement (speed, 262k ctx); faithfulness unproven."
+
+[rungs.r5]
+model = "RedHatAI/gemma-4-26B-A4B-it-FP8-dynamic"
+profile = "eval-r5-gemma-4-26b-a4b-fp8"
+quantization = "FP8-dynamic (RedHatAI build of google/gemma-4-26B-A4B-it; Google ships no FP8)"
+weights_gb = 27
+reasoning_parser = "gemma4"
+conditions = ["off", "on"]
+note = "Best measured HHEM of the fit set (5.2%). Thinking is a per-request enable_thinking switch with vLLM's gemma4 reasoning parser (vLLM >= 0.25.0; the image has 0.25.1), so both conditions run. Text-only: images/audio disabled."
+
+[rungs.r6]
+model = "Qwen/Qwen3.5-122B-A10B-GPTQ-Int4"
+profile = "eval-r6-qwen3.5-122b-a10b-int4"
+quantization = "GPTQ-Int4"
+weights_gb = 65
+reasoning_parser = "qwen3"
+conditions = ["off", "on"]
+note = "Largest that fits with embed+rerank; gpt-oss-120b is the substitute if it fails to load."

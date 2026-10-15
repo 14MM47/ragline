@@ -1,0 +1,513 @@
+{
+  "tasks": {
+    "correctness": {
+      "prompt_hash": "ad926a73b52a",
+      "model": "claude-opus-5-5",
+      "calls": 3,
+      "cost_usd_reported": 0.7714,
+      "at": "2026-10-13T10:25:19+00:00"
+    }
+  },
+  "per_question": {
+    "A01": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "Answer says max power consumption is not stated (offers only 34 BTU/hr heat dissipation) and gives no wattage, versus the reference 11 W (0.40 A @ 24V DC).",
+        "label": "abstained"
+      }
+    },
+    "A02": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer names 2711P-Y2032 or an equivalent such as Matsushita/Duracell DL2032, matching the evidence.",
+        "label": "correct"
+      }
+    },
+    "A03": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 105…110 °C (221…230 °F), matching the evidence for delayed automatic restart.",
+        "label": "correct"
+      }
+    },
+    "A04": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 30 W = 102 BTU for the 12 in. terminal, matching the evidence.",
+        "label": "correct"
+      }
+    },
+    "A05": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 2.75V as the minimum Normal voltage, matching the evidence (2.75V or higher is Normal).",
+        "label": "correct"
+      }
+    },
+    "A06": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives DEMKO 19 ATEX 2252 X, matching the evidence certificate number.",
+        "label": "correct"
+      }
+    },
+    "A07": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives IEC IP20 when VESA-mounted (vs IP66 panel-mounted), matching the evidence.",
+        "label": "correct"
+      }
+    },
+    "A08": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 0…45 °C (32…113 °F) for Core i7, matching the evidence.",
+        "label": "correct"
+      }
+    },
+    "A09": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "Answer says the memory values for 2715-T7CD are not available and gives none, versus the reference 512 MB RAM and 250 MB storage.",
+        "label": "abstained"
+      }
+    },
+    "A10": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer names 55 °C for the 2715-T10CD vs 50 °C for the 2711R-T10T and picks the PanelView 5500 as higher, matching the evidence.",
+        "label": "correct"
+      }
+    },
+    "A11": {
+      "correctness": {
+        "verdict": "wrong",
+        "reason": "Answer says both terminals share IP66, whereas the evidence gives IP69/IP69K for the stainless-steel model and IP65 for the capacitive model.",
+        "label": "wrong"
+      }
+    },
+    "A12": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives one port for the 5310 vs two for the 5510 and says the 5510 supports DLR, matching the evidence.",
+        "label": "correct"
+      }
+    },
+    "B01": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 13.2 W for the KTP1200 Basic DP, matching the evidence.",
+        "label": "correct"
+      }
+    },
+    "B02": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 1.2 A and states the power consumption without loads as 28.8 W, matching the evidence.",
+        "label": "correct"
+      }
+    },
+    "B03": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 1920 x 1080 pixels for the TP2200 Comfort, matching the evidence.",
+        "label": "correct"
+      }
+    },
+    "B04": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "Answer says the IFP2400 V2 power consumption is not in the sources and gives no value, versus the reference 36 W.",
+        "label": "abstained"
+      }
+    },
+    "B05": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer says the debugger is disabled by default and gives ports 9222 (screen) and 9224 (job), matching the evidence.",
+        "label": "correct"
+      }
+    },
+    "B06": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives a maximum of 300 simultaneously simulated tags, matching the evidence.",
+        "label": "correct"
+      }
+    },
+    "B07": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 0 °C to +45 °C operating, matching the evidence.",
+        "label": "correct"
+      }
+    },
+    "B08": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer says no, fTPM 2.0 is not enabled on CP6700-0001-0050, matching the evidence.",
+        "label": "correct"
+      }
+    },
+    "B09": {
+      "correctness": {
+        "verdict": "wrong",
+        "reason": "Answer gives the sibling WOP-2080T dimensions 231.5 x 174.6 x 37 mm instead of the WOP-2080V's 232.5 x 175.8 x 42.9 mm; a labelled sibling-model value counts as wrong.",
+        "label": "wrong"
+      }
+    },
+    "B10": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Both ranges match the evidence: IFP1500 Basic is 24 V DC, +20.4 to +28.8 V; IM-315A is 12-24 V DC, 9-36 V. It correctly says the IM-315A range is wider.",
+        "label": "correct"
+      }
+    },
+    "B11": {
+      "correctness": {
+        "verdict": "partial",
+        "reason": "The MTP1500 ratings are right (front IP65 / UL50 Type 4X/12, rear IP20), but the Beckhoff CP6600 side (front IP54, rear IP20) is missing.",
+        "label": "partial"
+      }
+    },
+    "C01": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Default port No. 8501 matches the evidence.",
+        "label": "correct"
+      }
+    },
+    "C02": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Up to 63 GOT modules per DeviceNet master matches the evidence.",
+        "label": "correct"
+      }
+    },
+    "C03": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "6.5 W (271 mA/24 V) or less matches the reference, and so does the backlight-off figure of 3.8 W.",
+        "label": "correct"
+      }
+    },
+    "C04": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "±45 seconds/month at 25 °C matches the evidence.",
+        "label": "correct"
+      }
+    },
+    "C05": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "1525 g matches the evidence.",
+        "label": "correct"
+      }
+    },
+    "C06": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer names Modbus/TCP and the controller-side command Sys.ModbusServerEnable=1, both matching the evidence.",
+        "label": "correct"
+      }
+    },
+    "C07": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "0 to 40°C matches the NSH5-V2 evidence.",
+        "label": "correct"
+      }
+    },
+    "C08": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "32 actions each for press, release and long press, 96 in total, matches the evidence (32*3).",
+        "label": "correct"
+      }
+    },
+    "C09": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "1024 x 600 pixels matches the evidence.",
+        "label": "correct"
+      }
+    },
+    "C10": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "57 MB for the GT2712-S and 32 MB for the GT2512-S match the evidence, and the GT2712-S is correctly named the larger.",
+        "label": "correct"
+      }
+    },
+    "C11": {
+      "correctness": {
+        "verdict": "partial",
+        "reason": "The NA5-7W figure of 19 W and the winner are right, but the answer gives 8.8 W for the DOP-107WV instead of the evidence's 8.4 W.",
+        "label": "partial"
+      }
+    },
+    "D01": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "10.5~28VDC matches the evidence.",
+        "label": "correct"
+      }
+    },
+    "D02": {
+      "correctness": {
+        "verdict": "wrong",
+        "reason": "Answer gives approx. 1.6 kg; the evidence says approx. 2.74 kg for the cMT2158X.",
+        "label": "wrong"
+      }
+    },
+    "D03": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "-10° ~ 55°C (14° ~ 131°F) matches the evidence.",
+        "label": "correct"
+      }
+    },
+    "D04": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "+24 VDC ±20% at 33 W maximum matches the evidence.",
+        "label": "correct"
+      }
+    },
+    "D05": {
+      "correctness": {
+        "verdict": "wrong",
+        "reason": "Answer gives 7.73 lb (3.50 kg); the G315C datasheet says 11.41 lbs (5.17 Kg).",
+        "label": "wrong"
+      }
+    },
+    "D06": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "18.5 W max matches the HMIST6700 evidence.",
+        "label": "correct"
+      }
+    },
+    "D07": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives a 22.5 mm (0.88 in) diameter cutout, matching the reference and evidence; omitting the +0/-0.3 mm tolerance does not change the asked-for value.",
+        "label": "correct"
+      }
+    },
+    "D08": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer states 31.2 W at rated voltage, matching the 31.2 W in the evidence.",
+        "label": "correct"
+      }
+    },
+    "D09": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives 1024 x 600 for the cMT3072XH, matching the datasheet evidence.",
+        "label": "correct"
+      }
+    },
+    "D10": {
+      "correctness": {
+        "verdict": "partial",
+        "reason": "Answer gives the eMT3150A range correctly as 0~50°C but says the eMT3070A's -20~50°C range is not available, so one side of the comparison is missing.",
+        "label": "partial"
+      }
+    },
+    "D11": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives DA50A 13 oz (404.3 g) and DA70A 2 lb 2.5 oz (978.05 g), matching the evidence, and correctly says the DA70A is heavier.",
+        "label": "correct"
+      }
+    },
+    "D12": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives X2 pro 10 B2 -10 to +60°C and HMIST6500 0 to 50°C and correctly names the Beijer as wider.",
+        "label": "correct"
+      }
+    },
+    "E01": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "Answer says the documents give no MTBF for the cMT3072X and offers no value, which is the desired outcome for this unanswerable item.",
+        "label": "declined"
+      }
+    },
+    "E02": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "Answer says the documents contain no pricing for the PanelView 5510 and gives no price.",
+        "label": "declined"
+      }
+    },
+    "E03": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "Answer says no Bluetooth version is stated for the cMT3162X and invents none.",
+        "label": "declined"
+      }
+    },
+    "E04": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "Answer says no source mentions a cMT3252X and does not substitute another model's temperature range.",
+        "label": "declined"
+      }
+    },
+    "E05": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "Answer says no source covers a Phoenix Contact BTP 2070W and gives no resolution.",
+        "label": "declined"
+      }
+    },
+    "E06": {
+      "correctness": {
+        "verdict": "abstained",
+        "reason": "Answer says no Linux kernel version is stated for the Red Lion devices and gives none.",
+        "label": "declined"
+      }
+    },
+    "E07": {
+      "correctness": {
+        "verdict": "wrong",
+        "reason": "Answer names only 4 vendors (Rockwell/Allen-Bradley, Siemens, Red Lion, Advantech) against the reference's 12, presenting an incomplete list as the full answer.",
+        "label": "wrong"
+      }
+    },
+    "E08": {
+      "correctness": {
+        "verdict": "wrong",
+        "reason": "Answer says 8 Weintek documents, but the reference count is 18.",
+        "label": "wrong"
+      }
+    },
+    "E09": {
+      "correctness": {
+        "verdict": "wrong",
+        "reason": "Answer lists manual titles from a related-manuals table (e.g. GT Designer3, SoftGOT) rather than the 10 library files, and leaves out the catalogs and the GT21/GT25/GT27 general descriptions.",
+        "label": "wrong"
+      }
+    },
+    "F01": {
+      "correctness": {
+        "verdict": "partial",
+        "reason": "Answer does include the correct 2711P-Y2032 / DL2032 for the PanelView 800, but leads with a different part number (2711P-RY2032) and spreads the answer across several products, which hedges the right value.",
+        "label": "partial"
+      }
+    },
+    "F02": {
+      "correctness": {
+        "verdict": "wrong",
+        "reason": "Answer says the PanelView 5510 stainless rating is not stated, which contradicts the IP69/IP69K evidence, and instead gives values for sibling products (PanelView Plus 7, ASEM 6300M).",
+        "label": "wrong"
+      }
+    },
+    "F03": {
+      "correctness": {
+        "verdict": "wrong",
+        "reason": "Answer gives DOP-107WV dimensions and never gives the 8.4 W max power draw or compares it with the NA5-7W's 19 W.",
+        "label": "wrong"
+      }
+    },
+    "F04": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives the DA70A weight as 2 lb 2.5 oz (978.05 g), matching the evidence; the extra specs do not contradict it.",
+        "label": "correct"
+      }
+    },
+    "F05": {
+      "correctness": {
+        "verdict": "correct",
+        "reason": "Answer gives the cMT3072X as a 7\" TFT with 800 x 480 resolution, matching the evidence.",
+        "label": "correct"
+      }
+    }
+  },
+  "results_file": "eval/results/2026-09-28_ragline-3090-on6000.json",
+  "golden_sha256": "cd6b80d7b1bb",
+  "summary": {
+    "verdicts": {
+      "abstained": 3,
+      "correct": 38,
+      "wrong": 9,
+      "partial": 4,
+      "declined": 6
+    },
+    "by_category": {
+      "comparison": {
+        "correct": 6,
+        "wrong": 1,
+        "partial": 3
+      },
+      "followup": {
+        "partial": 1,
+        "wrong": 2,
+        "correct": 2
+      },
+      "library": {
+        "wrong": 3
+      },
+      "spec": {
+        "abstained": 3,
+        "correct": 30,
+        "wrong": 3
+      },
+      "unanswerable": {
+        "declined": 6
+      }
+    },
+    "correct_rate_answerable": 0.7037,
+    "claims": {
+      "total": 0,
+      "supported": 0,
+      "supported_rate": null
+    },
+    "citations": {
+      "total": 0,
+      "used": 0,
+      "used_rate": null
+    }
+  },
+  "calibration": {
+    "human_grades": "eval/human_grades_2026-09-28.json",
+    "kappa": 0.883,
+    "confusion": {
+      "abstained": {
+        "abstained": 3,
+        "correct": 0,
+        "partial": 2,
+        "wrong": 0
+      },
+      "correct": {
+        "abstained": 0,
+        "correct": 36,
+        "partial": 0,
+        "wrong": 0
+      },
+      "partial": {
+        "abstained": 0,
+        "correct": 0,
+        "partial": 1,
+        "wrong": 0
+      },
+      "wrong": {
+        "abstained": 0,
+        "correct": 0,
+        "partial": 0,
+        "wrong": 4
+      }
+    },
+    "disagreements": [
+      "B11",
+      "D10"
+    ],
+    "kappa_min": 0.8
+  }
+}

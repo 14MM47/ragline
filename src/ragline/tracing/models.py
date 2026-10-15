@@ -26,6 +26,10 @@ class QueryTrace(SQLModel, table=True):
     # overall token usage score" the product exposes.
     prompt_tokens: int = 0
     completion_tokens: int = 0
+    # Characters of hidden reasoning a thinking model produced for the turn
+    # (vLLM reasoning parser output), 0 for non-thinking runs. Length only —
+    # the reasoning text is never persisted.
+    reasoning_chars: int = 0
     # End-to-end wall time for the turn, in milliseconds.
     total_ms: float = 0.0
     # How many distinct citations the answer carried.
