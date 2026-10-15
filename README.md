@@ -8,6 +8,25 @@ GPU pod, serve an LLM, an embedder and a reranker on it, change a few lines of
 `.env`, and measure how that stack answers a fixed set of questions about a
 fixed set of documents.
 
+## Evaluation results — model ladder (in progress)
+
+[![The model-ladder results page: rung 2 findings, with tabs for every rung](docs/images/eval-overview.png)](https://14mm47.github.io/ragline/)
+
+**[Open the interactive results page →](https://14mm47.github.io/ragline/)**
+LLMs from 27B to 122B on one RTX PRO 6000, thinking off vs on, every answer
+judged on a 100-question golden set; rung 2 of 5 done. Details below under
+[Model-ladder evaluation](#model-ladder-evaluation-in-progress).
+
+<details>
+<summary>More of the page: which configuration, thinking on or off, what to fix in ragline, every question</summary>
+
+![Correct rate, latency and paired comparisons per configuration](docs/images/eval-configuration.png)
+![Verdict mix, reasoning length by verdict and correct rate by question type](docs/images/eval-thinking.png)
+![Primary cause of each failure and whether the evidence reached the model](docs/images/eval-fixes.png)
+![The per-question explorer: one coloured square per pass, with diagnosis tags](docs/images/eval-questions.png)
+
+</details>
+
 > **Status: experimental.** ragline is a single-user tool that runs on a local
 > machine and binds to `127.0.0.1`. Authentication and deployment
 > infrastructure are not finished: there is an unvalidated multi-user design in
@@ -200,6 +219,15 @@ have been run, and how to serve the three models yourself.
 an interactive page with one tab per rung, updated as each rung completes. The
 same page is committed at
 [eval/results/eval-2026-10/dashboard.html](eval/results/eval-2026-10/dashboard.html).
+
+Using the page: the tabs switch rungs (link one directly with `#r3`, `#r4`, …;
+arrow keys move between tabs). Hover a chart for exact values. In **Every
+question**, filter by question type, by "not correct every time", "verdict
+differs between configurations" or "diagnosed failures", or search by id or
+text; click a row (or press Enter on it) to open every pass's answer, the
+judge's reason, the cited sources and the failure diagnosis. The page follows
+the system light/dark setting and is a single self-contained file, so the
+committed copy also works opened locally.
 
 The campaign compares answer-generating LLMs from 27B to 122B on one RTX PRO
 6000 (96 GB), each with thinking off and on, on the

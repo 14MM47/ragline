@@ -182,3 +182,10 @@ See `docs/eval/index-eval-2026-10-v1.md` and the build log in
   uptime 17m 14s, during OFF pass 1): **VRAM 49 GiB of 96 GiB (51%)** — same as r2's
   48 GiB within gauge rounding. Host AMD EPYC 9355, driver 595.91.07 / CUDA 13.2,
   RTX PRO 6000 Blackwell Server Edition, power limit 600 W.
+- **Paused 2026-10-15 17:25 (user request, end of session):** thinking-OFF complete — 3 passes
+  of the 50 questions in `r2-s1/off/r1-r3.json` with transcripts, not yet judged. Thinking-ON
+  pass 1 was interrupted at question 2 of 50 (nothing saved for ON). Runner stopped by pid
+  (SIGINT): pod terminated, `.env` restored, ledger entry written ($2.21, 0.89 h, boot 628 s;
+  the entry lists both conditions but only OFF ran). Resume with
+  `--rung r2-s1 --conditions on --skip-load --ids-file eval/campaign/verify-stage1.ids`,
+  then judge both conditions.

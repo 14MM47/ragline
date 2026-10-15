@@ -88,6 +88,9 @@ async def test_evaluation_redacts_startup_logs_http_errors_and_saved_results(tmp
         return pipeline
 
     monkeypatch.setattr(dependencies, "get_retrieval_pipeline", get_pipeline)
+    # The run records the index size; no Qdrant in CI, so the store is stubbed.
+    store = SimpleNamespace(count=AsyncMock(return_value=0))
+    monkeypatch.setattr(dependencies, "get_vector_store", lambda: store)
     monkeypatch.setattr(sys, "argv", ["evaluate.py", str(golden), "-o", str(output)])
     old_config = structlog.get_config().copy()
     old_formatters = [(handler, handler.formatter) for handler in logging.getLogger().handlers]
